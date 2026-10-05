@@ -1,0 +1,116 @@
+/* Layout helpers for the Foundations documentation stories only (not shipped in styles.css). */
+.axon-foundations {
+  display: flex;
+  flex-direction: column;
+  gap: var(--axon-space-8);
+  width: 100%;
+  max-width: 64rem;
+  padding: var(--axon-space-4);
+  color: var(--axon-color-text-primary);
+}
+
+.axon-foundations__title {
+  margin: 0 0 var(--axon-space-3);
+  font-size: var(--axon-font-size-lg);
+  font-weight: var(--axon-font-weight-semibold);
+  text-transform: capitalize;
+}
+
+.axon-foundations__hint {
+  margin: 0 0 var(--axon-space-3);
+  color: var(--axon-color-text-secondary);
+  font-size: var(--axon-font-size-sm);
+}
+
+.axon-foundations__code {
+  font-family: var(--axon-font-mono);
+  font-size: var(--axon-font-size-xs);
+  color: var(--axon-color-text-secondary);
+}
+
+.axon-swatches {
+  display: grid;
+  grid-template-columns: repeat(11, minmax(0, 1fr));
+  gap: var(--axon-space-1);
+}
+
+@media (max-width: 720px) {
+  .axon-swatches {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.axon-swatch {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 4.5rem;
+  padding: var(--axon-space-1-5);
+  border-radius: var(--axon-radius-md);
+  font-size: var(--axon-font-size-xs);
+  line-height: var(--axon-line-height-tight);
+}
+
+.axon-swatch--light {
+  color: var(--axon-color-neutral-900);
+}
+
+.axon-swatch--dark {
+  color: var(--axon-color-white);
+}
+
+.axon-swatch__hex {
+  font-family: var(--axon-font-mono);
+  opacity: 0.85;
+}
+
+.axon-token-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--axon-font-size-sm);
+}
+
+.axon-token-table th,
+.axon-token-table td {
+  padding: var(--axon-space-2) var(--axon-space-3);
+  border-bottom: 1px solid var(--axon-color-border);
+  text-align: left;
+  vertical-align: middle;
+}
+
+.axon-token-table th {
+  color: var(--axon-color-text-secondary);
+  font-weight: var(--axon-font-weight-medium);
+}
+
+.axon-semantic-chip {
+  display: inline-block;
+  width: 2.5rem;
+  height: 1.5rem;
+  border: 1px solid var(--axon-color-border);
+  border-radius: var(--axon-radius-sm);
+  vertical-align: middle;
+}
+
+.axon-bar {
+  height: var(--axon-space-3);
+  border-radius: var(--axon-radius-sm);
+  background: var(--axon-color-primary-500);
+}
+
+.axon-box-demo {
+  display: grid;
+  place-items: center;
+  width: 6rem;
+  height: 6rem;
+  border: 1px solid var(--axon-color-border);
+  background: var(--axon-color-surface-raised);
+  color: var(--axon-color-text-secondary);
+  font-size: var(--axon-font-size-sm);
+}
+
+.axon-box-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--axon-space-6);
+}
