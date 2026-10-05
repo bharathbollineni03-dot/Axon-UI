@@ -1,0 +1,14 @@
+node_modules/
+dist/
+storybook-static/
+.turbo/
+coverage/
+*.tsbuildinfo
+.DS_Store
+Thumbs.db
+.env
+.env.*
+!.env.example
+npm-debug.log*
+pnpm-debug.log*
+.claude/

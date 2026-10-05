@@ -1,0 +1,50 @@
+.axon-placeholder {
+  --axon-placeholder-color: var(--axon-color-primary-500);
+
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--axon-font-sans);
+  border: 1px solid var(--axon-placeholder-color);
+  border-radius: var(--axon-radius-md);
+}
+
+.axon-placeholder--primary {
+  --axon-placeholder-color: var(--axon-color-primary-500);
+}
+.axon-placeholder--secondary {
+  --axon-placeholder-color: var(--axon-color-secondary-500);
+}
+.axon-placeholder--success {
+  --axon-placeholder-color: var(--axon-color-success-500);
+}
+.axon-placeholder--warning {
+  --axon-placeholder-color: var(--axon-color-warning-500);
+}
+.axon-placeholder--danger {
+  --axon-placeholder-color: var(--axon-color-danger-500);
+}
+.axon-placeholder--neutral {
+  --axon-placeholder-color: var(--axon-color-neutral-500);
+}
+
+.axon-placeholder--solid {
+  background: var(--axon-placeholder-color);
+  color: var(--axon-color-white);
+}
+.axon-placeholder--outline {
+  background: transparent;
+  color: var(--axon-placeholder-color);
+}
+
+.axon-placeholder--sm {
+  padding: var(--axon-space-2) var(--axon-space-3);
+  font-size: var(--axon-font-size-sm);
+}
+.axon-placeholder--md {
+  padding: var(--axon-space-2) var(--axon-space-4);
+  font-size: var(--axon-font-size-md);
+}
+.axon-placeholder--lg {
+  padding: var(--axon-space-3) var(--axon-space-4);
+  font-size: var(--axon-font-size-lg);
+}
