@@ -30,11 +30,12 @@
     "access": "public"
   },
   "scripts": {
-    "build": "tsup",
+    "build": "tsx scripts/generate-css.ts && tsup",
     "dev": "tsup --watch",
     "test": "vitest run --passWithNoTests",
     "test:watch": "vitest",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "gen:css": "tsx scripts/generate-css.ts"
   },
   "peerDependencies": {
     "react": ">=18",
@@ -46,6 +47,7 @@
     "react": "catalog:",
     "react-dom": "catalog:",
     "tsup": "catalog:",
+    "tsx": "catalog:",
     "typescript": "catalog:",
     "vitest": "catalog:"
   }

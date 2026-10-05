@@ -1,0 +1,37 @@
+/* Small reset scoped to .axon-root so it never leaks into the host page. */
+.axon-root {
+  background-color: var(--axon-color-background);
+  color: var(--axon-color-text-primary);
+  font-family: var(--axon-font-sans);
+  font-size: var(--axon-font-size-md);
+  font-weight: var(--axon-font-weight-regular);
+  line-height: var(--axon-line-height-normal);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.axon-root *,
+.axon-root *::before,
+.axon-root *::after {
+  box-sizing: border-box;
+}
+
+.axon-root :where(button, input, select, textarea, optgroup) {
+  font: inherit;
+  color: inherit;
+  letter-spacing: inherit;
+}
+
+.axon-root :where(img, svg, video, canvas) {
+  max-width: 100%;
+}
+
+.axon-root :where(code, kbd, pre, samp) {
+  font-family: var(--axon-font-mono);
+}
+
+.axon-root :where([hidden]) {
+  display: none !important;
+}

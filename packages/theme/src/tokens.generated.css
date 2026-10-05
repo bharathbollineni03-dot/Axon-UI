@@ -1,0 +1,192 @@
+/* Generated from the @axon/theme tokens. Do not edit; run `pnpm --filter @axon/theme gen:css`. */
+
+:root {
+  --axon-color-primary-50: #eff6ff;
+  --axon-color-primary-100: #dbeafe;
+  --axon-color-primary-200: #bfdbfe;
+  --axon-color-primary-300: #93c5fd;
+  --axon-color-primary-400: #60a5fa;
+  --axon-color-primary-500: #3b82f6;
+  --axon-color-primary-600: #2563eb;
+  --axon-color-primary-700: #1d4ed8;
+  --axon-color-primary-800: #1e40af;
+  --axon-color-primary-900: #1e3a8a;
+  --axon-color-primary-950: #172554;
+  --axon-color-secondary-50: #f5f3ff;
+  --axon-color-secondary-100: #ede9fe;
+  --axon-color-secondary-200: #ddd6fe;
+  --axon-color-secondary-300: #c4b5fd;
+  --axon-color-secondary-400: #a78bfa;
+  --axon-color-secondary-500: #8b5cf6;
+  --axon-color-secondary-600: #7c3aed;
+  --axon-color-secondary-700: #6d28d9;
+  --axon-color-secondary-800: #5b21b6;
+  --axon-color-secondary-900: #4c1d95;
+  --axon-color-secondary-950: #2e1065;
+  --axon-color-success-50: #f0fdf4;
+  --axon-color-success-100: #dcfce7;
+  --axon-color-success-200: #bbf7d0;
+  --axon-color-success-300: #86efac;
+  --axon-color-success-400: #4ade80;
+  --axon-color-success-500: #22c55e;
+  --axon-color-success-600: #16a34a;
+  --axon-color-success-700: #15803d;
+  --axon-color-success-800: #166534;
+  --axon-color-success-900: #14532d;
+  --axon-color-success-950: #052e16;
+  --axon-color-warning-50: #fffbeb;
+  --axon-color-warning-100: #fef3c7;
+  --axon-color-warning-200: #fde68a;
+  --axon-color-warning-300: #fcd34d;
+  --axon-color-warning-400: #fbbf24;
+  --axon-color-warning-500: #f59e0b;
+  --axon-color-warning-600: #d97706;
+  --axon-color-warning-700: #b45309;
+  --axon-color-warning-800: #92400e;
+  --axon-color-warning-900: #78350f;
+  --axon-color-warning-950: #451a03;
+  --axon-color-danger-50: #fef2f2;
+  --axon-color-danger-100: #fee2e2;
+  --axon-color-danger-200: #fecaca;
+  --axon-color-danger-300: #fca5a5;
+  --axon-color-danger-400: #f87171;
+  --axon-color-danger-500: #ef4444;
+  --axon-color-danger-600: #dc2626;
+  --axon-color-danger-700: #b91c1c;
+  --axon-color-danger-800: #991b1b;
+  --axon-color-danger-900: #7f1d1d;
+  --axon-color-danger-950: #450a0a;
+  --axon-color-info-50: #f0f9ff;
+  --axon-color-info-100: #e0f2fe;
+  --axon-color-info-200: #bae6fd;
+  --axon-color-info-300: #7dd3fc;
+  --axon-color-info-400: #38bdf8;
+  --axon-color-info-500: #0ea5e9;
+  --axon-color-info-600: #0284c7;
+  --axon-color-info-700: #0369a1;
+  --axon-color-info-800: #075985;
+  --axon-color-info-900: #0c4a6e;
+  --axon-color-info-950: #082f49;
+  --axon-color-neutral-50: #f8fafc;
+  --axon-color-neutral-100: #f1f5f9;
+  --axon-color-neutral-200: #e2e8f0;
+  --axon-color-neutral-300: #cbd5e1;
+  --axon-color-neutral-400: #94a3b8;
+  --axon-color-neutral-500: #64748b;
+  --axon-color-neutral-600: #475569;
+  --axon-color-neutral-700: #334155;
+  --axon-color-neutral-800: #1e293b;
+  --axon-color-neutral-900: #0f172a;
+  --axon-color-neutral-950: #020617;
+  --axon-color-white: #ffffff;
+  --axon-color-black: #000000;
+  --axon-font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --axon-font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  --axon-font-size-xs: 0.75rem;
+  --axon-font-size-sm: 0.875rem;
+  --axon-font-size-md: 1rem;
+  --axon-font-size-lg: 1.125rem;
+  --axon-font-size-xl: 1.25rem;
+  --axon-font-size-2xl: 1.5rem;
+  --axon-font-size-3xl: 1.875rem;
+  --axon-font-size-4xl: 2.25rem;
+  --axon-font-weight-regular: 400;
+  --axon-font-weight-medium: 500;
+  --axon-font-weight-semibold: 600;
+  --axon-font-weight-bold: 700;
+  --axon-line-height-tight: 1.25;
+  --axon-line-height-normal: 1.5;
+  --axon-line-height-relaxed: 1.75;
+  --axon-letter-spacing-tight: -0.025em;
+  --axon-letter-spacing-normal: 0em;
+  --axon-letter-spacing-wide: 0.025em;
+  --axon-space-0: 0;
+  --axon-space-1: 0.25rem;
+  --axon-space-2: 0.5rem;
+  --axon-space-3: 0.75rem;
+  --axon-space-4: 1rem;
+  --axon-space-6: 1.5rem;
+  --axon-space-8: 2rem;
+  --axon-space-12: 3rem;
+  --axon-space-16: 4rem;
+  --axon-space-0-5: 0.125rem;
+  --axon-space-1-5: 0.375rem;
+  --axon-radius-none: 0;
+  --axon-radius-sm: 0.125rem;
+  --axon-radius-md: 0.375rem;
+  --axon-radius-lg: 0.5rem;
+  --axon-radius-xl: 0.75rem;
+  --axon-radius-full: 9999px;
+  --axon-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --axon-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --axon-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --axon-shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --axon-z-dropdown: 1000;
+  --axon-z-sticky: 1100;
+  --axon-z-modal: 1300;
+  --axon-z-popover: 1400;
+  --axon-z-toast: 1500;
+  --axon-z-tooltip: 1600;
+  --axon-duration-fast: 120ms;
+  --axon-duration-normal: 200ms;
+  --axon-duration-slow: 320ms;
+  --axon-ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --axon-ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --axon-ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --axon-breakpoint-sm: 640px;
+  --axon-breakpoint-md: 768px;
+  --axon-breakpoint-lg: 1024px;
+  --axon-breakpoint-xl: 1280px;
+  --axon-breakpoint-2xl: 1536px;
+}
+
+:root,
+[data-axon-theme="light"],
+[data-axon-theme="system"] {
+  color-scheme: light;
+  --axon-color-background: var(--axon-color-neutral-50);
+  --axon-color-surface: var(--axon-color-white);
+  --axon-color-surface-raised: var(--axon-color-white);
+  --axon-color-border: var(--axon-color-neutral-200);
+  --axon-color-text-primary: var(--axon-color-neutral-900);
+  --axon-color-text-secondary: var(--axon-color-neutral-600);
+  --axon-color-text-disabled: var(--axon-color-neutral-400);
+  --axon-color-focus-ring: var(--axon-color-primary-500);
+  --axon-color-overlay: rgb(15 23 42 / 0.5);
+}
+
+[data-axon-theme="dark"] {
+  color-scheme: dark;
+  --axon-color-background: var(--axon-color-neutral-950);
+  --axon-color-surface: var(--axon-color-neutral-900);
+  --axon-color-surface-raised: var(--axon-color-neutral-800);
+  --axon-color-border: var(--axon-color-neutral-700);
+  --axon-color-text-primary: var(--axon-color-neutral-50);
+  --axon-color-text-secondary: var(--axon-color-neutral-400);
+  --axon-color-text-disabled: var(--axon-color-neutral-600);
+  --axon-color-focus-ring: var(--axon-color-primary-400);
+  --axon-color-overlay: rgb(0 0 0 / 0.65);
+}
+
+@media (prefers-color-scheme: dark) {
+  [data-axon-theme="system"] {
+    color-scheme: dark;
+    --axon-color-background: var(--axon-color-neutral-950);
+    --axon-color-surface: var(--axon-color-neutral-900);
+    --axon-color-surface-raised: var(--axon-color-neutral-800);
+    --axon-color-border: var(--axon-color-neutral-700);
+    --axon-color-text-primary: var(--axon-color-neutral-50);
+    --axon-color-text-secondary: var(--axon-color-neutral-400);
+    --axon-color-text-disabled: var(--axon-color-neutral-600);
+    --axon-color-focus-ring: var(--axon-color-primary-400);
+    --axon-color-overlay: rgb(0 0 0 / 0.65);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --axon-duration-fast: 0ms;
+    --axon-duration-normal: 0ms;
+    --axon-duration-slow: 0ms;
+  }
+}
