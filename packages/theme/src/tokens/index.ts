@@ -2,6 +2,8 @@ export { shades, paletteNames, palettes, common } from './colors';
 export type { Shade, Palette, PaletteName, CommonColors } from './colors';
 export { semanticKeys, lightSemantic, darkSemantic } from './semantic';
 export type { SemanticColors } from './semantic';
+export { lightAccent, darkAccent } from './accent';
+export type { AccentColors, AccentMode } from './accent';
 export { typography } from './typography';
 export type { Typography } from './typography';
 export { spacing, spacingKeys } from './spacing';

@@ -49,6 +49,10 @@ export function themeToVars(theme: Theme): ThemeVars {
   const dark: CssVars = {};
   addGroup(light, 'color', theme.semantic.light);
   addGroup(dark, 'color', theme.semantic.dark);
+  for (const [name, accent] of Object.entries(theme.accent.light))
+    addGroup(light, `color-${name}`, accent);
+  for (const [name, accent] of Object.entries(theme.accent.dark))
+    addGroup(dark, `color-${name}`, accent);
   return { base, light, dark };
 }
 

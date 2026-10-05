@@ -72,3 +72,47 @@ export const SemanticTokens: Story = {
     </div>
   ),
 };
+
+const accentKeys = Object.keys(
+  defaultTheme.accent.light.primary,
+) as (keyof typeof defaultTheme.accent.light.primary)[];
+
+export const AccentTokens: Story = {
+  render: () => (
+    <div className="axon-foundations">
+      <p className="axon-foundations__hint">
+        Mode-aware tokens components use for the <code>color</code> prop, e.g.{' '}
+        <code>--axon-color-primary-solid</code>. Each solid / on-solid and text / subtle pair meets
+        4.5:1 contrast in both modes (enforced by a unit test).
+      </p>
+      <table className="axon-token-table">
+        <thead>
+          <tr>
+            <th scope="col">Color</th>
+            {accentKeys.map((key) => (
+              <th key={key} scope="col" className="axon-foundations__code">
+                {kebab(key)}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {paletteNames.map((name) => (
+            <tr key={name}>
+              <th scope="row">{name}</th>
+              {accentKeys.map((key) => (
+                <td key={key}>
+                  <span
+                    className="axon-semantic-chip"
+                    title={`--axon-color-${name}-${kebab(key)}`}
+                    style={{ background: `var(--axon-color-${name}-${kebab(key)})` }}
+                  />
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  ),
+};
