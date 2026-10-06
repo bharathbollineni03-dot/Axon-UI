@@ -107,7 +107,8 @@ export const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(functi
         id={menuId}
         aria-label={ariaLabel}
         aria-labelledby={ariaLabel ? ariaLabelledBy : (ariaLabelledBy ?? triggerId)}
-        open={open}
+        // Wait for the trigger so the menu renders in the right portal root (e.g. inside a dialog).
+        open={open && triggerElement !== null}
         anchor={triggerElement}
         placement={placement}
         initialFocus={initialFocus}

@@ -1,0 +1,87 @@
+/* The layer behind Modal and Drawer: a dimmed backdrop and a scrolling area for the dialog. */
+.axon-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--axon-z-modal);
+  background: var(--axon-color-overlay);
+  animation: axon-overlay-fade var(--axon-duration-normal) var(--axon-ease-out);
+}
+
+.axon-overlay__container {
+  display: flex;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.axon-overlay__surface {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  background: var(--axon-color-surface-raised);
+  color: var(--axon-color-text-primary);
+  font-family: var(--axon-font-sans);
+  font-size: var(--axon-font-size-md);
+  line-height: var(--axon-line-height-normal);
+}
+
+/* The surface only holds focus so the dialog is announced; it needs no ring of its own. */
+.axon-overlay__surface:focus {
+  outline: none;
+}
+
+@keyframes axon-overlay-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+/* Header, body and footer shared by Modal and Drawer. */
+.axon-overlay__header {
+  display: flex;
+  flex-shrink: 0;
+  align-items: flex-start;
+  gap: var(--axon-space-3);
+  padding: var(--axon-space-4) var(--axon-space-6) 0;
+}
+
+.axon-overlay__title {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  font-size: var(--axon-font-size-xl);
+  font-weight: var(--axon-font-weight-semibold);
+  line-height: var(--axon-line-height-tight);
+}
+
+.axon-overlay__description {
+  flex-shrink: 0;
+  margin: 0;
+  padding: var(--axon-space-2) var(--axon-space-6) 0;
+  color: var(--axon-color-text-secondary);
+}
+
+.axon-overlay__body {
+  flex: 1 1 auto;
+  min-height: 0;
+  padding: var(--axon-space-4) var(--axon-space-6);
+  overflow-y: auto;
+}
+
+.axon-overlay__body:focus-visible {
+  outline: 2px solid var(--axon-color-focus-ring);
+  outline-offset: -2px;
+}
+
+.axon-overlay__footer {
+  display: flex;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--axon-space-2);
+  padding: var(--axon-space-4) var(--axon-space-6);
+  border-top: 1px solid var(--axon-color-border);
+}

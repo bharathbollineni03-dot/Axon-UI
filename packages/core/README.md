@@ -101,6 +101,19 @@ Dates are local calendar dates and the pickers default to the `en-US` locale so 
 
 Menus are built from `MenuItem`, `MenuCheckboxItem`, `MenuRadioGroup` / `MenuRadioItem`, `MenuGroup`, `MenuSeparator` and `SubMenu`. `DropdownMenu` takes the trigger element (a `Button`, say) and wires up `aria-haspopup`, `aria-expanded` and the keys; use `Menu` directly when you open and place it yourself. Choosing an item closes the whole tree, while checkbox and radio items keep it open. `Tab` closes the menu and returns focus to the trigger.
 
+**Step 4, batch C: overlays**
+
+| Component                | Notes                                                                                                                                      |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| `Modal` (`Dialog`)       | Modal dialog: focus trap, focus returns to the opener, Esc and backdrop close, page scroll lock, sizes, `title`/`description` wired to `aria-labelledby`/`-describedby` |
+| `ConfirmDialog`          | `alertdialog` with Cancel/Confirm, an async busy state, and focus that starts on Cancel for `danger`                                         |
+| `Drawer`                 | Same machinery as `Modal`, sliding in from `left`, `right`, `top` or `bottom`; preset or custom size                                         |
+| `Popover`                | Non-modal dialog on a trigger: rich content or a small form; Esc, outside press or tabbing away close it and focus returns to the trigger   |
+| `Tooltip`                | Hover (delayed) and focus; hoverable, dismissible with Esc; a disabled control is wrapped in a focusable `<span>` so it can still show one |
+| `Portal`                 | Renders children outside their parent, in the closest overlay or `.axon-root`; renders nothing on the server                              |
+
+Modals and drawers stack: Esc closes only the topmost, and only that one holds the focus trap. Menus, selects, popovers and tooltips opened from inside a modal render **inside** it, so they sit above it and stay within its focus trap. Give `Modal`, `Drawer` and `Popover` a `title`, `aria-label` or `aria-labelledby`; the types require one. Tooltips supplement a visible or `aria-label` name, they do not replace it.
+
 **Responsive values.** `Stack` and `Grid` props take either a value or `{ base, sm, md, lg, xl, '2xl' }` (mobile first: each key applies from that width up, matching the theme breakpoints). They compile to CSS custom properties and media queries, so nothing runs in JavaScript and server and client output are identical.
 
 ```tsx

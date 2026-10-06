@@ -34,6 +34,11 @@ export interface UseFocusTrapOptions {
   restoreFocus?: boolean;
   /** Element to focus first. Defaults to the first tabbable element, or the container itself. */
   initialFocusRef?: RefObject<HTMLElement | null>;
+  /**
+   * Suspends the trap without releasing it (no focus is moved or restored), for when another
+   * trap, such as a dialog opened from this one, is on top.
+   */
+  paused?: boolean;
 }
 
 /**
@@ -48,10 +53,13 @@ export function useFocusTrap(
     autoFocus = true,
     restoreFocus = true,
     initialFocusRef,
+    paused = false,
   }: UseFocusTrapOptions = {},
 ) {
   const initialRef = useRef(initialFocusRef);
   initialRef.current = initialFocusRef;
+  const pausedRef = useRef(paused);
+  pausedRef.current = paused;
 
   useEffect(() => {
     const container = containerRef.current;
@@ -64,7 +72,7 @@ export function useFocusTrap(
     }
 
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key !== 'Tab') return;
+      if (event.key !== 'Tab' || pausedRef.current) return;
       const tabbable = getTabbable(container);
       if (tabbable.length === 0) {
         event.preventDefault();
@@ -88,7 +96,7 @@ export function useFocusTrap(
 
     // Catches focus that escapes by other means (a click, a script) and pulls it back in.
     const handleFocusIn = (event: FocusEvent) => {
-      if (!container.contains(event.target as Node)) {
+      if (!pausedRef.current && !container.contains(event.target as Node)) {
         (getTabbable(container)[0] ?? container).focus({ preventScroll: true });
       }
     };

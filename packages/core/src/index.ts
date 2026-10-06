@@ -189,6 +189,24 @@ export {
   type SubMenuProps,
 } from './components/Menu';
 export { DropdownMenu, type DropdownMenuProps } from './components/DropdownMenu';
+export { Portal, type PortalProps } from './components/Portal';
+export {
+  Dialog,
+  Modal,
+  type ModalCloseReason,
+  type ModalProps,
+  type ModalSize,
+} from './components/Modal';
+export { ConfirmDialog, type ConfirmDialogProps } from './components/ConfirmDialog';
+export {
+  Drawer,
+  type DrawerCloseReason,
+  type DrawerPlacement,
+  type DrawerProps,
+  type DrawerSize,
+} from './components/Drawer';
+export { Popover, type PopoverPlacement, type PopoverProps } from './components/Popover';
+export { Tooltip, type TooltipPlacement, type TooltipProps } from './components/Tooltip';
 export {
   useDisclosure,
   type UseDisclosureOptions,

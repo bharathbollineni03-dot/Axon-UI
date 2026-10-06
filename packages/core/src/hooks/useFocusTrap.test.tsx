@@ -155,6 +155,28 @@ describe('useFocusTrap', () => {
     expect(screen.getByRole('button', { name: 'outside' })).toHaveFocus();
   });
 
+  it('lets Tab and focus move freely while paused, without releasing the trap', async () => {
+    const user = userEvent.setup();
+    const { rerender } = render(
+      <>
+        <button>outside</button>
+        <Trap paused />
+      </>,
+    );
+    screen.getByRole('button', { name: 'outside' }).focus();
+    expect(screen.getByRole('button', { name: 'outside' })).toHaveFocus();
+    await user.tab();
+    expect(screen.getByRole('button', { name: 'first' })).toHaveFocus();
+    rerender(
+      <>
+        <button>outside</button>
+        <Trap />
+      </>,
+    );
+    screen.getByRole('button', { name: 'outside' }).focus();
+    expect(screen.getByRole('button', { name: 'first' })).toHaveFocus();
+  });
+
   it('restores focus to the previous element when the trap is removed', async () => {
     const user = userEvent.setup();
     render(<Toggle />);

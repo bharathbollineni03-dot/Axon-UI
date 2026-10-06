@@ -1,0 +1,36 @@
+.axon-popover {
+  z-index: var(--axon-z-popover);
+  box-sizing: border-box;
+  max-width: min(24rem, calc(100vw - var(--axon-space-4)));
+  padding: var(--axon-space-3) var(--axon-space-4);
+  border: 1px solid var(--axon-color-border);
+  border-radius: var(--axon-radius-lg);
+  background: var(--axon-color-surface-raised);
+  box-shadow: var(--axon-shadow-lg);
+  color: var(--axon-color-text-primary);
+  font-family: var(--axon-font-sans);
+  font-size: var(--axon-font-size-md);
+  line-height: var(--axon-line-height-normal);
+  animation: axon-popover-enter var(--axon-duration-fast) var(--axon-ease-out);
+}
+
+/* The popover takes focus so its name is announced and Esc works; it needs no ring of its own. */
+.axon-popover:focus {
+  outline: none;
+}
+
+.axon-popover__title {
+  margin-bottom: var(--axon-space-2);
+  font-weight: var(--axon-font-weight-semibold);
+}
+
+.axon-popover__arrow {
+  pointer-events: none;
+}
+
+/* Opacity only: floating-ui positions the popover with `transform`. */
+@keyframes axon-popover-enter {
+  from {
+    opacity: 0;
+  }
+}
