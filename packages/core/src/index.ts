@@ -125,6 +125,70 @@ export { Kbd, type KbdProps } from './components/Kbd';
 export { Code, type CodeProps } from './components/Code';
 export { List, ListItem, type ListItemProps, type ListProps } from './components/List';
 export { Image, type ImageProps } from './components/Image';
+export { Link, type LinkOwnProps } from './components/Link';
+export {
+  Tab,
+  TabList,
+  TabPanel,
+  Tabs,
+  type TabListProps,
+  type TabPanelProps,
+  type TabProps,
+  type TabsProps,
+} from './components/Tabs';
+export {
+  Accordion,
+  AccordionItem,
+  type AccordionItemProps,
+  type AccordionProps,
+} from './components/Accordion';
+export { Breadcrumbs, type BreadcrumbItem, type BreadcrumbsProps } from './components/Breadcrumbs';
+export {
+  getPaginationRange,
+  Pagination,
+  type PaginationItem,
+  type PaginationProps,
+  type PaginationRangeOptions,
+} from './components/Pagination';
+export {
+  Step,
+  Stepper,
+  type StepProps,
+  type StepperLabels,
+  type StepperProps,
+} from './components/Stepper';
+export { AppBar, type AppBarProps } from './components/AppBar';
+export {
+  Sidebar,
+  SidebarItem,
+  SidebarSection,
+  SidebarToggle,
+  type SidebarItemOwnProps,
+  type SidebarProps,
+  type SidebarSectionProps,
+  type SidebarToggleProps,
+} from './components/Sidebar';
+export {
+  Menu,
+  MenuCheckboxItem,
+  MenuGroup,
+  MenuItem,
+  MenuRadioGroup,
+  MenuRadioItem,
+  MenuSeparator,
+  SubMenu,
+  type MenuCheckboxItemProps,
+  type MenuCloseReason,
+  type MenuGroupProps,
+  type MenuInitialFocus,
+  type MenuItemProps,
+  type MenuPlacement,
+  type MenuProps,
+  type MenuRadioGroupProps,
+  type MenuRadioItemProps,
+  type SubMenuProps,
+} from './components/Menu';
+export { DropdownMenu, type DropdownMenuProps } from './components/DropdownMenu';
 export {
   useDisclosure,
   type UseDisclosureOptions,

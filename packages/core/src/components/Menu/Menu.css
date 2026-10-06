@@ -1,0 +1,135 @@
+.axon-menu {
+  z-index: var(--axon-z-dropdown);
+  box-sizing: border-box;
+  min-width: 12rem;
+  padding: var(--axon-space-1);
+  overflow-y: auto;
+  border: 1px solid var(--axon-color-border);
+  border-radius: var(--axon-radius-md);
+  background: var(--axon-color-surface-raised);
+  box-shadow: var(--axon-shadow-lg);
+  color: var(--axon-color-text-primary);
+  font-family: var(--axon-font-sans);
+  font-size: var(--axon-font-size-md);
+  line-height: var(--axon-line-height-normal);
+}
+
+/* The panel only takes focus so arrow keys work after a mouse click; items show the focus. */
+.axon-menu:focus {
+  outline: none;
+}
+
+.axon-menu__item {
+  display: flex;
+  align-items: center;
+  gap: var(--axon-space-2);
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0;
+  padding: var(--axon-space-2) var(--axon-space-3);
+  border: 0;
+  border-radius: var(--axon-radius-sm);
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: start;
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Hovering an item focuses it, so one rule covers pointer and keyboard. */
+.axon-menu__item:focus {
+  background: var(--axon-color-surface-muted);
+  outline: none;
+}
+
+.axon-menu__item:focus-visible {
+  outline: 2px solid var(--axon-color-focus-ring);
+  outline-offset: -2px;
+}
+
+.axon-menu__item[aria-expanded='true'] {
+  background: var(--axon-color-surface-muted);
+}
+
+.axon-menu__item--destructive {
+  color: var(--axon-color-danger-text);
+}
+
+.axon-menu__item--disabled {
+  color: var(--axon-color-text-disabled);
+  cursor: not-allowed;
+}
+
+.axon-menu__icon,
+.axon-menu__indicator {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 1.25rem;
+  height: 1.25rem;
+  font-size: 1.25rem;
+}
+
+.axon-menu__icon {
+  color: var(--axon-color-text-secondary);
+}
+
+.axon-menu__item--destructive .axon-menu__icon {
+  color: inherit;
+}
+
+.axon-menu__item--disabled .axon-menu__icon {
+  color: inherit;
+}
+
+.axon-menu__indicator {
+  color: var(--axon-accent-text);
+  font-size: 1rem;
+}
+
+.axon-menu__radio-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: currentcolor;
+}
+
+.axon-menu__label {
+  flex: 1;
+  min-width: 0;
+}
+
+.axon-menu__shortcut {
+  flex-shrink: 0;
+  margin-inline-start: var(--axon-space-6);
+  color: var(--axon-color-text-secondary);
+  font-size: var(--axon-font-size-sm);
+}
+
+.axon-menu__item--disabled .axon-menu__shortcut {
+  color: inherit;
+}
+
+.axon-menu__chevron {
+  display: inline-flex;
+  flex-shrink: 0;
+  color: var(--axon-color-text-secondary);
+}
+
+.axon-menu__group-label {
+  padding: var(--axon-space-2) var(--axon-space-3) var(--axon-space-1);
+  color: var(--axon-color-text-secondary);
+  font-size: var(--axon-font-size-xs);
+  font-weight: var(--axon-font-weight-medium);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.axon-menu__separator {
+  height: 1px;
+  margin: var(--axon-space-1) calc(var(--axon-space-1) * -1);
+  background: var(--axon-color-border);
+}

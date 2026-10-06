@@ -1,6 +1,6 @@
 # @axon/core
 
-Base components for Axon UI: buttons, text inputs and (in progress) choice controls, pickers, layout, navigation, overlays and feedback.
+Base components for Axon UI: buttons and inputs, choice controls, pickers, layout, navigation and (in progress) overlays and feedback.
 
 ```bash
 pnpm add @axon/core @axon/theme
@@ -84,6 +84,22 @@ Dates are local calendar dates and the pickers default to the `en-US` locale so 
 | `Kbd`, `Code`                       | Key caps and inline/block code                                                                       |
 | `List` / `ListItem`                 | Icon, two lines of text, trailing action; rows can be buttons or links                               |
 | `Image`                             | Lazy loading, aspect ratio, and a placeholder, node or backup image when loading fails              |
+
+**Step 4, batch B: navigation**
+
+| Component                                | Notes                                                                                                                               |
+| ---------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| `Link`                                   | Polymorphic (`as` for router links); `underline`, `external` (new tab, `rel`, announced), `disabled`                                |
+| `Tabs` / `TabList` / `Tab` / `TabPanel`  | WAI-ARIA tabs: horizontal or vertical, automatic or manual activation, `line`/`solid`/`pills`, `lazy` panels                        |
+| `Accordion` / `AccordionItem`            | `single` (collapsible or not) or `multiple`; value is a `string[]`; ↑/↓/Home/End move between headers; `headingLevel`               |
+| `Breadcrumbs`                            | `items` as data; last crumb is `aria-current="page"`; `maxItems` collapses the middle behind a "…" button; `linkAs` for routers      |
+| `Pagination`, `getPaginationRange`       | Prev/next, first/last, ellipsis ranges with a constant width; the range function is exported for custom controls                     |
+| `Stepper` / `Step`                       | Horizontal or vertical; `linear` or free selection; optional, error and completed states; vertical steps hold their content          |
+| `AppBar`                                 | `banner` with leading/children/trailing; `static`/`sticky`/`fixed`; plain or filled with a color                                     |
+| `Sidebar` (+ Section, Item, Toggle)      | `navigation` landmark that collapses to icons (names stay available to screen readers); items are links, buttons or router links     |
+| `DropdownMenu`, `Menu` (+ items)         | WAI-ARIA menu button: arrows, Home/End, typeahead, checkbox and radio items, nested `SubMenu`s, focus returns to the trigger         |
+
+Menus are built from `MenuItem`, `MenuCheckboxItem`, `MenuRadioGroup` / `MenuRadioItem`, `MenuGroup`, `MenuSeparator` and `SubMenu`. `DropdownMenu` takes the trigger element (a `Button`, say) and wires up `aria-haspopup`, `aria-expanded` and the keys; use `Menu` directly when you open and place it yourself. Choosing an item closes the whole tree, while checkbox and radio items keep it open. `Tab` closes the menu and returns focus to the trigger.
 
 **Responsive values.** `Stack` and `Grid` props take either a value or `{ base, sm, md, lg, xl, '2xl' }` (mobile first: each key applies from that width up, matching the theme breakpoints). They compile to CSS custom properties and media queries, so nothing runs in JavaScript and server and client output are identical.
 

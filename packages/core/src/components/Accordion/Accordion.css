@@ -1,0 +1,96 @@
+.axon-accordion {
+  color: var(--axon-color-text-primary);
+  font-family: var(--axon-font-sans);
+}
+
+.axon-accordion--outlined {
+  overflow: hidden;
+  border: 1px solid var(--axon-color-border);
+  border-radius: var(--axon-radius-lg);
+  background: var(--axon-color-surface);
+}
+
+.axon-accordion__item + .axon-accordion__item {
+  border-top: 1px solid var(--axon-color-border);
+}
+
+.axon-accordion__heading {
+  margin: 0;
+  font: inherit;
+}
+
+.axon-accordion__trigger {
+  display: flex;
+  align-items: center;
+  gap: var(--axon-space-3);
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0;
+  padding: var(--axon-space-3) var(--axon-space-4);
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-weight: var(--axon-font-weight-medium);
+  text-align: start;
+  cursor: pointer;
+}
+
+.axon-accordion__trigger:hover:not(:disabled) {
+  background: var(--axon-color-surface-muted);
+}
+
+.axon-accordion__trigger:focus-visible {
+  outline: 2px solid var(--axon-color-focus-ring);
+  outline-offset: -2px;
+}
+
+.axon-accordion__trigger:disabled {
+  color: var(--axon-color-text-disabled);
+  cursor: not-allowed;
+}
+
+.axon-accordion__icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  color: var(--axon-color-text-secondary);
+  font-size: 1.25rem;
+}
+
+.axon-accordion__title {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.axon-accordion__subtitle {
+  color: var(--axon-color-text-secondary);
+  font-size: var(--axon-font-size-sm);
+  font-weight: var(--axon-font-weight-regular);
+}
+
+.axon-accordion__trigger:disabled .axon-accordion__subtitle {
+  color: inherit;
+}
+
+.axon-accordion__chevron {
+  display: inline-flex;
+  flex-shrink: 0;
+  color: var(--axon-color-text-secondary);
+  transition: transform var(--axon-duration-fast) var(--axon-ease-standard);
+}
+
+.axon-accordion__item--open > .axon-accordion__heading .axon-accordion__chevron {
+  transform: rotate(180deg);
+}
+
+.axon-accordion__content {
+  padding: var(--axon-space-1) var(--axon-space-4) var(--axon-space-4);
+  color: var(--axon-color-text-primary);
+}
+
+.axon-accordion--flush .axon-accordion__trigger,
+.axon-accordion--flush .axon-accordion__content {
+  padding-inline: 0;
+}

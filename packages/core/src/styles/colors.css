@@ -20,7 +20,14 @@
 .axon-otp-input--primary,
 .axon-avatar--primary,
 .axon-badge--primary,
-.axon-chip--primary {
+.axon-chip--primary,
+.axon-link--primary,
+.axon-tabs--primary,
+.axon-pagination--primary,
+.axon-stepper--primary,
+.axon-app-bar--primary,
+.axon-sidebar--primary,
+.axon-menu--primary {
   --axon-accent-solid: var(--axon-color-primary-solid);
   --axon-accent-solid-hover: var(--axon-color-primary-solid-hover);
   --axon-accent-solid-active: var(--axon-color-primary-solid-active);
@@ -49,7 +56,14 @@
 .axon-otp-input--secondary,
 .axon-avatar--secondary,
 .axon-badge--secondary,
-.axon-chip--secondary {
+.axon-chip--secondary,
+.axon-link--secondary,
+.axon-tabs--secondary,
+.axon-pagination--secondary,
+.axon-stepper--secondary,
+.axon-app-bar--secondary,
+.axon-sidebar--secondary,
+.axon-menu--secondary {
   --axon-accent-solid: var(--axon-color-secondary-solid);
   --axon-accent-solid-hover: var(--axon-color-secondary-solid-hover);
   --axon-accent-solid-active: var(--axon-color-secondary-solid-active);
@@ -78,7 +92,14 @@
 .axon-otp-input--success,
 .axon-avatar--success,
 .axon-badge--success,
-.axon-chip--success {
+.axon-chip--success,
+.axon-link--success,
+.axon-tabs--success,
+.axon-pagination--success,
+.axon-stepper--success,
+.axon-app-bar--success,
+.axon-sidebar--success,
+.axon-menu--success {
   --axon-accent-solid: var(--axon-color-success-solid);
   --axon-accent-solid-hover: var(--axon-color-success-solid-hover);
   --axon-accent-solid-active: var(--axon-color-success-solid-active);
@@ -107,7 +128,14 @@
 .axon-otp-input--warning,
 .axon-avatar--warning,
 .axon-badge--warning,
-.axon-chip--warning {
+.axon-chip--warning,
+.axon-link--warning,
+.axon-tabs--warning,
+.axon-pagination--warning,
+.axon-stepper--warning,
+.axon-app-bar--warning,
+.axon-sidebar--warning,
+.axon-menu--warning {
   --axon-accent-solid: var(--axon-color-warning-solid);
   --axon-accent-solid-hover: var(--axon-color-warning-solid-hover);
   --axon-accent-solid-active: var(--axon-color-warning-solid-active);
@@ -136,7 +164,14 @@
 .axon-otp-input--danger,
 .axon-avatar--danger,
 .axon-badge--danger,
-.axon-chip--danger {
+.axon-chip--danger,
+.axon-link--danger,
+.axon-tabs--danger,
+.axon-pagination--danger,
+.axon-stepper--danger,
+.axon-app-bar--danger,
+.axon-sidebar--danger,
+.axon-menu--danger {
   --axon-accent-solid: var(--axon-color-danger-solid);
   --axon-accent-solid-hover: var(--axon-color-danger-solid-hover);
   --axon-accent-solid-active: var(--axon-color-danger-solid-active);
@@ -165,7 +200,14 @@
 .axon-otp-input--neutral,
 .axon-avatar--neutral,
 .axon-badge--neutral,
-.axon-chip--neutral {
+.axon-chip--neutral,
+.axon-link--neutral,
+.axon-tabs--neutral,
+.axon-pagination--neutral,
+.axon-stepper--neutral,
+.axon-app-bar--neutral,
+.axon-sidebar--neutral,
+.axon-menu--neutral {
   --axon-accent-solid: var(--axon-color-neutral-solid);
   --axon-accent-solid-hover: var(--axon-color-neutral-solid-hover);
   --axon-accent-solid-active: var(--axon-color-neutral-solid-active);

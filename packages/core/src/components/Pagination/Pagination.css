@@ -1,0 +1,97 @@
+.axon-pagination {
+  --axon-pagination-size: var(--axon-control-height-md);
+
+  color: var(--axon-color-text-primary);
+  font-family: var(--axon-font-sans);
+  font-size: var(--axon-font-size-md);
+}
+
+.axon-pagination--sm {
+  --axon-pagination-size: var(--axon-control-height-sm);
+
+  font-size: var(--axon-font-size-sm);
+}
+
+.axon-pagination--lg {
+  --axon-pagination-size: var(--axon-control-height-lg);
+
+  font-size: var(--axon-font-size-lg);
+}
+
+.axon-pagination__list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--axon-space-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.axon-pagination__item {
+  display: inline-flex;
+}
+
+.axon-pagination__button,
+.axon-pagination__ellipsis {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-width: var(--axon-pagination-size);
+  height: var(--axon-pagination-size);
+}
+
+.axon-pagination__button {
+  padding: 0 var(--axon-space-2);
+  border: 1px solid transparent;
+  border-radius: var(--axon-radius-md);
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-variant-numeric: tabular-nums;
+  cursor: pointer;
+  transition:
+    background-color var(--axon-duration-fast) var(--axon-ease-standard),
+    border-color var(--axon-duration-fast) var(--axon-ease-standard);
+}
+
+.axon-pagination--outlined .axon-pagination__button {
+  border-color: var(--axon-color-border-strong);
+}
+
+.axon-pagination__button:hover:not(:disabled, .axon-pagination__button--selected) {
+  background: var(--axon-color-surface-muted);
+}
+
+.axon-pagination__button:focus-visible {
+  outline: 2px solid var(--axon-color-focus-ring);
+  outline-offset: 2px;
+}
+
+.axon-pagination__button--selected {
+  border-color: var(--axon-accent-solid);
+  background: var(--axon-accent-solid);
+  color: var(--axon-accent-on-solid);
+  font-weight: var(--axon-font-weight-medium);
+}
+
+.axon-pagination__button--selected:hover:not(:disabled) {
+  border-color: var(--axon-accent-solid-hover);
+  background: var(--axon-accent-solid-hover);
+}
+
+.axon-pagination__button:disabled {
+  color: var(--axon-color-text-disabled);
+  cursor: not-allowed;
+}
+
+.axon-pagination__button--selected:disabled {
+  border-color: var(--axon-color-border);
+  background: var(--axon-color-surface-muted);
+}
+
+.axon-pagination__ellipsis {
+  color: var(--axon-color-text-secondary);
+  user-select: none;
+}
