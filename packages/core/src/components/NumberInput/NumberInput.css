@@ -1,0 +1,50 @@
+.axon-number-input .axon-input__field {
+  height: calc(var(--axon-input-height) - 2px);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Steppers sit flush against the right edge of the box, separated by a hairline. */
+.axon-number-input__box--steppers {
+  padding-inline-end: 0;
+}
+
+.axon-number-input__steppers {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  align-self: stretch;
+  width: 1.75rem;
+  border-inline-start: 1px solid var(--axon-color-border);
+}
+
+.axon-number-input__stepper {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--axon-color-text-secondary);
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+.axon-number-input__stepper + .axon-number-input__stepper {
+  border-top: 1px solid var(--axon-color-border);
+}
+
+.axon-number-input__stepper:hover:not(:disabled) {
+  background: var(--axon-color-surface-muted);
+  color: var(--axon-color-text-primary);
+}
+
+.axon-number-input__stepper:active:not(:disabled) {
+  background: var(--axon-color-border);
+}
+
+.axon-number-input__stepper:disabled {
+  color: var(--axon-color-text-disabled);
+  cursor: not-allowed;
+}

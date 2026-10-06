@@ -1,0 +1,59 @@
+.axon-checkbox__box {
+  border-radius: var(--axon-radius-sm);
+}
+
+.axon-checkbox__icon {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: currentcolor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0;
+  transition: opacity var(--axon-duration-fast) var(--axon-ease-standard);
+}
+
+.axon-checkbox__icon {
+  position: absolute;
+  inset: 0;
+}
+
+.axon-checkbox__input:checked ~ .axon-checkbox__box,
+.axon-checkbox__input:indeterminate ~ .axon-checkbox__box {
+  border-color: var(--axon-accent-solid);
+  background: var(--axon-accent-solid);
+}
+
+.axon-checkbox__input:checked ~ .axon-checkbox__box .axon-checkbox__icon--check {
+  opacity: 1;
+}
+
+/* Indeterminate wins over checked: show the dash only. */
+.axon-checkbox__input:indeterminate ~ .axon-checkbox__box .axon-checkbox__icon--check {
+  opacity: 0;
+}
+
+.axon-checkbox__input:indeterminate ~ .axon-checkbox__box .axon-checkbox__icon--dash {
+  opacity: 1;
+}
+
+.axon-choice:hover:not(.axon-choice--disabled) .axon-checkbox__input:checked ~ .axon-checkbox__box,
+.axon-choice:hover:not(.axon-choice--disabled)
+  .axon-checkbox__input:indeterminate
+  ~ .axon-checkbox__box {
+  border-color: var(--axon-accent-solid-hover);
+  background: var(--axon-accent-solid-hover);
+}
+
+.axon-choice--error .axon-checkbox__input:checked ~ .axon-checkbox__box {
+  border-color: var(--axon-accent-solid);
+  background: var(--axon-accent-solid);
+}
+
+.axon-choice--disabled .axon-checkbox__input:checked ~ .axon-checkbox__box,
+.axon-choice--disabled .axon-checkbox__input:indeterminate ~ .axon-checkbox__box {
+  border-color: var(--axon-color-border-strong);
+  background: var(--axon-color-border-strong);
+  color: var(--axon-color-surface);
+}

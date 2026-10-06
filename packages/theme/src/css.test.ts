@@ -29,18 +29,34 @@ describe('themeToVars', () => {
   });
 
   it('keeps mode-dependent semantic tokens out of the base set', () => {
-    expect(Object.keys(vars.light)).toEqual([
+    const semantic = Object.keys(vars.light).filter(
+      (name) =>
+        /^--axon-color-[a-z-]+$/.test(name) &&
+        !/-(primary|secondary|success|warning|danger|info|neutral)-/.test(name),
+    );
+    expect(semantic).toEqual([
       '--axon-color-background',
       '--axon-color-surface',
       '--axon-color-surface-raised',
+      '--axon-color-surface-muted',
       '--axon-color-border',
+      '--axon-color-border-strong',
       '--axon-color-text-primary',
       '--axon-color-text-secondary',
       '--axon-color-text-disabled',
+      '--axon-color-text-placeholder',
       '--axon-color-focus-ring',
       '--axon-color-overlay',
     ]);
     expect(Object.keys(vars.dark)).toEqual(Object.keys(vars.light));
+    expect(vars.light).toMatchObject({
+      '--axon-color-primary-solid': 'var(--axon-color-primary-600)',
+      '--axon-color-primary-on-solid': 'var(--axon-color-white)',
+      '--axon-color-danger-text-hover': 'var(--axon-color-danger-900)',
+    });
+    expect(vars.dark).toMatchObject({
+      '--axon-color-primary-text': 'var(--axon-color-primary-300)',
+    });
     expect(vars.base).not.toHaveProperty('--axon-color-background');
   });
 });

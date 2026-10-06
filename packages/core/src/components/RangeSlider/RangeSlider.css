@@ -1,0 +1,5 @@
+/* RangeSlider shares all styles with Slider (axon-slider--range); only range-specific rules here. */
+.axon-slider--range .axon-slider__thumb:focus-visible {
+  /* Keep the focused thumb above its neighbor when they overlap. */
+  z-index: 1;
+}

@@ -1,0 +1,23 @@
+.axon-label {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--axon-space-1);
+  color: var(--axon-color-text-primary);
+  font-family: var(--axon-font-sans);
+  font-size: var(--axon-font-size-sm);
+  font-weight: var(--axon-font-weight-medium);
+  line-height: var(--axon-line-height-tight);
+}
+
+.axon-label__required {
+  color: var(--axon-color-danger-text);
+}
+
+.axon-label__hint {
+  color: var(--axon-color-text-secondary);
+  font-weight: var(--axon-font-weight-regular);
+}
+
+.axon-label--disabled {
+  color: var(--axon-color-text-disabled);
+}

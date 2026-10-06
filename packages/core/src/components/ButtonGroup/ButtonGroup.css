@@ -1,0 +1,69 @@
+.axon-button-group {
+  display: inline-flex;
+  gap: var(--axon-space-2);
+}
+
+.axon-button-group--vertical {
+  flex-direction: column;
+}
+
+.axon-button-group--full-width {
+  display: flex;
+  width: 100%;
+}
+
+.axon-button-group--full-width > .axon-button {
+  flex: 1;
+}
+
+/* Attached: buttons share borders and only the outer corners stay rounded. */
+.axon-button-group--attached {
+  gap: 0;
+}
+
+.axon-button-group--attached > .axon-button {
+  border-radius: 0;
+}
+
+.axon-button-group--attached.axon-button-group--horizontal > .axon-button:first-child {
+  border-start-start-radius: var(--axon-radius-md);
+  border-end-start-radius: var(--axon-radius-md);
+}
+
+.axon-button-group--attached.axon-button-group--horizontal > .axon-button:last-child {
+  border-start-end-radius: var(--axon-radius-md);
+  border-end-end-radius: var(--axon-radius-md);
+}
+
+.axon-button-group--attached.axon-button-group--vertical > .axon-button:first-child {
+  border-start-start-radius: var(--axon-radius-md);
+  border-start-end-radius: var(--axon-radius-md);
+}
+
+.axon-button-group--attached.axon-button-group--vertical > .axon-button:last-child {
+  border-end-start-radius: var(--axon-radius-md);
+  border-end-end-radius: var(--axon-radius-md);
+}
+
+.axon-button-group--attached.axon-button-group--horizontal > .axon-button:not(:first-child) {
+  margin-inline-start: -1px;
+}
+
+.axon-button-group--attached.axon-button-group--vertical > .axon-button:not(:first-child) {
+  margin-block-start: -1px;
+}
+
+/* Keep the focused or hovered button's full border and focus ring above its neighbors. */
+.axon-button-group--attached > .axon-button:hover,
+.axon-button-group--attached > .axon-button:focus-visible {
+  z-index: 1;
+}
+
+/* Solid buttons have no visible edge of their own, so separate them with the page background. */
+.axon-button-group--attached.axon-button-group--horizontal > .axon-button--solid:not(:first-child) {
+  border-inline-start-color: var(--axon-color-background);
+}
+
+.axon-button-group--attached.axon-button-group--vertical > .axon-button--solid:not(:first-child) {
+  border-block-start-color: var(--axon-color-background);
+}

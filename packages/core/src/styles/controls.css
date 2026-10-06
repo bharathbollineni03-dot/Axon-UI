@@ -1,0 +1,6 @@
+/* Control heights shared by buttons and inputs so they line up side by side in a form row. */
+:root {
+  --axon-control-height-sm: var(--axon-space-8);
+  --axon-control-height-md: calc(var(--axon-space-8) + var(--axon-space-2));
+  --axon-control-height-lg: var(--axon-space-12);
+}

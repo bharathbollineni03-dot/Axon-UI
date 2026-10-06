@@ -1,0 +1,189 @@
+/* Field layout: label, control, message and counter. */
+.axon-field {
+  display: inline-flex;
+  flex-direction: column;
+  gap: var(--axon-space-1-5);
+  min-width: 0;
+  font-family: var(--axon-font-sans);
+}
+
+.axon-field--full-width {
+  display: flex;
+  width: 100%;
+}
+
+.axon-field__footer {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--axon-space-3);
+}
+
+/* Always rendered (it is an aria-live region) but collapses while empty. */
+.axon-field__message {
+  flex: 1;
+  min-width: 0;
+  color: var(--axon-color-text-secondary);
+  font-size: var(--axon-font-size-sm);
+  line-height: var(--axon-line-height-tight);
+}
+
+.axon-field__message:empty {
+  display: block;
+  height: 0;
+}
+
+.axon-field__message--error {
+  color: var(--axon-color-danger-text);
+}
+
+.axon-field__counter {
+  flex-shrink: 0;
+  margin-left: auto;
+  color: var(--axon-color-text-secondary);
+  font-size: var(--axon-font-size-sm);
+  font-variant-numeric: tabular-nums;
+  line-height: var(--axon-line-height-tight);
+}
+
+/* The bordered box shared by TextField, TextArea and NumberInput. */
+.axon-input {
+  --axon-input-height: var(--axon-control-height-md);
+
+  display: flex;
+  align-items: center;
+  gap: var(--axon-space-2);
+  width: 100%;
+  min-height: var(--axon-input-height);
+  padding-inline: var(--axon-space-3);
+  border: 1px solid var(--axon-color-border-strong);
+  border-radius: var(--axon-radius-md);
+  background: var(--axon-color-surface);
+  color: var(--axon-color-text-primary);
+  font-family: var(--axon-font-sans);
+  font-size: var(--axon-font-size-md);
+  line-height: var(--axon-line-height-normal);
+  transition:
+    border-color var(--axon-duration-fast) var(--axon-ease-standard),
+    background-color var(--axon-duration-fast) var(--axon-ease-standard);
+}
+
+.axon-input--sm {
+  --axon-input-height: var(--axon-control-height-sm);
+
+  padding-inline: var(--axon-space-2);
+  font-size: var(--axon-font-size-sm);
+}
+
+.axon-input--lg {
+  --axon-input-height: var(--axon-control-height-lg);
+
+  padding-inline: var(--axon-space-4);
+  font-size: var(--axon-font-size-lg);
+}
+
+.axon-input--filled {
+  border-color: transparent;
+  border-bottom-color: var(--axon-color-border-strong);
+  background: var(--axon-color-surface-muted);
+}
+
+.axon-input:hover:not(.axon-input--disabled):not(:focus-within) {
+  border-color: var(--axon-color-text-secondary);
+}
+
+.axon-input--filled:hover:not(.axon-input--disabled):not(:focus-within) {
+  border-color: transparent;
+  border-bottom-color: var(--axon-color-text-secondary);
+}
+
+.axon-input:focus-within {
+  border-color: var(--axon-accent-text);
+  outline: 2px solid var(--axon-color-focus-ring);
+  outline-offset: 1px;
+}
+
+.axon-input--error {
+  border-color: var(--axon-accent-text);
+}
+
+.axon-input--filled.axon-input--error {
+  border-color: transparent;
+  border-bottom-color: var(--axon-accent-text);
+}
+
+.axon-input--readonly {
+  background: var(--axon-color-surface-muted);
+}
+
+.axon-input--disabled {
+  background: var(--axon-color-surface-muted);
+  color: var(--axon-color-text-disabled);
+  cursor: not-allowed;
+}
+
+/* The native control inside the box. */
+.axon-input__field {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+}
+
+.axon-input__field::placeholder {
+  color: var(--axon-color-text-placeholder);
+  opacity: 1;
+}
+
+.axon-input__field:disabled {
+  cursor: not-allowed;
+}
+
+/* Hide the browser's own clear button; TextField provides `clearable`. */
+.axon-input__field::-webkit-search-cancel-button,
+.axon-input__field::-webkit-search-decoration {
+  appearance: none;
+}
+
+.axon-input__adornment {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  color: var(--axon-color-text-secondary);
+}
+
+/* Small icon buttons embedded in a box (clear, show password). */
+.axon-input__action {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 0;
+  border: 0;
+  border-radius: var(--axon-radius-sm);
+  background: transparent;
+  color: var(--axon-color-text-secondary);
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.axon-input__action:hover:not(:disabled) {
+  background: var(--axon-color-surface-muted);
+  color: var(--axon-color-text-primary);
+}
+
+.axon-input__action:focus-visible {
+  outline: 2px solid var(--axon-color-focus-ring);
+  outline-offset: 1px;
+}
+
+.axon-input__action:disabled {
+  cursor: not-allowed;
+}

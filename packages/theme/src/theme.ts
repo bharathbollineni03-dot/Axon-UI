@@ -1,5 +1,7 @@
 import {
   breakpoints,
+  darkAccent,
+  lightAccent,
   common,
   darkSemantic,
   lightSemantic,
@@ -10,6 +12,7 @@ import {
   spacing,
   typography,
   zIndex,
+  type AccentMode,
   type Breakpoints,
   type CommonColors,
   type Motion,
@@ -27,6 +30,7 @@ export interface Theme {
   palette: Record<PaletteName, Palette>;
   common: CommonColors;
   semantic: { light: SemanticColors; dark: SemanticColors };
+  accent: { light: AccentMode; dark: AccentMode };
   typography: Typography;
   spacing: Spacing;
   radius: Radius;
@@ -44,6 +48,7 @@ export const defaultTheme: Theme = {
   palette: palettes,
   common,
   semantic: { light: lightSemantic, dark: darkSemantic },
+  accent: { light: lightAccent, dark: darkAccent },
   typography,
   spacing,
   radius,

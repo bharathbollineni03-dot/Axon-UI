@@ -1,0 +1,27 @@
+.axon-input--multiline {
+  align-items: stretch;
+  padding-block: var(--axon-space-2);
+}
+
+.axon-input--multiline .axon-input__field {
+  display: block;
+  resize: vertical;
+}
+
+.axon-input--multiline.axon-input--sm {
+  padding-block: var(--axon-space-1-5);
+}
+
+.axon-input--multiline.axon-input--lg {
+  padding-block: var(--axon-space-3);
+}
+
+.axon-input--disabled.axon-input--multiline .axon-input__field {
+  resize: none;
+}
+
+/* Auto-resizing textareas grow with their content instead of being dragged. */
+.axon-input__field--auto-resize {
+  resize: none;
+  overflow-y: hidden;
+}

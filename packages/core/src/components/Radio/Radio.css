@@ -1,0 +1,39 @@
+.axon-radio__circle {
+  border-radius: var(--axon-radius-full);
+}
+
+/* The inner dot. */
+.axon-radio__circle::after {
+  width: 50%;
+  height: 50%;
+  border-radius: var(--axon-radius-full);
+  background: currentcolor;
+  content: '';
+  transform: scale(0);
+  transition: transform var(--axon-duration-fast) var(--axon-ease-standard);
+}
+
+.axon-radio__input:checked ~ .axon-radio__circle {
+  border-color: var(--axon-accent-solid);
+  background: var(--axon-accent-solid);
+}
+
+.axon-radio__input:checked ~ .axon-radio__circle::after {
+  transform: scale(1);
+}
+
+.axon-choice:hover:not(.axon-choice--disabled) .axon-radio__input:checked ~ .axon-radio__circle {
+  border-color: var(--axon-accent-solid-hover);
+  background: var(--axon-accent-solid-hover);
+}
+
+.axon-choice--error .axon-radio__input:checked ~ .axon-radio__circle {
+  border-color: var(--axon-accent-solid);
+  background: var(--axon-accent-solid);
+}
+
+.axon-choice--disabled .axon-radio__input:checked ~ .axon-radio__circle {
+  border-color: var(--axon-color-border-strong);
+  background: var(--axon-color-border-strong);
+  color: var(--axon-color-surface);
+}
