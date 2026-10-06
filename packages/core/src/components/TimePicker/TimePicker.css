@@ -1,0 +1,57 @@
+/* TimePicker reuses the input box and field layout; the columns are styled here. */
+.axon-time-picker .axon-input__field {
+  height: calc(var(--axon-input-height) - 2px);
+  font-variant-numeric: tabular-nums;
+}
+
+.axon-time-list {
+  display: flex;
+  gap: var(--axon-space-1);
+  font-size: var(--axon-font-size-md);
+}
+
+.axon-time-list__column {
+  box-sizing: border-box;
+  width: 4rem;
+  max-height: 14rem;
+  padding: var(--axon-space-1);
+  overflow-y: auto;
+  border: 1px solid var(--axon-color-border);
+  border-radius: var(--axon-radius-md);
+}
+
+.axon-time-list__column:focus-visible {
+  outline: 2px solid var(--axon-color-focus-ring);
+  outline-offset: 1px;
+}
+
+.axon-time-list__option {
+  padding: var(--axon-space-1-5) var(--axon-space-2);
+  border-radius: var(--axon-radius-sm);
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+.axon-time-list__option:hover:not(.axon-time-list__option--disabled) {
+  background: var(--axon-color-surface-muted);
+}
+
+/* The keyboard-highlighted option is only marked while its column has focus. */
+.axon-time-list__column:focus-visible .axon-time-list__option--active {
+  outline: 2px solid var(--axon-color-focus-ring);
+  outline-offset: -2px;
+}
+
+.axon-time-list__option--selected,
+.axon-time-list__option--selected:hover {
+  background: var(--axon-accent-solid);
+  color: var(--axon-accent-on-solid);
+  font-weight: var(--axon-font-weight-medium);
+}
+
+.axon-time-list__option--disabled {
+  color: var(--axon-color-text-disabled);
+  cursor: not-allowed;
+}

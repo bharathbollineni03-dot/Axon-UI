@@ -1,0 +1,10 @@
+/* DatePicker reuses the input box and field layout; the calendar lives in internal/Calendar. */
+.axon-date-picker .axon-input__field {
+  height: calc(var(--axon-input-height) - 2px);
+  font-variant-numeric: tabular-nums;
+}
+
+.axon-popup__action:disabled {
+  color: var(--axon-color-text-disabled);
+  cursor: not-allowed;
+}

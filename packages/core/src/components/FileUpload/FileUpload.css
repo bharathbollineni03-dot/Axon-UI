@@ -1,0 +1,169 @@
+.axon-file-upload {
+  width: min(100%, 28rem);
+}
+
+.axon-file-upload--sm {
+  font-size: var(--axon-font-size-sm);
+}
+
+.axon-file-upload--lg {
+  font-size: var(--axon-font-size-lg);
+}
+
+.axon-file-upload__zone {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--axon-space-1);
+  padding: var(--axon-space-6) var(--axon-space-4);
+  border: 2px dashed var(--axon-color-border-strong);
+  border-radius: var(--axon-radius-lg);
+  background: var(--axon-color-surface);
+  color: var(--axon-color-text-primary);
+  text-align: center;
+  transition:
+    border-color var(--axon-duration-fast) var(--axon-ease-standard),
+    background-color var(--axon-duration-fast) var(--axon-ease-standard);
+}
+
+.axon-file-upload__zone:hover:not(.axon-file-upload__zone--disabled) {
+  border-color: var(--axon-accent-text);
+}
+
+.axon-file-upload__zone:focus-within {
+  border-color: var(--axon-accent-text);
+  outline: 2px solid var(--axon-color-focus-ring);
+  outline-offset: 2px;
+}
+
+.axon-file-upload__zone--dragging {
+  border-style: solid;
+  border-color: var(--axon-accent-solid);
+  background: var(--axon-accent-subtle);
+}
+
+.axon-file-upload__zone--error {
+  border-color: var(--axon-color-danger-text);
+}
+
+.axon-file-upload__zone--disabled {
+  border-color: var(--axon-color-border);
+  background: var(--axon-color-surface-muted);
+  /* Muted fill, a faint border and the not-allowed cursor show the state; the text stays readable. */
+  color: var(--axon-color-text-secondary);
+  cursor: not-allowed;
+}
+
+/* The invisible native input covers the zone: clicks open the file dialog, Tab/Enter work. */
+.axon-file-upload__input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.axon-file-upload__input:disabled {
+  cursor: not-allowed;
+}
+
+.axon-file-upload__icon {
+  display: inline-flex;
+  color: var(--axon-color-text-secondary);
+  font-size: 1.75rem;
+}
+
+.axon-file-upload__browse {
+  color: var(--axon-accent-text);
+  font-weight: var(--axon-font-weight-medium);
+  text-decoration: underline;
+}
+
+.axon-file-upload__zone--disabled .axon-file-upload__browse {
+  color: inherit;
+}
+
+.axon-file-upload__hint {
+  color: var(--axon-color-text-secondary);
+  font-size: var(--axon-font-size-sm);
+}
+
+.axon-file-upload__rejections:empty {
+  display: block;
+  height: 0;
+}
+
+.axon-file-upload__rejections ul {
+  margin: 0;
+  padding: 0;
+  color: var(--axon-color-danger-text);
+  font-size: var(--axon-font-size-sm);
+  list-style: none;
+}
+
+.axon-file-upload__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--axon-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.axon-file-upload__item {
+  display: flex;
+  align-items: center;
+  gap: var(--axon-space-3);
+  padding: var(--axon-space-2) var(--axon-space-3);
+  border: 1px solid var(--axon-color-border);
+  border-radius: var(--axon-radius-md);
+  background: var(--axon-color-surface);
+}
+
+.axon-file-upload__item--error {
+  border-color: var(--axon-color-danger-text);
+}
+
+.axon-file-upload__file-text {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--axon-space-0-5);
+  min-width: 0;
+}
+
+.axon-file-upload__file-name {
+  overflow: hidden;
+  font-weight: var(--axon-font-weight-medium);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.axon-file-upload__file-meta {
+  color: var(--axon-color-text-secondary);
+  font-size: var(--axon-font-size-sm);
+}
+
+.axon-file-upload__item--error .axon-file-upload__file-meta {
+  color: var(--axon-color-danger-text);
+}
+
+.axon-file-upload__progress {
+  display: block;
+  height: 0.25rem;
+  margin-top: var(--axon-space-1);
+  overflow: hidden;
+  border-radius: var(--axon-radius-full);
+  background: var(--axon-color-border);
+}
+
+.axon-file-upload__progress-bar {
+  display: block;
+  height: 100%;
+  border-radius: var(--axon-radius-full);
+  background: var(--axon-accent-solid);
+  transition: width var(--axon-duration-normal) var(--axon-ease-standard);
+}

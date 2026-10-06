@@ -1,0 +1,62 @@
+.axon-otp-input {
+  --axon-otp-box: 2.75rem;
+}
+
+.axon-otp-input--sm {
+  --axon-otp-box: 2.25rem;
+}
+
+.axon-otp-input--lg {
+  --axon-otp-box: 3.5rem;
+}
+
+.axon-otp-input__boxes {
+  display: flex;
+  gap: var(--axon-space-2);
+}
+
+.axon-otp-input__box {
+  box-sizing: border-box;
+  width: var(--axon-otp-box);
+  height: calc(var(--axon-otp-box) * 1.2);
+  padding: 0;
+  border: 1px solid var(--axon-color-border-strong);
+  border-radius: var(--axon-radius-md);
+  background: var(--axon-color-surface);
+  color: var(--axon-color-text-primary);
+  font-family: var(--axon-font-sans);
+  font-size: calc(var(--axon-otp-box) * 0.5);
+  font-weight: var(--axon-font-weight-semibold);
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+  caret-color: var(--axon-accent-text);
+  transition: border-color var(--axon-duration-fast) var(--axon-ease-standard);
+}
+
+.axon-otp-input__box:hover:where(:not(:disabled)) {
+  border-color: var(--axon-color-text-secondary);
+}
+
+.axon-otp-input__box:focus {
+  border-color: var(--axon-accent-text);
+  outline: 2px solid var(--axon-color-focus-ring);
+  outline-offset: 1px;
+}
+
+.axon-otp-input__box.axon-otp-input__box--filled {
+  border-color: var(--axon-accent-text);
+}
+
+.axon-otp-input--error .axon-otp-input__box {
+  border-color: var(--axon-accent-text);
+}
+
+.axon-otp-input__box:disabled {
+  background: var(--axon-color-surface-muted);
+  color: var(--axon-color-text-disabled);
+  cursor: not-allowed;
+}
+
+.axon-otp-input__box:read-only {
+  background: var(--axon-color-surface-muted);
+}
