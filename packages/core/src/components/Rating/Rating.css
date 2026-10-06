@@ -1,0 +1,78 @@
+.axon-rating {
+  --axon-rating-size: 1.5rem;
+
+  display: inline-flex;
+  color: var(--axon-color-text-primary);
+  font-family: var(--axon-font-sans);
+  vertical-align: middle;
+  cursor: pointer;
+  touch-action: manipulation;
+  user-select: none;
+}
+
+.axon-rating--sm {
+  --axon-rating-size: 1.125rem;
+}
+
+.axon-rating--lg {
+  --axon-rating-size: 2rem;
+}
+
+.axon-rating:focus-visible {
+  border-radius: var(--axon-radius-sm);
+  outline: 2px solid var(--axon-color-focus-ring);
+  outline-offset: 2px;
+}
+
+.axon-rating__item {
+  position: relative;
+  display: inline-flex;
+  width: var(--axon-rating-size);
+  height: var(--axon-rating-size);
+}
+
+.axon-rating__empty,
+.axon-rating__filled {
+  display: inline-flex;
+  height: 100%;
+}
+
+.axon-rating__empty {
+  width: 100%;
+}
+
+/* The filled icon is clipped to a fraction of the item to show partial (half) values. */
+.axon-rating__filled {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+
+.axon-rating__star {
+  flex-shrink: 0;
+  width: var(--axon-rating-size);
+  height: var(--axon-rating-size);
+  stroke-linejoin: round;
+  stroke-width: 1.5;
+}
+
+/* Outline stars keep a visible edge; filled stars get a darker edge so the shape reads clearly. */
+.axon-rating__empty .axon-rating__star {
+  fill: none;
+  stroke: var(--axon-color-border-strong);
+}
+
+.axon-rating__filled .axon-rating__star {
+  fill: var(--axon-accent-solid);
+  stroke: var(--axon-accent-text);
+}
+
+.axon-rating--readonly {
+  cursor: default;
+}
+
+.axon-rating--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

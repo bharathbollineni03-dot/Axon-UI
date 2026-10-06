@@ -36,6 +36,17 @@ export function App() {
 | `TextArea`    | `autoResize` with `minRows`/`maxRows`, counter                                             |
 | `NumberInput` | `min`/`max`/`step`/`precision`, steppers, arrow, Page and Home/End keys                    |
 
+**Batch B: choice controls** (Step 3)
+
+| Component                  | Notes                                                                                                  |
+| -------------------------- | ------------------------------------------------------------------------------------------------------ |
+| `Checkbox`                 | Native checkbox with a custom box; `indeterminate`, label and description                              |
+| `CheckboxGroup`            | `options` or children; `value` is a `string[]`; horizontal/vertical; helper and error text            |
+| `Radio` / `RadioGroup`     | Native radios sharing a `name`: arrow keys move and select, one tab stop (WAI-ARIA radio group)        |
+| `Switch`                   | `role="switch"`; label on either side                                                                  |
+| `Slider` / `RangeSlider`   | WAI-ARIA slider thumbs; marks, step, value tooltip, pointer drag, arrows / Page / Home / End            |
+| `Rating`                   | Stars with half values; read-only mode is an image with a text alternative                              |
+
 ## Conventions
 
 - Every component forwards its `ref` and merges `className`/`style`. For form controls (`TextField`, `TextArea`, `NumberInput`) `className` and `style` apply to the outer wrapper, `ref` and all other props go to the native control.

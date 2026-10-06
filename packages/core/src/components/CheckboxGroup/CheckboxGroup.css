@@ -1,0 +1,4 @@
+/* CheckboxGroup uses the shared option-group layout (internal/OptionGroup/OptionGroup.css). */
+.axon-checkbox-group {
+  display: block;
+}

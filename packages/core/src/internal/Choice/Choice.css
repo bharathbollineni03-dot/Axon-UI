@@ -1,0 +1,108 @@
+/*
+ * Layout shared by Checkbox, Radio and Switch: a hidden native input (kept for semantics and
+ * keyboard handling), a custom visual control, and a label with optional description.
+ */
+.axon-choice {
+  --axon-choice-size: 1.25rem;
+
+  position: relative;
+  display: inline-flex;
+  align-items: flex-start;
+  gap: var(--axon-space-2);
+  color: var(--axon-color-text-primary);
+  font-family: var(--axon-font-sans);
+  font-size: var(--axon-font-size-md);
+  line-height: var(--axon-line-height-normal);
+  cursor: pointer;
+}
+
+.axon-checkbox--sm,
+.axon-radio--sm,
+.axon-switch--sm {
+  --axon-choice-size: 1rem;
+
+  font-size: var(--axon-font-size-sm);
+}
+
+.axon-checkbox--lg,
+.axon-radio--lg,
+.axon-switch--lg {
+  --axon-choice-size: 1.5rem;
+
+  font-size: var(--axon-font-size-lg);
+}
+
+/* The native input stays in the layout, invisible, on top of the custom control. */
+.axon-choice__input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--axon-choice-size);
+  height: var(--axon-choice-size);
+  margin: 0;
+  opacity: 0;
+  cursor: inherit;
+}
+
+.axon-choice__text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.axon-choice__label {
+  /* Aligns the first line of text with the control. */
+  min-height: var(--axon-choice-size);
+}
+
+.axon-choice__description {
+  color: var(--axon-color-text-secondary);
+  font-size: var(--axon-font-size-sm);
+  line-height: var(--axon-line-height-tight);
+}
+
+.axon-choice--disabled {
+  color: var(--axon-color-text-disabled);
+  cursor: not-allowed;
+}
+
+.axon-choice--disabled .axon-choice__description {
+  color: var(--axon-color-text-disabled);
+}
+
+/* Shared visual-control behavior; each component draws its own box. */
+.axon-choice__control {
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: var(--axon-choice-size);
+  height: var(--axon-choice-size);
+  border: 2px solid var(--axon-color-border-strong);
+  background: var(--axon-color-surface);
+  color: var(--axon-accent-on-solid);
+  transition:
+    background-color var(--axon-duration-fast) var(--axon-ease-standard),
+    border-color var(--axon-duration-fast) var(--axon-ease-standard);
+}
+
+.axon-choice:hover:not(.axon-choice--disabled) .axon-choice__control {
+  border-color: var(--axon-accent-text);
+}
+
+.axon-choice__input:focus-visible ~ .axon-choice__control {
+  outline: 2px solid var(--axon-color-focus-ring);
+  outline-offset: 2px;
+}
+
+.axon-choice--error .axon-choice__control {
+  border-color: var(--axon-accent-text);
+}
+
+.axon-choice--disabled .axon-choice__control {
+  border-color: var(--axon-color-border);
+  background: var(--axon-color-surface-muted);
+  opacity: 0.7;
+}

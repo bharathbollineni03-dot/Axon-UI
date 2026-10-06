@@ -1,0 +1,167 @@
+.axon-slider {
+  --axon-slider-track-height: 0.25rem;
+  --axon-slider-thumb-size: 1.25rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--axon-space-2);
+  width: 100%;
+  min-width: 0;
+  color: var(--axon-color-text-primary);
+  font-family: var(--axon-font-sans);
+}
+
+.axon-slider--sm {
+  --axon-slider-track-height: 0.125rem;
+  --axon-slider-thumb-size: 1rem;
+}
+
+.axon-slider--lg {
+  --axon-slider-track-height: 0.375rem;
+  --axon-slider-thumb-size: 1.5rem;
+}
+
+.axon-slider__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--axon-space-3);
+}
+
+.axon-slider__value {
+  color: var(--axon-color-text-secondary);
+  font-size: var(--axon-font-size-sm);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Wider than the track so thumbs at either end stay inside the component. */
+.axon-slider__control {
+  padding: calc(var(--axon-slider-thumb-size) / 2) calc(var(--axon-slider-thumb-size) / 2);
+  cursor: pointer;
+  touch-action: none;
+  user-select: none;
+}
+
+.axon-slider--has-marks .axon-slider__control {
+  padding-bottom: 0;
+}
+
+.axon-slider__track {
+  position: relative;
+  height: var(--axon-slider-track-height);
+  border-radius: var(--axon-radius-full);
+  background: var(--axon-color-border);
+}
+
+.axon-slider__fill {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  border-radius: var(--axon-radius-full);
+  background: var(--axon-accent-solid);
+}
+
+.axon-slider__thumb {
+  position: absolute;
+  top: 50%;
+  box-sizing: border-box;
+  width: var(--axon-slider-thumb-size);
+  height: var(--axon-slider-thumb-size);
+  margin-left: calc(var(--axon-slider-thumb-size) / -2);
+  border: 2px solid var(--axon-accent-solid);
+  border-radius: var(--axon-radius-full);
+  background: var(--axon-color-surface);
+  box-shadow: var(--axon-shadow-sm);
+  cursor: grab;
+  transform: translateY(-50%);
+  transition: box-shadow var(--axon-duration-fast) var(--axon-ease-standard);
+}
+
+.axon-slider__thumb:hover,
+.axon-slider__thumb--active {
+  background: var(--axon-accent-subtle);
+}
+
+.axon-slider__thumb--active {
+  cursor: grabbing;
+}
+
+.axon-slider__thumb:focus-visible {
+  outline: 2px solid var(--axon-color-focus-ring);
+  outline-offset: 2px;
+}
+
+/* Value bubble above a thumb. */
+.axon-slider__tooltip {
+  position: absolute;
+  bottom: calc(100% + var(--axon-space-2));
+  left: 50%;
+  padding: var(--axon-space-0-5) var(--axon-space-1-5);
+  border-radius: var(--axon-radius-sm);
+  background: var(--axon-color-text-primary);
+  color: var(--axon-color-surface);
+  font-size: var(--axon-font-size-xs);
+  font-variant-numeric: tabular-nums;
+  line-height: var(--axon-line-height-normal);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-50%);
+  transition: opacity var(--axon-duration-fast) var(--axon-ease-standard);
+}
+
+.axon-slider--tooltip-always .axon-slider__tooltip,
+.axon-slider--tooltip-auto .axon-slider__thumb:hover .axon-slider__tooltip,
+.axon-slider--tooltip-auto .axon-slider__thumb:focus-visible .axon-slider__tooltip,
+.axon-slider--tooltip-auto .axon-slider__thumb--active .axon-slider__tooltip {
+  opacity: 1;
+}
+
+.axon-slider--tooltip-never .axon-slider__tooltip {
+  display: none;
+}
+
+/* Marks and their labels. */
+.axon-slider__marks {
+  position: relative;
+  height: 1.75rem;
+  margin-top: var(--axon-space-1);
+}
+
+.axon-slider__mark {
+  position: absolute;
+  top: 0;
+  width: 2px;
+  height: 0.375rem;
+  margin-left: -1px;
+  background: var(--axon-color-border-strong);
+}
+
+.axon-slider__mark--active {
+  background: var(--axon-accent-solid);
+}
+
+.axon-slider__mark-label {
+  position: absolute;
+  top: 0.625rem;
+  left: 50%;
+  color: var(--axon-color-text-secondary);
+  font-size: var(--axon-font-size-xs);
+  white-space: nowrap;
+  transform: translateX(-50%);
+}
+
+/* Only the control is dimmed, so the label and value readout stay readable. */
+.axon-slider--disabled .axon-slider__control {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.axon-slider--disabled .axon-slider__thumb {
+  cursor: not-allowed;
+}
+
+/* Reserve room for always-visible value bubbles so they never cover the label. */
+.axon-slider--tooltip-always .axon-slider__header {
+  margin-bottom: var(--axon-space-6);
+}

@@ -1,0 +1,4 @@
+/* RadioGroup uses the shared option-group layout (internal/OptionGroup/OptionGroup.css). */
+.axon-radio-group {
+  display: block;
+}

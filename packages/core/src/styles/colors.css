@@ -5,7 +5,12 @@
  */
 
 .axon-button--primary,
-.axon-input--primary {
+.axon-input--primary,
+.axon-checkbox--primary,
+.axon-radio--primary,
+.axon-switch--primary,
+.axon-slider--primary,
+.axon-rating--primary {
   --axon-accent-solid: var(--axon-color-primary-solid);
   --axon-accent-solid-hover: var(--axon-color-primary-solid-hover);
   --axon-accent-solid-active: var(--axon-color-primary-solid-active);
@@ -19,7 +24,12 @@
 }
 
 .axon-button--secondary,
-.axon-input--secondary {
+.axon-input--secondary,
+.axon-checkbox--secondary,
+.axon-radio--secondary,
+.axon-switch--secondary,
+.axon-slider--secondary,
+.axon-rating--secondary {
   --axon-accent-solid: var(--axon-color-secondary-solid);
   --axon-accent-solid-hover: var(--axon-color-secondary-solid-hover);
   --axon-accent-solid-active: var(--axon-color-secondary-solid-active);
@@ -33,7 +43,12 @@
 }
 
 .axon-button--success,
-.axon-input--success {
+.axon-input--success,
+.axon-checkbox--success,
+.axon-radio--success,
+.axon-switch--success,
+.axon-slider--success,
+.axon-rating--success {
   --axon-accent-solid: var(--axon-color-success-solid);
   --axon-accent-solid-hover: var(--axon-color-success-solid-hover);
   --axon-accent-solid-active: var(--axon-color-success-solid-active);
@@ -47,7 +62,12 @@
 }
 
 .axon-button--warning,
-.axon-input--warning {
+.axon-input--warning,
+.axon-checkbox--warning,
+.axon-radio--warning,
+.axon-switch--warning,
+.axon-slider--warning,
+.axon-rating--warning {
   --axon-accent-solid: var(--axon-color-warning-solid);
   --axon-accent-solid-hover: var(--axon-color-warning-solid-hover);
   --axon-accent-solid-active: var(--axon-color-warning-solid-active);
@@ -61,7 +81,12 @@
 }
 
 .axon-button--danger,
-.axon-input--danger {
+.axon-input--danger,
+.axon-checkbox--danger,
+.axon-radio--danger,
+.axon-switch--danger,
+.axon-slider--danger,
+.axon-rating--danger {
   --axon-accent-solid: var(--axon-color-danger-solid);
   --axon-accent-solid-hover: var(--axon-color-danger-solid-hover);
   --axon-accent-solid-active: var(--axon-color-danger-solid-active);
@@ -75,7 +100,12 @@
 }
 
 .axon-button--neutral,
-.axon-input--neutral {
+.axon-input--neutral,
+.axon-checkbox--neutral,
+.axon-radio--neutral,
+.axon-switch--neutral,
+.axon-slider--neutral,
+.axon-rating--neutral {
   --axon-accent-solid: var(--axon-color-neutral-solid);
   --axon-accent-solid-hover: var(--axon-color-neutral-solid-hover);
   --axon-accent-solid-active: var(--axon-color-neutral-solid-active);
@@ -89,7 +119,9 @@
 }
 
 /* Placed last so the error state wins over any `color`. */
-.axon-input--error {
+.axon-input--error,
+.axon-checkbox--error,
+.axon-radio--error {
   --axon-accent-solid: var(--axon-color-danger-solid);
   --axon-accent-solid-hover: var(--axon-color-danger-solid-hover);
   --axon-accent-solid-active: var(--axon-color-danger-solid-active);

@@ -1,0 +1,35 @@
+.axon-option-group {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-family: var(--axon-font-sans);
+}
+
+.axon-option-group__legend {
+  margin-bottom: var(--axon-space-2);
+  padding: 0;
+}
+
+.axon-option-group__items {
+  display: flex;
+  gap: var(--axon-space-2);
+}
+
+.axon-option-group__items--vertical {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.axon-option-group__items--horizontal {
+  flex-flow: row wrap;
+  gap: var(--axon-space-2) var(--axon-space-6);
+}
+
+.axon-option-group .axon-field__message {
+  margin-top: var(--axon-space-1-5);
+}
+
+.axon-option-group .axon-field__message:empty {
+  margin-top: 0;
+}

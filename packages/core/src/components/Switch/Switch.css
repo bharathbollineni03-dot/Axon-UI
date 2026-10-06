@@ -1,0 +1,65 @@
+.axon-switch {
+  --axon-switch-width: calc(var(--axon-choice-size) * 1.8);
+}
+
+/* The input covers the track so clicking it toggles, and it receives the focus ring. */
+.axon-switch__input {
+  width: var(--axon-switch-width);
+}
+
+.axon-switch__track {
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  box-sizing: border-box;
+  width: var(--axon-switch-width);
+  height: var(--axon-choice-size);
+  border-radius: var(--axon-radius-full);
+  background: var(--axon-color-border-strong);
+  transition: background-color var(--axon-duration-fast) var(--axon-ease-standard);
+}
+
+.axon-switch__thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: calc(var(--axon-choice-size) - 4px);
+  height: calc(var(--axon-choice-size) - 4px);
+  border-radius: var(--axon-radius-full);
+  background: var(--axon-color-white);
+  box-shadow: var(--axon-shadow-sm);
+  transition: transform var(--axon-duration-fast) var(--axon-ease-standard);
+}
+
+.axon-switch__input:checked ~ .axon-switch__track {
+  background: var(--axon-accent-solid);
+}
+
+.axon-switch__input:checked ~ .axon-switch__track .axon-switch__thumb {
+  background: var(--axon-accent-on-solid);
+  transform: translateX(calc(var(--axon-switch-width) - var(--axon-choice-size)));
+}
+
+.axon-switch:hover:not(.axon-choice--disabled) .axon-switch__input:checked ~ .axon-switch__track {
+  background: var(--axon-accent-solid-hover);
+}
+
+.axon-switch__input:focus-visible ~ .axon-switch__track {
+  outline: 2px solid var(--axon-color-focus-ring);
+  outline-offset: 2px;
+}
+
+.axon-switch--label-start {
+  flex-direction: row-reverse;
+  justify-content: space-between;
+}
+
+.axon-switch--label-start .axon-switch__input {
+  right: 0;
+  left: auto;
+}
+
+.axon-choice--disabled .axon-switch__track {
+  opacity: 0.5;
+}
