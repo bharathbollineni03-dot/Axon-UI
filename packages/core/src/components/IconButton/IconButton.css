@@ -1,0 +1,21 @@
+/*
+ * IconButton renders a Button with the `axon-button--icon-only` and
+ * `axon-button--round|square` modifiers. Must be imported after Button.css.
+ */
+.axon-button--icon-only {
+  width: var(--axon-button-height);
+  padding: 0;
+}
+
+.axon-button--icon-only .axon-button__label {
+  display: inline-flex;
+  font-size: 1.25em;
+}
+
+.axon-button--round {
+  border-radius: var(--axon-radius-full);
+}
+
+.axon-button--square {
+  border-radius: var(--axon-radius-md);
+}

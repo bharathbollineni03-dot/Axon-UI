@@ -1,0 +1,7 @@
+/*
+ * TextField is built from the shared field layout and input box (internal/Field/Field.css).
+ * Only styles specific to a text input live here.
+ */
+.axon-text-field .axon-input__field {
+  height: calc(var(--axon-input-height) - 2px);
+}

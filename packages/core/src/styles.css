@@ -1,1 +1,10 @@
-@import './components/AxonPlaceholder/AxonPlaceholder.css';
+@import './styles/controls.css';
+@import './styles/colors.css';
+@import './internal/Field/Field.css';
+@import './components/Label/Label.css';
+@import './components/Button/Button.css';
+@import './components/IconButton/IconButton.css';
+@import './components/ButtonGroup/ButtonGroup.css';
+@import './components/TextField/TextField.css';
+@import './components/TextArea/TextArea.css';
+@import './components/NumberInput/NumberInput.css';

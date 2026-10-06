@@ -11,6 +11,21 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+/** Picks white or near-black text, whichever contrasts more with the swatch. */
+function textClassFor(hex: string) {
+  const luminance = (color: string) => {
+    const [r, g, b] = [1, 3, 5].map((i) => {
+      const channel = parseInt(color.slice(i, i + 2), 16) / 255;
+      return channel <= 0.03928 ? channel / 12.92 : ((channel + 0.055) / 1.055) ** 2.4;
+    });
+    return 0.2126 * r! + 0.7152 * g! + 0.0722 * b!;
+  };
+  const l = luminance(hex);
+  const withWhite = 1.05 / (l + 0.05);
+  const withDark = (l + 0.05) / (luminance(defaultTheme.palette.neutral[900]) + 0.05);
+  return withWhite >= withDark ? 'dark' : 'light';
+}
+
 const kebab = (key: string) => key.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
 
 export const Palettes: Story = {
@@ -23,7 +38,7 @@ export const Palettes: Story = {
             {shades.map((shade) => (
               <div
                 key={shade}
-                className={`axon-swatch axon-swatch--${shade >= 500 ? 'dark' : 'light'}`}
+                className={`axon-swatch axon-swatch--${textClassFor(defaultTheme.palette[name][shade])}`}
                 style={{ background: `var(--axon-color-${name}-${shade})` }}
                 title={`--axon-color-${name}-${shade}`}
               >

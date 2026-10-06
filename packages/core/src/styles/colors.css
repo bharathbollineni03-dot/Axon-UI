@@ -1,0 +1,103 @@
+/*
+ * Maps a component's color modifier (axon-<component>--<color>) to generic accent variables,
+ * so each component's CSS is written once against --axon-accent-* instead of once per color.
+ * When you add a component with a `color` prop, add its modifier class to every list below.
+ */
+
+.axon-button--primary,
+.axon-input--primary {
+  --axon-accent-solid: var(--axon-color-primary-solid);
+  --axon-accent-solid-hover: var(--axon-color-primary-solid-hover);
+  --axon-accent-solid-active: var(--axon-color-primary-solid-active);
+  --axon-accent-on-solid: var(--axon-color-primary-on-solid);
+  --axon-accent-text: var(--axon-color-primary-text);
+  --axon-accent-text-hover: var(--axon-color-primary-text-hover);
+  --axon-accent-subtle: var(--axon-color-primary-subtle);
+  --axon-accent-subtle-hover: var(--axon-color-primary-subtle-hover);
+  --axon-accent-subtle-active: var(--axon-color-primary-subtle-active);
+  --axon-accent-border: var(--axon-color-primary-border);
+}
+
+.axon-button--secondary,
+.axon-input--secondary {
+  --axon-accent-solid: var(--axon-color-secondary-solid);
+  --axon-accent-solid-hover: var(--axon-color-secondary-solid-hover);
+  --axon-accent-solid-active: var(--axon-color-secondary-solid-active);
+  --axon-accent-on-solid: var(--axon-color-secondary-on-solid);
+  --axon-accent-text: var(--axon-color-secondary-text);
+  --axon-accent-text-hover: var(--axon-color-secondary-text-hover);
+  --axon-accent-subtle: var(--axon-color-secondary-subtle);
+  --axon-accent-subtle-hover: var(--axon-color-secondary-subtle-hover);
+  --axon-accent-subtle-active: var(--axon-color-secondary-subtle-active);
+  --axon-accent-border: var(--axon-color-secondary-border);
+}
+
+.axon-button--success,
+.axon-input--success {
+  --axon-accent-solid: var(--axon-color-success-solid);
+  --axon-accent-solid-hover: var(--axon-color-success-solid-hover);
+  --axon-accent-solid-active: var(--axon-color-success-solid-active);
+  --axon-accent-on-solid: var(--axon-color-success-on-solid);
+  --axon-accent-text: var(--axon-color-success-text);
+  --axon-accent-text-hover: var(--axon-color-success-text-hover);
+  --axon-accent-subtle: var(--axon-color-success-subtle);
+  --axon-accent-subtle-hover: var(--axon-color-success-subtle-hover);
+  --axon-accent-subtle-active: var(--axon-color-success-subtle-active);
+  --axon-accent-border: var(--axon-color-success-border);
+}
+
+.axon-button--warning,
+.axon-input--warning {
+  --axon-accent-solid: var(--axon-color-warning-solid);
+  --axon-accent-solid-hover: var(--axon-color-warning-solid-hover);
+  --axon-accent-solid-active: var(--axon-color-warning-solid-active);
+  --axon-accent-on-solid: var(--axon-color-warning-on-solid);
+  --axon-accent-text: var(--axon-color-warning-text);
+  --axon-accent-text-hover: var(--axon-color-warning-text-hover);
+  --axon-accent-subtle: var(--axon-color-warning-subtle);
+  --axon-accent-subtle-hover: var(--axon-color-warning-subtle-hover);
+  --axon-accent-subtle-active: var(--axon-color-warning-subtle-active);
+  --axon-accent-border: var(--axon-color-warning-border);
+}
+
+.axon-button--danger,
+.axon-input--danger {
+  --axon-accent-solid: var(--axon-color-danger-solid);
+  --axon-accent-solid-hover: var(--axon-color-danger-solid-hover);
+  --axon-accent-solid-active: var(--axon-color-danger-solid-active);
+  --axon-accent-on-solid: var(--axon-color-danger-on-solid);
+  --axon-accent-text: var(--axon-color-danger-text);
+  --axon-accent-text-hover: var(--axon-color-danger-text-hover);
+  --axon-accent-subtle: var(--axon-color-danger-subtle);
+  --axon-accent-subtle-hover: var(--axon-color-danger-subtle-hover);
+  --axon-accent-subtle-active: var(--axon-color-danger-subtle-active);
+  --axon-accent-border: var(--axon-color-danger-border);
+}
+
+.axon-button--neutral,
+.axon-input--neutral {
+  --axon-accent-solid: var(--axon-color-neutral-solid);
+  --axon-accent-solid-hover: var(--axon-color-neutral-solid-hover);
+  --axon-accent-solid-active: var(--axon-color-neutral-solid-active);
+  --axon-accent-on-solid: var(--axon-color-neutral-on-solid);
+  --axon-accent-text: var(--axon-color-neutral-text);
+  --axon-accent-text-hover: var(--axon-color-neutral-text-hover);
+  --axon-accent-subtle: var(--axon-color-neutral-subtle);
+  --axon-accent-subtle-hover: var(--axon-color-neutral-subtle-hover);
+  --axon-accent-subtle-active: var(--axon-color-neutral-subtle-active);
+  --axon-accent-border: var(--axon-color-neutral-border);
+}
+
+/* Placed last so the error state wins over any `color`. */
+.axon-input--error {
+  --axon-accent-solid: var(--axon-color-danger-solid);
+  --axon-accent-solid-hover: var(--axon-color-danger-solid-hover);
+  --axon-accent-solid-active: var(--axon-color-danger-solid-active);
+  --axon-accent-on-solid: var(--axon-color-danger-on-solid);
+  --axon-accent-text: var(--axon-color-danger-text);
+  --axon-accent-text-hover: var(--axon-color-danger-text-hover);
+  --axon-accent-subtle: var(--axon-color-danger-subtle);
+  --axon-accent-subtle-hover: var(--axon-color-danger-subtle-hover);
+  --axon-accent-subtle-active: var(--axon-color-danger-subtle-active);
+  --axon-accent-border: var(--axon-color-danger-border);
+}
