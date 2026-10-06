@@ -1,0 +1,34 @@
+/* Select reuses the input box and field layout; these rules style the button trigger. */
+.axon-select__trigger {
+  justify-content: space-between;
+  text-align: start;
+  cursor: pointer;
+  appearance: none;
+}
+
+.axon-select__trigger:disabled {
+  cursor: not-allowed;
+}
+
+.axon-select__value {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.axon-select__value--placeholder {
+  color: var(--axon-color-text-placeholder);
+}
+
+.axon-select__chevron {
+  display: inline-flex;
+  flex-shrink: 0;
+  color: var(--axon-color-text-secondary);
+  transition: transform var(--axon-duration-fast) var(--axon-ease-standard);
+}
+
+.axon-select__trigger--open .axon-select__chevron {
+  transform: rotate(180deg);
+}

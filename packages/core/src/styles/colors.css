@@ -10,7 +10,8 @@
 .axon-radio--primary,
 .axon-switch--primary,
 .axon-slider--primary,
-.axon-rating--primary {
+.axon-rating--primary,
+.axon-listbox--primary {
   --axon-accent-solid: var(--axon-color-primary-solid);
   --axon-accent-solid-hover: var(--axon-color-primary-solid-hover);
   --axon-accent-solid-active: var(--axon-color-primary-solid-active);
@@ -29,7 +30,8 @@
 .axon-radio--secondary,
 .axon-switch--secondary,
 .axon-slider--secondary,
-.axon-rating--secondary {
+.axon-rating--secondary,
+.axon-listbox--secondary {
   --axon-accent-solid: var(--axon-color-secondary-solid);
   --axon-accent-solid-hover: var(--axon-color-secondary-solid-hover);
   --axon-accent-solid-active: var(--axon-color-secondary-solid-active);
@@ -48,7 +50,8 @@
 .axon-radio--success,
 .axon-switch--success,
 .axon-slider--success,
-.axon-rating--success {
+.axon-rating--success,
+.axon-listbox--success {
   --axon-accent-solid: var(--axon-color-success-solid);
   --axon-accent-solid-hover: var(--axon-color-success-solid-hover);
   --axon-accent-solid-active: var(--axon-color-success-solid-active);
@@ -67,7 +70,8 @@
 .axon-radio--warning,
 .axon-switch--warning,
 .axon-slider--warning,
-.axon-rating--warning {
+.axon-rating--warning,
+.axon-listbox--warning {
   --axon-accent-solid: var(--axon-color-warning-solid);
   --axon-accent-solid-hover: var(--axon-color-warning-solid-hover);
   --axon-accent-solid-active: var(--axon-color-warning-solid-active);
@@ -86,7 +90,8 @@
 .axon-radio--danger,
 .axon-switch--danger,
 .axon-slider--danger,
-.axon-rating--danger {
+.axon-rating--danger,
+.axon-listbox--danger {
   --axon-accent-solid: var(--axon-color-danger-solid);
   --axon-accent-solid-hover: var(--axon-color-danger-solid-hover);
   --axon-accent-solid-active: var(--axon-color-danger-solid-active);
@@ -105,7 +110,8 @@
 .axon-radio--neutral,
 .axon-switch--neutral,
 .axon-slider--neutral,
-.axon-rating--neutral {
+.axon-rating--neutral,
+.axon-listbox--neutral {
   --axon-accent-solid: var(--axon-color-neutral-solid);
   --axon-accent-solid-hover: var(--axon-color-neutral-solid-hover);
   --axon-accent-solid-active: var(--axon-color-neutral-solid-active);

@@ -1,0 +1,154 @@
+/* The floating list shared by Select, MultiSelect and Autocomplete. */
+.axon-listbox {
+  z-index: var(--axon-z-dropdown);
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  overflow: hidden;
+  border: 1px solid var(--axon-color-border);
+  border-radius: var(--axon-radius-md);
+  background: var(--axon-color-surface-raised);
+  box-shadow: var(--axon-shadow-lg);
+  color: var(--axon-color-text-primary);
+  font-family: var(--axon-font-sans);
+  font-size: var(--axon-font-size-md);
+  line-height: var(--axon-line-height-normal);
+}
+
+.axon-listbox--sm {
+  font-size: var(--axon-font-size-sm);
+}
+
+.axon-listbox--lg {
+  font-size: var(--axon-font-size-lg);
+}
+
+.axon-listbox__list {
+  flex: 1;
+  min-height: 0;
+  padding: var(--axon-space-1);
+  overflow-y: auto;
+}
+
+.axon-listbox__option {
+  display: flex;
+  align-items: center;
+  gap: var(--axon-space-2);
+  padding: var(--axon-space-2) var(--axon-space-3);
+  border-radius: var(--axon-radius-sm);
+  cursor: pointer;
+  user-select: none;
+}
+
+.axon-listbox__option--active {
+  background: var(--axon-color-surface-muted);
+}
+
+.axon-listbox__option--selected {
+  font-weight: var(--axon-font-weight-medium);
+}
+
+.axon-listbox__option--disabled {
+  color: var(--axon-color-text-disabled);
+  cursor: not-allowed;
+}
+
+.axon-listbox__text {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.axon-listbox__description {
+  color: var(--axon-color-text-secondary);
+  font-size: var(--axon-font-size-sm);
+  line-height: var(--axon-line-height-tight);
+}
+
+.axon-listbox__option--disabled .axon-listbox__description {
+  color: var(--axon-color-text-disabled);
+}
+
+.axon-listbox__selected-mark {
+  display: inline-flex;
+  flex-shrink: 0;
+  color: var(--axon-accent-text);
+}
+
+.axon-listbox__check-icon {
+  width: 1em;
+  height: 1em;
+  fill: none;
+  stroke: currentcolor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Checkbox-style indicator used in multi-select lists. */
+.axon-listbox__check {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 1.125rem;
+  height: 1.125rem;
+  border: 2px solid var(--axon-color-border-strong);
+  border-radius: var(--axon-radius-sm);
+  color: var(--axon-accent-on-solid);
+}
+
+.axon-listbox__check .axon-listbox__check-icon {
+  opacity: 0;
+}
+
+.axon-listbox__check--on {
+  border-color: var(--axon-accent-solid);
+  background: var(--axon-accent-solid);
+}
+
+.axon-listbox__check--on .axon-listbox__check-icon {
+  opacity: 1;
+}
+
+.axon-listbox__option--disabled .axon-listbox__check {
+  border-color: var(--axon-color-border);
+  opacity: 0.6;
+}
+
+.axon-listbox__group-label {
+  padding: var(--axon-space-2) var(--axon-space-3) var(--axon-space-1);
+  color: var(--axon-color-text-secondary);
+  font-size: var(--axon-font-size-xs);
+  font-weight: var(--axon-font-weight-semibold);
+  letter-spacing: var(--axon-letter-spacing-wide);
+  text-transform: uppercase;
+}
+
+.axon-listbox__group + .axon-listbox__group {
+  margin-top: var(--axon-space-1);
+}
+
+/* Highlighted part of an option that matches what the user typed. */
+.axon-listbox__match {
+  background: transparent;
+  color: inherit;
+  font-weight: var(--axon-font-weight-bold);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-decoration-color: var(--axon-accent-text);
+  text-underline-offset: 0.2em;
+}
+
+.axon-listbox__status {
+  padding: var(--axon-space-3);
+  color: var(--axon-color-text-secondary);
+  font-size: var(--axon-font-size-sm);
+  text-align: center;
+}
+
+.axon-listbox__list + .axon-listbox__status {
+  border-top: 1px solid var(--axon-color-border);
+}

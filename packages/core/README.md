@@ -47,6 +47,16 @@ export function App() {
 | `Slider` / `RangeSlider`   | WAI-ARIA slider thumbs; marks, step, value tooltip, pointer drag, arrows / Page / Home / End            |
 | `Rating`                   | Stars with half values; read-only mode is an image with a text alternative                              |
 
+**Batch C, part 1: listbox pickers** (Step 3)
+
+| Component      | Notes                                                                                                         |
+| -------------- | ------------------------------------------------------------------------------------------------------------- |
+| `Select`       | Custom listbox (WAI-ARIA select-only combobox): groups, descriptions, disabled options, typeahead, form `name` |
+| `MultiSelect`  | Removable chips, "select all", `clearable`, Backspace removes the last chip, one hidden input per value       |
+| `Autocomplete` | Editable combobox: client filtering or async `loadOptions` (debounced, abortable), `freeSolo`, match highlighting |
+
+Popups use `@floating-ui/react` (flip, shift, size) and render into the nearest `.axon-root`, so dark mode and custom theme tokens apply inside them. Focus stays on the combobox and the highlighted option is exposed through `aria-activedescendant`.
+
 ## Conventions
 
 - Every component forwards its `ref` and merges `className`/`style`. For form controls (`TextField`, `TextArea`, `NumberInput`) `className` and `style` apply to the outer wrapper, `ref` and all other props go to the native control.
@@ -56,4 +66,4 @@ export function App() {
 
 ## Hooks
 
-`useControllableState({ value, defaultValue, onChange })` powers controlled/uncontrolled behavior and is exported for your own components.
+`useControllableState({ value, defaultValue, onChange })` powers controlled/uncontrolled behavior, and `useDebounce(value, delay)` debounces a changing value. Both are exported for your own components.

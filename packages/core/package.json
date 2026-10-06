@@ -41,7 +41,8 @@
     "react-dom": ">=18"
   },
   "dependencies": {
-    "@axon/theme": "workspace:*"
+    "@axon/theme": "workspace:*",
+    "@floating-ui/react": "catalog:"
   },
   "devDependencies": {
     "@types/react": "catalog:",
