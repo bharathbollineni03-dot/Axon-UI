@@ -98,7 +98,13 @@ export function Field({
       style={style}
     >
       {label ? (
-        <Label htmlFor={id} required={required} disabled={disabled} className="axon-field__label">
+        <Label
+          id={`${id}-label`}
+          htmlFor={id}
+          required={required}
+          disabled={disabled}
+          className="axon-field__label"
+        >
           {label}
         </Label>
       ) : null}

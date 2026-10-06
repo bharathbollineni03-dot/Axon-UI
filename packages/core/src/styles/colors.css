@@ -10,7 +10,14 @@
 .axon-radio--primary,
 .axon-switch--primary,
 .axon-slider--primary,
-.axon-rating--primary {
+.axon-rating--primary,
+.axon-listbox--primary,
+.axon-calendar--primary,
+.axon-popup--primary,
+.axon-time-list--primary,
+.axon-file-upload--primary,
+.axon-color-picker--primary,
+.axon-otp-input--primary {
   --axon-accent-solid: var(--axon-color-primary-solid);
   --axon-accent-solid-hover: var(--axon-color-primary-solid-hover);
   --axon-accent-solid-active: var(--axon-color-primary-solid-active);
@@ -29,7 +36,14 @@
 .axon-radio--secondary,
 .axon-switch--secondary,
 .axon-slider--secondary,
-.axon-rating--secondary {
+.axon-rating--secondary,
+.axon-listbox--secondary,
+.axon-calendar--secondary,
+.axon-popup--secondary,
+.axon-time-list--secondary,
+.axon-file-upload--secondary,
+.axon-color-picker--secondary,
+.axon-otp-input--secondary {
   --axon-accent-solid: var(--axon-color-secondary-solid);
   --axon-accent-solid-hover: var(--axon-color-secondary-solid-hover);
   --axon-accent-solid-active: var(--axon-color-secondary-solid-active);
@@ -48,7 +62,14 @@
 .axon-radio--success,
 .axon-switch--success,
 .axon-slider--success,
-.axon-rating--success {
+.axon-rating--success,
+.axon-listbox--success,
+.axon-calendar--success,
+.axon-popup--success,
+.axon-time-list--success,
+.axon-file-upload--success,
+.axon-color-picker--success,
+.axon-otp-input--success {
   --axon-accent-solid: var(--axon-color-success-solid);
   --axon-accent-solid-hover: var(--axon-color-success-solid-hover);
   --axon-accent-solid-active: var(--axon-color-success-solid-active);
@@ -67,7 +88,14 @@
 .axon-radio--warning,
 .axon-switch--warning,
 .axon-slider--warning,
-.axon-rating--warning {
+.axon-rating--warning,
+.axon-listbox--warning,
+.axon-calendar--warning,
+.axon-popup--warning,
+.axon-time-list--warning,
+.axon-file-upload--warning,
+.axon-color-picker--warning,
+.axon-otp-input--warning {
   --axon-accent-solid: var(--axon-color-warning-solid);
   --axon-accent-solid-hover: var(--axon-color-warning-solid-hover);
   --axon-accent-solid-active: var(--axon-color-warning-solid-active);
@@ -86,7 +114,14 @@
 .axon-radio--danger,
 .axon-switch--danger,
 .axon-slider--danger,
-.axon-rating--danger {
+.axon-rating--danger,
+.axon-listbox--danger,
+.axon-calendar--danger,
+.axon-popup--danger,
+.axon-time-list--danger,
+.axon-file-upload--danger,
+.axon-color-picker--danger,
+.axon-otp-input--danger {
   --axon-accent-solid: var(--axon-color-danger-solid);
   --axon-accent-solid-hover: var(--axon-color-danger-solid-hover);
   --axon-accent-solid-active: var(--axon-color-danger-solid-active);
@@ -105,7 +140,14 @@
 .axon-radio--neutral,
 .axon-switch--neutral,
 .axon-slider--neutral,
-.axon-rating--neutral {
+.axon-rating--neutral,
+.axon-listbox--neutral,
+.axon-calendar--neutral,
+.axon-popup--neutral,
+.axon-time-list--neutral,
+.axon-file-upload--neutral,
+.axon-color-picker--neutral,
+.axon-otp-input--neutral {
   --axon-accent-solid: var(--axon-color-neutral-solid);
   --axon-accent-solid-hover: var(--axon-color-neutral-solid-hover);
   --axon-accent-solid-active: var(--axon-color-neutral-solid-active);
@@ -121,7 +163,8 @@
 /* Placed last so the error state wins over any `color`. */
 .axon-input--error,
 .axon-checkbox--error,
-.axon-radio--error {
+.axon-radio--error,
+.axon-otp-input--error {
   --axon-accent-solid: var(--axon-color-danger-solid);
   --axon-accent-solid-hover: var(--axon-color-danger-solid-hover);
   --axon-accent-solid-active: var(--axon-color-danger-solid-active);

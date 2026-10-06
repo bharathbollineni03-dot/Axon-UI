@@ -47,6 +47,29 @@ export function App() {
 | `Slider` / `RangeSlider`   | WAI-ARIA slider thumbs; marks, step, value tooltip, pointer drag, arrows / Page / Home / End            |
 | `Rating`                   | Stars with half values; read-only mode is an image with a text alternative                              |
 
+**Batch C, part 1: listbox pickers** (Step 3)
+
+| Component      | Notes                                                                                                         |
+| -------------- | ------------------------------------------------------------------------------------------------------------- |
+| `Select`       | Custom listbox (WAI-ARIA select-only combobox): groups, descriptions, disabled options, typeahead, form `name` |
+| `MultiSelect`  | Removable chips, "select all", `clearable`, Backspace removes the last chip, one hidden input per value       |
+| `Autocomplete` | Editable combobox: client filtering or async `loadOptions` (debounced, abortable), `freeSolo`, match highlighting |
+
+**Batch C, part 2: date, time and special inputs** (Step 3)
+
+| Component         | Notes                                                                                                                  |
+| ----------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| `DatePicker`      | Typed or picked; `Date` value; `min`/`max`/`isDateDisabled`; locale formatting and parsing via `Intl`; ARIA grid calendar |
+| `DateRangePicker` | Start and end inputs with a two-month calendar and hover preview; value is `{ start, end }`                            |
+| `TimePicker`      | Value is a 24-hour `"HH:mm"` string; typed ("3pm", "15:30") or picked from hour/minute/AM-PM columns; `min`/`max`       |
+| `FileUpload`      | Drag-and-drop zone, `accept`/`maxSize`/`maxFiles` validation with reasons, file list with remove, progress state         |
+| `ColorPicker`     | Swatch radio group, hex input and the native chooser; value is lowercase `#rrggbb`                                     |
+| `OTPInput`        | N boxes with auto-advance, Backspace navigation, paste and SMS-autofill support, `mask`, `onComplete`                   |
+
+Dates are local calendar dates and the pickers default to the `en-US` locale so server and client render identically; pass `locale={navigator.language}` to follow the user. The date and time dialogs are non-modal: Escape, an outside press or tabbing away closes them and focus returns to the field.
+
+Popups use `@floating-ui/react` (flip, shift, size) and render into the nearest `.axon-root`, so dark mode and custom theme tokens apply inside them. Focus stays on the combobox and the highlighted option is exposed through `aria-activedescendant`.
+
 ## Conventions
 
 - Every component forwards its `ref` and merges `className`/`style`. For form controls (`TextField`, `TextArea`, `NumberInput`) `className` and `style` apply to the outer wrapper, `ref` and all other props go to the native control.
@@ -56,4 +79,4 @@ export function App() {
 
 ## Hooks
 
-`useControllableState({ value, defaultValue, onChange })` powers controlled/uncontrolled behavior and is exported for your own components.
+`useControllableState({ value, defaultValue, onChange })` powers controlled/uncontrolled behavior, and `useDebounce(value, delay)` debounces a changing value. Both are exported for your own components.

@@ -1,0 +1,20 @@
+/* DateRangePicker reuses the input box and field layout; two inputs share one box. */
+.axon-date-range-picker .axon-input__field {
+  height: calc(var(--axon-input-height) - 2px);
+  font-variant-numeric: tabular-nums;
+}
+
+.axon-date-range-picker__input {
+  min-width: 6.5rem;
+}
+
+.axon-date-range-picker__separator {
+  flex-shrink: 0;
+  color: var(--axon-color-text-secondary);
+}
+
+.axon-date-range-picker__months {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--axon-space-4);
+}

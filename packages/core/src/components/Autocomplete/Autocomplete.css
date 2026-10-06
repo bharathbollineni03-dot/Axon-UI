@@ -1,0 +1,27 @@
+/* Autocomplete reuses the input box and field layout; only the loading indicator is specific. */
+.axon-autocomplete .axon-input__field {
+  height: calc(var(--axon-input-height) - 2px);
+}
+
+.axon-autocomplete__spinner {
+  flex-shrink: 0;
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid var(--axon-color-border-strong);
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: axon-autocomplete-spin 0.75s linear infinite;
+}
+
+@keyframes axon-autocomplete-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* A slower spin still signals progress without strong motion. */
+@media (prefers-reduced-motion: reduce) {
+  .axon-autocomplete__spinner {
+    animation-duration: 2s;
+  }
+}

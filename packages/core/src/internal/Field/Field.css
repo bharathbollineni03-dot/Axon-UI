@@ -87,11 +87,11 @@
   background: var(--axon-color-surface-muted);
 }
 
-.axon-input:hover:not(.axon-input--disabled):not(:focus-within) {
+.axon-input:hover:not(.axon-input--disabled):not(.axon-input--error):not(:focus-within) {
   border-color: var(--axon-color-text-secondary);
 }
 
-.axon-input--filled:hover:not(.axon-input--disabled):not(:focus-within) {
+.axon-input--filled:hover:not(.axon-input--disabled):not(.axon-input--error):not(:focus-within) {
   border-color: transparent;
   border-bottom-color: var(--axon-color-text-secondary);
 }
