@@ -1,0 +1,181 @@
+/* Responsive values arrive as custom properties (see internal/responsive.ts); each media query
+   reads the matching breakpoint variable, falling back to the next smaller one. */
+.axon-stack {
+  display: flex;
+  flex-direction: var(--axon-stack-direction, column);
+  gap: var(--axon-stack-gap, 0);
+  align-items: var(--axon-stack-align, stretch);
+  justify-content: var(--axon-stack-justify, flex-start);
+  flex-wrap: var(--axon-stack-wrap, nowrap);
+}
+
+.axon-stack--inline {
+  display: inline-flex;
+}
+
+@media (min-width: 640px) {
+  .axon-stack {
+    flex-direction: var(--axon-stack-direction-sm, var(--axon-stack-direction, column));
+    gap: var(--axon-stack-gap-sm, var(--axon-stack-gap, 0));
+    align-items: var(--axon-stack-align-sm, var(--axon-stack-align, stretch));
+    justify-content: var(--axon-stack-justify-sm, var(--axon-stack-justify, flex-start));
+    flex-wrap: var(--axon-stack-wrap-sm, var(--axon-stack-wrap, nowrap));
+  }
+}
+
+@media (min-width: 768px) {
+  .axon-stack {
+    flex-direction: var(
+      --axon-stack-direction-md,
+      var(--axon-stack-direction-sm, var(--axon-stack-direction, column))
+    );
+    gap: var(--axon-stack-gap-md, var(--axon-stack-gap-sm, var(--axon-stack-gap, 0)));
+    align-items: var(
+      --axon-stack-align-md,
+      var(--axon-stack-align-sm, var(--axon-stack-align, stretch))
+    );
+    justify-content: var(
+      --axon-stack-justify-md,
+      var(--axon-stack-justify-sm, var(--axon-stack-justify, flex-start))
+    );
+    flex-wrap: var(--axon-stack-wrap-md, var(--axon-stack-wrap-sm, var(--axon-stack-wrap, nowrap)));
+  }
+}
+
+@media (min-width: 1024px) {
+  .axon-stack {
+    flex-direction: var(
+      --axon-stack-direction-lg,
+      var(
+        --axon-stack-direction-md,
+        var(--axon-stack-direction-sm, var(--axon-stack-direction, column))
+      )
+    );
+    gap: var(
+      --axon-stack-gap-lg,
+      var(--axon-stack-gap-md, var(--axon-stack-gap-sm, var(--axon-stack-gap, 0)))
+    );
+    align-items: var(
+      --axon-stack-align-lg,
+      var(--axon-stack-align-md, var(--axon-stack-align-sm, var(--axon-stack-align, stretch)))
+    );
+    justify-content: var(
+      --axon-stack-justify-lg,
+      var(
+        --axon-stack-justify-md,
+        var(--axon-stack-justify-sm, var(--axon-stack-justify, flex-start))
+      )
+    );
+    flex-wrap: var(
+      --axon-stack-wrap-lg,
+      var(--axon-stack-wrap-md, var(--axon-stack-wrap-sm, var(--axon-stack-wrap, nowrap)))
+    );
+  }
+}
+
+@media (min-width: 1280px) {
+  .axon-stack {
+    flex-direction: var(
+      --axon-stack-direction-xl,
+      var(
+        --axon-stack-direction-lg,
+        var(
+          --axon-stack-direction-md,
+          var(--axon-stack-direction-sm, var(--axon-stack-direction, column))
+        )
+      )
+    );
+    gap: var(
+      --axon-stack-gap-xl,
+      var(
+        --axon-stack-gap-lg,
+        var(--axon-stack-gap-md, var(--axon-stack-gap-sm, var(--axon-stack-gap, 0)))
+      )
+    );
+    align-items: var(
+      --axon-stack-align-xl,
+      var(
+        --axon-stack-align-lg,
+        var(--axon-stack-align-md, var(--axon-stack-align-sm, var(--axon-stack-align, stretch)))
+      )
+    );
+    justify-content: var(
+      --axon-stack-justify-xl,
+      var(
+        --axon-stack-justify-lg,
+        var(
+          --axon-stack-justify-md,
+          var(--axon-stack-justify-sm, var(--axon-stack-justify, flex-start))
+        )
+      )
+    );
+    flex-wrap: var(
+      --axon-stack-wrap-xl,
+      var(
+        --axon-stack-wrap-lg,
+        var(--axon-stack-wrap-md, var(--axon-stack-wrap-sm, var(--axon-stack-wrap, nowrap)))
+      )
+    );
+  }
+}
+
+@media (min-width: 1536px) {
+  .axon-stack {
+    flex-direction: var(
+      --axon-stack-direction-2xl,
+      var(
+        --axon-stack-direction-xl,
+        var(
+          --axon-stack-direction-lg,
+          var(
+            --axon-stack-direction-md,
+            var(--axon-stack-direction-sm, var(--axon-stack-direction, column))
+          )
+        )
+      )
+    );
+    gap: var(
+      --axon-stack-gap-2xl,
+      var(
+        --axon-stack-gap-xl,
+        var(
+          --axon-stack-gap-lg,
+          var(--axon-stack-gap-md, var(--axon-stack-gap-sm, var(--axon-stack-gap, 0)))
+        )
+      )
+    );
+    align-items: var(
+      --axon-stack-align-2xl,
+      var(
+        --axon-stack-align-xl,
+        var(
+          --axon-stack-align-lg,
+          var(--axon-stack-align-md, var(--axon-stack-align-sm, var(--axon-stack-align, stretch)))
+        )
+      )
+    );
+    justify-content: var(
+      --axon-stack-justify-2xl,
+      var(
+        --axon-stack-justify-xl,
+        var(
+          --axon-stack-justify-lg,
+          var(
+            --axon-stack-justify-md,
+            var(--axon-stack-justify-sm, var(--axon-stack-justify, flex-start))
+          )
+        )
+      )
+    );
+    flex-wrap: var(
+      --axon-stack-wrap-2xl,
+      var(
+        --axon-stack-wrap-xl,
+        var(
+          --axon-stack-wrap-lg,
+          var(--axon-stack-wrap-md, var(--axon-stack-wrap-sm, var(--axon-stack-wrap, nowrap)))
+        )
+      )
+    );
+  }
+}

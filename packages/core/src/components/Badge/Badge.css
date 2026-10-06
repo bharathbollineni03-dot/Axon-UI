@@ -1,0 +1,92 @@
+.axon-badge {
+  display: inline-flex;
+  vertical-align: middle;
+}
+
+.axon-badge--anchor {
+  position: relative;
+}
+
+.axon-badge__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-width: 1.25rem;
+  height: 1.25rem;
+  padding: 0 var(--axon-space-1-5);
+  border: 1px solid transparent;
+  border-radius: var(--axon-radius-full);
+  font-family: var(--axon-font-sans);
+  font-size: var(--axon-font-size-xs);
+  font-weight: var(--axon-font-weight-semibold);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.axon-badge--sm.axon-badge__badge {
+  min-width: 1rem;
+  height: 1rem;
+  padding: 0 var(--axon-space-1);
+}
+
+.axon-badge--solid {
+  border-color: var(--axon-accent-solid);
+  background: var(--axon-accent-solid);
+  color: var(--axon-accent-on-solid);
+}
+
+.axon-badge--subtle {
+  border-color: var(--axon-accent-border);
+  background: var(--axon-accent-subtle);
+  color: var(--axon-accent-text);
+}
+
+.axon-badge--outline {
+  border-color: var(--axon-accent-text);
+  background: var(--axon-color-surface);
+  color: var(--axon-accent-text);
+}
+
+.axon-badge--dot {
+  min-width: 0;
+  width: 0.625rem;
+  height: 0.625rem;
+  padding: 0;
+}
+
+.axon-badge--dot.axon-badge--sm {
+  width: 0.5rem;
+  height: 0.5rem;
+}
+
+/* Anchored badges: centered on a corner of the wrapped element, with a ring that separates them. */
+.axon-badge--anchor > .axon-badge__badge {
+  position: absolute;
+  box-shadow: 0 0 0 2px var(--axon-color-surface);
+}
+
+.axon-badge--top-right {
+  top: 0;
+  right: 0;
+  transform: translate(35%, -35%);
+}
+
+.axon-badge--top-left {
+  top: 0;
+  left: 0;
+  transform: translate(-35%, -35%);
+}
+
+.axon-badge--bottom-right {
+  right: 0;
+  bottom: 0;
+  transform: translate(35%, 35%);
+}
+
+.axon-badge--bottom-left {
+  bottom: 0;
+  left: 0;
+  transform: translate(-35%, 35%);
+}

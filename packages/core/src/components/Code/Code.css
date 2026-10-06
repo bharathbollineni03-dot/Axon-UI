@@ -1,0 +1,33 @@
+.axon-code {
+  padding: 0.125em 0.375em;
+  border-radius: var(--axon-radius-sm);
+  background: var(--axon-color-surface-muted);
+  color: var(--axon-color-text-primary);
+  font-family: var(--axon-font-mono);
+  font-size: 0.9em;
+}
+
+.axon-code-block {
+  box-sizing: border-box;
+  margin: 0;
+  padding: var(--axon-space-3) var(--axon-space-4);
+  overflow-x: auto;
+  border: 1px solid var(--axon-color-border);
+  border-radius: var(--axon-radius-md);
+  background: var(--axon-color-surface-muted);
+  color: var(--axon-color-text-primary);
+  font-family: var(--axon-font-mono);
+  font-size: var(--axon-font-size-sm);
+  line-height: var(--axon-line-height-normal);
+  tab-size: 2;
+}
+
+.axon-code-block > code {
+  font: inherit;
+}
+
+/* Scrollable regions must be reachable by keyboard. */
+.axon-code-block:focus-visible {
+  outline: 2px solid var(--axon-color-focus-ring);
+  outline-offset: 2px;
+}

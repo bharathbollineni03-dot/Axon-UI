@@ -1,0 +1,61 @@
+.axon-image {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.axon-image--fit-cover {
+  object-fit: cover;
+}
+
+.axon-image--fit-contain {
+  object-fit: contain;
+}
+
+.axon-image--fit-fill {
+  object-fit: fill;
+}
+
+.axon-image--fit-none {
+  object-fit: none;
+}
+
+.axon-image--fit-scale-down {
+  object-fit: scale-down;
+}
+
+.axon-image--radius-sm {
+  border-radius: var(--axon-radius-sm);
+}
+
+.axon-image--radius-md {
+  border-radius: var(--axon-radius-md);
+}
+
+.axon-image--radius-lg {
+  border-radius: var(--axon-radius-lg);
+}
+
+.axon-image--radius-xl {
+  border-radius: var(--axon-radius-xl);
+}
+
+.axon-image--radius-full {
+  border-radius: var(--axon-radius-full);
+}
+
+/* The stand-in shown when an image cannot be loaded. */
+.axon-image--fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3rem;
+  background: var(--axon-color-surface-muted);
+  color: var(--axon-color-text-secondary);
+}
+
+.axon-image__placeholder-icon {
+  width: 2rem;
+  height: 2rem;
+  fill: currentcolor;
+}

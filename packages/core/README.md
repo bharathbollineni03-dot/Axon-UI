@@ -68,6 +68,32 @@ export function App() {
 
 Dates are local calendar dates and the pickers default to the `en-US` locale so server and client render identically; pass `locale={navigator.language}` to follow the user. The date and time dialogs are non-modal: Escape, an outside press or tabbing away closes them and focus returns to the field.
 
+**Step 4, batch A: layout and display**
+
+| Component                           | Notes                                                                                                |
+| ----------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `Box`                               | Polymorphic (`as`); spacing, surface, radius and shadow shortcuts backed by theme tokens             |
+| `Stack`                             | Flex row/column with gap, align, justify, wrap, an optional `divider`; every prop can be responsive   |
+| `Grid` / `GridItem`                 | 12-column CSS grid; `columns`, `gap`, `span` and `start` can be responsive                          |
+| `Container`                         | Centers content; max widths taken from the theme breakpoints                                         |
+| `Divider`                           | Horizontal, vertical, dashed, or labelled; `separator` role (or decorative)                          |
+| `Card` (+ Header, Media, Content, Footer) | Outlined/elevated/filled; `clickable` cards are keyboard-operable buttons or links                |
+| `Typography`, `Heading`, `Text`      | Type-scale variants; `color`, `weight`, `align`, `truncate`, `lineClamp`; heading level vs size       |
+| `Avatar` / `AvatarGroup`            | Image with initials fallback, status dot, "+N" overflow                                              |
+| `Badge`, `Chip` / `Tag`            | Count/dot/pill badge (anchorable); chip that can be clickable, selectable and removable              |
+| `Kbd`, `Code`                       | Key caps and inline/block code                                                                       |
+| `List` / `ListItem`                 | Icon, two lines of text, trailing action; rows can be buttons or links                               |
+| `Image`                             | Lazy loading, aspect ratio, and a placeholder, node or backup image when loading fails              |
+
+**Responsive values.** `Stack` and `Grid` props take either a value or `{ base, sm, md, lg, xl, '2xl' }` (mobile first: each key applies from that width up, matching the theme breakpoints). They compile to CSS custom properties and media queries, so nothing runs in JavaScript and server and client output are identical.
+
+```tsx
+<Stack direction={{ base: 'column', md: 'row' }} gap={{ base: 2, md: 6 }}>…</Stack>
+<Grid columns={12} gap={4}>
+  <GridItem span={{ base: 12, sm: 6, lg: 4 }}>…</GridItem>
+</Grid>
+```
+
 Popups use `@floating-ui/react` (flip, shift, size) and render into the nearest `.axon-root`, so dark mode and custom theme tokens apply inside them. Focus stays on the combobox and the highlighted option is exposed through `aria-activedescendant`.
 
 ## Conventions
@@ -79,4 +105,12 @@ Popups use `@floating-ui/react` (flip, shift, size) and render into the nearest 
 
 ## Hooks
 
-`useControllableState({ value, defaultValue, onChange })` powers controlled/uncontrolled behavior, and `useDebounce(value, delay)` debounces a changing value. Both are exported for your own components.
+Exported for your own components:
+
+- `useControllableState({ value, defaultValue, onChange })`: controlled and uncontrolled state.
+- `useDisclosure()`: open/closed state with `onOpen`, `onClose`, `onToggle`.
+- `useClickOutside(ref, handler)`: react to presses outside an element.
+- `useMediaQuery(query)`: SSR-safe media query match.
+- `useFocusTrap(ref)`: keep Tab inside a container and restore focus afterwards.
+- `useId()`: stable ids for labels and descriptions.
+- `useDebounce(value, delay)`: a value that settles after a delay.

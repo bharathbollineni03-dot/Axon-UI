@@ -17,7 +17,10 @@
 .axon-time-list--primary,
 .axon-file-upload--primary,
 .axon-color-picker--primary,
-.axon-otp-input--primary {
+.axon-otp-input--primary,
+.axon-avatar--primary,
+.axon-badge--primary,
+.axon-chip--primary {
   --axon-accent-solid: var(--axon-color-primary-solid);
   --axon-accent-solid-hover: var(--axon-color-primary-solid-hover);
   --axon-accent-solid-active: var(--axon-color-primary-solid-active);
@@ -43,7 +46,10 @@
 .axon-time-list--secondary,
 .axon-file-upload--secondary,
 .axon-color-picker--secondary,
-.axon-otp-input--secondary {
+.axon-otp-input--secondary,
+.axon-avatar--secondary,
+.axon-badge--secondary,
+.axon-chip--secondary {
   --axon-accent-solid: var(--axon-color-secondary-solid);
   --axon-accent-solid-hover: var(--axon-color-secondary-solid-hover);
   --axon-accent-solid-active: var(--axon-color-secondary-solid-active);
@@ -69,7 +75,10 @@
 .axon-time-list--success,
 .axon-file-upload--success,
 .axon-color-picker--success,
-.axon-otp-input--success {
+.axon-otp-input--success,
+.axon-avatar--success,
+.axon-badge--success,
+.axon-chip--success {
   --axon-accent-solid: var(--axon-color-success-solid);
   --axon-accent-solid-hover: var(--axon-color-success-solid-hover);
   --axon-accent-solid-active: var(--axon-color-success-solid-active);
@@ -95,7 +104,10 @@
 .axon-time-list--warning,
 .axon-file-upload--warning,
 .axon-color-picker--warning,
-.axon-otp-input--warning {
+.axon-otp-input--warning,
+.axon-avatar--warning,
+.axon-badge--warning,
+.axon-chip--warning {
   --axon-accent-solid: var(--axon-color-warning-solid);
   --axon-accent-solid-hover: var(--axon-color-warning-solid-hover);
   --axon-accent-solid-active: var(--axon-color-warning-solid-active);
@@ -121,7 +133,10 @@
 .axon-time-list--danger,
 .axon-file-upload--danger,
 .axon-color-picker--danger,
-.axon-otp-input--danger {
+.axon-otp-input--danger,
+.axon-avatar--danger,
+.axon-badge--danger,
+.axon-chip--danger {
   --axon-accent-solid: var(--axon-color-danger-solid);
   --axon-accent-solid-hover: var(--axon-color-danger-solid-hover);
   --axon-accent-solid-active: var(--axon-color-danger-solid-active);
@@ -147,7 +162,10 @@
 .axon-time-list--neutral,
 .axon-file-upload--neutral,
 .axon-color-picker--neutral,
-.axon-otp-input--neutral {
+.axon-otp-input--neutral,
+.axon-avatar--neutral,
+.axon-badge--neutral,
+.axon-chip--neutral {
   --axon-accent-solid: var(--axon-color-neutral-solid);
   --axon-accent-solid-hover: var(--axon-color-neutral-solid-hover);
   --axon-accent-solid-active: var(--axon-color-neutral-solid-active);

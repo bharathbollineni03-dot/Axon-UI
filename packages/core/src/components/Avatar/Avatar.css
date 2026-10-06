@@ -1,0 +1,99 @@
+.axon-avatar {
+  --axon-avatar-size: 2.5rem;
+
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: var(--axon-avatar-size);
+  height: var(--axon-avatar-size);
+  background: var(--axon-accent-subtle);
+  color: var(--axon-accent-text);
+  font-family: var(--axon-font-sans);
+  font-size: calc(var(--axon-avatar-size) * 0.4);
+  font-weight: var(--axon-font-weight-semibold);
+  line-height: 1;
+  vertical-align: middle;
+  user-select: none;
+}
+
+.axon-avatar--xs {
+  --axon-avatar-size: 1.5rem;
+}
+
+.axon-avatar--sm {
+  --axon-avatar-size: 2rem;
+}
+
+.axon-avatar--lg {
+  --axon-avatar-size: 3rem;
+}
+
+.axon-avatar--xl {
+  --axon-avatar-size: 4rem;
+}
+
+.axon-avatar--circle {
+  border-radius: var(--axon-radius-full);
+}
+
+.axon-avatar--rounded {
+  border-radius: var(--axon-radius-md);
+}
+
+.axon-avatar__image {
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  object-fit: cover;
+}
+
+.axon-avatar__fallback {
+  display: inline-flex;
+  width: 55%;
+  height: 55%;
+}
+
+.axon-avatar__icon {
+  width: 100%;
+  height: 100%;
+  fill: currentcolor;
+}
+
+.axon-avatar__status {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  box-sizing: border-box;
+  width: 28%;
+  height: 28%;
+  min-width: 0.5rem;
+  min-height: 0.5rem;
+  border: 2px solid var(--axon-color-surface);
+  border-radius: var(--axon-radius-full);
+  background: var(--axon-color-neutral-solid);
+}
+
+.axon-avatar__status--online {
+  background: var(--axon-color-success-solid);
+}
+
+.axon-avatar__status--busy {
+  background: var(--axon-color-danger-solid);
+}
+
+.axon-avatar__status--away {
+  background: var(--axon-color-warning-solid);
+}
+
+.axon-avatar__status--offline {
+  background: var(--axon-color-border-strong);
+}
+
+/* "+N" tile used by AvatarGroup. */
+.axon-avatar--count {
+  background: var(--axon-color-surface-muted);
+  color: var(--axon-color-text-primary);
+}
