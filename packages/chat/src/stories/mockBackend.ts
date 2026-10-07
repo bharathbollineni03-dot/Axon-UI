@@ -1,4 +1,5 @@
 import type { ChatSender } from '../hooks/useChat';
+import type { ConversationSummary } from '../components/ConversationSidebar/groupConversations';
 import type { Message } from '../types';
 
 /** Pauses for `ms`, or until the signal aborts. */
@@ -167,4 +168,37 @@ export function longThread(count: number, now = Date.now()): Message[] {
     createdAt: now - (count - i) * 60 * 60 * 1000,
     status: 'done' as const,
   }));
+}
+
+/** A spread of past conversations for the sidebar: pinned, today, yesterday, last week and older. */
+export function sampleConversations(now = Date.now()): ConversationSummary[] {
+  const hour = 60 * 60 * 1000;
+  const day = 24 * hour;
+  const item = (
+    id: string,
+    title: string,
+    ago: number,
+    extra: Partial<ConversationSummary> = {},
+  ) => ({
+    id,
+    title,
+    updatedAt: now - ago,
+    ...extra,
+  });
+  return [
+    item('pin-1', 'Launch checklist', 20 * day, {
+      pinned: true,
+      preview: 'Before we ship, check…',
+    }),
+    item('c-1', 'Plan a trip to Lisbon', 1 * hour, {
+      preview: 'Day one: Alfama and the miradouros',
+    }),
+    item('c-2', 'Debounce in TypeScript', 3 * hour, { preview: 'export function debounce<T…' }),
+    item('c-3', 'Compare chart libraries', 26 * hour, { preview: 'A table of bundle sizes' }),
+    item('c-4', 'Recipe ideas for the week', 4 * day),
+    item('c-5', 'Explain tree-shaking', 6 * day),
+    item('c-6', 'Cover letter draft', 12 * day),
+    item('c-7', 'Regex for ISO dates', 45 * day),
+    item('c-8', 'Untitled conversation with a rather long title that has to be cut off', 60 * day),
+  ];
 }

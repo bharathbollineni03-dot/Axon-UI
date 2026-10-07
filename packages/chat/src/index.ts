@@ -143,3 +143,59 @@ export {
   type ChatWindowLabels,
   type ChatWindowProps,
 } from './components/ChatWindow/ChatWindow';
+
+// Conversations, models and feedback
+export {
+  ConversationSidebar,
+  defaultConversationSidebarLabels,
+  type ConversationSidebarLabelOverrides,
+  type ConversationSidebarLabels,
+  type ConversationSidebarProps,
+} from './components/ConversationSidebar/ConversationSidebar';
+export {
+  getConversationAge,
+  groupConversations,
+  matchesConversation,
+  type ConversationGroup,
+  type ConversationGroupId,
+  type ConversationSummary,
+} from './components/ConversationSidebar/groupConversations';
+export {
+  ModelSelector,
+  defaultModelSelectorLabels,
+  type ChatModel,
+  type ModelSelectorLabels,
+  type ModelSelectorProps,
+} from './components/ModelSelector/ModelSelector';
+export {
+  FeedbackDialog,
+  defaultFeedbackDialogLabels,
+  defaultFeedbackReasons,
+  type FeedbackDialogLabels,
+  type FeedbackDialogProps,
+  type FeedbackRating,
+  type FeedbackReason,
+  type FeedbackValue,
+} from './components/FeedbackDialog/FeedbackDialog';
+export {
+  ShareConversationDialog,
+  defaultShareConversationDialogLabels,
+  type ShareConversationDialogLabels,
+  type ShareConversationDialogProps,
+} from './components/ShareConversationDialog/ShareConversationDialog';
+export {
+  ExportConversation,
+  defaultExportConversationLabels,
+  type ExportConversationLabels,
+  type ExportConversationProps,
+} from './components/ExportConversation/ExportConversation';
+export {
+  defaultRoleLabels,
+  downloadFile,
+  exportConversation,
+  slugify,
+  type ExportFormat,
+  type ExportOptions,
+  type ExportSource,
+  type ExportedFile,
+} from './components/ExportConversation/serializeConversation';

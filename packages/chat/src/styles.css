@@ -12,3 +12,7 @@
 @import './components/SuggestedPrompts/SuggestedPrompts.css';
 @import './components/ChatEmptyState/ChatEmptyState.css';
 @import './components/ChatWindow/ChatWindow.css';
+@import './components/ConversationSidebar/ConversationSidebar.css';
+@import './components/ModelSelector/ModelSelector.css';
+@import './components/FeedbackDialog/FeedbackDialog.css';
+@import './components/ShareConversationDialog/ShareConversationDialog.css';
