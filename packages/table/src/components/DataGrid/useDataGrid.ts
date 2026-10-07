@@ -49,6 +49,17 @@ export interface DataGridModel<Row extends RowData> {
   setLayout: (next: DataGridLayout | ((previous: DataGridLayout) => DataGridLayout)) => void;
   density: DataGridDensity;
   rowHeight: number;
+  /** Whether the server, not the grid, sorts, filters and pages. */
+  server: boolean;
+  paginated: boolean;
+  pageCount: number;
+  /** All the rows there are across every page, after filtering. */
+  totalRows: number;
+  setColumnFilters: (updater: Updater<ColumnFiltersState>) => void;
+  setGlobalFilter: (updater: Updater<string>) => void;
+  setPagination: (
+    updater: PaginationState | ((previous: PaginationState) => PaginationState),
+  ) => void;
   sorting: SortingState;
   columnFilters: ColumnFiltersState;
   globalFilter: string;
@@ -76,7 +87,21 @@ export function useDataGrid<Row extends RowData>(props: DataGridProps<Row>): Dat
     onSortingChange,
     multiSort = true,
     rowHeight: rowHeightProp,
+    columnFilters: columnFiltersProp,
+    defaultColumnFilters,
+    onColumnFiltersChange,
+    globalFilter: globalFilterProp,
+    defaultGlobalFilter,
+    onGlobalFilterChange,
+    paginated = false,
+    pagination: paginationProp,
+    defaultPagination,
+    onPaginationChange,
+    mode = 'client',
+    totalRowCount,
+    onStateChange,
   } = props;
+  const server = mode === 'server';
 
   const labels = useMemo(() => ({ ...defaultDataGridLabels, ...props.labels }), [props.labels]);
 
@@ -132,12 +157,49 @@ export function useDataGrid<Row extends RowData>(props: DataGridProps<Row>): Dat
     onChange: onSortingChange,
   });
   const [columnFilters, setColumnFilters] = useControllableState<ColumnFiltersState>({
-    defaultValue: NO_FILTERS,
+    value: columnFiltersProp,
+    defaultValue: defaultColumnFilters ?? NO_FILTERS,
+    onChange: onColumnFiltersChange,
   });
-  const [globalFilter, setGlobalFilter] = useControllableState<string>({ defaultValue: '' });
+  const [globalFilter, setGlobalFilter] = useControllableState<string>({
+    value: globalFilterProp,
+    defaultValue: defaultGlobalFilter ?? '',
+    onChange: onGlobalFilterChange,
+  });
   const [pagination, setPagination] = useControllableState<PaginationState>({
-    defaultValue: DEFAULT_PAGINATION,
+    value: paginationProp,
+    defaultValue: defaultPagination ?? DEFAULT_PAGINATION,
+    onChange: onPaginationChange,
   });
+  // Whatever changes which rows there are sends the reader back to the first page.
+  const firstPage = useCallback(
+    () =>
+      setPagination((previous) =>
+        previous.pageIndex === 0 ? previous : { ...previous, pageIndex: 0 },
+      ),
+    [setPagination],
+  );
+  const changeSorting = useCallback(
+    (updater: Updater<SortingState>) => {
+      setSorting(updater);
+      firstPage();
+    },
+    [setSorting, firstPage],
+  );
+  const changeColumnFilters = useCallback(
+    (updater: Updater<ColumnFiltersState>) => {
+      setColumnFilters(updater);
+      firstPage();
+    },
+    [setColumnFilters, firstPage],
+  );
+  const changeGlobalFilter = useCallback(
+    (updater: Updater<string>) => {
+      setGlobalFilter(updater);
+      firstPage();
+    },
+    [setGlobalFilter, firstPage],
+  );
   const [rowSelection, setRowSelection] = useControllableState<RowSelectionState>({
     defaultValue: NO_SELECTION,
   });
@@ -188,9 +250,9 @@ export function useDataGrid<Row extends RowData>(props: DataGridProps<Row>): Dat
       columnVisibility: layout.columnVisibility,
       columnPinning,
     },
-    onSortingChange: setSorting,
-    onColumnFiltersChange: setColumnFilters,
-    onGlobalFilterChange: setGlobalFilter,
+    onSortingChange: changeSorting,
+    onColumnFiltersChange: changeColumnFilters,
+    onGlobalFilterChange: changeGlobalFilter,
     onPaginationChange: setPagination,
     onRowSelectionChange: setRowSelection,
     onExpandedChange: setExpanded,
@@ -219,9 +281,45 @@ export function useDataGrid<Row extends RowData>(props: DataGridProps<Row>): Dat
     // Edits replace `data`; that must not collapse open rows or send the user back to page one.
     autoResetPageIndex: false,
     autoResetExpanded: false,
-    manualPagination: true,
+    // In server mode the server sorts, filters and pages. Without `paginated` there are no pages
+    // to cut, which "manual" also means.
+    manualSorting: server,
+    manualFiltering: server,
+    manualPagination: server || !paginated,
+    rowCount: server ? totalRowCount : undefined,
     globalFilterFn: 'gridSearch',
+    // Each column says through `enableGlobalFilter` whether the search looks in it; by default
+    // TanStack Table would look only at columns whose first value is text or a number.
+    getColumnCanGlobalFilter: () => true,
   });
+
+  // Tell a server what to ask for, whenever the query changes (not on first render).
+  const onStateChangeRef = useRef(onStateChange);
+  onStateChangeRef.current = onStateChange;
+  const lastQuery = useRef<string | null>(null);
+  useEffect(() => {
+    const key = JSON.stringify([pagination, sorting, columnFilters, globalFilter]);
+    if (lastQuery.current === null) {
+      lastQuery.current = key;
+      return;
+    }
+    if (lastQuery.current === key) return;
+    lastQuery.current = key;
+    onStateChangeRef.current?.({
+      pagination,
+      sorting,
+      filters: columnFilters,
+      globalFilter,
+    });
+  }, [pagination, sorting, columnFilters, globalFilter]);
+
+  // Fewer rows (after a filter, a delete) can leave the current page past the end.
+  const pageCount = paginated ? table.getPageCount() : 1;
+  useEffect(() => {
+    if (paginated && pageCount > 0 && pagination.pageIndex >= pageCount) {
+      setPagination((previous) => ({ ...previous, pageIndex: pageCount - 1 }));
+    }
+  }, [paginated, pageCount, pagination.pageIndex, setPagination]);
 
   const resizing = table.state.columnResizing?.isResizingColumn;
   useEffect(() => {
@@ -237,6 +335,13 @@ export function useDataGrid<Row extends RowData>(props: DataGridProps<Row>): Dat
   const density = layout.density;
   const rowHeight = rowHeightProp ?? DENSITY_ROW_HEIGHT[density];
 
+  // How many rows there are across all pages, for the counts and the paging controls.
+  const totalRows = server
+    ? (totalRowCount ?? rows.length)
+    : paginated
+      ? table.getPrePaginatedRowModel().rows.length
+      : rows.length;
+
   return {
     table: table as unknown as GridTable<Row>,
     rows: rows as GridRow<Row>[],
@@ -246,6 +351,13 @@ export function useDataGrid<Row extends RowData>(props: DataGridProps<Row>): Dat
     setLayout,
     density,
     rowHeight,
+    server,
+    paginated,
+    pageCount,
+    totalRows,
+    setColumnFilters: changeColumnFilters,
+    setGlobalFilter: changeGlobalFilter,
+    setPagination,
     sorting,
     columnFilters,
     globalFilter,

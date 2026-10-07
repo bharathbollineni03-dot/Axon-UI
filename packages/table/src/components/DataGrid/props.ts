@@ -3,10 +3,14 @@ import type { RowData } from '@tanstack/react-table';
 import type { DataGridLabels } from '../../labels';
 import type {
   DataGridColumn,
+  DataGridColumnFilters,
   DataGridDensity,
   DataGridLayout,
+  DataGridPaginationState,
+  DataGridQueryState,
   DataGridRowProps,
   DataGridSortingState,
+  DataGridToolbarOptions,
 } from '../../types';
 
 export interface DataGridProps<Row extends RowData> extends Omit<
@@ -73,6 +77,58 @@ export interface DataGridProps<Row extends RowData> extends Omit<
   onSortingChange?: (sorting: DataGridSortingState) => void;
   /** Whether holding Shift while choosing a header adds a column to the sort. Default true. */
   multiSort?: boolean;
+
+  // Filtering
+
+  /** The filters on columns, when you hold them yourself. Pair with `onColumnFiltersChange`. */
+  columnFilters?: DataGridColumnFilters;
+  defaultColumnFilters?: DataGridColumnFilters;
+  onColumnFiltersChange?: (filters: DataGridColumnFilters) => void;
+  /** The toolbar's search text. */
+  globalFilter?: string;
+  defaultGlobalFilter?: string;
+  onGlobalFilterChange?: (text: string) => void;
+  /** How long to wait after typing before filtering, in milliseconds. Default 200. */
+  filterDebounce?: number;
+  /** Whether the row of column filters starts open. */
+  defaultShowFilters?: boolean;
+
+  // Pagination
+
+  /** Splits the rows into pages with controls under the grid. */
+  paginated?: boolean;
+  /** The page, when you hold it yourself. Pair with `onPaginationChange`. */
+  pagination?: DataGridPaginationState;
+  /** The page and page size to start with. Default: the first page of 25. */
+  defaultPagination?: DataGridPaginationState;
+  onPaginationChange?: (pagination: DataGridPaginationState) => void;
+  /** The page sizes offered. Default `[10, 25, 50, 100]`. */
+  pageSizeOptions?: number[];
+
+  // Server mode
+
+  /**
+   * `'client'` (the default) sorts, filters and pages the `data` you give it. `'server'` leaves all
+   * three to you: `data` is already the current page, in order, and `onStateChange` says what to
+   * ask for.
+   */
+  mode?: 'client' | 'server';
+  /** In server mode, how many rows match the query across all pages. */
+  totalRowCount?: number;
+  /**
+   * Called when the page, sort, column filters or search change (not on first render) with
+   * everything a server needs to answer. Search and text filters are debounced first.
+   */
+  onStateChange?: (state: DataGridQueryState) => void;
+
+  // Toolbar
+
+  /** Shows a toolbar of tools above the grid: `true` for all of them, or choose which. */
+  toolbar?: boolean | DataGridToolbarOptions;
+  /** A title or other content at the start of the toolbar. */
+  toolbarStart?: ReactNode;
+  /** Extra buttons at the end of the toolbar. */
+  toolbarEnd?: ReactNode;
 
   // States
 

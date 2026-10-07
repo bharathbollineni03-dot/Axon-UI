@@ -1,4 +1,4 @@
-import type { KeyboardEvent, Ref } from 'react';
+import type { KeyboardEvent, ReactNode, Ref } from 'react';
 import type { Header, RowData } from '@tanstack/react-table';
 import { cx } from '../../internal/cx';
 import { SortIcon } from '../../internal/icons';
@@ -100,6 +100,8 @@ export interface GridHeaderProps<Row extends RowData> {
   growColumnId: string | undefined;
   sortCount: number;
   headerRef: Ref<HTMLDivElement>;
+  /** More rows that belong to the sticky header, such as the filters. */
+  children?: ReactNode;
 }
 
 export function GridHeader<Row extends RowData>({
@@ -108,6 +110,7 @@ export function GridHeader<Row extends RowData>({
   growColumnId,
   sortCount,
   headerRef,
+  children,
 }: GridHeaderProps<Row>) {
   return (
     <div role="rowgroup" className="axon-datagrid__head" ref={headerRef}>
@@ -123,6 +126,7 @@ export function GridHeader<Row extends RowData>({
           />
         ))}
       </div>
+      {children}
     </div>
   );
 }

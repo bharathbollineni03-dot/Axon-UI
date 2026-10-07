@@ -4,6 +4,7 @@ import {
   useEffect,
   useMemo,
   useRef,
+  useState,
   type CSSProperties,
   type ForwardedRef,
   type ReactElement,
@@ -15,10 +16,15 @@ import type { RowData } from '@tanstack/react-table';
 import { cx } from '../../internal/cx';
 import { useAnnouncer } from '../../internal/useAnnouncer';
 import { useElementSize } from '../../internal/useElementSize';
-import { cellLayoutStyle } from './cellStyle';
+import type { DataGridToolbarOptions } from '../../types';
+import { cellLayoutStyle, pinnedClasses } from './cellStyle';
 import { GridBody } from './GridBody';
 import { GridContext, type GridContextValue } from './gridContext';
+import { GridFilterRow } from './GridFilterRow';
 import { GridHeader } from './GridHeader';
+import { GridPagination } from './GridPagination';
+import { GridToolbar, type ResolvedToolbar } from './GridToolbar';
+import { pickDomProps } from './ownProps';
 import type { DataGridProps } from './props';
 import { useDataGrid } from './useDataGrid';
 import { useGridNavigation } from './useGridNavigation';
@@ -26,10 +32,28 @@ import { useGridVirtualizer } from './useGridVirtualizer';
 
 /** How tall a virtualized grid is when it is given neither `height` nor `maxHeight`. */
 const DEFAULT_VIRTUAL_HEIGHT = 600;
+/** How many placeholder rows a loading grid shows when it is not told. */
 const DEFAULT_SKELETON_ROWS = 8;
+const MAX_SKELETON_ROWS = 10;
+const DEFAULT_PAGE_SIZES = [10, 25, 50, 100];
 
 function errorMessage(error: ReactNode | Error): ReactNode {
   return error instanceof Error ? error.message : error;
+}
+
+function resolveToolbar(
+  toolbar: boolean | DataGridToolbarOptions | undefined,
+  hasFilterable: boolean,
+): ResolvedToolbar | null {
+  if (!toolbar) return null;
+  const options = toolbar === true ? {} : toolbar;
+  return {
+    search: options.search ?? true,
+    filters: (options.filters ?? true) && hasFilterable,
+    density: options.density ?? true,
+    columns: options.columns ?? true,
+    export: options.export ?? true,
+  };
 }
 
 function DataGridInner<Row extends RowData>(
@@ -37,21 +61,6 @@ function DataGridInner<Row extends RowData>(
   ref: ForwardedRef<HTMLDivElement>,
 ) {
   const {
-    // Read by `useDataGrid`.
-    data: _data,
-    columns: _columns,
-    getRowId: _getRowId,
-    rowHeight: _rowHeight,
-    defaultDensity: _defaultDensity,
-    layout: _layout,
-    defaultLayout: _defaultLayout,
-    onLayoutChange: _onLayoutChange,
-    sorting: _sorting,
-    defaultSorting: _defaultSorting,
-    onSortingChange: _onSortingChange,
-    multiSort: _multiSort,
-    labels: _labels,
-    // Read here.
     height,
     maxHeight,
     striped = false,
@@ -68,15 +77,38 @@ function DataGridInner<Row extends RowData>(
     locale,
     onRowClick,
     rowProps,
+    filterDebounce = 200,
+    defaultShowFilters,
+    pageSizeOptions = DEFAULT_PAGE_SIZES,
+    toolbar,
+    toolbarStart,
+    toolbarEnd,
+  } = props;
+  const {
     className,
     style,
     'aria-label': ariaLabel,
     'aria-labelledby': ariaLabelledBy,
     ...domProps
-  } = props;
+  } = pickDomProps(props);
 
   const model = useDataGrid(props);
-  const { table, rows, labels, columnsById, density, rowHeight, sorting } = model;
+  const {
+    table,
+    rows,
+    labels,
+    columnsById,
+    density,
+    rowHeight,
+    sorting,
+    columnFilters,
+    globalFilter,
+    pagination,
+    paginated,
+    pageCount,
+    totalRows,
+    server,
+  } = model;
 
   // Columns, in the order they are drawn ----------------------------------------------------------
 
@@ -85,6 +117,21 @@ function DataGridInner<Row extends RowData>(
   const colCount = columns.length;
   const growColumnId = [...columns].reverse().find((column) => !column.getIsPinned())?.id;
   const totalWidth = table.getTotalSize();
+
+  // Filters and the toolbar ------------------------------------------------------------------------
+
+  const hasFilterable = props.columns.some(
+    (column) => column.filterable && column.accessor !== undefined,
+  );
+  const tools = resolveToolbar(toolbar, hasFilterable);
+  const [showFilters, setShowFilters] = useState(defaultShowFilters ?? columnFilters.length > 0);
+  const showFilterRow = showFilters && hasFilterable;
+  const headerRowCount = showFilterRow ? 2 : 1;
+  const filtered = columnFilters.length > 0 || globalFilter !== '';
+  const clearFilters = useCallback(() => {
+    model.setColumnFilters([]);
+    model.setGlobalFilter('');
+  }, [model]);
 
   // Measuring and virtualization -------------------------------------------------------------------
 
@@ -155,6 +202,7 @@ function DataGridInner<Row extends RowData>(
   // Announcements ----------------------------------------------------------------------------------
 
   const [announcement, announce] = useAnnouncer();
+
   const lastSorting = useRef(sorting);
   useEffect(() => {
     if (lastSorting.current === sorting) return;
@@ -173,9 +221,28 @@ function DataGridInner<Row extends RowData>(
     );
   }, [sorting, labels, columnsById, announce]);
 
+  // After filtering, say how many rows are left. (A server's answer arrives later, with new data.)
+  const lastFilters = useRef({ columnFilters, globalFilter });
+  useEffect(() => {
+    const last = lastFilters.current;
+    if (last.columnFilters === columnFilters && last.globalFilter === globalFilter) return;
+    lastFilters.current = { columnFilters, globalFilter };
+    if (!server) announce(labels.rowCount(totalRows));
+  }, [columnFilters, globalFilter, server, totalRows, labels, announce]);
+
+  const lastPage = useRef(pagination.pageIndex);
+  useEffect(() => {
+    if (lastPage.current === pagination.pageIndex) return;
+    lastPage.current = pagination.pageIndex;
+    if (paginated) announce(labels.pageOf(pagination.pageIndex + 1, pageCount));
+  }, [pagination.pageIndex, paginated, pageCount, labels, announce]);
+
   // What the body shows ----------------------------------------------------------------------------
 
   const status = error ? 'error' : rows.length === 0 ? (loading ? 'loading' : 'empty') : 'ready';
+  const skeletonRows =
+    loadingRows ??
+    (paginated ? Math.min(pagination.pageSize, MAX_SKELETON_ROWS) : DEFAULT_SKELETON_ROWS);
 
   const rootStyle = {
     '--axon-datagrid-row-height': `${rowHeight}px`,
@@ -190,6 +257,8 @@ function DataGridInner<Row extends RowData>(
     ...(height === undefined ? null : { height }),
     ...(effectiveMaxHeight === undefined ? null : { maxHeight: effectiveMaxHeight }),
   } as CSSProperties;
+
+  const statusStyle = { width: viewport.width || undefined };
 
   return (
     <GridContext.Provider value={context}>
@@ -206,6 +275,34 @@ function DataGridInner<Row extends RowData>(
         )}
         style={rootStyle}
       >
+        {tools || toolbarStart || toolbarEnd ? (
+          <GridToolbar
+            tools={
+              tools ?? {
+                search: false,
+                filters: false,
+                density: false,
+                columns: false,
+                export: false,
+              }
+            }
+            labels={labels}
+            start={toolbarStart}
+            end={toolbarEnd}
+            searchText={globalFilter}
+            onSearchChange={model.setGlobalFilter}
+            debounce={filterDebounce}
+            filtersOpen={showFilterRow}
+            onToggleFilters={() => setShowFilters((open) => !open)}
+            activeFilterCount={columnFilters.length}
+            canClear={filtered}
+            onClear={clearFilters}
+            density={density}
+            onDensityChange={(next) =>
+              model.setLayout((previous) => ({ ...previous, density: next }))
+            }
+          />
+        ) : null}
         <div ref={scrollRef} className="axon-datagrid__viewport" style={viewportStyle}>
           {/* Focus lives on the cells (one at a time); the grid only receives their key events. */}
           {/* eslint-disable-next-line jsx-a11y/interactive-supports-focus */}
@@ -214,7 +311,7 @@ function DataGridInner<Row extends RowData>(
             role="grid"
             aria-label={ariaLabel ?? (ariaLabelledBy ? undefined : labels.grid)}
             aria-labelledby={ariaLabelledBy}
-            aria-rowcount={rows.length + 1}
+            aria-rowcount={totalRows + headerRowCount}
             aria-colcount={colCount}
             aria-busy={loading || undefined}
             className="axon-datagrid__grid"
@@ -227,15 +324,25 @@ function DataGridInner<Row extends RowData>(
               growColumnId={growColumnId}
               sortCount={sorting.length}
               headerRef={headerRef}
-            />
+            >
+              {showFilterRow ? (
+                <GridFilterRow
+                  columns={columns}
+                  growColumnId={growColumnId}
+                  data={props.data}
+                  ariaRowIndex={2}
+                  debounce={filterDebounce}
+                />
+              ) : null}
+            </GridHeader>
             {status === 'loading' ? (
               <div className="axon-datagrid__skeleton" aria-hidden="true">
-                {Array.from({ length: loadingRows ?? DEFAULT_SKELETON_ROWS }, (_, index) => (
+                {Array.from({ length: skeletonRows }, (_, index) => (
                   <div key={index} className="axon-datagrid__row" style={{ height: rowHeight }}>
                     {columns.map((column) => (
                       <div
                         key={column.id}
-                        className="axon-datagrid__cell"
+                        className={cx('axon-datagrid__cell', ...pinnedClasses(column))}
                         style={cellLayoutStyle(column, column.id === growColumnId)}
                       >
                         {columnsById.has(column.id) ? <Skeleton width="70%" /> : null}
@@ -244,23 +351,25 @@ function DataGridInner<Row extends RowData>(
                   </div>
                 ))}
               </div>
-            ) : (
+            ) : status === 'ready' ? (
               <GridBody
                 rows={rows}
                 columns={columns}
                 activeRow={active.row - 1}
                 activeCol={active.col}
                 growColumnId={growColumnId}
-                firstRowIndex={2}
+                firstRowIndex={
+                  headerRowCount + 1 + (paginated ? pagination.pageIndex * pagination.pageSize : 0)
+                }
                 virtual={virtual}
                 scrollMargin={headerHeight}
                 onRowClick={onRowClick}
                 rowProps={rowProps}
               />
-            )}
+            ) : null}
           </div>
           {status === 'error' ? (
-            <div className="axon-datagrid__status" style={{ width: viewport.width || undefined }}>
+            <div className="axon-datagrid__status" style={statusStyle}>
               <Alert
                 status="danger"
                 actions={
@@ -276,11 +385,30 @@ function DataGridInner<Row extends RowData>(
             </div>
           ) : null}
           {status === 'empty' ? (
-            <div className="axon-datagrid__status" style={{ width: viewport.width || undefined }}>
-              {emptyState ?? <p className="axon-datagrid__status-text">{labels.noRows}</p>}
+            <div className="axon-datagrid__status" style={statusStyle}>
+              {filtered ? (
+                <div className="axon-datagrid__status-stack">
+                  <p className="axon-datagrid__status-text">{labels.noMatches}</p>
+                  <Button size="sm" variant="outline" onClick={clearFilters}>
+                    {labels.clearFilters}
+                  </Button>
+                </div>
+              ) : (
+                (emptyState ?? <p className="axon-datagrid__status-text">{labels.noRows}</p>)
+              )}
             </div>
           ) : null}
         </div>
+        {paginated ? (
+          <GridPagination
+            labels={labels}
+            pagination={pagination}
+            pageCount={pageCount}
+            totalRows={totalRows}
+            pageSizeOptions={pageSizeOptions}
+            onChange={model.setPagination}
+          />
+        ) : null}
         {loading && status !== 'loading' ? (
           <div className="axon-datagrid__progress" aria-hidden="true" />
         ) : null}
@@ -293,8 +421,9 @@ function DataGridInner<Row extends RowData>(
 }
 
 /**
- * A data grid: typed columns over an array of rows, with sorting, keyboard navigation following
- * the WAI-ARIA grid pattern, and virtualization for very large data sets.
+ * A data grid: typed columns over an array of rows, with sorting, filtering, search, pagination
+ * (in the browser or on a server), keyboard navigation following the WAI-ARIA grid pattern, and
+ * virtualization for very large data sets.
  */
 export const DataGrid = forwardRef(DataGridInner) as <Row extends RowData>(
   props: DataGridProps<Row> & { ref?: Ref<HTMLDivElement> },

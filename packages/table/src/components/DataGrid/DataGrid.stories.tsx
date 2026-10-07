@@ -1,8 +1,15 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Chip } from '@axon/core';
-import { makeEmployees, type Employee, type EmployeeStatus } from '../../stories/data';
-import type { DataGridColumn } from '../../types';
+import {
+  departments,
+  makeEmployees,
+  statuses,
+  type Employee,
+  type EmployeeStatus,
+} from '../../stories/data';
+import { createMockServer } from '../../stories/mockServer';
+import type { DataGridColumn, DataGridQueryState } from '../../types';
 import { DataGrid } from './DataGrid';
 import type { DataGridProps } from './props';
 
@@ -130,4 +137,104 @@ export const Empty: Story = { args: { data: [] } };
 export const ErrorState: Story = {
   name: 'Error with retry',
   args: { data: [], error: 'The employee service did not respond.', onRetry: () => {} },
+};
+
+const optionsOf = (values: readonly string[]) => values.map((value) => ({ value, label: value }));
+
+/** The same columns, with a filter on most of them. */
+const filterableColumns: DataGridColumn<Employee>[] = columns.map((column) => {
+  switch (column.accessor) {
+    case 'name':
+      return { ...column, filterable: true };
+    case 'department':
+      return {
+        ...column,
+        filterable: true,
+        filter: 'select',
+        filterOptions: optionsOf(departments),
+      };
+    case 'status':
+      return { ...column, filterable: true, filter: 'select', filterOptions: optionsOf(statuses) };
+    case 'salary':
+      return { ...column, filterable: true, filter: 'number-range' };
+    case 'startDate':
+      return { ...column, width: 230, filterable: true, filter: 'date-range' };
+    default:
+      return column;
+  }
+});
+
+export const ToolbarAndFilters: Story = {
+  name: 'Toolbar, search and column filters',
+  args: {
+    data: makeEmployees(300),
+    columns: filterableColumns,
+    toolbar: true,
+    toolbarStart: <strong>Employees</strong>,
+    paginated: true,
+    defaultPagination: { pageIndex: 0, pageSize: 10 },
+    height: undefined,
+    defaultShowFilters: true,
+  },
+};
+
+export const Paginated: Story = {
+  args: {
+    data: makeEmployees(237),
+    paginated: true,
+    defaultPagination: { pageIndex: 0, pageSize: 25 },
+    height: undefined,
+    striped: true,
+  },
+};
+
+function ServerSideGrid(args: Args) {
+  const fetchPage = useMemo(() => createMockServer(makeEmployees(5000)), []);
+  const [query, setQuery] = useState<DataGridQueryState>({
+    pagination: { pageIndex: 0, pageSize: 10 },
+    sorting: [],
+    filters: [],
+    globalFilter: '',
+  });
+  const [result, setResult] = useState<{ rows: Employee[]; total: number }>({ rows: [], total: 0 });
+  const [loading, setLoading] = useState(true);
+  const [failure, setFailure] = useState<string | null>(null);
+  const [attempt, setAttempt] = useState(0);
+
+  useEffect(() => {
+    const signal = { cancelled: false };
+    setLoading(true);
+    fetchPage(query, signal)
+      .then((page) => {
+        if (signal.cancelled) return;
+        setResult(page);
+        setFailure(null);
+      })
+      .catch((error: Error) => !signal.cancelled && setFailure(error.message))
+      .finally(() => !signal.cancelled && setLoading(false));
+    return () => {
+      signal.cancelled = true;
+    };
+  }, [fetchPage, query, attempt]);
+
+  return (
+    <DataGrid
+      {...args}
+      mode="server"
+      paginated
+      data={result.rows}
+      totalRowCount={result.total}
+      loading={loading}
+      error={failure ?? undefined}
+      onRetry={() => setAttempt((n) => n + 1)}
+      defaultPagination={query.pagination}
+      onStateChange={setQuery}
+    />
+  );
+}
+
+export const ServerSide: Story = {
+  name: 'Server mode (5,000 rows on a pretend server)',
+  args: { columns: filterableColumns, toolbar: true, height: undefined, striped: true },
+  render: (args) => <ServerSideGrid {...args} />,
 };

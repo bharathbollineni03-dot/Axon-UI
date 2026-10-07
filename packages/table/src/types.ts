@@ -203,3 +203,17 @@ export interface DataGridRowUpdate<Row> {
   value: unknown;
   previousValue: unknown;
 }
+
+/** Which tools the toolbar shows. */
+export interface DataGridToolbarOptions {
+  /** The search box. Default true. */
+  search?: boolean;
+  /** The button that shows the filter row. Default true when a column is `filterable`. */
+  filters?: boolean;
+  /** The density menu. Default true. */
+  density?: boolean;
+  /** The menu that shows and hides columns. Default true. */
+  columns?: boolean;
+  /** The CSV export button. Default true. */
+  export?: boolean;
+}

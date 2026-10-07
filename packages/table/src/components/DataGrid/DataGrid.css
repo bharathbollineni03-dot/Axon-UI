@@ -256,6 +256,93 @@
   }
 }
 
+/* Toolbar */
+
+.axon-datagrid__toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--axon-space-2);
+  padding: var(--axon-space-2) var(--axon-space-3);
+  border-bottom: 1px solid var(--axon-color-border);
+}
+
+.axon-datagrid__toolbar-start,
+.axon-datagrid__toolbar-end {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--axon-space-2);
+  min-width: 0;
+}
+
+.axon-datagrid__search {
+  width: 16rem;
+  max-width: 100%;
+}
+
+.axon-datagrid__tool--on {
+  background: var(--axon-color-primary-subtle);
+}
+
+/* The filters, a second row of the sticky header */
+
+.axon-datagrid__row--filter {
+  height: auto;
+  min-height: var(--axon-datagrid-row-height);
+  background: var(--axon-color-surface-muted);
+  border-bottom-color: var(--axon-color-border-strong);
+}
+
+.axon-datagrid__filter-cell {
+  padding: var(--axon-space-1) var(--axon-space-2);
+  overflow: visible;
+}
+
+.axon-datagrid__filter-range {
+  display: flex;
+  gap: var(--axon-space-1);
+  width: 100%;
+  min-width: 0;
+}
+
+.axon-datagrid__filter-range > * {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+/* Pagination */
+
+.axon-datagrid__footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--axon-space-3);
+  padding: var(--axon-space-2) var(--axon-space-3);
+  border-top: 1px solid var(--axon-color-border);
+  background: var(--axon-color-surface);
+}
+
+.axon-datagrid__page-size {
+  display: flex;
+  align-items: center;
+  gap: var(--axon-space-2);
+}
+
+.axon-datagrid__footer-text {
+  color: var(--axon-color-text-secondary);
+  font-size: var(--axon-font-size-sm);
+  white-space: nowrap;
+}
+
+.axon-datagrid__status-stack {
+  display: grid;
+  justify-items: center;
+  gap: var(--axon-space-3);
+}
+
 @media (forced-colors: active) {
   .axon-datagrid__cell:focus-visible {
     outline-color: Highlight;
