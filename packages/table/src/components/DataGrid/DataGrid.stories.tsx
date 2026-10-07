@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Button, Chip } from '@axon/core';
 import {
@@ -451,4 +451,34 @@ export const Editable: Story = {
   name: 'Inline editing (double-click or press Enter on a cell)',
   args: { height: 440, striped: true },
   render: (args) => <EditableGrid {...args} />,
+};
+
+function InfiniteGrid(args: Args) {
+  const all = useMemo(() => makeEmployees(5000), []);
+  const [count, setCount] = useState(40);
+  const [loading, setLoading] = useState(false);
+  const rows = useMemo(() => all.slice(0, count), [all, count]);
+  const loadMore = useCallback(() => {
+    setLoading(true);
+    // A pretend fetch: forty more rows after a short wait.
+    setTimeout(() => {
+      setCount((current) => Math.min(all.length, current + 40));
+      setLoading(false);
+    }, 700);
+  }, [all.length]);
+  return (
+    <DataGrid
+      {...args}
+      data={rows}
+      onLoadMore={loadMore}
+      hasMore={count < all.length}
+      loadingMore={loading}
+    />
+  );
+}
+
+export const InfiniteScroll: Story = {
+  name: 'Infinite scroll (forty more rows as you reach the end)',
+  args: { height: 420, striped: true, 'aria-label': 'Employees, loaded as you scroll' },
+  render: (args) => <InfiniteGrid {...args} />,
 };

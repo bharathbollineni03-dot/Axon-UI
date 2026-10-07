@@ -178,6 +178,21 @@ export interface DataGridProps<Row extends RowData> extends Omit<
    */
   onRowUpdate?: (change: DataGridRowUpdate<Row>) => void | Promise<void>;
 
+  // Infinite scroll
+
+  /**
+   * Called when the reader scrolls near the end of the rows (or the rows do not fill the grid) and
+   * `hasMore` is true: fetch the next rows and add them to `data`. Use it instead of `paginated`.
+   * It is called once for each number of rows.
+   */
+  onLoadMore?: () => void;
+  /** Whether there are more rows to fetch. Without it `onLoadMore` is never called. */
+  hasMore?: boolean;
+  /** Shows a loading line at the end while the next rows are on their way. */
+  loadingMore?: boolean;
+  /** How many rows from the end to start fetching. Default 8. */
+  loadMoreThreshold?: number;
+
   // Export
 
   /** The name of the file the toolbar's export button saves. Default `export.csv`. */

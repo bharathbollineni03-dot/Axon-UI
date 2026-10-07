@@ -19,18 +19,23 @@ export {
 export { DataGrid } from './components/DataGrid/DataGrid';
 export type { DataGridProps } from './components/DataGrid/props';
 export { defaultDataGridLabels, type DataGridLabels } from './labels';
+export { csvField, downloadCsv, toCsv, type CsvOptions } from './internal/csv';
 export type {
   DataGridAggregationName,
   DataGridAlign,
   DataGridCellContext,
+  DataGridCheckboxEditor,
   DataGridColumn,
   DataGridColumnFilter,
   DataGridColumnFilters,
   DataGridDateEditor,
   DataGridDensity,
   DataGridEditorConfig,
+  DataGridExpanded,
+  DataGridExportContext,
   DataGridFilterType,
   DataGridGroupContext,
+  DataGridGrouping,
   DataGridLayout,
   DataGridNumberEditor,
   DataGridOption,
@@ -38,6 +43,7 @@ export type {
   DataGridPinSide,
   DataGridQueryState,
   DataGridRowProps,
+  DataGridRowSelection,
   DataGridRowUpdate,
   DataGridSelectEditor,
   DataGridSelectionContext,
@@ -45,4 +51,5 @@ export type {
   DataGridSortingState,
   DataGridSortType,
   DataGridTextEditor,
+  DataGridToolbarOptions,
 } from './types';

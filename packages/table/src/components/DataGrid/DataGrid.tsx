@@ -12,7 +12,7 @@ import {
   type ReactNode,
   type Ref,
 } from 'react';
-import { Alert, Button, Skeleton } from '@axon/core';
+import { Alert, Button, Skeleton, Spinner } from '@axon/core';
 import type { RowData } from '@tanstack/react-table';
 import { UTILITY_COLUMN_IDS } from '../../internal/buildColumns';
 import { cx } from '../../internal/cx';
@@ -42,6 +42,7 @@ import type { DataGridProps } from './props';
 import { useDataGrid } from './useDataGrid';
 import { useGridNavigation } from './useGridNavigation';
 import { useGridVirtualizer } from './useGridVirtualizer';
+import { useInfiniteScroll } from './useInfiniteScroll';
 
 /** How tall a virtualized grid is when it is given neither `height` nor `maxHeight`. */
 const DEFAULT_VIRTUAL_HEIGHT = 600;
@@ -106,6 +107,10 @@ function DataGridInner<Row extends RowData>(
     renderDetailPanel,
     detailPanelHeight = DEFAULT_DETAIL_HEIGHT,
     onRowUpdate,
+    onLoadMore,
+    hasMore = false,
+    loadingMore = false,
+    loadMoreThreshold = 8,
   } = props;
   const {
     className,
@@ -200,6 +205,18 @@ function DataGridInner<Row extends RowData>(
     getKey: (index) => rows[index]?.id ?? String(index),
   });
   const { virtualizer } = virtual;
+
+  // Infinite scroll ----------------------------------------------------------------------------------
+
+  useInfiniteScroll({
+    scrollRef,
+    enabled: !!onLoadMore,
+    hasMore,
+    loading: loadingMore || loading,
+    onLoadMore,
+    itemCount: rows.length,
+    thresholdPx: loadMoreThreshold * rowHeight,
+  });
 
   // Keyboard navigation ----------------------------------------------------------------------------
 
@@ -378,6 +395,13 @@ function DataGridInner<Row extends RowData>(
     globalFilter,
   ]);
 
+  const wasLoadingMore = useRef(loadingMore);
+  useEffect(() => {
+    if (wasLoadingMore.current === loadingMore) return;
+    wasLoadingMore.current = loadingMore;
+    announce(loadingMore ? labels.loadingMore : labels.rowCount(totalRows));
+  }, [loadingMore, totalRows, labels, announce]);
+
   const lastSelected = useRef(selectedCount);
   useEffect(() => {
     if (lastSelected.current === selectedCount) return;
@@ -553,7 +577,8 @@ function DataGridInner<Row extends RowData>(
             role={treegrid ? 'treegrid' : 'grid'}
             aria-label={ariaLabel ?? (ariaLabelledBy ? undefined : labels.grid)}
             aria-labelledby={ariaLabelledBy}
-            aria-rowcount={totalRows + headerRowCount}
+            // While there may be more rows to come, the total is not known, which is what -1 says.
+            aria-rowcount={hasMore ? -1 : totalRows + headerRowCount}
             aria-colcount={colCount}
             aria-multiselectable={selectable || undefined}
             aria-busy={loading || undefined}
@@ -612,6 +637,12 @@ function DataGridInner<Row extends RowData>(
               />
             ) : null}
           </div>
+          {loadingMore ? (
+            <div className="axon-datagrid__more" style={statusStyle}>
+              <Spinner size="sm" decorative />
+              <span>{labels.loadingMore}</span>
+            </div>
+          ) : null}
           {status === 'error' ? (
             <div className="axon-datagrid__status" style={statusStyle}>
               <Alert

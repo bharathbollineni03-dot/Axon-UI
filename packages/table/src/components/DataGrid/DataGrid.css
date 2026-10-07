@@ -337,6 +337,20 @@
   white-space: nowrap;
 }
 
+.axon-datagrid__more {
+  position: sticky;
+  inset-inline-start: 0;
+  display: flex;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  gap: var(--axon-space-2);
+  max-width: 100%;
+  padding: var(--axon-space-3);
+  color: var(--axon-color-text-secondary);
+  font-size: var(--axon-font-size-sm);
+}
+
 .axon-datagrid__status-stack {
   display: grid;
   justify-items: center;

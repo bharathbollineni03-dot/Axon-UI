@@ -90,6 +90,9 @@ export interface DataGridLabels {
   /** Said once, as a hint, on a cell that can be edited. */
   editHint: string;
 
+  // Infinite scroll
+  loadingMore: string;
+
   // Export
   exportCsv: string;
   exported: (count: number) => string;
@@ -172,6 +175,8 @@ export const defaultDataGridLabels: DataGridLabels = {
   editingCell: (column) => `Edit ${column}`,
   saveFailed: 'The change could not be saved.',
   editHint: 'Press Enter to edit',
+
+  loadingMore: 'Loading more rows…',
 
   exportCsv: 'Export CSV',
   exported: (count) => `Exported ${count.toLocaleString()} ${count === 1 ? 'row' : 'rows'}`,
