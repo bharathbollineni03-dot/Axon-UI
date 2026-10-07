@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState, type RefObject } from 'react';
+import { useCallback, useRef, useState } from 'react';
 
 export interface UseAutoScrollOptions {
   /** How close to the bottom, in pixels, still counts as "at the bottom". Defaults to 48. */
@@ -7,7 +7,7 @@ export interface UseAutoScrollOptions {
 
 export interface UseAutoScrollReturn<T extends HTMLElement> {
   /** Attach to the scrolling element. */
-  ref: RefObject<T>;
+  ref: { current: T | null };
   /** Attach to its `onScroll`. */
   onScroll: () => void;
   /** Whether the view is at the bottom, so new content should be followed. */

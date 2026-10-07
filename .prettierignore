@@ -7,3 +7,5 @@ pnpm-lock.yaml
 CHANGELOG.md
 *.md
 *.generated.css
+.next
+next-env.d.ts

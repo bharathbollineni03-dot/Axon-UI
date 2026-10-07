@@ -87,13 +87,15 @@ describe('DataGrid filtering and search', () => {
     it('looks in every searchable column, including numbers and dates', async () => {
       const user = userEvent.setup();
       renderGrid({ toolbar: true, locale: 'en-US' });
-      await user.type(search(), 'platform');
+      // Pasted, not typed key by key: what is being tested is where the search looks.
+      await user.click(search());
+      await user.paste('platform');
       expect(names()).toEqual(['Grace Hopper', 'Margaret Hamilton', 'Radia Perlman']);
       await user.clear(search());
-      await user.type(search(), '142000');
+      await user.paste('142000');
       expect(names()).toEqual(['Barbara Liskov']);
       await user.clear(search());
-      await user.type(search(), '2022');
+      await user.paste('2022');
       expect(names()).toEqual(['Radia Perlman']);
     });
 

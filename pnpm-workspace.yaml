@@ -1,6 +1,7 @@
 packages:
   - 'packages/*'
   - 'apps/*'
+  - 'examples/*'
 
 # Single source of truth for dependency versions shared across the workspace.
 catalog:
