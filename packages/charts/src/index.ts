@@ -3,6 +3,9 @@ export { LineChart, type LineChartProps } from './components/LineChart/LineChart
 export { AreaChart, type AreaChartProps } from './components/AreaChart/AreaChart';
 export { BarChart, type BarChartProps } from './components/BarChart/BarChart';
 export { DonutChart, PieChart, type PieChartProps } from './components/PieChart/PieChart';
+export { ScatterChart, type ScatterChartProps } from './components/ScatterChart/ScatterChart';
+export { RadarChart, type RadarChartProps } from './components/RadarChart/RadarChart';
+export { Heatmap, type HeatmapProps } from './components/Heatmap/Heatmap';
 export { Gauge, bandFor, type GaugeProps, type GaugeThreshold } from './components/Gauge/Gauge';
 export { Sparkline, type SparklineProps } from './components/Sparkline/Sparkline';
 export {

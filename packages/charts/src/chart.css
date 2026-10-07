@@ -295,3 +295,99 @@
   stroke: var(--axon-color-surface);
   stroke-width: 1.5px;
 }
+
+.axon-chart__point {
+  stroke: var(--axon-color-surface);
+  stroke-width: 1px;
+  transition: r 100ms ease-out;
+}
+
+.axon-chart--animate .axon-chart__point {
+  animation: axon-chart-fade 500ms var(--axon-ease-out, ease-out) both;
+}
+
+/* Radar */
+.axon-chart__radar-ring {
+  fill: none;
+  stroke: var(--axon-color-border);
+  stroke-width: 1;
+}
+
+.axon-chart__radar-spoke {
+  stroke: var(--axon-color-border);
+  stroke-width: 1;
+}
+
+.axon-chart__radar-spoke--active {
+  stroke: var(--axon-color-border-strong);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 3;
+}
+
+.axon-chart__radar-label {
+  fill: var(--axon-color-text-primary);
+  font-family: var(--axon-font-sans);
+  font-size: 12px;
+}
+
+.axon-chart__radar-label--active {
+  font-weight: var(--axon-font-weight-semibold);
+}
+
+.axon-chart__radar-area {
+  stroke-linejoin: round;
+}
+
+/* Heatmap */
+.axon-chart__cell {
+  stroke: none;
+}
+
+.axon-chart__cell--empty {
+  fill: var(--axon-color-surface-muted);
+}
+
+.axon-chart__cell-focus {
+  fill: none;
+  stroke: var(--axon-color-text-primary);
+  stroke-width: 2;
+  pointer-events: none;
+}
+
+.axon-chart__cell-value {
+  fill: var(--axon-color-text-primary);
+  font-family: var(--axon-font-sans);
+  font-size: 11px;
+  pointer-events: none;
+}
+
+/* A dark cell needs light text whatever the theme. */
+.axon-chart__cell-value--on-dark {
+  fill: #fff;
+  stroke: rgb(0 0 0 / 0.35);
+  stroke-width: 2px;
+  paint-order: stroke;
+}
+
+.axon-chart--calendar .axon-chart__plot {
+  overflow-x: auto;
+}
+
+.axon-heatmap-scale {
+  display: flex;
+  align-items: center;
+  gap: var(--axon-space-1-5);
+  color: var(--axon-color-text-secondary);
+  font-family: var(--axon-font-sans);
+  font-size: var(--axon-font-size-xs);
+}
+
+.axon-heatmap-scale__swatch {
+  width: 0.875rem;
+  height: 0.875rem;
+  border-radius: 3px;
+}
+
+.axon-heatmap-scale__value {
+  font-variant-numeric: tabular-nums;
+}

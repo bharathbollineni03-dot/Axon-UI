@@ -25,6 +25,9 @@ export interface ChartLabels {
   name: string;
   value: string;
   share: string;
+  /** The ends of a heatmap's color scale. */
+  scaleLow: string;
+  scaleHigh: string;
 }
 
 export const defaultChartLabels: ChartLabels = {
@@ -36,6 +39,8 @@ export const defaultChartLabels: ChartLabels = {
   name: 'Name',
   value: 'Value',
   share: 'Share',
+  scaleLow: 'Less',
+  scaleHigh: 'More',
 };
 
 export interface AxisConfig {
