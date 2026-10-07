@@ -1,0 +1,136 @@
+/* The region ignores pointer events so it never blocks the page; each toast takes them back. */
+.axon-toast-region {
+  position: fixed;
+  z-index: var(--axon-z-toast);
+  display: flex;
+  flex-direction: column;
+  gap: var(--axon-space-2);
+  box-sizing: border-box;
+  width: min(24rem, 100%);
+  padding: var(--axon-space-4);
+  pointer-events: none;
+}
+
+.axon-toast-region--top-left,
+.axon-toast-region--top-center,
+.axon-toast-region--top-right {
+  top: 0;
+}
+
+.axon-toast-region--bottom-left,
+.axon-toast-region--bottom-center,
+.axon-toast-region--bottom-right {
+  bottom: 0;
+}
+
+.axon-toast-region--top-left,
+.axon-toast-region--bottom-left {
+  inset-inline-start: 0;
+}
+
+.axon-toast-region--top-right,
+.axon-toast-region--bottom-right {
+  inset-inline-end: 0;
+}
+
+.axon-toast-region--top-center,
+.axon-toast-region--bottom-center {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.axon-toast {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--axon-space-3);
+  box-sizing: border-box;
+  width: 100%;
+  padding: var(--axon-space-3) var(--axon-space-4);
+  border: 1px solid var(--axon-color-border);
+  border-inline-start: 4px solid var(--axon-accent-solid);
+  border-radius: var(--axon-radius-lg);
+  background: var(--axon-color-surface-raised);
+  box-shadow: var(--axon-shadow-lg);
+  color: var(--axon-color-text-primary);
+  font-family: var(--axon-font-sans);
+  font-size: var(--axon-font-size-sm);
+  line-height: var(--axon-line-height-normal);
+  pointer-events: auto;
+  animation: axon-toast-enter var(--axon-duration-normal) var(--axon-ease-out);
+}
+
+/* The icon box is one text line tall, so the icon lines up with the first line of text. */
+.axon-toast__icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  height: calc(1em * var(--axon-line-height-normal));
+  color: var(--axon-accent-text);
+}
+
+.axon-toast__icon > svg {
+  font-size: 1.25rem;
+}
+
+.axon-toast__content {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.axon-toast__title {
+  font-weight: var(--axon-font-weight-semibold);
+}
+
+.axon-toast__title + .axon-toast__description {
+  color: var(--axon-color-text-secondary);
+}
+
+.axon-toast__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--axon-space-2);
+  margin-top: var(--axon-space-2);
+}
+
+.axon-toast__close {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin: calc(var(--axon-space-1) * -1) calc(var(--axon-space-2) * -1) 0 0;
+  padding: 0;
+  border: 0;
+  border-radius: var(--axon-radius-md);
+  background: transparent;
+  color: var(--axon-color-text-secondary);
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.axon-toast__close:hover {
+  background: var(--axon-color-surface-muted);
+  color: var(--axon-color-text-primary);
+}
+
+.axon-toast__close:focus-visible {
+  outline: 2px solid var(--axon-color-focus-ring);
+  outline-offset: 1px;
+}
+
+/* Opacity and a short slide. The duration tokens are 0ms when the user prefers reduced motion. */
+@keyframes axon-toast-enter {
+  from {
+    opacity: 0;
+    transform: translateY(0.5rem);
+  }
+}
+
+/* On a phone the toasts span the width of the screen. */
+@media (max-width: 30rem) {
+  .axon-toast-region {
+    width: 100%;
+  }
+}

@@ -1,0 +1,109 @@
+.axon-alert {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--axon-space-3);
+  box-sizing: border-box;
+  width: 100%;
+  padding: var(--axon-space-3) var(--axon-space-4);
+  border: 1px solid transparent;
+  border-radius: var(--axon-radius-lg);
+  font-family: var(--axon-font-sans);
+  font-size: var(--axon-font-size-md);
+  line-height: var(--axon-line-height-normal);
+}
+
+.axon-alert--sm {
+  gap: var(--axon-space-2);
+  padding: var(--axon-space-2) var(--axon-space-3);
+  font-size: var(--axon-font-size-sm);
+}
+
+.axon-alert--subtle {
+  border-color: var(--axon-accent-border);
+  background: var(--axon-accent-subtle);
+  color: var(--axon-color-text-primary);
+}
+
+.axon-alert--solid {
+  border-color: var(--axon-accent-solid);
+  background: var(--axon-accent-solid);
+  color: var(--axon-accent-on-solid);
+}
+
+.axon-alert--outline {
+  border-color: var(--axon-accent-text);
+  background: transparent;
+  color: var(--axon-color-text-primary);
+}
+
+/* The icon box is one text line tall, so the icon lines up with the first line of text. */
+.axon-alert__icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  height: calc(1em * var(--axon-line-height-normal));
+}
+
+.axon-alert__icon > svg {
+  font-size: 1.25em;
+}
+
+.axon-alert--subtle .axon-alert__icon,
+.axon-alert--outline .axon-alert__icon {
+  color: var(--axon-accent-text);
+}
+
+.axon-alert__content {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.axon-alert__title {
+  font-weight: var(--axon-font-weight-semibold);
+}
+
+.axon-alert__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--axon-space-2);
+  margin-top: var(--axon-space-2);
+}
+
+.axon-alert__close {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  margin: calc(var(--axon-space-1) * -1) calc(var(--axon-space-2) * -1)
+    calc(var(--axon-space-1) * -1) 0;
+  padding: 0;
+  border: 0;
+  border-radius: var(--axon-radius-md);
+  background: transparent;
+  color: inherit;
+  font-size: 1.125rem;
+  cursor: pointer;
+}
+
+.axon-alert--subtle .axon-alert__close:hover,
+.axon-alert--outline .axon-alert__close:hover {
+  background: var(--axon-accent-subtle-hover);
+}
+
+.axon-alert--solid .axon-alert__close:hover {
+  background: var(--axon-accent-solid-hover);
+}
+
+.axon-alert__close:focus-visible {
+  outline: 2px solid var(--axon-color-focus-ring);
+  outline-offset: 1px;
+}
+
+/* A solid alert is already filled with the accent, so its focus ring needs another color. */
+.axon-alert--solid .axon-alert__close:focus-visible {
+  outline-color: currentcolor;
+}

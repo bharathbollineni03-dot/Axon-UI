@@ -1,6 +1,6 @@
 # @axon/core
 
-Base components for Axon UI: buttons and inputs, choice controls, pickers, layout, navigation and (in progress) overlays and feedback.
+Base components for Axon UI: buttons and inputs, choice controls, pickers, layout, navigation, overlays and feedback.
 
 ```bash
 pnpm add @axon/core @axon/theme
@@ -113,6 +113,43 @@ Menus are built from `MenuItem`, `MenuCheckboxItem`, `MenuRadioGroup` / `MenuRad
 | `Portal`                 | Renders children outside their parent, in the closest overlay or `.axon-root`; renders nothing on the server                              |
 
 Modals and drawers stack: Esc closes only the topmost, and only that one holds the focus trap. Menus, selects, popovers and tooltips opened from inside a modal render **inside** it, so they sit above it and stay within its focus trap. Give `Modal`, `Drawer` and `Popover` a `title`, `aria-label` or `aria-labelledby`; the types require one. Tooltips supplement a visible or `aria-label` name, they do not replace it.
+
+**Step 4, batch D: feedback**
+
+| Component                     | Notes                                                                                                                                                                      |
+| ----------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Alert`                       | `info`/`success`/`warning`/`danger`; `subtle`/`solid`/`outline`; `title`, `actions`, an `onClose` close button; `danger` is `role="alert"`, the rest `role="status"`          |
+| `ToastProvider`, `useToast`   | Queueing past `limit`, auto-dismiss, pause on hover and focus, Esc closes, six placements; `show`, `info`/`success`/`warning`/`danger`, `dismiss`, `dismissAll`              |
+| `Spinner`                     | Indeterminate ring; a polite `status` with a text label, or `decorative` when the busy state is announced elsewhere                                                          |
+| `Progress`                    | `linear` or `circular`; determinate (`value`/`max`, announced as `aria-valuetext`) or indeterminate; the types require a name (`label`, `aria-label` or `aria-labelledby`)  |
+| `Skeleton`                    | `text` (with `lines`), `circle` and `rect` placeholders; `pulse`, `wave` or still; hidden from assistive technology                                                          |
+| `EmptyState`                  | Icon, title (heading level via `titleAs`), description and an `action` slot                                                                                                  |
+
+Put `ToastProvider` once near the root, inside `ThemeProvider`, and call `useToast()` below it. The functions it returns never change identity, so they are safe in dependency arrays.
+
+```tsx
+function SaveButton() {
+  const toast = useToast();
+  return (
+    <Button
+      onClick={async () => {
+        const id = toast.show({
+          id: 'save',
+          title: 'Saving…',
+          duration: 0,
+          icon: <Spinner size="sm" decorative />,
+        });
+        await save();
+        toast.show({ id, status: 'success', title: 'Saved' }); // same id: replaced in place
+      }}
+    >
+      Save
+    </Button>
+  );
+}
+```
+
+Toasts are announced one by one (`danger` as `role="alert"`, the others as `role="status"`), and the "Notifications" region around them exists only while something is showing. A toast's timer stops while the pointer is over it or focus is inside it, and resumes with the time that was left; `duration: 0` (or `Infinity`) keeps it until it is dismissed. Showing a toast with the id of one that is already on screen, or waiting in the queue, replaces it and restarts its timer. `Skeleton` is decorative: mark the region that is loading with `aria-busy="true"`.
 
 **Responsive values.** `Stack` and `Grid` props take either a value or `{ base, sm, md, lg, xl, '2xl' }` (mobile first: each key applies from that width up, matching the theme breakpoints). They compile to CSS custom properties and media queries, so nothing runs in JavaScript and server and client output are identical.
 

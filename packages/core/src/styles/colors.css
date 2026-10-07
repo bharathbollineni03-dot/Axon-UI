@@ -27,7 +27,11 @@
 .axon-stepper--primary,
 .axon-app-bar--primary,
 .axon-sidebar--primary,
-.axon-menu--primary {
+.axon-menu--primary,
+.axon-spinner--primary,
+.axon-progress--primary,
+.axon-alert--info,
+.axon-toast--info {
   --axon-accent-solid: var(--axon-color-primary-solid);
   --axon-accent-solid-hover: var(--axon-color-primary-solid-hover);
   --axon-accent-solid-active: var(--axon-color-primary-solid-active);
@@ -63,7 +67,9 @@
 .axon-stepper--secondary,
 .axon-app-bar--secondary,
 .axon-sidebar--secondary,
-.axon-menu--secondary {
+.axon-menu--secondary,
+.axon-spinner--secondary,
+.axon-progress--secondary {
   --axon-accent-solid: var(--axon-color-secondary-solid);
   --axon-accent-solid-hover: var(--axon-color-secondary-solid-hover);
   --axon-accent-solid-active: var(--axon-color-secondary-solid-active);
@@ -99,7 +105,11 @@
 .axon-stepper--success,
 .axon-app-bar--success,
 .axon-sidebar--success,
-.axon-menu--success {
+.axon-menu--success,
+.axon-spinner--success,
+.axon-progress--success,
+.axon-alert--success,
+.axon-toast--success {
   --axon-accent-solid: var(--axon-color-success-solid);
   --axon-accent-solid-hover: var(--axon-color-success-solid-hover);
   --axon-accent-solid-active: var(--axon-color-success-solid-active);
@@ -135,7 +145,11 @@
 .axon-stepper--warning,
 .axon-app-bar--warning,
 .axon-sidebar--warning,
-.axon-menu--warning {
+.axon-menu--warning,
+.axon-spinner--warning,
+.axon-progress--warning,
+.axon-alert--warning,
+.axon-toast--warning {
   --axon-accent-solid: var(--axon-color-warning-solid);
   --axon-accent-solid-hover: var(--axon-color-warning-solid-hover);
   --axon-accent-solid-active: var(--axon-color-warning-solid-active);
@@ -171,7 +185,11 @@
 .axon-stepper--danger,
 .axon-app-bar--danger,
 .axon-sidebar--danger,
-.axon-menu--danger {
+.axon-menu--danger,
+.axon-spinner--danger,
+.axon-progress--danger,
+.axon-alert--danger,
+.axon-toast--danger {
   --axon-accent-solid: var(--axon-color-danger-solid);
   --axon-accent-solid-hover: var(--axon-color-danger-solid-hover);
   --axon-accent-solid-active: var(--axon-color-danger-solid-active);
@@ -207,7 +225,9 @@
 .axon-stepper--neutral,
 .axon-app-bar--neutral,
 .axon-sidebar--neutral,
-.axon-menu--neutral {
+.axon-menu--neutral,
+.axon-spinner--neutral,
+.axon-progress--neutral {
   --axon-accent-solid: var(--axon-color-neutral-solid);
   --axon-accent-solid-hover: var(--axon-color-neutral-solid-hover);
   --axon-accent-solid-active: var(--axon-color-neutral-solid-active);

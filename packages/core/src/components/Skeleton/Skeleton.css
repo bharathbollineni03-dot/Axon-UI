@@ -1,0 +1,84 @@
+.axon-skeleton {
+  display: block;
+  box-sizing: border-box;
+  width: var(--axon-skeleton-width, 100%);
+  max-width: 100%;
+  background: var(--axon-color-border);
+}
+
+.axon-skeleton--text {
+  height: var(--axon-skeleton-height, 1em);
+  border-radius: var(--axon-radius-sm);
+  /* A text line is a bit shorter than its line box, so stacked lines have air between them. */
+  transform: scaleY(0.7);
+}
+
+.axon-skeleton--rect {
+  height: var(--axon-skeleton-height, 6rem);
+  border-radius: var(--axon-radius-md);
+}
+
+.axon-skeleton--circle {
+  width: var(--axon-skeleton-width, 2.5rem);
+  height: var(--axon-skeleton-height, 2.5rem);
+  border-radius: var(--axon-radius-full);
+}
+
+/* Several lines of text. The lines carry the look, so the wrapper only stacks them. */
+.axon-skeleton-lines {
+  display: block;
+  width: var(--axon-skeleton-width, 100%);
+  max-width: 100%;
+}
+
+.axon-skeleton-lines > .axon-skeleton {
+  width: 100%;
+  height: var(--axon-skeleton-height, 1em);
+}
+
+.axon-skeleton-lines > .axon-skeleton--last-line {
+  width: 60%;
+}
+
+/* Pulse */
+.axon-skeleton--pulse {
+  animation: axon-skeleton-pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes axon-skeleton-pulse {
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Wave: a highlight sweeps across the placeholder. */
+.axon-skeleton--wave {
+  position: relative;
+  overflow: hidden;
+}
+
+.axon-skeleton--wave::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, var(--axon-color-surface-muted), transparent);
+  transform: translateX(-100%);
+  animation: axon-skeleton-wave 1.6s linear infinite;
+}
+
+@keyframes axon-skeleton-wave {
+  to {
+    transform: translateX(100%);
+  }
+}
+
+/* Placeholders do not need motion to be understood, so they stay still. */
+@media (prefers-reduced-motion: reduce) {
+  .axon-skeleton--pulse {
+    animation: none;
+  }
+
+  .axon-skeleton--wave::after {
+    display: none;
+  }
+}
