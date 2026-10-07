@@ -42,7 +42,10 @@
   },
   "dependencies": {
     "@axon/core": "workspace:*",
-    "@axon/theme": "workspace:*"
+    "@axon/theme": "workspace:*",
+    "@hookform/resolvers": "catalog:",
+    "react-hook-form": "catalog:",
+    "zod": "catalog:"
   },
   "devDependencies": {
     "@types/react": "catalog:",

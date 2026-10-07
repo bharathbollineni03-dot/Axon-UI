@@ -1,0 +1,98 @@
+/* Fills the viewport and centers the card in it. */
+.axon-auth-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-height: 100vh;
+  padding: var(--axon-space-4);
+  background: var(--axon-color-background);
+}
+
+.axon-auth-card {
+  --axon-auth-card-width: 24rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--axon-space-6);
+  box-sizing: border-box;
+  width: 100%;
+  max-width: var(--axon-auth-card-width);
+  margin-inline: auto;
+  padding: var(--axon-space-8);
+  border: 1px solid var(--axon-color-border);
+  border-radius: var(--axon-radius-xl);
+  background: var(--axon-color-surface-raised);
+  box-shadow: var(--axon-shadow-md);
+  color: var(--axon-color-text-primary);
+  font-family: var(--axon-font-sans);
+  font-size: var(--axon-font-size-md);
+  line-height: var(--axon-line-height-normal);
+}
+
+.axon-auth-card--md {
+  --axon-auth-card-width: 32rem;
+}
+
+.axon-auth-card--lg {
+  --axon-auth-card-width: 44rem;
+}
+
+.axon-auth-card--bare {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+@media (max-width: 30rem) {
+  .axon-auth-card:not(.axon-auth-card--bare) {
+    padding: var(--axon-space-6) var(--axon-space-4);
+  }
+}
+
+.axon-auth-card__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--axon-space-2);
+  text-align: center;
+}
+
+.axon-auth-card__logo {
+  display: flex;
+  justify-content: center;
+  margin-bottom: var(--axon-space-2);
+}
+
+.axon-auth-card__logo > img,
+.axon-auth-card__logo > svg {
+  max-height: 2.5rem;
+  width: auto;
+}
+
+.axon-auth-card__title {
+  margin: 0;
+  font-size: var(--axon-font-size-2xl);
+  font-weight: var(--axon-font-weight-semibold);
+  line-height: var(--axon-line-height-tight);
+}
+
+.axon-auth-card__description {
+  margin: 0;
+  color: var(--axon-color-text-secondary);
+}
+
+.axon-auth-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--axon-space-4);
+  min-width: 0;
+}
+
+.axon-auth-card__footer {
+  color: var(--axon-color-text-secondary);
+  font-size: var(--axon-font-size-sm);
+  text-align: center;
+}

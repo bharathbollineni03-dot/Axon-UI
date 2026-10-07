@@ -1,0 +1,16 @@
+/* "Remember me" on the left, "Forgot password?" on the right. */
+.axon-login-form__options {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--axon-space-2) var(--axon-space-4);
+  font-size: var(--axon-font-size-sm);
+}
+
+/* Buttons for signing in with another service, one per row. */
+.axon-auth-social {
+  display: flex;
+  flex-direction: column;
+  gap: var(--axon-space-2);
+}

@@ -1,0 +1,23 @@
+.axon-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--axon-space-4);
+  min-width: 0;
+  font-family: var(--axon-font-sans);
+}
+
+/* The banner for an error that belongs to the whole form. */
+.axon-form__error {
+  margin: 0;
+}
+
+/* Only rendered while the whole form is disabled; it is there for the native `disabled`. */
+.axon-form__fieldset {
+  display: flex;
+  flex-direction: column;
+  gap: var(--axon-space-4);
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}

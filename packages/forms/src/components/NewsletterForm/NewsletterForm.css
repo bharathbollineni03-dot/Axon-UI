@@ -1,0 +1,12 @@
+/* The inline layout: the email field grows, and the button sits beside it. */
+.axon-newsletter-form__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: var(--axon-space-2);
+}
+
+.axon-newsletter-form__row > :first-child {
+  flex: 1 1 14rem;
+  min-width: 0;
+}

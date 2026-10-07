@@ -1,0 +1,4 @@
+/* The error message shown under a form checkbox or switch, in place of its description. */
+.axon-form-field-error {
+  color: var(--axon-color-danger-text);
+}

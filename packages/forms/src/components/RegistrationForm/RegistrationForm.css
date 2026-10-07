@@ -1,0 +1,6 @@
+/* The password field with its strength meter right under it. */
+.axon-registration-form__password {
+  display: flex;
+  flex-direction: column;
+  gap: var(--axon-space-2);
+}

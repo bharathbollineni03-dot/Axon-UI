@@ -1,0 +1,48 @@
+.axon-form-wizard {
+  gap: var(--axon-space-6);
+}
+
+.axon-form-wizard__panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--axon-space-3);
+  min-width: 0;
+}
+
+.axon-form-wizard__title {
+  margin: 0;
+  color: var(--axon-color-text-primary);
+  font-size: var(--axon-font-size-xl);
+  font-weight: var(--axon-font-weight-semibold);
+  line-height: var(--axon-line-height-tight);
+}
+
+/* The title takes focus when the step changes; it needs no ring for that. */
+.axon-form-wizard__title:focus {
+  outline: none;
+}
+
+.axon-form-wizard__title:focus-visible {
+  outline: 2px solid var(--axon-color-focus-ring);
+  outline-offset: 2px;
+  border-radius: var(--axon-radius-sm);
+}
+
+.axon-form-wizard__description {
+  margin: calc(var(--axon-space-2) * -1) 0 0;
+  color: var(--axon-color-text-secondary);
+}
+
+.axon-form-wizard__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--axon-space-4);
+  min-width: 0;
+}
+
+.axon-form-wizard__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--axon-space-2);
+}
