@@ -1,0 +1,238 @@
+.axon-chart {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--axon-space-2);
+  margin: 0;
+  color: var(--axon-color-text-primary);
+  font-family: var(--axon-font-sans);
+}
+
+.axon-chart__caption {
+  display: grid;
+  gap: var(--axon-space-0-5);
+}
+
+.axon-chart__title {
+  margin: 0;
+  font-size: var(--axon-font-size-md);
+  font-weight: var(--axon-font-weight-semibold);
+}
+
+.axon-chart__description {
+  margin: 0;
+  color: var(--axon-color-text-secondary);
+  font-size: var(--axon-font-size-sm);
+}
+
+/* The plot is the positioning context for the tooltip, which sits over the svg. */
+.axon-chart__plot {
+  position: relative;
+  width: 100%;
+}
+
+.axon-chart__svg {
+  display: block;
+  max-width: 100%;
+  overflow: visible;
+}
+
+.axon-chart__svg:focus {
+  outline: none;
+}
+
+.axon-chart__svg:focus-visible {
+  outline: 2px solid var(--axon-color-focus-ring);
+  outline-offset: 2px;
+  border-radius: var(--axon-radius-sm);
+}
+
+.axon-chart__status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 100%;
+  border: 1px dashed var(--axon-color-border);
+  border-radius: var(--axon-radius-md);
+  color: var(--axon-color-text-secondary);
+  font-size: var(--axon-font-size-sm);
+  text-align: center;
+}
+
+/* Axes and grid */
+.axon-chart__axis-line {
+  stroke: var(--axon-color-border-strong);
+  stroke-width: 1;
+}
+
+.axon-chart__tick-line {
+  stroke: var(--axon-color-border-strong);
+  stroke-width: 1;
+}
+
+.axon-chart__grid-line {
+  stroke: var(--axon-color-border);
+  stroke-width: 1;
+  shape-rendering: crispEdges;
+}
+
+.axon-chart__tick-label {
+  fill: var(--axon-color-text-secondary);
+  font-family: var(--axon-font-sans);
+  font-size: 12px;
+}
+
+.axon-chart__axis-title {
+  fill: var(--axon-color-text-secondary);
+  font-family: var(--axon-font-sans);
+  font-size: 12px;
+  font-weight: var(--axon-font-weight-medium);
+}
+
+/* Marks */
+.axon-chart__line {
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.axon-chart__area {
+  stroke: none;
+  fill-opacity: 0.18;
+}
+
+.axon-chart__area-outline {
+  fill: none;
+  stroke-width: 2;
+  stroke-linejoin: round;
+}
+
+.axon-chart__bar {
+  stroke: none;
+}
+
+.axon-chart__dot {
+  stroke: var(--axon-color-surface);
+  stroke-width: 1.5;
+}
+
+.axon-chart__crosshair {
+  stroke: var(--axon-color-border-strong);
+  stroke-width: 1;
+  stroke-dasharray: 4 3;
+  pointer-events: none;
+}
+
+.axon-chart__value-label {
+  fill: var(--axon-color-text-secondary);
+  font-family: var(--axon-font-sans);
+  font-size: 11px;
+}
+
+.axon-chart__slice {
+  stroke: var(--axon-color-surface);
+  stroke-width: 2;
+}
+
+.axon-chart__leader {
+  fill: none;
+  stroke: var(--axon-color-border-strong);
+  stroke-width: 1;
+}
+
+.axon-chart__center-value {
+  fill: var(--axon-color-text-primary);
+  font-family: var(--axon-font-sans);
+  font-weight: var(--axon-font-weight-semibold);
+}
+
+.axon-chart__center-label {
+  fill: var(--axon-color-text-secondary);
+  font-family: var(--axon-font-sans);
+  font-size: 12px;
+}
+
+[data-active='true'] > .axon-chart__bar,
+.axon-chart__bar[data-active='true'],
+.axon-chart__slice[data-active='true'] {
+  filter: brightness(1.12);
+}
+
+.axon-chart__dimmed {
+  opacity: 0.35;
+}
+
+/* Movement. Everything stops under reduced motion, and when `animate` is off. */
+.axon-chart--animate .axon-chart__line {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: axon-chart-draw 800ms var(--axon-ease-out, ease-out) forwards;
+}
+
+.axon-chart--animate .axon-chart__area,
+.axon-chart--animate .axon-chart__slice,
+.axon-chart--animate .axon-chart__dot--static {
+  animation: axon-chart-fade 600ms var(--axon-ease-out, ease-out) both;
+}
+
+.axon-chart--animate .axon-chart__bar {
+  transform-box: fill-box;
+  transform-origin: center bottom;
+  animation: axon-chart-grow 500ms var(--axon-ease-out, ease-out) both;
+}
+
+.axon-chart--animate .axon-chart__bar--horizontal {
+  transform-origin: left center;
+  animation-name: axon-chart-grow-x;
+}
+
+@keyframes axon-chart-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes axon-chart-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes axon-chart-grow {
+  from {
+    transform: scaleY(0);
+  }
+}
+
+@keyframes axon-chart-grow-x {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .axon-chart *,
+  .axon-chart *::before,
+  .axon-chart *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .axon-chart--animate .axon-chart__line {
+    stroke-dasharray: none;
+    stroke-dashoffset: 0;
+  }
+}
+
+.axon-chart__cursor-band {
+  fill: var(--axon-color-surface-muted);
+  fill-opacity: 0.7;
+  pointer-events: none;
+}
+
+.axon-chart__hit {
+  cursor: crosshair;
+  touch-action: pan-y;
+}

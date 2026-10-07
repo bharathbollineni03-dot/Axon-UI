@@ -1,0 +1,56 @@
+.axon-chart-tooltip {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  min-width: 8rem;
+  max-width: 18rem;
+  padding: var(--axon-space-2) var(--axon-space-3);
+  border: 1px solid var(--axon-color-border);
+  border-radius: var(--axon-radius-md);
+  background: var(--axon-color-surface-raised);
+  box-shadow: var(--axon-shadow-md);
+  color: var(--axon-color-text-primary);
+  font-family: var(--axon-font-sans);
+  font-size: var(--axon-font-size-sm);
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.axon-chart-tooltip__title {
+  margin-bottom: var(--axon-space-1);
+  color: var(--axon-color-text-secondary);
+  font-size: var(--axon-font-size-xs);
+  font-weight: var(--axon-font-weight-medium);
+}
+
+.axon-chart-tooltip__rows {
+  display: grid;
+  gap: var(--axon-space-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.axon-chart-tooltip__row {
+  display: flex;
+  align-items: center;
+  gap: var(--axon-space-2);
+}
+
+.axon-chart-tooltip__swatch {
+  flex-shrink: 0;
+  width: 0.625rem;
+  height: 0.625rem;
+  border-radius: var(--axon-radius-sm);
+}
+
+.axon-chart-tooltip__name {
+  flex: 1;
+  color: var(--axon-color-text-secondary);
+}
+
+.axon-chart-tooltip__value {
+  font-variant-numeric: tabular-nums;
+  font-weight: var(--axon-font-weight-semibold);
+}

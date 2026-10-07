@@ -1,1 +1,6 @@
 /* @axon/charts styles: component stylesheets are @imported here. */
+@import './palette.css';
+@import './chart.css';
+@import './components/Legend/Legend.css';
+@import './components/Tooltip/Tooltip.css';
+@import './components/StatCard/StatCard.css';
