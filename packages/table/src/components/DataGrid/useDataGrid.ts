@@ -47,6 +47,12 @@ export interface DataGridModel<Row extends RowData> {
   columnsById: ReadonlyMap<string, DataGridColumn<Row>>;
   layout: DataGridLayout;
   setLayout: (next: DataGridLayout | ((previous: DataGridLayout) => DataGridLayout)) => void;
+  /** Puts the layout back to how the grid started: the columns' own settings, or the saved layout. */
+  resetLayout: () => void;
+  selectable: boolean;
+  setRowSelection: (
+    updater: RowSelectionState | ((previous: RowSelectionState) => RowSelectionState),
+  ) => void;
   density: DataGridDensity;
   rowHeight: number;
   /** Whether the server, not the grid, sorts, filters and pages. */
@@ -100,6 +106,12 @@ export function useDataGrid<Row extends RowData>(props: DataGridProps<Row>): Dat
     mode = 'client',
     totalRowCount,
     onStateChange,
+    selectable = false,
+    rowSelection: rowSelectionProp,
+    defaultRowSelection,
+    onRowSelectionChange,
+    isRowSelectable,
+    resizable = true,
   } = props;
   const server = mode === 'server';
 
@@ -117,7 +129,6 @@ export function useDataGrid<Row extends RowData>(props: DataGridProps<Row>): Dat
   const columnsRef = useRef(columns);
   columnsRef.current = columns;
   const signature = columnsSignature(columns);
-  const selectable = false;
   const expandable = false;
   const columnDefs = useMemo(
     () =>
@@ -201,7 +212,9 @@ export function useDataGrid<Row extends RowData>(props: DataGridProps<Row>): Dat
     [setGlobalFilter, firstPage],
   );
   const [rowSelection, setRowSelection] = useControllableState<RowSelectionState>({
-    defaultValue: NO_SELECTION,
+    value: rowSelectionProp as RowSelectionState | undefined,
+    defaultValue: (defaultRowSelection as RowSelectionState | undefined) ?? NO_SELECTION,
+    onChange: onRowSelectionChange,
   });
   const [expanded, setExpanded] = useControllableState<ExpandedState>({
     defaultValue: NO_EXPANDED,
@@ -274,10 +287,13 @@ export function useDataGrid<Row extends RowData>(props: DataGridProps<Row>): Dat
           },
         };
       }),
+    enableRowSelection: (row) =>
+      selectable && !row.getIsGrouped() && (isRowSelectable ? isRowSelectable(row.original) : true),
     enableMultiSort: multiSort,
     enableSortingRemoval: true,
     sortDescFirst: false,
     columnResizeMode: 'onChange',
+    enableColumnResizing: resizable,
     // Edits replace `data`; that must not collapse open rows or send the user back to page one.
     autoResetPageIndex: false,
     autoResetExpanded: false,
@@ -349,6 +365,9 @@ export function useDataGrid<Row extends RowData>(props: DataGridProps<Row>): Dat
     columnsById,
     layout,
     setLayout,
+    resetLayout: () => setLayout(initialLayout),
+    selectable,
+    setRowSelection,
     density,
     rowHeight,
     server,

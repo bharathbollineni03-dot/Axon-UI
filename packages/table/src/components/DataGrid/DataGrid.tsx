@@ -13,13 +13,19 @@ import {
 } from 'react';
 import { Alert, Button, Skeleton } from '@axon/core';
 import type { RowData } from '@tanstack/react-table';
+import { UTILITY_COLUMN_IDS } from '../../internal/buildColumns';
 import { cx } from '../../internal/cx';
+import { downloadCsv, toCsv } from '../../internal/csv';
+import { DownloadIcon } from '../../internal/icons';
+import { leafRows, moveWithin } from '../../internal/rows';
 import { useAnnouncer } from '../../internal/useAnnouncer';
 import { useElementSize } from '../../internal/useElementSize';
 import type { DataGridToolbarOptions } from '../../types';
+import { BulkBar } from './BulkBar';
 import { cellLayoutStyle, pinnedClasses } from './cellStyle';
+import { ColumnsMenu } from './ColumnsMenu';
 import { GridBody } from './GridBody';
-import { GridContext, type GridContextValue } from './gridContext';
+import { GridContext, type ColumnDragState, type GridContextValue } from './gridContext';
 import { GridFilterRow } from './GridFilterRow';
 import { GridHeader } from './GridHeader';
 import { GridPagination } from './GridPagination';
@@ -83,6 +89,11 @@ function DataGridInner<Row extends RowData>(
     toolbar,
     toolbarStart,
     toolbarEnd,
+    reorderable = true,
+    columnMenus = true,
+    bulkActions,
+    exportFileName = 'export.csv',
+    onExport,
   } = props;
   const {
     className,
@@ -108,6 +119,8 @@ function DataGridInner<Row extends RowData>(
     pageCount,
     totalRows,
     server,
+    selectable,
+    rowSelection,
   } = model;
 
   // Columns, in the order they are drawn ----------------------------------------------------------
@@ -115,6 +128,7 @@ function DataGridInner<Row extends RowData>(
   const headers = table.getHeaderGroups()[0]?.headers ?? [];
   const columns = headers.map((header) => header.column);
   const colCount = columns.length;
+  const utilityCount = columns.filter((column) => UTILITY_COLUMN_IDS.includes(column.id)).length;
   const growColumnId = [...columns].reverse().find((column) => !column.getIsPinned())?.id;
   const totalWidth = table.getTotalSize();
 
@@ -187,6 +201,65 @@ function DataGridInner<Row extends RowData>(
   });
   const { active } = navigation;
 
+  // Moving columns -----------------------------------------------------------------------------------
+
+  const [drag, setDrag] = useState<ColumnDragState | null>(null);
+  const [announcement, announce] = useAnnouncer();
+
+  const canReorder = useCallback(
+    (columnId: string) => {
+      if (!reorderable || UTILITY_COLUMN_IDS.includes(columnId)) return false;
+      const column = table.getColumn(columnId);
+      return !!column && !column.getIsPinned() && columnsById.get(columnId)?.reorderable !== false;
+    },
+    [reorderable, table, columnsById],
+  );
+
+  const reorderColumn = useCallback(
+    (columnId: string, targetId: string, side: 'before' | 'after') => {
+      const isCenter = (id: string) =>
+        !UTILITY_COLUMN_IDS.includes(id) && !table.getColumn(id)?.getIsPinned();
+      const all = table.getAllLeafColumns().map((column) => column.id);
+      const center = all.filter(isCenter);
+      if (columnId === targetId || !center.includes(columnId) || !center.includes(targetId)) {
+        return undefined;
+      }
+      // The order covers every column; the ones that are pinned or utility take their place from
+      // their own state, so only the unpinned columns' relative order matters.
+      table.setColumnOrder([
+        ...all.filter((id) => !isCenter(id)),
+        ...moveWithin(center, columnId, targetId, side),
+      ]);
+      const shown = columns.map((column) => column.id).filter(isCenter);
+      const after = moveWithin(shown, columnId, targetId, side);
+      const pinnedStart = columns.filter((column) => column.getIsPinned() === 'start').length;
+      const position = pinnedStart + after.indexOf(columnId);
+      announce(
+        labels.columnMoved(
+          columnsById.get(columnId)?.header ?? columnId,
+          position + 1 - utilityCount,
+          colCount - utilityCount,
+        ),
+      );
+      return position;
+    },
+    [table, columns, columnsById, labels, announce, colCount, utilityCount],
+  );
+
+  const moveColumn = useCallback(
+    (columnId: string, delta: -1 | 1) => {
+      const shown = columns
+        .map((column) => column.id)
+        .filter((id) => !UTILITY_COLUMN_IDS.includes(id) && !table.getColumn(id)?.getIsPinned());
+      const target = shown[shown.indexOf(columnId) + delta];
+      if (!target) return;
+      const position = reorderColumn(columnId, target, delta < 0 ? 'before' : 'after');
+      // The moved header keeps focus; keep the grid's tab stop with it.
+      if (position !== undefined) navigation.onCellFocus(0, position);
+    },
+    [columns, table, reorderColumn, navigation],
+  );
+
   const context = useMemo<GridContextValue>(
     () => ({
       table: table as GridContextValue['table'],
@@ -195,13 +268,89 @@ function DataGridInner<Row extends RowData>(
       columnsById: columnsById as GridContextValue['columnsById'],
       rowHeight,
       onCellFocus: navigation.onCellFocus,
+      announce,
+      drag,
+      setDrag,
+      canReorder,
+      reorderColumn: (id, targetId, side) => void reorderColumn(id, targetId, side),
+      moveColumn,
     }),
-    [table, labels, locale, columnsById, rowHeight, navigation.onCellFocus],
+    [
+      table,
+      labels,
+      locale,
+      columnsById,
+      rowHeight,
+      navigation.onCellFocus,
+      announce,
+      drag,
+      canReorder,
+      reorderColumn,
+      moveColumn,
+    ],
   );
 
-  // Announcements ----------------------------------------------------------------------------------
+  // Selection and export -------------------------------------------------------------------------------
 
-  const [announcement, announce] = useAnnouncer();
+  const selectedIds = useMemo(
+    () => Object.keys(rowSelection).filter((id) => rowSelection[id]),
+    [rowSelection],
+  );
+  const selectedCount = selectedIds.length;
+  const clearSelection = useCallback(() => model.setRowSelection({}), [model]);
+  // The selected rows that are loaded, in the order of the data, and every selected id: the ids of
+  // rows on other pages (or not yet fetched) are in the selection but have no row to show.
+  const selection = useMemo(() => {
+    if (selectedCount === 0) return { rows: [] as Row[], rowIds: [] as string[] };
+    const loaded = table.getCoreRowModel().flatRows.filter((row) => rowSelection[row.id]);
+    const known = new Set(loaded.map((row) => row.id));
+    return {
+      rows: loaded.map((row) => row.original),
+      rowIds: [...loaded.map((row) => row.id), ...selectedIds.filter((id) => !known.has(id))],
+    };
+    // The table object is stable; what changes the answer is the selection and the data.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedCount, selectedIds, rowSelection, props.data]);
+  // "Select all" reaches rows beyond this page, which only the grid knows about when it holds them.
+  const selectAllCount = useMemo(() => {
+    if (!selectable || server || selectedCount === 0) return null;
+    const selectable_ = table.getFilteredRowModel().flatRows.filter((row) => row.getCanSelect());
+    return selectedCount < selectable_.length ? selectable_.length : null;
+    // The selection and the filtered rows are what it is made of.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [
+    selectable,
+    server,
+    selectedCount,
+    table,
+    rowSelection,
+    props.data,
+    columnFilters,
+    globalFilter,
+  ]);
+
+  const lastSelected = useRef(selectedCount);
+  useEffect(() => {
+    if (lastSelected.current === selectedCount) return;
+    lastSelected.current = selectedCount;
+    announce(labels.selectedCount(selectedCount));
+  }, [selectedCount, labels, announce]);
+
+  const exportRows = () => {
+    const exportColumns = columns
+      .map((column) => columnsById.get(column.id))
+      .filter(
+        (definition): definition is NonNullable<typeof definition> =>
+          !!definition && definition.exportable !== false,
+      );
+    const data = leafRows(table.getSortedRowModel().rows);
+    const csv = toCsv(exportColumns, data);
+    if (onExport) onExport({ rows: data, columns: exportColumns, csv });
+    else downloadCsv(exportFileName, csv);
+    announce(labels.exported(data.length));
+  };
+
+  // Announcements ----------------------------------------------------------------------------------
 
   const lastSorting = useRef(sorting);
   useEffect(() => {
@@ -301,7 +450,41 @@ function DataGridInner<Row extends RowData>(
             onDensityChange={(next) =>
               model.setLayout((previous) => ({ ...previous, density: next }))
             }
+            extraTools={
+              <>
+                {tools?.columns ? (
+                  <ColumnsMenu
+                    table={table}
+                    labels={labels}
+                    columnsById={columnsById}
+                    onReset={model.resetLayout}
+                  />
+                ) : null}
+                {tools?.export ? (
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    color="neutral"
+                    startIcon={<DownloadIcon />}
+                    onClick={exportRows}
+                  >
+                    {labels.exportCsv}
+                  </Button>
+                ) : null}
+              </>
+            }
           />
+        ) : null}
+        {selectable && selectedCount > 0 ? (
+          <BulkBar
+            labels={labels}
+            count={selectedCount}
+            selectAllCount={selectAllCount}
+            onSelectAll={() => table.toggleAllRowsSelected(true)}
+            onClear={clearSelection}
+          >
+            {bulkActions?.({ ...selection, clear: clearSelection })}
+          </BulkBar>
         ) : null}
         <div ref={scrollRef} className="axon-datagrid__viewport" style={viewportStyle}>
           {/* Focus lives on the cells (one at a time); the grid only receives their key events. */}
@@ -313,6 +496,7 @@ function DataGridInner<Row extends RowData>(
             aria-labelledby={ariaLabelledBy}
             aria-rowcount={totalRows + headerRowCount}
             aria-colcount={colCount}
+            aria-multiselectable={selectable || undefined}
             aria-busy={loading || undefined}
             className="axon-datagrid__grid"
             style={{ width: totalWidth }}
@@ -323,6 +507,7 @@ function DataGridInner<Row extends RowData>(
               activeCol={active.row === 0 ? active.col : -1}
               growColumnId={growColumnId}
               sortCount={sorting.length}
+              columnMenus={columnMenus}
               headerRef={headerRef}
             >
               {showFilterRow ? (

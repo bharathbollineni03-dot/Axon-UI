@@ -8,7 +8,10 @@ import type {
   DataGridLayout,
   DataGridPaginationState,
   DataGridQueryState,
+  DataGridExportContext,
   DataGridRowProps,
+  DataGridRowSelection,
+  DataGridSelectionContext,
   DataGridSortingState,
   DataGridToolbarOptions,
 } from '../../types';
@@ -57,6 +60,15 @@ export interface DataGridProps<Row extends RowData> extends Omit<
    * density. While a column is being dragged it waits for the pointer to be released.
    */
   onLayoutChange?: (layout: DataGridLayout) => void;
+
+  // Columns
+
+  /** Lets the user drag the edges of headers to resize columns. Default true. */
+  resizable?: boolean;
+  /** Lets the user drag headers (or press Alt+arrow keys on one) to reorder columns. Default true. */
+  reorderable?: boolean;
+  /** Gives each header a menu to sort, pin, move and hide the column. Default true. */
+  columnMenus?: boolean;
 
   // Virtualization
 
@@ -120,6 +132,26 @@ export interface DataGridProps<Row extends RowData> extends Omit<
    * everything a server needs to answer. Search and text filters are debounced first.
    */
   onStateChange?: (state: DataGridQueryState) => void;
+
+  // Selection
+
+  /** Adds a column of checkboxes. */
+  selectable?: boolean;
+  /** The selected rows by id, when you hold them yourself. Pair with `onRowSelectionChange`. */
+  rowSelection?: DataGridRowSelection;
+  defaultRowSelection?: DataGridRowSelection;
+  onRowSelectionChange?: (selection: DataGridRowSelection) => void;
+  /** Rows for which this returns false cannot be selected. */
+  isRowSelectable?: (row: Row) => boolean;
+  /** Content for the bar that appears while rows are selected: buttons that act on them. */
+  bulkActions?: (selection: DataGridSelectionContext<Row>) => ReactNode;
+
+  // Export
+
+  /** The name of the file the toolbar's export button saves. Default `export.csv`. */
+  exportFileName?: string;
+  /** Takes over from the download: do something else with the CSV, such as ask a server for all rows. */
+  onExport?: (context: DataGridExportContext<Row>) => void;
 
   // Toolbar
 

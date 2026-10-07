@@ -41,6 +41,41 @@ export interface DataGridLabels {
   filterAll: string;
   filterRow: string;
 
+  // Selection
+  /** The name of the checkbox column. */
+  selectColumn: string;
+  selectAllPage: string;
+  selectAllRows: string;
+  selectRow: (rowLabel: string) => string;
+  /** Announced and shown when the selection changes. */
+  selectedCount: (count: number) => string;
+  /** The bulk bar's button that selects every row, beyond the page. */
+  selectAllN: (count: number) => string;
+  clearSelection: string;
+  selectionActions: string;
+
+  // Columns
+  columnsMenu: string;
+  resetLayout: string;
+  /** The name of a column's menu button. */
+  columnMenu: (column: string) => string;
+  sortAscending: string;
+  sortDescending: string;
+  clearSort: string;
+  pinLeft: string;
+  pinRight: string;
+  unpin: string;
+  hideColumn: string;
+  moveLeft: string;
+  moveRight: string;
+  resizeColumn: (column: string) => string;
+  /** Announced after a column is moved. */
+  columnMoved: (column: string, position: number, total: number) => string;
+
+  // Export
+  exportCsv: string;
+  exported: (count: number) => string;
+
   // Pagination
   pagination: string;
   rowsPerPage: string;
@@ -82,6 +117,33 @@ export const defaultDataGridLabels: DataGridLabels = {
   filterTo: (column) => `${column}, to`,
   filterAll: 'All',
   filterRow: 'Column filters',
+
+  selectColumn: 'Select',
+  selectAllPage: 'Select all rows on this page',
+  selectAllRows: 'Select all rows',
+  selectRow: (rowLabel) => `Select ${rowLabel}`,
+  selectedCount: (count) => `${count.toLocaleString()} selected`,
+  selectAllN: (count) => `Select all ${count.toLocaleString()} rows`,
+  clearSelection: 'Clear selection',
+  selectionActions: 'Selection actions',
+
+  columnsMenu: 'Columns',
+  resetLayout: 'Reset columns',
+  columnMenu: (column) => `${column} column menu`,
+  sortAscending: 'Sort ascending',
+  sortDescending: 'Sort descending',
+  clearSort: 'Clear sort',
+  pinLeft: 'Pin left',
+  pinRight: 'Pin right',
+  unpin: 'Unpin',
+  hideColumn: 'Hide column',
+  moveLeft: 'Move left',
+  moveRight: 'Move right',
+  resizeColumn: (column) => `Resize ${column}`,
+  columnMoved: (column, position, total) => `${column} moved to position ${position} of ${total}`,
+
+  exportCsv: 'Export CSV',
+  exported: (count) => `Exported ${count.toLocaleString()} ${count === 1 ? 'row' : 'rows'}`,
 
   pagination: 'Pagination',
   rowsPerPage: 'Rows per page',

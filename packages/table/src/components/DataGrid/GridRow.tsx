@@ -1,5 +1,7 @@
-import type { MouseEvent, ReactNode } from 'react';
+import type { KeyboardEvent, MouseEvent, ReactNode } from 'react';
+import { Checkbox } from '@axon/core';
 import type { Cell, RowData } from '@tanstack/react-table';
+import { SELECT_COLUMN_ID } from '../../internal/buildColumns';
 import { cx } from '../../internal/cx';
 import { formatCellValue } from '../../internal/format';
 import type { GridFeatures, GridRow as GridRowType } from '../../internal/features';
@@ -17,6 +19,8 @@ interface GridCellProps<Row extends RowData> {
   displayIndex: number;
   active: boolean;
   grow: boolean;
+  /** What to call the row in the name of its checkbox. */
+  rowLabel: string;
 }
 
 function GridCell<Row extends RowData>({
@@ -28,13 +32,28 @@ function GridCell<Row extends RowData>({
   displayIndex,
   active,
   grow,
+  rowLabel,
 }: GridCellProps<Row>) {
-  const { columnsById, locale, onCellFocus } = useGridContext<Row>();
+  const { columnsById, locale, labels, onCellFocus } = useGridContext<Row>();
+  const isSelect = column.id === SELECT_COLUMN_ID;
   const definition = columnsById.get(column.id);
   const align = definition?.align ?? 'start';
 
   let content: ReactNode = null;
-  if (definition) {
+  if (isSelect) {
+    content = (
+      <Checkbox
+        size="sm"
+        aria-label={labels.selectRow(rowLabel)}
+        checked={row.getIsSelected()}
+        disabled={!row.getCanSelect()}
+        // Shift-click selects the rows in between; the handler reads the click from the event.
+        onChange={row.getToggleSelectedHandler()}
+        onClick={(event) => event.stopPropagation()}
+        tabIndex={active ? 0 : -1}
+      />
+    );
+  } else if (definition) {
     const value = cell.getValue();
     content = definition.cell ? (
       definition.cell({
@@ -49,6 +68,14 @@ function GridCell<Row extends RowData>({
     );
   }
 
+  // Space on the cell itself (not on the checkbox, which handles its own) toggles the row.
+  const onSelectKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
+    if (event.target === event.currentTarget && event.key === ' ' && row.getCanSelect()) {
+      event.preventDefault();
+      row.toggleSelected();
+    }
+  };
+
   return (
     <div
       role="gridcell"
@@ -61,10 +88,12 @@ function GridCell<Row extends RowData>({
       className={cx(
         'axon-datagrid__cell',
         `axon-datagrid__cell--${align}`,
+        isSelect && 'axon-datagrid__cell--utility',
         ...pinnedClasses(column),
       )}
       style={cellLayoutStyle(column, grow)}
       onFocus={() => onCellFocus(gridRow, colIndex)}
+      onKeyDown={isSelect ? onSelectKeyDown : undefined}
     >
       {content}
     </div>
@@ -95,8 +124,14 @@ export function GridRow<Row extends RowData>({
   rowProps,
   onClick,
 }: GridRowProps<Row>) {
-  const { rowHeight } = useGridContext<Row>();
+  const { rowHeight, columnsById, locale } = useGridContext<Row>();
   const cells = row.getVisibleCellsByColumnId();
+  const selectable = columns.some((column) => column.id === SELECT_COLUMN_ID);
+  const selected = selectable && row.getIsSelected();
+  // A person using a screen reader chooses a row by what it is: its first column with a value.
+  const labelColumn = columns.find((column) => columnsById.get(column.id)?.accessor !== undefined);
+  const labelValue = labelColumn ? formatCellValue(row.getValue(labelColumn.id), locale) : '';
+  const rowLabel = labelValue || `row ${ariaRowIndex}`;
 
   return (
     // The row is a pointer shortcut for `onRowClick`; the keyboard reaches the same rows through
@@ -105,11 +140,13 @@ export function GridRow<Row extends RowData>({
     <div
       role="row"
       aria-rowindex={ariaRowIndex}
+      aria-selected={selectable ? selected : undefined}
       data-row-id={row.id}
       className={cx(
         'axon-datagrid__row',
         displayIndex % 2 === 1 && 'axon-datagrid__row--odd',
         onClick && 'axon-datagrid__row--clickable',
+        selected && 'axon-datagrid__row--selected',
         rowProps?.className,
       )}
       style={{ height: rowHeight, ...rowProps?.style }}
@@ -129,6 +166,7 @@ export function GridRow<Row extends RowData>({
             displayIndex={displayIndex}
             active={activeCol === colIndex}
             grow={column.id === growColumnId}
+            rowLabel={rowLabel}
           />
         );
       })}

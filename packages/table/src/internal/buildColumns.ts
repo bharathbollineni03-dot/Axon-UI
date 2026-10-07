@@ -11,7 +11,7 @@ export const DEFAULT_MIN_COLUMN_WIDTH = 60;
 export const UTILITY_COLUMN_WIDTH = 44;
 
 /** A column's id: the one it was given, or its accessor when that is a key. */
-export function columnIdOf<Row extends RowData>(column: DataGridColumn<Row>): string {
+export function columnIdOf<Row>(column: DataGridColumn<Row>): string {
   const id = column.id ?? (typeof column.accessor === 'string' ? column.accessor : undefined);
   if (!id) {
     throw new Error(
@@ -21,7 +21,7 @@ export function columnIdOf<Row extends RowData>(column: DataGridColumn<Row>): st
   return id;
 }
 
-export function readAccessor<Row extends RowData>(column: DataGridColumn<Row>, row: Row): unknown {
+export function readAccessor<Row>(column: DataGridColumn<Row>, row: Row): unknown {
   const { accessor } = column;
   if (accessor === undefined) return undefined;
   const value =

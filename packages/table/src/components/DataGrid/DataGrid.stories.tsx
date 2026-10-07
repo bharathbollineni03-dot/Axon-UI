@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Chip } from '@axon/core';
+import { Button, Chip } from '@axon/core';
 import {
   departments,
   makeEmployees,
@@ -9,7 +9,7 @@ import {
   type EmployeeStatus,
 } from '../../stories/data';
 import { createMockServer } from '../../stories/mockServer';
-import type { DataGridColumn, DataGridQueryState } from '../../types';
+import type { DataGridColumn, DataGridLayout, DataGridQueryState } from '../../types';
 import { DataGrid } from './DataGrid';
 import type { DataGridProps } from './props';
 
@@ -237,4 +237,120 @@ export const ServerSide: Story = {
   name: 'Server mode (5,000 rows on a pretend server)',
   args: { columns: filterableColumns, toolbar: true, height: undefined, striped: true },
   render: (args) => <ServerSideGrid {...args} />,
+};
+
+function SelectableGrid(args: Args) {
+  const [rows, setRows] = useState(() => makeEmployees(80));
+  return (
+    <DataGrid
+      {...args}
+      data={rows}
+      bulkActions={({ rows: selected, rowIds, clear }) => (
+        <>
+          <Button
+            size="sm"
+            variant="outline"
+            color="danger"
+            onClick={() => {
+              setRows((current) => current.filter((row) => !rowIds.includes(row.id)));
+              clear();
+            }}
+          >
+            Delete {selected.length > 1 ? `${selected.length} people` : 'person'}
+          </Button>
+          <Button
+            size="sm"
+            variant="outline"
+            color="neutral"
+            onClick={() => alert(selected.map((row) => row.email).join('\n'))}
+          >
+            Show emails
+          </Button>
+        </>
+      )}
+    />
+  );
+}
+
+export const SelectableWithBulkActions: Story = {
+  name: 'Selection with bulk actions (Shift+click selects a range)',
+  args: {
+    selectable: true,
+    toolbar: true,
+    paginated: true,
+    defaultPagination: { pageIndex: 0, pageSize: 10 },
+    columns: filterableColumns,
+    height: undefined,
+    isRowSelectable: (row) => row.status !== 'On leave',
+  },
+  render: (args) => <SelectableGrid {...args} />,
+};
+
+function SavedLayoutGrid(args: Args) {
+  const key = 'axon-table-story-layout';
+  const [saved, setSaved] = useState<DataGridLayout | undefined>(() => {
+    try {
+      const raw = window.localStorage.getItem(key);
+      return raw ? (JSON.parse(raw) as DataGridLayout) : undefined;
+    } catch {
+      return undefined;
+    }
+  });
+  const [version, setVersion] = useState(0);
+  const save = (layout: DataGridLayout) => {
+    try {
+      window.localStorage.setItem(key, JSON.stringify(layout));
+    } catch {
+      // Storage can be unavailable; the layout then just is not remembered.
+    }
+    setSaved(layout);
+  };
+  return (
+    <div style={{ display: 'grid', gap: 12 }}>
+      <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+        <Button
+          size="sm"
+          variant="outline"
+          onClick={() => {
+            try {
+              window.localStorage.removeItem(key);
+            } catch {
+              // Nothing to forget.
+            }
+            setSaved(undefined);
+            setVersion((v) => v + 1);
+          }}
+        >
+          Forget the saved layout
+        </Button>
+        <span style={{ fontSize: 13 }}>
+          Resize, reorder, pin or hide columns, then reload the page: the layout is kept.
+        </span>
+      </div>
+      <DataGrid key={version} {...args} defaultLayout={saved} onLayoutChange={save} />
+    </div>
+  );
+}
+
+export const SavedLayout: Story = {
+  name: 'Saving and restoring the layout',
+  args: { data: employees, toolbar: true, height: 360 },
+  render: (args) => <SavedLayoutGrid {...args} />,
+};
+
+export const EverythingAtOnce: Story = {
+  name: 'Everything at once',
+  args: {
+    data: makeEmployees(1200),
+    columns: filterableColumns.map((column, index) =>
+      index === 0 ? { ...column, pinned: 'left' as const } : column,
+    ),
+    toolbar: true,
+    selectable: true,
+    paginated: true,
+    defaultPagination: { pageIndex: 0, pageSize: 25 },
+    striped: true,
+    height: 460,
+    defaultShowFilters: true,
+  },
 };

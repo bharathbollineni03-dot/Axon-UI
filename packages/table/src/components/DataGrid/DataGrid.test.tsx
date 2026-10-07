@@ -480,6 +480,31 @@ describe('DataGrid', () => {
       );
       await userEvent.tab();
       expect(header('Name')).toHaveFocus();
+      // The controls inside the active header (its menu, its resize handle) come next ...
+      await userEvent.tab();
+      expect(screen.getByRole('button', { name: 'Name column menu' })).toHaveFocus();
+      await userEvent.tab();
+      expect(screen.getByRole('separator', { name: 'Resize Name' })).toHaveFocus();
+      // ... and then Tab leaves the grid rather than walking through every cell.
+      await userEvent.tab();
+      expect(screen.getByRole('button', { name: 'After' })).toHaveFocus();
+    });
+
+    it('has no inner tab stops when columns have no menus or resize handles', async () => {
+      render(
+        <>
+          <DataGrid
+            data={people}
+            columns={personColumns}
+            aria-label="People"
+            columnMenus={false}
+            resizable={false}
+          />
+          <button>After</button>
+        </>,
+      );
+      await userEvent.tab();
+      expect(header('Name')).toHaveFocus();
       await userEvent.tab();
       expect(screen.getByRole('button', { name: 'After' })).toHaveFocus();
     });

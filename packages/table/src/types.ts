@@ -217,3 +217,16 @@ export interface DataGridToolbarOptions {
   /** The CSV export button. Default true. */
   export?: boolean;
 }
+
+/** The rows that are selected, by row id. A row that is not a key is not selected. */
+export type DataGridRowSelection = Record<string, boolean>;
+
+/** What an export hands to `onExport`. */
+export interface DataGridExportContext<Row> {
+  /** The rows that would be exported: filtered and sorted, across all pages (the loaded ones, in server mode). */
+  rows: Row[];
+  /** The columns exported: the visible ones, in order. */
+  columns: DataGridColumn<Row>[];
+  /** The CSV text. */
+  csv: string;
+}
