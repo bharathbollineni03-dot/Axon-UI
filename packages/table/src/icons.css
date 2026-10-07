@@ -1,0 +1,18 @@
+/* The sort chevrons shared by Table and DataGrid headers: the arm for the active direction is drawn bold. */
+
+.axon-sort-icon {
+  flex: none;
+  width: 1.1em;
+  height: 1.1em;
+}
+
+.axon-sort-icon__up,
+.axon-sort-icon__down {
+  opacity: 0.35;
+}
+
+.axon-sort-icon[data-sort='asc'] .axon-sort-icon__up,
+.axon-sort-icon[data-sort='desc'] .axon-sort-icon__down {
+  opacity: 1;
+  stroke-width: 2.25;
+}

@@ -1,0 +1,263 @@
+.axon-datagrid {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--axon-color-border);
+  border-radius: var(--axon-radius-lg);
+  background: var(--axon-color-surface);
+  color: var(--axon-color-text-primary);
+  font-family: var(--axon-font-sans);
+  font-size: var(--axon-font-size-sm);
+  line-height: var(--axon-line-height-normal);
+}
+
+/* The scrolling area. Padding keeps a cell that is scrolled to from sitting under the sticky header. */
+.axon-datagrid__viewport {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: auto;
+  scroll-padding-top: var(--axon-datagrid-header-height, 0px);
+  scroll-padding-inline-start: var(--axon-datagrid-pin-start, 0px);
+  scroll-padding-inline-end: var(--axon-datagrid-pin-end, 0px);
+}
+
+.axon-datagrid__grid {
+  position: relative;
+  min-width: 100%;
+}
+
+.axon-datagrid__head {
+  position: sticky;
+  top: 0;
+  z-index: var(--axon-z-sticky);
+  background: var(--axon-color-surface-muted);
+}
+
+.axon-datagrid__row {
+  display: flex;
+  box-sizing: border-box;
+  width: 100%;
+  border-bottom: 1px solid var(--axon-color-border);
+  background: var(--axon-color-surface);
+}
+
+.axon-datagrid__row--header {
+  background: var(--axon-color-surface-muted);
+  border-bottom-color: var(--axon-color-border-strong);
+}
+
+/* Cells take the row's background, so a pinned cell stays opaque over the cells that scroll under it. */
+.axon-datagrid__cell {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  min-width: 0;
+  padding: 0 var(--axon-space-3);
+  overflow: hidden;
+  background: inherit;
+  font-variant-numeric: tabular-nums;
+}
+
+.axon-datagrid__cell:focus {
+  outline: none;
+}
+
+.axon-datagrid__cell:focus-visible {
+  outline: 2px solid var(--axon-color-focus-ring);
+  outline-offset: -2px;
+}
+
+.axon-datagrid__cell--center {
+  justify-content: center;
+  text-align: center;
+}
+
+.axon-datagrid__cell--end {
+  justify-content: flex-end;
+  text-align: end;
+}
+
+.axon-datagrid__cell-text {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Header */
+
+.axon-datagrid__header-cell {
+  gap: var(--axon-space-1);
+  color: var(--axon-color-text-secondary);
+  font-size: var(--axon-font-size-xs);
+  font-weight: var(--axon-font-weight-semibold);
+  letter-spacing: var(--axon-letter-spacing-wide);
+  text-transform: uppercase;
+  user-select: none;
+}
+
+.axon-datagrid__header-cell--sortable {
+  cursor: pointer;
+}
+
+.axon-datagrid__header-cell--sortable:hover {
+  background: var(--axon-color-neutral-subtle-hover);
+  color: var(--axon-color-text-primary);
+}
+
+.axon-datagrid__header-cell--sorted {
+  color: var(--axon-color-text-primary);
+}
+
+.axon-datagrid__header-title {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.axon-datagrid__sort-order {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.25em;
+  height: 1.25em;
+  border-radius: var(--axon-radius-full);
+  background: var(--axon-color-primary-subtle);
+  color: var(--axon-color-primary-text);
+  font-size: 0.85em;
+  letter-spacing: 0;
+}
+
+/* Body rows */
+
+.axon-datagrid--striped .axon-datagrid__row--odd {
+  background: var(--axon-color-surface-muted);
+}
+
+.axon-datagrid--hoverable .axon-datagrid__body .axon-datagrid__row:hover {
+  background: var(--axon-color-primary-subtle);
+}
+
+.axon-datagrid__row--clickable {
+  cursor: pointer;
+}
+
+.axon-datagrid__body--virtual {
+  position: relative;
+}
+
+.axon-datagrid__item {
+  position: absolute;
+  top: 0;
+  inset-inline: 0;
+}
+
+.axon-datagrid__body > .axon-datagrid__row:last-child,
+.axon-datagrid__item:last-child > .axon-datagrid__row {
+  border-bottom-color: transparent;
+}
+
+/* Variants */
+
+.axon-datagrid--bordered .axon-datagrid__cell {
+  border-inline-end: 1px solid var(--axon-color-border);
+}
+
+.axon-datagrid--bordered .axon-datagrid__cell:last-child {
+  border-inline-end: 0;
+}
+
+/* Pinned columns stay stuck to an edge; the one next to the scrolling columns gets a divider. */
+
+.axon-datagrid__cell--pinned {
+  position: sticky;
+  z-index: 1;
+}
+
+.axon-datagrid__cell--pinned-start {
+  inset-inline-start: var(--axon-datagrid-pin-offset, 0);
+}
+
+.axon-datagrid__cell--pinned-end {
+  inset-inline-end: var(--axon-datagrid-pin-offset, 0);
+}
+
+.axon-datagrid__cell--pinned-start.axon-datagrid__cell--pinned-edge {
+  border-inline-end: 1px solid var(--axon-color-border-strong);
+}
+
+.axon-datagrid__cell--pinned-end.axon-datagrid__cell--pinned-edge {
+  border-inline-start: 1px solid var(--axon-color-border-strong);
+}
+
+/* Loading, empty and error */
+
+.axon-datagrid__skeleton .axon-datagrid__row:last-child {
+  border-bottom-color: transparent;
+}
+
+.axon-datagrid__status {
+  position: sticky;
+  inset-inline-start: 0;
+  display: flex;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  max-width: 100%;
+  padding: var(--axon-space-8) var(--axon-space-4);
+  color: var(--axon-color-text-secondary);
+  text-align: center;
+}
+
+.axon-datagrid__status-text {
+  margin: 0;
+}
+
+.axon-datagrid__progress {
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  z-index: calc(var(--axon-z-sticky) + 1);
+  height: 2px;
+  overflow: hidden;
+  background: var(--axon-color-primary-subtle);
+  pointer-events: none;
+}
+
+.axon-datagrid__progress::after {
+  position: absolute;
+  inset-block: 0;
+  width: 35%;
+  background: var(--axon-color-primary-solid);
+  content: '';
+  animation: axon-datagrid-progress 1.2s var(--axon-ease-standard) infinite;
+}
+
+@keyframes axon-datagrid-progress {
+  from {
+    inset-inline-start: -35%;
+  }
+  to {
+    inset-inline-start: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .axon-datagrid__progress::after {
+    width: 100%;
+    animation: none;
+    opacity: 0.6;
+  }
+}
+
+@media (forced-colors: active) {
+  .axon-datagrid__cell:focus-visible {
+    outline-color: Highlight;
+  }
+}
