@@ -1,1 +1,2 @@
 /* @axon/table styles: component stylesheets are @imported here. */
+@import './components/Table/Table.css';

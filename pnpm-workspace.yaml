@@ -12,6 +12,7 @@ catalog:
   '@storybook/blocks': ^8.6.18
   '@storybook/react': ^8.6.18
   '@storybook/react-vite': ^8.6.18
+  '@tanstack/react-table': ^9.2.6
   '@tanstack/react-virtual': ^3.13.0
   '@testing-library/jest-dom': ^6.6.3
   '@testing-library/react': ^16.3.0

@@ -1,7 +1,7 @@
 {
   "name": "@axon/table",
   "version": "0.0.0",
-  "description": "Axon UI data grid.",
+  "description": "Axon UI data table and data grid: sorting, filtering, pagination, selection, editing, virtualization.",
   "license": "MIT",
   "sideEffects": [
     "**/*.css"
@@ -42,7 +42,9 @@
   },
   "dependencies": {
     "@axon/core": "workspace:*",
-    "@axon/theme": "workspace:*"
+    "@axon/theme": "workspace:*",
+    "@tanstack/react-table": "catalog:",
+    "@tanstack/react-virtual": "catalog:"
   },
   "devDependencies": {
     "@types/react": "catalog:",
