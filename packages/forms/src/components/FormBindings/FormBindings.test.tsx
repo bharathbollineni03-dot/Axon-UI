@@ -17,6 +17,7 @@ import {
   FormOTPInput,
   FormRadioGroup,
   FormSelect,
+  FormSlider,
   FormSwitch,
   FormTextArea,
   FormTextField,
@@ -380,6 +381,58 @@ describe('FormFileUpload', () => {
   });
 });
 
+describe('FormSlider', () => {
+  it('starts at the form value, or at min', () => {
+    setup(<FormSlider name="temperature" label="Temperature" min={0} max={2} step={0.1} />, {
+      defaultValues: { temperature: 0.7 },
+    });
+    expect(screen.getByRole('slider')).toHaveAttribute('aria-valuenow', '0.7');
+  });
+
+  it('starts at min when the form has no value', () => {
+    setup(<FormSlider name="p" label="Top P" min={0.2} max={1} step={0.1} />);
+    expect(screen.getByRole('slider')).toHaveAttribute('aria-valuenow', '0.2');
+  });
+
+  it('holds a number that follows the keyboard', async () => {
+    const { user, submitted } = setup(
+      <FormSlider name="temperature" label="Temperature" min={0} max={2} step={0.1} />,
+      { defaultValues: { temperature: 0.7 } },
+    );
+    screen.getByRole('slider').focus();
+    await user.keyboard('{ArrowRight}{ArrowRight}');
+    expect(await submitted()).toEqual({ temperature: 0.9 });
+  });
+
+  it('shows helper text, and the error in its place', async () => {
+    const { save } = setup(
+      <FormSlider name="temperature" label="Temperature" helperText="Higher is more random" />,
+      { validate: () => ({ temperature: 'Too hot.' }) },
+    );
+    expect(screen.getByText('Higher is more random')).toBeInTheDocument();
+    await save();
+    expect(await screen.findByText('Too hot.')).toBeInTheDocument();
+    expect(screen.queryByText('Higher is more random')).not.toBeInTheDocument();
+  });
+
+  it('is disabled with the form', () => {
+    render(
+      <Form defaultValues={{}} onSubmit={() => {}} disabled>
+        <FormSlider name="t" label="T" />
+      </Form>,
+    );
+    expect(screen.getByRole('slider')).toHaveAttribute('aria-disabled', 'true');
+  });
+
+  it('calls onChange after the form has the value', async () => {
+    const onChange = vi.fn();
+    const { user } = setup(<FormSlider name="t" label="T" max={10} onChange={onChange} />);
+    screen.getByRole('slider').focus();
+    await user.keyboard('{ArrowRight}');
+    expect(onChange).toHaveBeenCalledWith(1);
+  });
+});
+
 describe('FormField', () => {
   it('wires any input: value, change, blur, error and the label props', async () => {
     const { user, submitted, save } = setup(
@@ -445,6 +498,7 @@ it('has no accessibility violations across the bindings, with errors showing', a
       <FormSwitch name="alerts" label="Alerts" />
       <FormDatePicker name="when" label="Date" />
       <FormTimePicker name="at" label="Time" />
+      <FormSlider name="level" label="Level" helperText="Pick one" />
       <FormFileUpload name="docs" label="Documents" />
     </>,
     {

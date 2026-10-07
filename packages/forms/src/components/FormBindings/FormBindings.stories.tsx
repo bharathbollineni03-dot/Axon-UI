@@ -16,6 +16,7 @@ import {
   FormOTPInput,
   FormRadioGroup,
   FormSelect,
+  FormSlider,
   FormSwitch,
   FormTextArea,
   FormTextField,
@@ -48,6 +49,7 @@ const schema = z.object({
   code: z.string().length(4, 'Enter all 4 digits.'),
   terms: z.boolean().refine((value) => value, 'Accept the terms to continue.'),
   alerts: z.boolean(),
+  volume: z.number().min(10, 'Keep the volume above 10.'),
   files: z.array(z.custom<File>()).min(1, 'Attach at least one file.'),
 });
 type Values = z.infer<typeof schema>;
@@ -71,6 +73,7 @@ function Everything() {
           code: '',
           terms: false,
           alerts: true,
+          volume: 40,
           files: [],
         }}
         onSubmit={onSubmit as never}
@@ -79,6 +82,7 @@ function Everything() {
           <FormGrid columns={2}>
             <FormTextField name="name" label="Name" fullWidth required />
             <FormNumberInput name="seats" label="Seats" min={0} fullWidth />
+            <FormSlider name="volume" label="Volume" showValue max={100} step={5} />
             <FormGridItem span="full">
               <FormTextArea name="bio" label="Bio" showCount maxLength={120} fullWidth />
             </FormGridItem>

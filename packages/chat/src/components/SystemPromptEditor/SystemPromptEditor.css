@@ -1,0 +1,26 @@
+.axon-system-prompt__tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--axon-space-2);
+}
+
+.axon-system-prompt__save {
+  display: grid;
+  gap: var(--axon-space-3);
+  padding: var(--axon-space-3);
+  border: 1px solid var(--axon-color-border);
+  border-radius: var(--axon-radius-md);
+  background: var(--axon-color-surface-muted);
+}
+
+.axon-system-prompt__save-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--axon-space-2);
+}
+
+.axon-system-prompt__error {
+  margin: 0;
+  color: var(--axon-color-danger-text);
+  font-size: var(--axon-font-size-sm);
+}

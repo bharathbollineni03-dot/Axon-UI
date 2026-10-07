@@ -199,3 +199,90 @@ export {
   type ExportSource,
   type ExportedFile,
 } from './components/ExportConversation/serializeConversation';
+
+// Settings forms (built on @axon/forms)
+export {
+  ChatSettingsForm,
+  chatSettingsSchema,
+  createChatSettingsSchema,
+  defaultChatSettings,
+  defaultChatSettingsLabels,
+  defaultChatSettingsMessages,
+  type ChatSettingsFormProps,
+  type ChatSettingsLabels,
+  type ChatSettingsMessages,
+  type ChatSettingsSchemaOptions,
+  type ChatSettingsValues,
+} from './components/ChatSettingsForm/ChatSettingsForm';
+export {
+  SystemPromptEditor,
+  createSystemPromptSchema,
+  defaultSystemPromptLabels,
+  defaultSystemPromptMessages,
+  systemPromptSchema,
+  type SystemPromptEditorProps,
+  type SystemPromptLabels,
+  type SystemPromptMessages,
+  type SystemPromptPreset,
+  type SystemPromptSchemaOptions,
+  type SystemPromptValues,
+} from './components/SystemPromptEditor/SystemPromptEditor';
+export {
+  PromptTemplateForm,
+  defaultPromptTemplateLabels,
+  defaultPromptTemplateMessages,
+  type PromptTemplateFormProps,
+  type PromptTemplateLabels,
+  type PromptTemplateMessages,
+  type PromptTemplateValues,
+  type TemplateVariableConfig,
+} from './components/PromptTemplateForm/PromptTemplateForm';
+export {
+  extractTemplateVariables,
+  humanizeVariableName,
+  renderPromptTemplate,
+  type RenderTemplateOptions,
+} from './components/PromptTemplateForm/templates';
+export {
+  APIKeyForm,
+  createApiKeySchema,
+  defaultApiKeyLabels,
+  defaultApiKeyMessages,
+  type APIKeyFormProps,
+  type ApiKeyLabels,
+  type ApiKeyMessages,
+  type ApiKeyProvider,
+  type ApiKeySchemaOptions,
+  type ApiKeyTestResult,
+  type ApiKeyValues,
+} from './components/APIKeyForm/APIKeyForm';
+export {
+  PersonaForm,
+  createPersonaSchema,
+  defaultPersonaLabels,
+  defaultPersonaMessages,
+  defaultPersonaTones,
+  parseStarterPrompts,
+  personaSchema,
+  type PersonaFormProps,
+  type PersonaLabels,
+  type PersonaMessages,
+  type PersonaSchemaOptions,
+  type PersonaValues,
+} from './components/PersonaForm/PersonaForm';
+export {
+  KnowledgeUploadForm,
+  createKnowledgeUploadSchema,
+  defaultKnowledgeUploadLabels,
+  defaultKnowledgeUploadMessages,
+  knowledgeUploadSchema,
+  type KnowledgeDocument,
+  type KnowledgeDocumentCounts,
+  type KnowledgeDocumentStatus,
+  type KnowledgeUploadFormProps,
+  type KnowledgeUploadLabelOverrides,
+  type KnowledgeUploadLabels,
+  type KnowledgeUploadMessages,
+  type KnowledgeUploadSchemaOptions,
+  type KnowledgeUploadValues,
+} from './components/KnowledgeUploadForm/KnowledgeUploadForm';

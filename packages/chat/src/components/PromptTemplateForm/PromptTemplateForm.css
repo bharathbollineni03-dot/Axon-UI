@@ -1,0 +1,36 @@
+.axon-prompt-template__note {
+  margin: 0;
+  color: var(--axon-color-text-secondary);
+  font-size: var(--axon-font-size-sm);
+}
+
+.axon-prompt-template__preview {
+  display: grid;
+  gap: var(--axon-space-2);
+  padding: var(--axon-space-3);
+  border: 1px solid var(--axon-color-border);
+  border-radius: var(--axon-radius-md);
+  background: var(--axon-color-surface-muted);
+}
+
+.axon-prompt-template__preview-title {
+  margin: 0;
+  color: var(--axon-color-text-secondary);
+  font-size: var(--axon-font-size-xs);
+  font-weight: var(--axon-font-weight-semibold);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.axon-prompt-template__preview-text,
+.axon-prompt-template__preview-empty {
+  margin: 0;
+  font-size: var(--axon-font-size-sm);
+  line-height: var(--axon-line-height-normal);
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.axon-prompt-template__preview-empty {
+  color: var(--axon-color-text-secondary);
+}

@@ -1,0 +1,13 @@
+.axon-api-key__test {
+  display: grid;
+  gap: var(--axon-space-2);
+  justify-items: start;
+}
+
+.axon-api-key__result {
+  width: 100%;
+}
+
+.axon-api-key__result:empty {
+  display: none;
+}

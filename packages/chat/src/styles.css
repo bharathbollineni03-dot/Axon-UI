@@ -16,3 +16,7 @@
 @import './components/ModelSelector/ModelSelector.css';
 @import './components/FeedbackDialog/FeedbackDialog.css';
 @import './components/ShareConversationDialog/ShareConversationDialog.css';
+@import './components/SystemPromptEditor/SystemPromptEditor.css';
+@import './components/PromptTemplateForm/PromptTemplateForm.css';
+@import './components/APIKeyForm/APIKeyForm.css';
+@import './components/KnowledgeUploadForm/KnowledgeUploadForm.css';

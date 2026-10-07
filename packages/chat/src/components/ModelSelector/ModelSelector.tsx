@@ -6,6 +6,7 @@ import {
   MenuRadioItem,
   useControllableState,
 } from '@axon/core';
+import { groupModels } from '../../internal/groupModels';
 import { ChevronDownIcon } from '../../internal/icons';
 
 export interface ChatModel {
@@ -41,16 +42,6 @@ export interface ModelSelectorProps {
   disabled?: boolean;
   className?: string;
   labels?: Partial<ModelSelectorLabels>;
-}
-
-function groupModels(models: readonly ChatModel[]) {
-  const groups: { name: string | undefined; models: ChatModel[] }[] = [];
-  for (const model of models) {
-    const existing = groups.find((group) => group.name === model.group);
-    if (existing) existing.models.push(model);
-    else groups.push({ name: model.group, models: [model] });
-  }
-  return groups;
 }
 
 /**

@@ -9,6 +9,7 @@ import {
   OTPInput,
   RadioGroup,
   Select,
+  Slider,
   Switch,
   TextArea,
   TextField,
@@ -22,6 +23,7 @@ import {
   type OTPInputProps,
   type RadioGroupProps,
   type SelectProps,
+  type SliderProps,
   type SwitchProps,
   type TextAreaProps,
   type TextFieldProps,
@@ -541,3 +543,69 @@ export const FormFileUpload = forwardRef<HTMLInputElement, FormFileUploadProps>(
     );
   },
 );
+
+// ---------------------------------------------------------------------------------------------
+// Sliders
+
+export type FormSliderProps = Omit<SliderProps, Managed | 'onChange' | 'onChangeEnd'> &
+  FormControlProps & {
+    onChange?: (value: number) => void;
+    /** Text under the slider. While the field has an error, the error message replaces it. */
+    helperText?: ReactNode;
+  };
+
+/**
+ * The form value is a `number`; it starts at `min` unless the form has a value. The core `Slider`
+ * has no message area, so this adds one under it that is announced when an error appears.
+ */
+export const FormSlider = forwardRef<HTMLDivElement, FormSliderProps>(function FormSlider(
+  {
+    name,
+    control,
+    defaultValue,
+    shouldUnregister,
+    onChange,
+    onBlur,
+    disabled,
+    helperText,
+    min = 0,
+    className,
+    ...rest
+  },
+  ref,
+) {
+  const {
+    field,
+    invalid,
+    errorMessage,
+    disabled: isDisabled,
+  } = useFormField(
+    { name, control, defaultValue: defaultValue ?? min, shouldUnregister },
+    disabled,
+  );
+  const mergedRef = useMergedRef<HTMLDivElement>(ref, field.ref);
+  const message = invalid && errorMessage ? errorMessage : helperText;
+  return (
+    <div className="axon-form-slider">
+      <Slider
+        {...rest}
+        ref={mergedRef}
+        className={className}
+        min={min}
+        name={field.name}
+        value={(field.value as number | undefined) ?? min}
+        onChange={then(field.onChange, onChange)}
+        onBlur={then(() => field.onBlur(), onBlur)}
+        disabled={isDisabled}
+      />
+      <div
+        aria-live="polite"
+        className={
+          invalid ? 'axon-form-slider__message axon-form-field-error' : 'axon-form-slider__message'
+        }
+      >
+        {message}
+      </div>
+    </div>
+  );
+});
