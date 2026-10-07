@@ -38,6 +38,23 @@ describe('locale', () => {
     expect(formatTime({ hour: 0, minute: 0 }, 'en-US', true)).toMatch(/^12:00\s?AM$/);
   });
 
+  // Regression: with `hour12: true`, engines with ICU before 76 (Node 18/20) used the h11 cycle for
+  // locales that are 24-hour by default and printed midnight as "0:30 AM".
+  it('counts a 12-hour clock from 12, not 0, in locales that default to 24 hours', () => {
+    for (const locale of ['de-DE', 'en-GB', 'fr-FR']) {
+      expect(formatTime({ hour: 0, minute: 30 }, locale, true)).toMatch(/^12:30\s?AM$/i);
+      expect(formatTime({ hour: 12, minute: 0 }, locale, true)).toMatch(/^12:00\s?PM$/i);
+      expect(formatTime({ hour: 13, minute: 5 }, locale, true)).toMatch(/^1:05\s?PM$/i);
+    }
+  });
+
+  // Some locales pad the hour ("00:30") and some do not ("0:30"); neither may become "24:30".
+  it('starts a 24-hour clock at 0, never 24', () => {
+    for (const locale of ['en-US', 'de-DE', 'en-GB']) {
+      expect(formatTime({ hour: 0, minute: 30 }, locale, false)).toMatch(/^0?0:30$/);
+    }
+  });
+
   it('returns the locale AM and PM strings', () => {
     expect(getDayPeriodLabels('en-US')).toEqual(['AM', 'PM']);
   });

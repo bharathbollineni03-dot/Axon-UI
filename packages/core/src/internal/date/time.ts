@@ -28,17 +28,23 @@ export function usesTwelveHourClock(locale: string): boolean {
   }
 }
 
+/**
+ * Asks for the cycle by name (`hourCycle`) rather than with `hour12`. For a locale that is
+ * 24-hour by default, such as de-DE, older engines (ICU before 76: Node 18 and 20, older
+ * browsers) read `hour12: true` as the `h11` cycle and print midnight as "0:30 AM" instead of
+ * "12:30 AM". Likewise `hour12: false` can yield `h24` and "24:30".
+ */
 export function formatTime(parts: TimeParts, locale: string, twelveHour: boolean): string {
   return new Intl.DateTimeFormat(locale, {
     hour: 'numeric',
     minute: '2-digit',
-    hour12: twelveHour,
+    hourCycle: twelveHour ? 'h12' : 'h23',
   }).format(new Date(2000, 0, 1, parts.hour, parts.minute));
 }
 
 /** The AM and PM strings a locale uses, e.g. `["AM", "PM"]` or `["上午", "下午"]`. */
 export function getDayPeriodLabels(locale: string): [string, string] {
-  const formatter = new Intl.DateTimeFormat(locale, { hour: 'numeric', hour12: true });
+  const formatter = new Intl.DateTimeFormat(locale, { hour: 'numeric', hourCycle: 'h12' });
   const period = (hour: number) =>
     formatter.formatToParts(new Date(2000, 0, 1, hour)).find((p) => p.type === 'dayPeriod')
       ?.value ?? (hour < 12 ? 'AM' : 'PM');
