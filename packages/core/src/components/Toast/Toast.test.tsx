@@ -54,6 +54,9 @@ describe('ToastProvider and useToast', () => {
   });
 
   it('renders nothing but its children on the server', () => {
+    // jsdom has a `window`, so Portal's layout effect is a real `useLayoutEffect` here and React
+    // warns about it on the server. A real server has no `window` and uses a plain effect.
+    vi.spyOn(console, 'error').mockImplementation(() => {});
     const html = renderToString(
       <ToastProvider>
         <p>App</p>

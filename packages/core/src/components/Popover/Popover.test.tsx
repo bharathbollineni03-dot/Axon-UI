@@ -189,6 +189,10 @@ describe('Popover', () => {
       render(<Controlled />);
       await user.click(screen.getByRole('button', { name: 'Open from outside' }));
       expect(await screen.findByRole('dialog')).toBeInTheDocument();
+      // Focus moves into the popover on the next animation frame, and Escape is handled by the
+      // popover and its trigger only. This button is neither, so wait for focus to arrive instead
+      // of pressing Escape at the button that opened it (on a fast runner that is still focused).
+      await waitFor(() => expect(popover().contains(document.activeElement)).toBe(true));
       await user.keyboard('{Escape}');
       expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
     });
