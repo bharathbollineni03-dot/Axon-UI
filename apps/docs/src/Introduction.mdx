@@ -4,15 +4,35 @@ import { Meta } from '@storybook/blocks';
 
 # Axon UI
 
-React component library with prebuilt forms, AI chat interfaces, charts and data tables.
+Axon UI is a React component library for the parts of an app that are tedious to build well: **forms**, **AI chat interfaces**, **charts** and **data tables**, on top of a set of accessible base controls and one design-token theme.
 
-| Package        | Purpose                                         |
-| -------------- | ----------------------------------------------- |
-| `@axon/theme`  | Design tokens, `ThemeProvider`, light/dark mode |
-| `@axon/core`   | Base controls                                   |
-| `@axon/forms`  | Form engine and prebuilt forms                  |
-| `@axon/chat`   | AI chat window and related components           |
-| `@axon/charts` | SVG charts                                      |
-| `@axon/table`  | Data grid                                       |
+It is plain React and plain CSS. There is no styling runtime, so components render the same on the server and in the browser, themes are CSS custom properties you can override from anywhere, and a page that uses a Button does not pay for a DataGrid.
 
-More documentation arrives with each package.
+## The packages
+
+| Package        | What is in it                                                                                                                    |
+| -------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| `@axon/theme`  | Design tokens as CSS variables, `ThemeProvider`, light / dark / system mode, `createTheme` for your own brand                    |
+| `@axon/core`   | Buttons and inputs, choice controls, pickers, layout, navigation, overlays, feedback: about 70 components                        |
+| `@axon/forms`  | A form engine on react-hook-form and zod: field bindings, wizards, schema-driven forms, and nine prebuilt auth and account forms |
+| `@axon/chat`   | Everything for an AI chat UI: streaming messages, markdown and code, composer, history sidebar, settings forms. No provider SDKs |
+| `@axon/charts` | Line, area, bar, combo, pie, donut, scatter, radar, gauge, sparkline, heatmap and KPI cards, drawn as accessible SVG             |
+| `@axon/table`  | A static `Table`, and a `DataGrid` with sorting, filtering, paging, selection, editing, grouping and virtualization              |
+
+Each package ships ESM, CommonJS, type declarations and one `styles.css`. Packages depend on each other only upward (`forms` on `core`, `chat` on `forms`), so you install what you use.
+
+## What Axon is careful about
+
+- **Accessibility first.** Components follow the WAI-ARIA authoring practices: real keyboard models, labelled controls, live-region announcements, and colour that is never the only signal. Every component is tested with axe, and every story is audited. See [Accessibility](?path=/docs/accessibility--docs).
+- **Theming without rebuilding.** Colour, spacing, radius, type and motion are tokens. Dark mode is a data attribute. See [Theming](?path=/docs/theming--docs).
+- **Server rendering.** Nothing reads `window` while rendering, and IDs are stable, so components hydrate cleanly in Next.js and Remix.
+- **Small by default.** Packages are tree-shakable and marked side-effect free apart from CSS; importing one component pulls in that component.
+- **Typed.** Props are documented in every component's docs tab, and generic components (`DataGrid<Row>`, `Form`) infer their types from what you pass.
+
+## Where to go next
+
+- **[Getting started](?path=/docs/getting-started--docs)**: install, import the styles, wrap your app.
+- **[Theming](?path=/docs/theming--docs)**: tokens, dark mode and brand themes.
+- **[Accessibility](?path=/docs/accessibility--docs)**: the patterns each component follows.
+- **Examples**: a complete admin dashboard, the auth pages, and an AI chat app, built only from Axon components.
+- The component pages in the sidebar each have a **Docs** tab with a props table and a live **Controls** panel.

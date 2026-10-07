@@ -1,0 +1,88 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Accessibility" />
+
+# Accessibility
+
+Axon UI is built so that the same interface works with a keyboard, a screen reader, a magnifier and reduced motion. Components follow the [WAI-ARIA Authoring Practices](https://www.w3.org/WAI/ARIA/apg/), and where a native element does the job (a button, a checkbox, a table) they use it.
+
+## What every component promises
+
+- **A name.** Controls are labelled by a visible label, `aria-label` or `aria-labelledby`. Where a name is required (an `IconButton`, a `Modal`, a `Progress`) the types require it.
+- **A keyboard model.** Everything you can do with a pointer you can do with the keyboard, using the keys the pattern defines. Focus is always visible (`--axon-color-focus-ring`), and focus moves to a sensible place when something opens or closes, then back.
+- **State in the accessibility tree**, not just in colour: `aria-expanded`, `aria-selected`, `aria-pressed`, `aria-sort`, `aria-invalid`, `aria-busy`, `aria-current`.
+- **Colour is never the only signal.** Errors have text and an icon, a chart series has a name in the legend and the data table, a stat card says "Up" or "Down" in words. The accent colours meet 4.5:1 contrast in light and dark mode.
+- **Reduced motion** is respected, and **right-to-left** layouts mirror.
+- **Announcements are deliberate.** Changes are said once, politely: a chat reply when it is complete rather than token by token, "3 selected", "Sorted by Name ascending", a form's first error.
+
+## Patterns by component
+
+### Core
+
+| Component                                     | Pattern and keys                                                                                                                                                                |
+| --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Button`, `IconButton`, `ButtonGroup`         | Native `button` (or `a` with `href`). `loading` sets `aria-busy` and ignores presses. An `IconButton` needs `aria-label`.                                                       |
+| `TextField`, `TextArea`, `NumberInput`        | Label, helper and error text linked with `aria-describedby`; `aria-invalid`. `NumberInput` is a spinbutton: ↑ ↓ step, Page Up and Down by ten, Home and End jump to the limits. |
+| `Checkbox`, `CheckboxGroup`, `Switch`         | Native checkboxes (`indeterminate` for mixed) in a labelled group; `Switch` is `role="switch"`.                                                                                 |
+| `Radio`, `RadioGroup`                         | Native radios sharing a name: one tab stop, arrows move and select.                                                                                                             |
+| `Slider`, `RangeSlider`                       | WAI-ARIA slider thumbs: ← → ↑ ↓ step, Page Up and Down by more, Home and End to the ends.                                                                                       |
+| `Rating`                                      | Stars you can set from the keyboard; read-only mode is an image with a text alternative ("4 out of 5").                                                                         |
+| `Select`, `MultiSelect`                       | Select-only combobox: Enter, Space and ↓ open, ↑ ↓ Home End move, typing jumps, Esc closes. Focus stays on the button; the option is `aria-activedescendant`.                   |
+| `Autocomplete`                                | Editable combobox with a listbox popup and `aria-activedescendant`; async options announce their loading state.                                                                 |
+| `DatePicker`, `DateRangePicker`, `TimePicker` | Type a date or pick it from an ARIA grid calendar (arrows by day and week, Page Up and Down by month, Shift for year). The dialog is non-modal; Esc returns focus to the field. |
+| `FileUpload`                                  | A real button and file input behind the drop zone; rejected files come with reasons; the list can be removed from the keyboard.                                                 |
+| `ColorPicker`, `OTPInput`                     | A swatch radio group with a hex field; one-time codes with auto-advance, Backspace navigation, paste and autofill, each box labelled "digit n of N".                            |
+| `Tabs`                                        | WAI-ARIA tabs: arrows (and Home and End) move, automatic or manual activation, a tab stop on the active tab, panels labelled by their tab.                                      |
+| `Accordion`                                   | Headers are buttons in headings; ↑ ↓ Home End move between headers; `aria-expanded` and `aria-controls`.                                                                        |
+| `Breadcrumbs`, `Pagination`, `Stepper`        | `nav` landmarks with a name; the current page or step is `aria-current`; the collapsed middle of breadcrumbs is a button.                                                       |
+| `AppBar`, `Sidebar`                           | `banner` and `navigation` landmarks; a collapsed sidebar keeps the names of its items for screen readers.                                                                       |
+| `DropdownMenu`, `Menu`                        | WAI-ARIA menu button: Enter, Space and ↓ open, ↑ ↓ Home End and typing move, → opens a submenu, Esc closes and returns focus to the trigger.                                    |
+| `Modal`, `Drawer`, `ConfirmDialog`            | Dialogs with a focus trap, focus returned to the opener, Esc to close, page scroll locked. `ConfirmDialog` is an `alertdialog` and starts on Cancel when destructive.           |
+| `Popover`, `Tooltip`                          | A non-modal dialog on a trigger; tooltips show on hover and focus, can be dismissed with Esc and are hoverable.                                                                 |
+| `Alert`, `ToastProvider`                      | `danger` is `role="alert"`; the others are `role="status"`. Toasts pause on hover and focus and are dismissible with Esc.                                                       |
+| `Spinner`, `Progress`, `Skeleton`             | A labelled status, a progressbar with a name and `aria-valuetext`, and decorative placeholders (mark the loading region with `aria-busy`).                                      |
+
+### Forms
+
+Fields are labelled, errors are linked with `aria-describedby` and set `aria-invalid`, and on a failed submit the first invalid field takes focus. The error banner is `role="alert"`; a confirmation that replaces a form is `role="status"`. `FormWizard` moves focus to each step's heading, which reads out "Step 2 of 4: Plan". Nothing auto-focuses unless you ask. The password strength meter says "Weak", "Fair", "Good" or "Strong" in words.
+
+### Chat
+
+| Piece                 | Pattern and keys                                                                                                                                                                     |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `MessageList`         | A focusable `role="log"` named "Conversation". It does not announce every streamed token: a separate polite live region reads a reply once, when it is complete, and reports errors. |
+| Message actions       | A toolbar with a roving tab stop: one tab stop, arrow keys inside.                                                                                                                   |
+| `PromptInput`         | Enter sends, Shift+Enter makes a new line (or Ctrl or Cmd+Enter sends, if you choose). Slash commands and @mentions open a listbox that follows `aria-activedescendant`.             |
+| `ConversationSidebar` | A `navigation` landmark with one tab stop: arrows, Home and End move; F2 renames; Delete deletes.                                                                                    |
+| Dialogs and forms     | Feedback, sharing and settings dialogs trap focus and return it on close; the settings forms follow the forms rules above.                                                           |
+
+### Charts
+
+A chart is a picture, so the work is giving everyone the same information another way.
+
+- Each chart is one `role="img"` named by a generated summary of what it shows (kind, series, range, where each series peaks and bottoms out).
+- A real `<table>` of the data sits beside the chart, visible only to assistive technology (on by default for 50 rows or fewer).
+- The chart takes focus: ← → step through points (↑ ↓ for series where it fits), Home and End jump, Enter chooses, Esc lets go; each move shows the tooltip and is announced in a polite live region.
+- Legends are buttons with `aria-pressed`. A `Gauge` is a `role="meter"`. A `StatCard` says "Up" or "Down" in words.
+
+### Table and DataGrid
+
+`Table` is plain semantic markup with a caption, scoped headers and `aria-sort`. `DataGrid` follows the WAI-ARIA grid pattern (a tree grid when rows can open):
+
+- **One tab stop**: the active cell. Arrows move between cells; Home and End to the row's ends; Ctrl+Home and Ctrl+End to the first and last cell; Page Up and Down by a screenful. Tab leaves the grid after the controls inside the active cell.
+- **Positions are right even when rows are virtualized**: `aria-rowcount`, `aria-rowindex`, `aria-colcount`, `aria-colindex`, and `-1` for an unknown total.
+- **Keyboard for every pointer action**: Enter or Space sorts a header (Shift adds a column), Space selects, Enter opens a row or edits a cell (Escape cancels), Alt+←/→ moves a column, ←/→ on a focused resize handle resizes it.
+- **Announced**: sort changes, rows left after filtering, the page, the selection count, a moved column, an export, rows loading.
+
+## How it is tested
+
+- **Every component's tests run axe** (jest-axe) in several states: closed and open, empty and filled, loading and failed.
+- **Every story is audited** in a real browser with axe-core (including colour contrast) in light and dark mode, and the build fails on a violation. See `pnpm test:a11y`.
+- **Storybook's Accessibility panel** (the addon in the toolbar below each story) shows axe's results for the story you are looking at.
+- Keyboard behaviour is tested with user-event: Tab order, arrow keys, typeahead, Escape and focus return.
+
+## Known limitations
+
+- The date and time pickers use `Intl` for names and formats, so month and day names follow the `locale` you pass; the names of their buttons ("Choose date", "Next month") are English by default and can be changed with props such as `openCalendarLabel`.
+- `DataGrid` arrow keys are not mirrored in right-to-left layouts yet.
+- Automated checks find about half of the accessibility problems that exist. Please test your own compositions with a keyboard and a screen reader, and [tell us](https://github.com/bharathbollineni03-dot/Axon-UI/issues) what you find.

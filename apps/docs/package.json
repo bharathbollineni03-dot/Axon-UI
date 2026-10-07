@@ -21,12 +21,14 @@
   },
   "devDependencies": {
     "@storybook/addon-a11y": "catalog:",
+    "@storybook/addon-docs": "catalog:",
     "@storybook/addon-essentials": "catalog:",
     "@storybook/blocks": "catalog:",
     "@storybook/react": "catalog:",
     "@storybook/react-vite": "catalog:",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
+    "remark-gfm": "catalog:",
     "storybook": "catalog:",
     "typescript": "catalog:",
     "vite": "catalog:"

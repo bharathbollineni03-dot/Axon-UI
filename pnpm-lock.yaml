@@ -18,6 +18,9 @@ catalogs:
     '@storybook/addon-a11y':
       specifier: ^8.6.18
       version: 8.6.18
+    '@storybook/addon-docs':
+      specifier: ^8.6.18
+      version: 8.6.18
     '@storybook/addon-essentials':
       specifier: ^8.6.18
       version: 8.6.18
@@ -264,6 +267,9 @@ importers:
       '@storybook/addon-a11y':
         specifier: 'catalog:'
         version: 8.6.18(storybook@8.6.18(prettier@3.9.9))
+      '@storybook/addon-docs':
+        specifier: 'catalog:'
+        version: 8.6.18(@types/react@18.3.31)(storybook@8.6.18(prettier@3.9.9))
       '@storybook/addon-essentials':
         specifier: 'catalog:'
         version: 8.6.18(@types/react@18.3.31)(storybook@8.6.18(prettier@3.9.9))
@@ -282,6 +288,9 @@ importers:
       '@types/react-dom':
         specifier: 'catalog:'
         version: 18.3.7(@types/react@18.3.31)
+      remark-gfm:
+        specifier: 'catalog:'
+        version: 4.0.1
       storybook:
         specifier: 'catalog:'
         version: 8.6.18(prettier@3.9.9)
