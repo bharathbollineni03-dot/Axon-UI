@@ -1,3 +1,5 @@
+import type { ValueFormat } from './format';
+
 /** How many colors the default palette has before it repeats. */
 export const PALETTE_SIZE = 8;
 
@@ -18,6 +20,8 @@ export interface SeriesInput {
   name?: string;
   /** Any CSS color. Defaults to the next color of the palette. */
   color?: string;
+  /** How this series' values read in the tooltip and data table, when it differs from the chart's `valueFormat`. */
+  format?: ValueFormat;
 }
 
 export interface ResolvedSeries {
@@ -26,6 +30,7 @@ export interface ResolvedSeries {
   color: string;
   /** Position in the list you gave, which fixes the default color even while others are hidden. */
   index: number;
+  format?: ValueFormat;
 }
 
 /** Fills in the name and color of each series. */

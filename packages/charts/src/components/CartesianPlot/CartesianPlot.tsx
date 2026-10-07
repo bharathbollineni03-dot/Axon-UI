@@ -340,7 +340,11 @@ export function CartesianPlot(props: CartesianPlotProps) {
               key,
               name: item.name,
               color: item.color,
-              value: formatValue(value, numberFormat, locale),
+              value: formatValue(
+                value,
+                item.format ? createNumberFormatter(item.format) : numberFormat,
+                locale,
+              ),
             },
           ]
         : [];

@@ -168,7 +168,11 @@ export function CartesianShell({
       rows={rows.map((datum) => [
         formatX(datum[xKey]),
         ...visibility.all.map((item) =>
-          formatValue(toNumber(datum[item.key]), numberFormat, locale),
+          formatValue(
+            toNumber(datum[item.key]),
+            item.format ? createNumberFormatter(item.format) : numberFormat,
+            locale,
+          ),
         ),
       ])}
     />

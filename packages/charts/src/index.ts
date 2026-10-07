@@ -1,5 +1,12 @@
 // Charts
 export { LineChart, type LineChartProps } from './components/LineChart/LineChart';
+export { AreaChart, type AreaChartProps } from './components/AreaChart/AreaChart';
+export { BarChart, type BarChartProps } from './components/BarChart/BarChart';
+export {
+  ComboChart,
+  type ComboChartProps,
+  type ComboSeries,
+} from './components/ComboChart/ComboChart';
 
 // Building blocks
 export {
