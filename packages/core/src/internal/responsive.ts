@@ -10,7 +10,7 @@ export type BreakpointName = (typeof breakpointNames)[number];
  */
 export type Responsive<T> = T | Partial<Record<'base' | BreakpointName, T>>;
 
-const keys = new Set<string>(['base', ...breakpointNames]);
+const keys = /* @__PURE__ */ new Set<string>(['base', ...breakpointNames]);
 
 function isResponsiveObject<T>(
   value: Responsive<T>,

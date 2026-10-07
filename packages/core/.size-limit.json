@@ -1,0 +1,20 @@
+[
+  {
+    "name": "@axon/core (everything)",
+    "path": "dist/index.mjs",
+    "ignore": ["react", "react-dom", "@axon/theme", "@floating-ui/react"],
+    "limit": "45 KB"
+  },
+  {
+    "name": "@axon/core: Button only",
+    "path": "dist/index.mjs",
+    "import": "{ Button }",
+    "ignore": ["react", "react-dom", "@axon/theme"],
+    "limit": "1.5 KB"
+  },
+  {
+    "name": "@axon/core styles.css",
+    "path": "dist/styles.css",
+    "limit": "15 KB"
+  }
+]

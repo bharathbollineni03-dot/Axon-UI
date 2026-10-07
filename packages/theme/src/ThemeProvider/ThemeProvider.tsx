@@ -31,7 +31,7 @@ export interface ThemeProviderProps extends HTMLAttributes<HTMLDivElement> {
   storageKey?: string;
 }
 
-const defaultVars = themeToVars(defaultTheme);
+const defaultVars = /* @__PURE__ */ themeToVars(defaultTheme);
 const DARK_QUERY = '(prefers-color-scheme: dark)';
 
 function subscribeToSystemMode(onChange: () => void) {

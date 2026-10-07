@@ -17,6 +17,11 @@
     "dev": {
       "cache": false,
       "persistent": true
+    },
+    "size": {
+      "dependsOn": ["build"],
+      "inputs": ["dist/**", ".size-limit.json"],
+      "outputs": []
     }
   }
 }

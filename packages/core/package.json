@@ -34,7 +34,8 @@
     "dev": "tsup --watch",
     "test": "vitest run --passWithNoTests",
     "test:watch": "vitest",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "size": "size-limit"
   },
   "peerDependencies": {
     "react": ">=18",

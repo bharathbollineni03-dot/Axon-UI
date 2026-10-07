@@ -89,5 +89,5 @@ const names: PaletteName[] = [
 const build = (mode: 'light' | 'dark') =>
   Object.fromEntries(names.map((name) => [name, buildAccent(name, mode)])) as AccentMode;
 
-export const lightAccent: AccentMode = build('light');
-export const darkAccent: AccentMode = build('dark');
+export const lightAccent: AccentMode = /* @__PURE__ */ build('light');
+export const darkAccent: AccentMode = /* @__PURE__ */ build('dark');

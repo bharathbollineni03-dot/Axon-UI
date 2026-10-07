@@ -35,7 +35,8 @@
     "test": "vitest run --passWithNoTests",
     "test:watch": "vitest",
     "typecheck": "tsc --noEmit",
-    "gen:css": "tsx scripts/generate-css.ts"
+    "gen:css": "tsx scripts/generate-css.ts",
+    "size": "size-limit"
   },
   "peerDependencies": {
     "react": ">=18",

@@ -88,7 +88,7 @@ export function formatDate(
 
 type DatePartName = 'day' | 'month' | 'year';
 
-const SAMPLE = new Date(2006, 10, 22); // 22 Nov 2006: day, month and year all differ
+const SAMPLE = /* @__PURE__ */ new Date(2006, 10, 22); // 22 Nov 2006: day, month and year all differ
 
 /** The order of day/month/year in a locale's numeric date format, e.g. `month, day, year`. */
 export function getDateOrder(locale: string): DatePartName[] {

@@ -5,7 +5,7 @@ import { isBlank } from './format';
  * Sorts by numeric value, reading numbers that arrive as text ("9", "10", "100") as numbers. What
  * is not a number goes after every number in ascending order.
  */
-export const sortFn_gridNumber = constructSortFn({
+export const sortFn_gridNumber = /* @__PURE__ */ constructSortFn({
   resolveDataValue: (value) =>
     typeof value === 'number' ? value : isBlank(value) ? Number.NaN : Number(value),
   sort: (a: number, b: number) => {

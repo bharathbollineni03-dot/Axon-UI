@@ -68,7 +68,9 @@ const aggregationFns: Record<string, AggregationFnDef<any, any, any, any>> = {
  * feature registry to be stable). Prerequisites come before the row models that need them, and the
  * row models run in the order filter, group, sort, expand, paginate.
  */
-export const gridFeatures = tableFeatures({
+// The annotations tell a bundler these calls can go when nothing uses the grid (a static `Table` alone
+// should not carry TanStack Table with it).
+export const gridFeatures = /* @__PURE__ */ tableFeatures({
   rowSortingFeature,
   columnFilteringFeature,
   globalFilteringFeature,
@@ -82,11 +84,11 @@ export const gridFeatures = tableFeatures({
   columnPinningFeature,
   columnSizingFeature,
   columnResizingFeature,
-  sortedRowModel: createSortedRowModel(),
-  filteredRowModel: createFilteredRowModel(),
-  groupedRowModel: createGroupedRowModel(),
-  expandedRowModel: createExpandedRowModel(),
-  paginatedRowModel: createPaginatedRowModel(),
+  sortedRowModel: /* @__PURE__ */ createSortedRowModel(),
+  filteredRowModel: /* @__PURE__ */ createFilteredRowModel(),
+  groupedRowModel: /* @__PURE__ */ createGroupedRowModel(),
+  expandedRowModel: /* @__PURE__ */ createExpandedRowModel(),
+  paginatedRowModel: /* @__PURE__ */ createPaginatedRowModel(),
   sortFns: {
     alphanumeric: sortFn_alphanumeric,
     basic: sortFn_basic,

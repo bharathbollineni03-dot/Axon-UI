@@ -1,0 +1,27 @@
+[
+  {
+    "name": "@axon/chat (everything)",
+    "path": "dist/index.mjs",
+    "ignore": [
+      "react",
+      "react-dom",
+      "@axon/core",
+      "@axon/forms",
+      "@axon/theme",
+      "react-markdown",
+      "remark-gfm",
+      "highlight.js",
+      "@tanstack/react-virtual",
+      "react-hook-form",
+      "zod",
+      "@hookform/resolvers",
+      "@floating-ui/react"
+    ],
+    "limit": "33 KB"
+  },
+  {
+    "name": "@axon/chat styles.css",
+    "path": "dist/styles.css",
+    "limit": "6 KB"
+  }
+]

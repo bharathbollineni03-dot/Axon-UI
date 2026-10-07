@@ -19,10 +19,13 @@
     "storybook": "pnpm --filter @axon/docs storybook",
     "changeset": "changeset",
     "version-packages": "changeset version",
-    "release": "pnpm build && changeset publish"
+    "release": "pnpm build && changeset publish",
+    "size": "turbo run size",
+    "verify:treeshake": "node tooling/verify-treeshake.mjs"
   },
   "devDependencies": {
     "@changesets/cli": "catalog:",
+    "@size-limit/preset-small-lib": "catalog:",
     "@storybook/react": "catalog:",
     "@testing-library/jest-dom": "catalog:",
     "@testing-library/react": "catalog:",
@@ -33,6 +36,7 @@
     "@typescript-eslint/eslint-plugin": "catalog:",
     "@typescript-eslint/parser": "catalog:",
     "axe-core": "catalog:",
+    "esbuild": "catalog:",
     "eslint": "catalog:",
     "eslint-config-prettier": "catalog:",
     "eslint-plugin-jsx-a11y": "catalog:",
@@ -43,6 +47,7 @@
     "prettier": "catalog:",
     "react": "catalog:",
     "react-dom": "catalog:",
+    "size-limit": "catalog:",
     "tsup": "catalog:",
     "turbo": "catalog:",
     "typescript": "catalog:",
