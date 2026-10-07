@@ -1,7 +1,7 @@
 import type { DragEvent, KeyboardEvent, ReactNode, Ref } from 'react';
 import { Checkbox } from '@axon/core';
 import type { Header, RowData } from '@tanstack/react-table';
-import { SELECT_COLUMN_ID } from '../../internal/buildColumns';
+import { EXPAND_COLUMN_ID, SELECT_COLUMN_ID } from '../../internal/buildColumns';
 import { cx } from '../../internal/cx';
 import { SortIcon } from '../../internal/icons';
 import type { GridFeatures } from '../../internal/features';
@@ -50,7 +50,12 @@ function GridHeaderCell<Row extends RowData>({
   const column = header.column;
   const definition = columnsById.get(column.id);
   const isSelect = column.id === SELECT_COLUMN_ID;
-  const title = isSelect ? labels.selectColumn : (definition?.header ?? column.id);
+  const isUtility = isSelect || column.id === EXPAND_COLUMN_ID;
+  const title = isSelect
+    ? labels.selectColumn
+    : isUtility
+      ? labels.expandColumn
+      : (definition?.header ?? column.id);
   const canSort = column.getCanSort();
   const sorted = column.getIsSorted();
   const toggleSort = column.getToggleSortingHandler();
@@ -143,7 +148,7 @@ function GridHeaderCell<Row extends RowData>({
         'axon-datagrid__cell',
         'axon-datagrid__header-cell',
         `axon-datagrid__cell--${align}`,
-        isSelect && 'axon-datagrid__cell--utility',
+        isUtility && 'axon-datagrid__cell--utility',
         canSort && 'axon-datagrid__header-cell--sortable',
         sorted && 'axon-datagrid__header-cell--sorted',
         dragging && 'axon-datagrid__header-cell--dragging',
@@ -170,6 +175,8 @@ function GridHeaderCell<Row extends RowData>({
           onClick={(event) => event.stopPropagation()}
           tabIndex={active ? 0 : -1}
         />
+      ) : isUtility ? (
+        <span className="axon-visually-hidden">{title}</span>
       ) : (
         <span className="axon-datagrid__header-title">
           {definition?.renderHeader ? definition.renderHeader(definition) : definition?.header}
@@ -186,7 +193,7 @@ function GridHeaderCell<Row extends RowData>({
           {column.getSortIndex() + 1}
         </span>
       ) : null}
-      {columnMenus && !isSelect ? <ColumnMenu column={column} active={active} /> : null}
+      {columnMenus && !isUtility ? <ColumnMenu column={column} active={active} /> : null}
       {canResize ? (
         // A separator that can take focus and has a value is the WAI-ARIA "window splitter" widget:
         // arrow keys move it, and `aria-valuenow` is the column's width.

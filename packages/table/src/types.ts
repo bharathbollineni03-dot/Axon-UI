@@ -68,7 +68,11 @@ export interface DataGridDateEditor {
 
 /** The input an editable cell shows. */
 export type DataGridEditorConfig =
-  DataGridTextEditor | DataGridNumberEditor | DataGridSelectEditor | DataGridDateEditor;
+  | DataGridCheckboxEditor
+  | DataGridTextEditor
+  | DataGridNumberEditor
+  | DataGridSelectEditor
+  | DataGridDateEditor;
 
 /**
  * A column of a `DataGrid`. Columns with an `accessor` read a value from each row; a column without
@@ -229,4 +233,15 @@ export interface DataGridExportContext<Row> {
   columns: DataGridColumn<Row>[];
   /** The CSV text. */
   csv: string;
+}
+
+/** Which rows are open: `true` for all of them, or the ids of the rows that are. */
+export type DataGridExpanded = true | Record<string, boolean>;
+
+/** The ids of the columns rows are grouped by, outermost first. */
+export type DataGridGrouping = string[];
+
+/** A checkbox in the cell itself: pressing it saves the change at once. */
+export interface DataGridCheckboxEditor {
+  type: 'checkbox';
 }

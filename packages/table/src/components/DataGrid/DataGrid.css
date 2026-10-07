@@ -451,6 +451,148 @@
   box-shadow: inset -3px 0 0 var(--axon-color-primary-solid);
 }
 
+/* Open rows, groups and detail panels */
+
+.axon-datagrid__toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--axon-space-1);
+  min-width: 0;
+  padding: 2px;
+  border: 0;
+  border-radius: var(--axon-radius-sm);
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.axon-datagrid__toggle:hover {
+  background: var(--axon-color-neutral-subtle-hover);
+}
+
+.axon-datagrid__toggle:focus-visible {
+  outline: 2px solid var(--axon-color-focus-ring);
+  outline-offset: 1px;
+}
+
+.axon-datagrid__chevron {
+  flex: none;
+  transition: transform var(--axon-duration-fast) var(--axon-ease-standard);
+}
+
+.axon-datagrid__toggle[aria-expanded='true'] .axon-datagrid__chevron {
+  transform: rotate(90deg);
+}
+
+[dir='rtl'] .axon-datagrid__chevron {
+  transform: scaleX(-1);
+}
+
+[dir='rtl'] .axon-datagrid__toggle[aria-expanded='true'] .axon-datagrid__chevron {
+  transform: scaleX(-1) rotate(90deg);
+}
+
+.axon-datagrid__row--group,
+.axon-datagrid--striped .axon-datagrid__row--group {
+  background: var(--axon-color-surface-muted);
+  font-weight: var(--axon-font-weight-medium);
+}
+
+.axon-datagrid__group-label {
+  font-weight: var(--axon-font-weight-semibold);
+}
+
+.axon-datagrid__row--body {
+  flex-direction: column;
+}
+
+.axon-datagrid__row-main {
+  display: flex;
+  flex: none;
+  width: 100%;
+  background: inherit;
+}
+
+.axon-datagrid__detail {
+  position: sticky;
+  inset-inline-start: 0;
+  box-sizing: border-box;
+  max-width: 100%;
+  padding: var(--axon-space-4);
+  border-top: 1px solid var(--axon-color-border);
+  background: var(--axon-color-surface-muted);
+  white-space: normal;
+}
+
+.axon-datagrid__grouping {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--axon-space-2);
+  padding: var(--axon-space-1-5) var(--axon-space-3);
+  border-bottom: 1px solid var(--axon-color-border);
+  background: var(--axon-color-surface-muted);
+}
+
+.axon-datagrid__grouping-label {
+  color: var(--axon-color-text-secondary);
+  font-size: var(--axon-font-size-sm);
+}
+
+/* Editing a cell */
+
+.axon-datagrid__cell--editable {
+  cursor: cell;
+}
+
+.axon-datagrid__cell--editing {
+  overflow: visible;
+  padding-inline: var(--axon-space-1);
+  z-index: 3;
+}
+
+.axon-datagrid__cell--editing:not(.axon-datagrid__cell--pinned) {
+  position: relative;
+}
+
+.axon-datagrid__editor {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+}
+
+.axon-datagrid__edit-error {
+  position: absolute;
+  inset-inline-start: 0;
+  top: calc(100% + 4px);
+  z-index: 4;
+  padding: var(--axon-space-1) var(--axon-space-2);
+  border-radius: var(--axon-radius-sm);
+  background: var(--axon-color-danger-solid);
+  box-shadow: var(--axon-shadow-md);
+  color: var(--axon-color-danger-on-solid);
+  font-size: var(--axon-font-size-xs);
+  white-space: nowrap;
+}
+
+.axon-datagrid__native-select {
+  box-sizing: border-box;
+  width: 100%;
+  height: 1.875rem;
+  padding: 0 var(--axon-space-2);
+  border: 1px solid var(--axon-color-border-strong);
+  border-radius: var(--axon-radius-md);
+  background: var(--axon-color-surface);
+  color: var(--axon-color-text-primary);
+  font: inherit;
+}
+
+.axon-datagrid__native-select:focus-visible {
+  outline: 2px solid var(--axon-color-focus-ring);
+  outline-offset: 0;
+}
+
 @media (forced-colors: active) {
   .axon-datagrid__cell:focus-visible {
     outline-color: Highlight;

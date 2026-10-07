@@ -53,6 +53,7 @@ export interface DataGridModel<Row extends RowData> {
   setRowSelection: (
     updater: RowSelectionState | ((previous: RowSelectionState) => RowSelectionState),
   ) => void;
+  setGrouping: (updater: GroupingState | ((previous: GroupingState) => GroupingState)) => void;
   density: DataGridDensity;
   rowHeight: number;
   /** Whether the server, not the grid, sorts, filters and pages. */
@@ -112,6 +113,14 @@ export function useDataGrid<Row extends RowData>(props: DataGridProps<Row>): Dat
     onRowSelectionChange,
     isRowSelectable,
     resizable = true,
+    renderDetailPanel,
+    getRowCanExpand,
+    expanded: expandedProp,
+    defaultExpanded,
+    onExpandedChange,
+    grouping: groupingProp,
+    defaultGrouping,
+    onGroupingChange,
   } = props;
   const server = mode === 'server';
 
@@ -129,7 +138,7 @@ export function useDataGrid<Row extends RowData>(props: DataGridProps<Row>): Dat
   const columnsRef = useRef(columns);
   columnsRef.current = columns;
   const signature = columnsSignature(columns);
-  const expandable = false;
+  const expandable = !!renderDetailPanel;
   const columnDefs = useMemo(
     () =>
       buildColumnDefs(columnsRef.current, {
@@ -217,10 +226,14 @@ export function useDataGrid<Row extends RowData>(props: DataGridProps<Row>): Dat
     onChange: onRowSelectionChange,
   });
   const [expanded, setExpanded] = useControllableState<ExpandedState>({
-    defaultValue: NO_EXPANDED,
+    value: expandedProp,
+    defaultValue: defaultExpanded ?? NO_EXPANDED,
+    onChange: onExpandedChange,
   });
   const [grouping, setGrouping] = useControllableState<GroupingState>({
-    defaultValue: NO_GROUPING,
+    value: groupingProp,
+    defaultValue: defaultGrouping ?? NO_GROUPING,
+    onChange: onGroupingChange,
   });
 
   const layoutSlice = useCallback(
@@ -297,6 +310,13 @@ export function useDataGrid<Row extends RowData>(props: DataGridProps<Row>): Dat
     // Edits replace `data`; that must not collapse open rows or send the user back to page one.
     autoResetPageIndex: false,
     autoResetExpanded: false,
+    // A group row opens to show its rows; any other row opens to show its detail panel, if there is one.
+    getRowCanExpand: (row) =>
+      row.subRows.length > 0 ||
+      (!!renderDetailPanel && !row.getIsGrouped() && (getRowCanExpand?.(row.original) ?? true)),
+    // Grouped columns stay where they are; a group row labels itself in the cell of its own column.
+    groupedColumnMode: false,
+    manualGrouping: server,
     // In server mode the server sorts, filters and pages. Without `paginated` there are no pages
     // to cut, which "manual" also means.
     manualSorting: server,
@@ -368,6 +388,7 @@ export function useDataGrid<Row extends RowData>(props: DataGridProps<Row>): Dat
     resetLayout: () => setLayout(initialLayout),
     selectable,
     setRowSelection,
+    setGrouping,
     density,
     rowHeight,
     server,

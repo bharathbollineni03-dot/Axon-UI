@@ -16,7 +16,8 @@ export function renderGrid(props: Partial<DataGridProps<Person>> = {}) {
   };
 }
 
-export const gridElement = () => screen.getByRole('grid');
+/** The grid, whether it is a plain grid or a tree grid (rows that open). */
+export const gridElement = () => screen.queryByRole('grid') ?? screen.getByRole('treegrid');
 export const headers = () => screen.getAllByRole('columnheader');
 export const header = (name: string) => screen.getByRole('columnheader', { name });
 export const bodyRows = () =>

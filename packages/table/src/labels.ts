@@ -72,6 +72,24 @@ export interface DataGridLabels {
   /** Announced after a column is moved. */
   columnMoved: (column: string, position: number, total: number) => string;
 
+  // Expanding and grouping
+  expandColumn: string;
+  expandRow: string;
+  collapseRow: string;
+  groupBy: (column: string) => string;
+  ungroup: (column: string) => string;
+  groupedBy: string;
+  /** The name of the button that removes a column from the grouping. */
+  stopGroupingBy: (column: string) => string;
+  /** What a group row says: the value and how many rows are in it. */
+  groupLabel: (value: string, count: number) => string;
+
+  // Editing
+  editingCell: (column: string) => string;
+  saveFailed: string;
+  /** Said once, as a hint, on a cell that can be edited. */
+  editHint: string;
+
   // Export
   exportCsv: string;
   exported: (count: number) => string;
@@ -141,6 +159,19 @@ export const defaultDataGridLabels: DataGridLabels = {
   moveRight: 'Move right',
   resizeColumn: (column) => `Resize ${column}`,
   columnMoved: (column, position, total) => `${column} moved to position ${position} of ${total}`,
+
+  expandColumn: 'Expand',
+  expandRow: 'Expand row',
+  collapseRow: 'Collapse row',
+  groupBy: (column) => `Group by ${column}`,
+  ungroup: (column) => `Stop grouping by ${column}`,
+  groupedBy: 'Grouped by',
+  stopGroupingBy: (column) => `Stop grouping by ${column}`,
+  groupLabel: (value, count) => `${value} (${count.toLocaleString()})`,
+
+  editingCell: (column) => `Edit ${column}`,
+  saveFailed: 'The change could not be saved.',
+  editHint: 'Press Enter to edit',
 
   exportCsv: 'Export CSV',
   exported: (count) => `Exported ${count.toLocaleString()} ${count === 1 ? 'row' : 'rows'}`,

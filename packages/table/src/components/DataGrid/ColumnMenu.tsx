@@ -43,11 +43,13 @@ export function ColumnMenu<Row extends RowData>({ column, active }: ColumnMenuPr
   const title = columnsById.get(column.id)?.header ?? column.id;
   const canSort = column.getCanSort();
   const canPin = column.getCanPin();
+  // A server has to do the grouping, and this grid has no way to ask it to.
+  const canGroup = column.getCanGroup() && !table.options.manualGrouping;
   const pinned = column.getIsPinned();
   const canHide = column.getCanHide() && table.getVisibleLeafColumns().length > 1;
   const canMove = canReorder(column.id);
 
-  if (!canSort && !canPin && !canHide && !canMove) return null;
+  if (!canSort && !canPin && !canGroup && !canHide && !canMove) return null;
 
   return (
     <DropdownMenu
@@ -75,7 +77,7 @@ export function ColumnMenu<Row extends RowData>({ column, active }: ColumnMenuPr
           </MenuItem>
         </>
       ) : null}
-      {canSort && (canPin || canMove || canHide) ? <MenuSeparator /> : null}
+      {canSort && (canPin || canGroup || canMove || canHide) ? <MenuSeparator /> : null}
       {canPin ? (
         <>
           <MenuItem disabled={pinned === 'start'} onClick={() => column.pin('start')}>
@@ -89,7 +91,13 @@ export function ColumnMenu<Row extends RowData>({ column, active }: ColumnMenuPr
           </MenuItem>
         </>
       ) : null}
-      {canPin && (canMove || canHide) ? <MenuSeparator /> : null}
+      {canPin && (canGroup || canMove || canHide) ? <MenuSeparator /> : null}
+      {canGroup ? (
+        <MenuItem onClick={() => column.toggleGrouping()}>
+          {column.getIsGrouped() ? labels.ungroup(title) : labels.groupBy(title)}
+        </MenuItem>
+      ) : null}
+      {canGroup && (canMove || canHide) ? <MenuSeparator /> : null}
       {canMove ? (
         <>
           <MenuItem onClick={() => moveColumn(column.id, -1)}>{labels.moveLeft}</MenuItem>

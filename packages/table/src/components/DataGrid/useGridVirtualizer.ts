@@ -15,6 +15,8 @@ interface Options {
   /** The height to assume before the scroll area has been measured, so server rendering has rows. */
   initialHeight: number;
   getKey: (index: number) => string;
+  /** Changes when rows may have changed height (panels opened or closed), so heights are measured again. */
+  remeasureKey?: unknown;
 }
 
 export interface GridVirtualizer {
@@ -38,6 +40,7 @@ export function useGridVirtualizer({
   overscan,
   initialHeight,
   getKey,
+  remeasureKey,
 }: Options): GridVirtualizer {
   const virtualizer = useVirtualizer<HTMLElement, Element>({
     count,
@@ -54,7 +57,7 @@ export function useGridVirtualizer({
   // Row heights are cached; a new density or header height means they must be measured again.
   useEffect(() => {
     virtualizer.measure();
-  }, [virtualizer, rowHeight, headerHeight]);
+  }, [virtualizer, rowHeight, headerHeight, remeasureKey]);
 
   return {
     virtualizer,

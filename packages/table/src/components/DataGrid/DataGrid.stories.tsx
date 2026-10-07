@@ -354,3 +354,101 @@ export const EverythingAtOnce: Story = {
     defaultShowFilters: true,
   },
 };
+
+export const DetailPanels: Story = {
+  name: 'Expandable rows with a detail panel',
+  args: {
+    data: employees.slice(0, 25),
+    height: undefined,
+    renderDetailPanel: (row) => (
+      <div style={{ display: 'grid', gap: 4 }}>
+        <strong>{row.name}</strong>
+        <span>{row.email}</span>
+        <span>
+          {row.role} in {row.department}, based in {row.location}. Reports to{' '}
+          {row.manager ?? 'nobody'}.
+        </span>
+      </div>
+    ),
+    getRowCanExpand: (row) => row.status !== 'Contractor',
+  },
+};
+
+const groupColumns: DataGridColumn<Employee>[] = columns.map((column) => {
+  switch (column.accessor) {
+    case 'department':
+    case 'status':
+    case 'location':
+      return { ...column, groupable: true };
+    case 'salary':
+      return { ...column, aggregate: 'mean' as const };
+    case 'startDate':
+      return { ...column, aggregate: 'extent' as const };
+    case 'role':
+      return { ...column, aggregate: 'uniqueCount' as const };
+    default:
+      return column;
+  }
+});
+
+export const GroupedWithAggregates: Story = {
+  name: 'Grouping with aggregates (group from a column’s ⋯ menu)',
+  args: {
+    data: makeEmployees(150),
+    columns: groupColumns,
+    defaultGrouping: ['department'],
+    toolbar: true,
+    height: 520,
+  },
+};
+
+function EditableGrid(args: Args) {
+  const [rows, setRows] = useState(() => makeEmployees(40));
+  const editable: DataGridColumn<Employee>[] = [
+    { ...columns[0]!, editable: true },
+    {
+      ...columns[1]!,
+      editable: { type: 'select', options: optionsOf(departments) },
+    },
+    {
+      accessor: 'role',
+      header: 'Role',
+      width: 190,
+      editable: true,
+      validate: (value: string) => (value.trim() === '' ? 'A role cannot be empty' : undefined),
+    },
+    {
+      ...columns[5]!,
+      editable: { type: 'number', min: 20_000, max: 400_000, step: 1000 },
+    },
+    {
+      ...columns[6]!,
+      width: 160,
+      editable: { type: 'date' },
+    },
+  ];
+  return (
+    <DataGrid
+      {...args}
+      columns={editable}
+      data={rows}
+      onRowUpdate={async ({ rowId, columnId, value }) => {
+        // A pretend server: it takes a moment, and refuses anything about Hedy.
+        await new Promise((resolve) => setTimeout(resolve, 500));
+        const row = rows.find((candidate) => candidate.id === rowId);
+        if (row?.name.startsWith('Hedy')) throw new Error('Hedy’s record is locked');
+        setRows((current) =>
+          current.map((candidate) =>
+            candidate.id === rowId ? { ...candidate, [columnId]: value } : candidate,
+          ),
+        );
+      }}
+    />
+  );
+}
+
+export const Editable: Story = {
+  name: 'Inline editing (double-click or press Enter on a cell)',
+  args: { height: 440, striped: true },
+  render: (args) => <EditableGrid {...args} />,
+};

@@ -2,6 +2,7 @@ import {
   forwardRef,
   useCallback,
   useEffect,
+  useId,
   useMemo,
   useRef,
   useState,
@@ -25,9 +26,15 @@ import { BulkBar } from './BulkBar';
 import { cellLayoutStyle, pinnedClasses } from './cellStyle';
 import { ColumnsMenu } from './ColumnsMenu';
 import { GridBody } from './GridBody';
-import { GridContext, type ColumnDragState, type GridContextValue } from './gridContext';
+import {
+  GridContext,
+  type ColumnDragState,
+  type EditingCell,
+  type GridContextValue,
+} from './gridContext';
 import { GridFilterRow } from './GridFilterRow';
 import { GridHeader } from './GridHeader';
+import { GroupingBar } from './GroupingBar';
 import { GridPagination } from './GridPagination';
 import { GridToolbar, type ResolvedToolbar } from './GridToolbar';
 import { pickDomProps } from './ownProps';
@@ -42,6 +49,8 @@ const DEFAULT_VIRTUAL_HEIGHT = 600;
 const DEFAULT_SKELETON_ROWS = 8;
 const MAX_SKELETON_ROWS = 10;
 const DEFAULT_PAGE_SIZES = [10, 25, 50, 100];
+/** About how tall an open detail panel is until it has been measured. */
+const DEFAULT_DETAIL_HEIGHT = 160;
 
 function errorMessage(error: ReactNode | Error): ReactNode {
   return error instanceof Error ? error.message : error;
@@ -94,6 +103,9 @@ function DataGridInner<Row extends RowData>(
     bulkActions,
     exportFileName = 'export.csv',
     onExport,
+    renderDetailPanel,
+    detailPanelHeight = DEFAULT_DETAIL_HEIGHT,
+    onRowUpdate,
   } = props;
   const {
     className,
@@ -121,6 +133,8 @@ function DataGridInner<Row extends RowData>(
     server,
     selectable,
     rowSelection,
+    expanded,
+    grouping,
   } = model;
 
   // Columns, in the order they are drawn ----------------------------------------------------------
@@ -173,7 +187,13 @@ function DataGridInner<Row extends RowData>(
     enabled: virtualized,
     scrollRef,
     rowHeight,
-    extraHeight: () => 0,
+    extraHeight: (index) => {
+      const row = rows[index];
+      return renderDetailPanel && row && !row.getIsGrouped() && row.getIsExpanded()
+        ? detailPanelHeight
+        : 0;
+    },
+    remeasureKey: expanded,
     headerHeight,
     overscan,
     initialHeight,
@@ -203,7 +223,20 @@ function DataGridInner<Row extends RowData>(
 
   // Moving columns -----------------------------------------------------------------------------------
 
+  const gridId = useId();
+  // A grid whose rows can open (a detail panel, a group) is a tree grid, the pattern for that.
+  const treegrid = !!renderDetailPanel || grouping.length > 0;
   const [drag, setDrag] = useState<ColumnDragState | null>(null);
+  const [editing, setEditing] = useState<EditingCell | null>(null);
+  const editingRef = useRef(editing);
+  editingRef.current = editing;
+  const startEdit = useCallback((cell: EditingCell) => setEditing(cell), []);
+  const stopEdit = useCallback(() => {
+    const cell = editingRef.current;
+    setEditing(null);
+    // The editor had focus; put it back on the cell so the keyboard carries on from there.
+    if (cell) navigation.focusCell(cell.gridRow, cell.col);
+  }, [navigation]);
   const [announcement, announce] = useAnnouncer();
 
   const canReorder = useCallback(
@@ -262,6 +295,9 @@ function DataGridInner<Row extends RowData>(
 
   const context = useMemo<GridContextValue>(
     () => ({
+      gridId,
+      treegrid,
+      viewportWidth: viewport.width,
       table: table as GridContextValue['table'],
       labels,
       locale,
@@ -269,6 +305,11 @@ function DataGridInner<Row extends RowData>(
       rowHeight,
       onCellFocus: navigation.onCellFocus,
       announce,
+      editing,
+      startEdit,
+      stopEdit,
+      updateRow: onRowUpdate as GridContextValue['updateRow'],
+      renderDetail: renderDetailPanel as GridContextValue['renderDetail'],
       drag,
       setDrag,
       canReorder,
@@ -276,6 +317,14 @@ function DataGridInner<Row extends RowData>(
       moveColumn,
     }),
     [
+      gridId,
+      treegrid,
+      viewport.width,
+      editing,
+      startEdit,
+      stopEdit,
+      onRowUpdate,
+      renderDetailPanel,
       table,
       labels,
       locale,
@@ -486,12 +535,22 @@ function DataGridInner<Row extends RowData>(
             {bulkActions?.({ ...selection, clear: clearSelection })}
           </BulkBar>
         ) : null}
+        {grouping.length > 0 ? (
+          <GroupingBar
+            labels={labels}
+            grouping={grouping}
+            columnsById={columnsById}
+            onRemove={(id) =>
+              model.setGrouping((current) => current.filter((other) => other !== id))
+            }
+          />
+        ) : null}
         <div ref={scrollRef} className="axon-datagrid__viewport" style={viewportStyle}>
           {/* Focus lives on the cells (one at a time); the grid only receives their key events. */}
           {/* eslint-disable-next-line jsx-a11y/interactive-supports-focus */}
           <div
             ref={gridRef}
-            role="grid"
+            role={treegrid ? 'treegrid' : 'grid'}
             aria-label={ariaLabel ?? (ariaLabelledBy ? undefined : labels.grid)}
             aria-labelledby={ariaLabelledBy}
             aria-rowcount={totalRows + headerRowCount}

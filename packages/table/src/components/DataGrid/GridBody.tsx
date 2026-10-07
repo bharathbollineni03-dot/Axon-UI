@@ -3,6 +3,7 @@ import type { RowData } from '@tanstack/react-table';
 import type { GridRow as GridRowType } from '../../internal/features';
 import type { DataGridRowProps } from '../../types';
 import type { GridColumn } from './cellStyle';
+import { useGridContext } from './gridContext';
 import { GridRow } from './GridRow';
 import type { GridVirtualizer } from './useGridVirtualizer';
 
@@ -34,6 +35,7 @@ export function GridBody<Row extends RowData>({
   onRowClick,
   rowProps,
 }: GridBodyProps<Row>) {
+  const { renderDetail } = useGridContext<Row>();
   const renderRow = (index: number) => {
     const row = rows[index];
     if (!row) return null;
@@ -66,17 +68,23 @@ export function GridBody<Row extends RowData>({
       className="axon-datagrid__body axon-datagrid__body--virtual"
       style={{ height: virtual.totalSize }}
     >
-      {virtual.items.map((item) => (
-        <div
-          key={item.key}
-          role="presentation"
-          className="axon-datagrid__item"
-          data-index={item.index}
-          style={{ transform: `translateY(${item.start - scrollMargin}px)` }}
-        >
-          {renderRow(item.index)}
-        </div>
-      ))}
+      {virtual.items.map((item) => {
+        const row = rows[item.index];
+        // A row with an open detail panel is as tall as its content, which only the browser knows.
+        const measured = !!renderDetail && !!row && !row.getIsGrouped() && row.getIsExpanded();
+        return (
+          <div
+            key={item.key}
+            ref={measured ? virtual.virtualizer.measureElement : undefined}
+            role="presentation"
+            className="axon-datagrid__item"
+            data-index={item.index}
+            style={{ transform: `translateY(${item.start - scrollMargin}px)` }}
+          >
+            {renderRow(item.index)}
+          </div>
+        );
+      })}
     </div>
   );
 }

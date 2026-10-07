@@ -8,9 +8,12 @@ import type {
   DataGridLayout,
   DataGridPaginationState,
   DataGridQueryState,
+  DataGridExpanded,
   DataGridExportContext,
+  DataGridGrouping,
   DataGridRowProps,
   DataGridRowSelection,
+  DataGridRowUpdate,
   DataGridSelectionContext,
   DataGridSortingState,
   DataGridToolbarOptions,
@@ -145,6 +148,35 @@ export interface DataGridProps<Row extends RowData> extends Omit<
   isRowSelectable?: (row: Row) => boolean;
   /** Content for the bar that appears while rows are selected: buttons that act on them. */
   bulkActions?: (selection: DataGridSelectionContext<Row>) => ReactNode;
+
+  // Expanding and grouping
+
+  /**
+   * Draws a panel under a row when it is opened, and adds a column with the button that opens it.
+   * Keep its height to what its content needs; a virtualized grid measures it.
+   */
+  renderDetailPanel?: (row: Row) => ReactNode;
+  /** Rows for which this returns false have no detail panel. Default: every row has one. */
+  getRowCanExpand?: (row: Row) => boolean;
+  /** Which rows are open (detail panels, and the groups when grouped), when you hold it yourself. */
+  expanded?: DataGridExpanded;
+  defaultExpanded?: DataGridExpanded;
+  onExpandedChange?: (expanded: DataGridExpanded) => void;
+  /** About how tall a detail panel is, in pixels, so that a virtualized grid can guess before it measures. Default 160. */
+  detailPanelHeight?: number;
+  /** The ids of the columns to group rows by, when you hold them yourself. */
+  grouping?: DataGridGrouping;
+  defaultGrouping?: DataGridGrouping;
+  onGroupingChange?: (grouping: DataGridGrouping) => void;
+
+  // Editing
+
+  /**
+   * Called when the user finishes editing a cell. Return a promise to keep the editor open and busy
+   * while the change is saved; if it rejects, its message is shown and the editor stays open. Update
+   * your `data` here: the grid shows what `data` says.
+   */
+  onRowUpdate?: (change: DataGridRowUpdate<Row>) => void | Promise<void>;
 
   // Export
 
