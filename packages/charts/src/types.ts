@@ -21,6 +21,10 @@ export interface ChartLabels {
   keyboardHint: string;
   /** The caption of the hidden data table: `title` is the chart's title when it has one. */
   dataTable: (title: string | undefined) => string;
+  /** Column headings of the data table of a pie, donut or other chart of named values. */
+  name: string;
+  value: string;
+  share: string;
 }
 
 export const defaultChartLabels: ChartLabels = {
@@ -29,6 +33,9 @@ export const defaultChartLabels: ChartLabels = {
   legend: 'Legend',
   keyboardHint: 'Use the arrow keys to move between data points. Press Escape to leave them.',
   dataTable: (title) => (title ? `Data for ${title}` : 'Chart data'),
+  name: 'Name',
+  value: 'Value',
+  share: 'Share',
 };
 
 export interface AxisConfig {

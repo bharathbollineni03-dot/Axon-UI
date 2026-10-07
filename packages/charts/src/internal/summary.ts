@@ -98,3 +98,53 @@ export function valueRange(
   });
   return low && high ? { low, high } : null;
 }
+
+export interface SliceSummary {
+  name: string;
+  value: number;
+  /** 0 to 1. */
+  share: number;
+}
+
+/** The most slices spelled out in a summary: the rest are counted. */
+const DETAILED_SLICES = 4;
+
+/**
+ * A sentence or two for a pie or donut chart's accessible name: how many slices, the total, and
+ * the biggest few with their share and value.
+ */
+export function describePie({
+  kind,
+  title,
+  description,
+  slices,
+  total,
+  formatValue,
+  formatShare,
+}: {
+  kind: string;
+  title?: string;
+  description?: string;
+  slices: readonly SliceSummary[];
+  total: number;
+  formatValue: (value: number) => string;
+  formatShare: (share: number) => string;
+}): string {
+  const parts: string[] = [];
+  if (title) parts.push(sentence(title));
+  if (slices.length === 0 || total <= 0) {
+    parts.push(`${kind} with no data.`);
+  } else {
+    parts.push(
+      `${kind} with ${plural(slices.length, 'slice', 'slices')} totalling ${formatValue(total)}.`,
+    );
+    const biggest = [...slices].sort((a, b) => b.value - a.value);
+    const named = biggest
+      .slice(0, DETAILED_SLICES)
+      .map((slice) => `${slice.name} ${formatShare(slice.share)} (${formatValue(slice.value)})`);
+    const rest = biggest.length - named.length;
+    parts.push(`${named.join('; ')}${rest > 0 ? `; and ${rest} more` : ''}.`);
+  }
+  if (description) parts.push(sentence(description));
+  return parts.join(' ');
+}

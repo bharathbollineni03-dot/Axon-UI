@@ -236,3 +236,62 @@
   cursor: crosshair;
   touch-action: pan-y;
 }
+
+.axon-chart__slice-label {
+  font-family: var(--axon-font-sans);
+  font-size: 12px;
+  font-weight: var(--axon-font-weight-semibold);
+}
+
+/* Text on a colored slice has no one background to be checked against, so it carries its own outline. */
+.axon-chart__slice-label--inside {
+  fill: #fff;
+  stroke: rgb(0 0 0 / 0.45);
+  stroke-width: 3px;
+  paint-order: stroke;
+}
+
+/* Sparkline: a small image that sits in a line of text. */
+.axon-sparkline {
+  display: inline-block;
+  overflow: visible;
+  vertical-align: middle;
+}
+
+.axon-sparkline__line {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.axon-sparkline__area {
+  fill-opacity: 0.16;
+  stroke: none;
+}
+
+.axon-sparkline__bar {
+  rx: 1px;
+}
+
+.axon-sparkline__dot {
+  stroke: var(--axon-color-surface);
+  stroke-width: 1px;
+}
+
+/* Gauge */
+.axon-gauge__track {
+  fill: var(--axon-color-surface-muted);
+}
+
+.axon-gauge__band {
+  fill-opacity: 0.28;
+}
+
+.axon-chart--animate .axon-gauge__value {
+  animation: axon-chart-fade 600ms var(--axon-ease-out, ease-out) both;
+}
+
+.axon-gauge__marker {
+  stroke: var(--axon-color-surface);
+  stroke-width: 1.5px;
+}

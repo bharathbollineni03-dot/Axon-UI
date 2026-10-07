@@ -2,6 +2,15 @@
 export { LineChart, type LineChartProps } from './components/LineChart/LineChart';
 export { AreaChart, type AreaChartProps } from './components/AreaChart/AreaChart';
 export { BarChart, type BarChartProps } from './components/BarChart/BarChart';
+export { DonutChart, PieChart, type PieChartProps } from './components/PieChart/PieChart';
+export { Gauge, bandFor, type GaugeProps, type GaugeThreshold } from './components/Gauge/Gauge';
+export { Sparkline, type SparklineProps } from './components/Sparkline/Sparkline';
+export {
+  StatCard,
+  defaultStatCardLabels,
+  type StatCardLabels,
+  type StatCardProps,
+} from './components/StatCard/StatCard';
 export {
   ComboChart,
   type ComboChartProps,
