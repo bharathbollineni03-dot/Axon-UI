@@ -1,0 +1,46 @@
+.axon-link {
+  display: inline;
+  border-radius: var(--axon-radius-sm);
+  color: var(--axon-accent-text);
+  font-family: inherit;
+  cursor: pointer;
+  text-underline-offset: 0.2em;
+}
+
+.axon-link--underline-always {
+  text-decoration: underline;
+}
+
+.axon-link--underline-hover {
+  text-decoration: none;
+}
+
+.axon-link--underline-hover:hover,
+.axon-link--underline-hover:focus-visible {
+  text-decoration: underline;
+}
+
+.axon-link--underline-none {
+  text-decoration: none;
+}
+
+.axon-link:hover:not(.axon-link--disabled) {
+  color: var(--axon-accent-text-hover);
+}
+
+.axon-link:focus-visible {
+  outline: 2px solid var(--axon-color-focus-ring);
+  outline-offset: 2px;
+}
+
+.axon-link--disabled {
+  color: var(--axon-color-text-disabled);
+  cursor: not-allowed;
+}
+
+.axon-link__external-icon {
+  display: inline-flex;
+  margin-inline-start: 0.2em;
+  font-size: 0.85em;
+  vertical-align: -0.1em;
+}

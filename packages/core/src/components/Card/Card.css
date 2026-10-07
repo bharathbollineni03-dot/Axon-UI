@@ -1,0 +1,133 @@
+.axon-card {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  overflow: hidden;
+  border: 1px solid transparent;
+  border-radius: var(--axon-radius-lg);
+  background: var(--axon-color-surface);
+  color: var(--axon-color-text-primary);
+  font-family: var(--axon-font-sans);
+  text-decoration: none;
+}
+
+.axon-card--outlined {
+  border-color: var(--axon-color-border);
+}
+
+.axon-card--filled {
+  background: var(--axon-color-surface-muted);
+}
+
+.axon-card--elevation-1 {
+  box-shadow: var(--axon-shadow-sm);
+}
+
+.axon-card--elevation-2 {
+  box-shadow: var(--axon-shadow-md);
+}
+
+.axon-card--elevation-3 {
+  box-shadow: var(--axon-shadow-lg);
+}
+
+/* Raised cards need an edge in dark mode, where shadows barely show. */
+.axon-card--elevated {
+  border-color: var(--axon-color-border);
+}
+
+.axon-card--clickable {
+  cursor: pointer;
+  transition:
+    box-shadow var(--axon-duration-fast) var(--axon-ease-standard),
+    border-color var(--axon-duration-fast) var(--axon-ease-standard);
+}
+
+.axon-card--clickable:hover:not(.axon-card--disabled) {
+  border-color: var(--axon-color-border-strong);
+  box-shadow: var(--axon-shadow-md);
+}
+
+.axon-card--clickable:focus-visible {
+  outline: 2px solid var(--axon-color-focus-ring);
+  outline-offset: 2px;
+}
+
+.axon-card--disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.axon-card__header {
+  display: flex;
+  align-items: center;
+  gap: var(--axon-space-3);
+  padding: var(--axon-space-4) var(--axon-space-4) 0;
+}
+
+.axon-card__avatar {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.axon-card__heading {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.axon-card__title {
+  margin: 0;
+  font-size: var(--axon-font-size-lg);
+  font-weight: var(--axon-font-weight-semibold);
+  line-height: var(--axon-line-height-tight);
+}
+
+.axon-card__subtitle {
+  color: var(--axon-color-text-secondary);
+  font-size: var(--axon-font-size-sm);
+}
+
+.axon-card__action {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-self: flex-start;
+}
+
+.axon-card__media {
+  overflow: hidden;
+  background: var(--axon-color-surface-muted);
+}
+
+.axon-card__media > img,
+.axon-card__media > video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.axon-card__content {
+  flex: 1;
+  padding: var(--axon-space-4);
+}
+
+.axon-card__footer {
+  display: flex;
+  align-items: center;
+  gap: var(--axon-space-2);
+  padding: 0 var(--axon-space-4) var(--axon-space-4);
+}
+
+.axon-card__footer--start {
+  justify-content: flex-start;
+}
+
+.axon-card__footer--end {
+  justify-content: flex-end;
+}
+
+.axon-card__footer--between {
+  justify-content: space-between;
+}

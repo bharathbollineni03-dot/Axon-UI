@@ -1,0 +1,74 @@
+.axon-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  padding: var(--axon-space-8) var(--axon-space-4);
+  color: var(--axon-color-text-primary);
+  font-family: var(--axon-font-sans);
+  font-size: var(--axon-font-size-md);
+  line-height: var(--axon-line-height-normal);
+  text-align: center;
+}
+
+.axon-empty-state--sm {
+  padding: var(--axon-space-4);
+  font-size: var(--axon-font-size-sm);
+}
+
+.axon-empty-state--lg {
+  padding: var(--axon-space-12) var(--axon-space-6);
+}
+
+.axon-empty-state__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--axon-space-3);
+  color: var(--axon-color-text-secondary);
+  font-size: 3rem;
+}
+
+.axon-empty-state--sm .axon-empty-state__icon {
+  font-size: 2rem;
+}
+
+.axon-empty-state--lg .axon-empty-state__icon {
+  margin-bottom: var(--axon-space-4);
+  font-size: 4rem;
+}
+
+.axon-empty-state__title {
+  margin: 0;
+  font-size: var(--axon-font-size-lg);
+  font-weight: var(--axon-font-weight-semibold);
+  line-height: var(--axon-line-height-tight);
+}
+
+.axon-empty-state--sm .axon-empty-state__title {
+  font-size: var(--axon-font-size-md);
+}
+
+.axon-empty-state--lg .axon-empty-state__title {
+  font-size: var(--axon-font-size-2xl);
+}
+
+.axon-empty-state__description {
+  max-width: 28rem;
+  margin: var(--axon-space-2) 0 0;
+  color: var(--axon-color-text-secondary);
+}
+
+.axon-empty-state__content {
+  margin-top: var(--axon-space-3);
+}
+
+.axon-empty-state__action {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--axon-space-2);
+  margin-top: var(--axon-space-4);
+}

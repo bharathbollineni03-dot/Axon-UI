@@ -1,0 +1,46 @@
+.axon-divider {
+  --axon-divider-style: solid;
+
+  box-sizing: border-box;
+  margin: 0;
+  border: 0;
+  color: var(--axon-color-text-secondary);
+}
+
+.axon-divider--dashed {
+  --axon-divider-style: dashed;
+}
+
+.axon-divider--horizontal {
+  width: 100%;
+  border-top: 1px var(--axon-divider-style) var(--axon-color-border);
+}
+
+.axon-divider--vertical {
+  display: inline-block;
+  align-self: stretch;
+  width: 0;
+  min-height: 1em;
+  border-left: 1px var(--axon-divider-style) var(--axon-color-border);
+}
+
+.axon-divider--flex-item {
+  height: auto;
+}
+
+/* With a label: two lines either side of the text. */
+.axon-divider--labelled.axon-divider--horizontal {
+  display: flex;
+  align-items: center;
+  gap: var(--axon-space-3);
+  border-top: 0;
+  font-family: var(--axon-font-sans);
+  font-size: var(--axon-font-size-sm);
+}
+
+.axon-divider--labelled.axon-divider--horizontal::before,
+.axon-divider--labelled.axon-divider--horizontal::after {
+  flex: 1;
+  border-top: 1px var(--axon-divider-style) var(--axon-color-border);
+  content: '';
+}

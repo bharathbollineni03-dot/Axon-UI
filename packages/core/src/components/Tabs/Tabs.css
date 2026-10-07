@@ -1,0 +1,147 @@
+.axon-tabs {
+  color: var(--axon-color-text-primary);
+  font-family: var(--axon-font-sans);
+}
+
+.axon-tabs--vertical {
+  display: flex;
+  gap: var(--axon-space-4);
+}
+
+.axon-tabs__list {
+  display: flex;
+  gap: var(--axon-space-1);
+}
+
+.axon-tabs--vertical > .axon-tabs__list {
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+.axon-tabs--vertical > .axon-tabs__panel {
+  flex: 1;
+  min-width: 0;
+}
+
+.axon-tabs__tab {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--axon-space-2);
+  box-sizing: border-box;
+  min-height: var(--axon-control-height-md);
+  margin: 0;
+  padding: 0 var(--axon-space-4);
+  border: 0;
+  border-radius: var(--axon-radius-md);
+  background: transparent;
+  color: var(--axon-color-text-secondary);
+  font: inherit;
+  font-size: var(--axon-font-size-md);
+  font-weight: var(--axon-font-weight-medium);
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    color var(--axon-duration-fast) var(--axon-ease-standard),
+    background-color var(--axon-duration-fast) var(--axon-ease-standard);
+}
+
+.axon-tabs--sm .axon-tabs__tab {
+  min-height: var(--axon-control-height-sm);
+  padding: 0 var(--axon-space-3);
+  font-size: var(--axon-font-size-sm);
+}
+
+.axon-tabs--lg .axon-tabs__tab {
+  min-height: var(--axon-control-height-lg);
+  font-size: var(--axon-font-size-lg);
+}
+
+.axon-tabs__tab:hover:not(:disabled):not(.axon-tabs__tab--selected) {
+  background: var(--axon-color-surface-muted);
+  color: var(--axon-color-text-primary);
+}
+
+.axon-tabs__tab:focus-visible {
+  outline: 2px solid var(--axon-color-focus-ring);
+  outline-offset: -2px;
+}
+
+.axon-tabs__tab:disabled {
+  color: var(--axon-color-text-disabled);
+  cursor: not-allowed;
+}
+
+.axon-tabs__tab-icon {
+  display: inline-flex;
+  font-size: 1.1em;
+}
+
+.axon-tabs__tab--selected {
+  color: var(--axon-accent-text);
+}
+
+/* Line: a rule under the list and an indicator under the selected tab. */
+.axon-tabs--line.axon-tabs--horizontal > .axon-tabs__list {
+  border-bottom: 1px solid var(--axon-color-border);
+}
+
+.axon-tabs--line.axon-tabs--vertical > .axon-tabs__list {
+  border-inline-end: 1px solid var(--axon-color-border);
+}
+
+.axon-tabs--line .axon-tabs__tab {
+  border-radius: 0;
+}
+
+.axon-tabs--line.axon-tabs--horizontal .axon-tabs__tab {
+  margin-bottom: -1px;
+  border-bottom: 2px solid transparent;
+}
+
+.axon-tabs--line.axon-tabs--horizontal .axon-tabs__tab--selected {
+  border-bottom-color: var(--axon-accent-text);
+}
+
+.axon-tabs--line.axon-tabs--vertical .axon-tabs__tab {
+  justify-content: flex-start;
+  margin-inline-end: -1px;
+  border-inline-end: 2px solid transparent;
+}
+
+.axon-tabs--line.axon-tabs--vertical .axon-tabs__tab--selected {
+  border-inline-end-color: var(--axon-accent-text);
+}
+
+/* Solid and pills: the selected tab is filled. */
+.axon-tabs--solid > .axon-tabs__list {
+  padding: var(--axon-space-1);
+  border-radius: var(--axon-radius-lg);
+  background: var(--axon-color-surface-muted);
+}
+
+.axon-tabs--solid .axon-tabs__tab--selected {
+  background: var(--axon-color-surface);
+  box-shadow: var(--axon-shadow-sm);
+}
+
+.axon-tabs--pills .axon-tabs__tab {
+  border-radius: var(--axon-radius-full);
+}
+
+.axon-tabs--pills .axon-tabs__tab--selected {
+  background: var(--axon-accent-solid);
+  color: var(--axon-accent-on-solid);
+}
+
+.axon-tabs__panel {
+  padding-top: var(--axon-space-4);
+}
+
+.axon-tabs--vertical > .axon-tabs__panel {
+  padding-top: 0;
+}
+
+.axon-tabs__panel:focus-visible {
+  outline: 2px solid var(--axon-color-focus-ring);
+  outline-offset: 2px;
+}

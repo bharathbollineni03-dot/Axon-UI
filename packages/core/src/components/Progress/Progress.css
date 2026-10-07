@@ -1,0 +1,181 @@
+.axon-progress {
+  --axon-progress-thickness: 0.5rem;
+  --axon-progress-circle-size: 3rem;
+
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  font-family: var(--axon-font-sans);
+  font-size: var(--axon-font-size-sm);
+  line-height: var(--axon-line-height-normal);
+}
+
+.axon-progress--sm {
+  --axon-progress-thickness: 0.25rem;
+  --axon-progress-circle-size: 2rem;
+}
+
+.axon-progress--lg {
+  --axon-progress-thickness: 0.75rem;
+  --axon-progress-circle-size: 4.5rem;
+}
+
+.axon-progress__label {
+  color: var(--axon-color-text-primary);
+  font-weight: var(--axon-font-weight-medium);
+}
+
+.axon-progress__value {
+  color: var(--axon-color-text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Linear */
+.axon-progress__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--axon-space-3);
+  margin-bottom: var(--axon-space-1);
+}
+
+.axon-progress__header > .axon-progress__value {
+  margin-inline-start: auto;
+}
+
+.axon-progress__track {
+  position: relative;
+  height: var(--axon-progress-thickness);
+  overflow: hidden;
+  border-radius: var(--axon-radius-full);
+  background: var(--axon-color-surface-muted);
+  box-shadow: inset 0 0 0 1px var(--axon-color-border);
+}
+
+.axon-progress--linear .axon-progress__bar {
+  height: 100%;
+  border-radius: inherit;
+  background: var(--axon-accent-solid);
+  transition: width var(--axon-duration-normal) var(--axon-ease-standard);
+}
+
+.axon-progress--linear.axon-progress--indeterminate .axon-progress__bar {
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: 0;
+  width: 40%;
+  transition: none;
+  animation: axon-progress-slide 1.4s var(--axon-ease-standard) infinite;
+}
+
+@keyframes axon-progress-slide {
+  from {
+    transform: translateX(-100%);
+  }
+
+  to {
+    transform: translateX(250%);
+  }
+}
+
+/* Circular */
+.axon-progress--circular {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--axon-space-1-5);
+  width: auto;
+}
+
+.axon-progress__circle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--axon-progress-circle-size);
+  height: var(--axon-progress-circle-size);
+}
+
+.axon-progress__svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  /* Start the ring at 12 o'clock. */
+  transform: rotate(-90deg);
+}
+
+.axon-progress__track,
+.axon-progress--circular .axon-progress__bar {
+  fill: none;
+  stroke-width: 4;
+}
+
+.axon-progress__track {
+  stroke: var(--axon-color-border);
+}
+
+.axon-progress--circular .axon-progress__bar {
+  stroke: var(--axon-accent-solid);
+  stroke-dasharray: 100;
+  stroke-linecap: round;
+  transition: stroke-dashoffset var(--axon-duration-normal) var(--axon-ease-standard);
+}
+
+.axon-progress--circular.axon-progress--indeterminate .axon-progress__bar {
+  stroke-dasharray: 30 70;
+  transition: none;
+}
+
+.axon-progress--circular.axon-progress--indeterminate .axon-progress__svg {
+  animation: axon-progress-rotate 1.2s linear infinite;
+}
+
+@keyframes axon-progress-rotate {
+  from {
+    transform: rotate(-90deg);
+  }
+
+  to {
+    transform: rotate(270deg);
+  }
+}
+
+/* The value sits in the ring, so it is smaller than the label text. */
+.axon-progress__circle > .axon-progress__value {
+  position: relative;
+  color: var(--axon-color-text-primary);
+  font-size: 0.75rem;
+  font-weight: var(--axon-font-weight-semibold);
+}
+
+.axon-progress--sm .axon-progress__circle > .axon-progress__value {
+  font-size: 0.625rem;
+}
+
+.axon-progress--lg .axon-progress__circle > .axon-progress__value {
+  font-size: var(--axon-font-size-md);
+}
+
+/* Without a sweep or a slide, an indeterminate bar pulses; the ring turns more slowly. */
+@media (prefers-reduced-motion: reduce) {
+  .axon-progress--linear.axon-progress--indeterminate .axon-progress__bar {
+    width: 100%;
+    animation: axon-progress-pulse 2s ease-in-out infinite;
+  }
+
+  .axon-progress--circular.axon-progress--indeterminate .axon-progress__svg {
+    animation-duration: 3s;
+  }
+}
+
+@keyframes axon-progress-pulse {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}

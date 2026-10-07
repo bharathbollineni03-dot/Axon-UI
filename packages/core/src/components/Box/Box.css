@@ -1,0 +1,4 @@
+/* Box has no styles of its own: it applies theme tokens through inline style props. */
+.axon-box {
+  box-sizing: border-box;
+}

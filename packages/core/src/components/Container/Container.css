@@ -1,0 +1,33 @@
+.axon-container {
+  box-sizing: border-box;
+  width: 100%;
+  margin-inline: auto;
+}
+
+.axon-container--start {
+  margin-inline: 0;
+}
+
+.axon-container--sm {
+  max-width: var(--axon-breakpoint-sm);
+}
+
+.axon-container--md {
+  max-width: var(--axon-breakpoint-md);
+}
+
+.axon-container--lg {
+  max-width: var(--axon-breakpoint-lg);
+}
+
+.axon-container--xl {
+  max-width: var(--axon-breakpoint-xl);
+}
+
+.axon-container--2xl {
+  max-width: var(--axon-breakpoint-2xl);
+}
+
+.axon-container--full {
+  max-width: none;
+}

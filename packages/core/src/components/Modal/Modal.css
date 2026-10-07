@@ -1,0 +1,56 @@
+.axon-modal__scroll {
+  padding: var(--axon-space-4);
+}
+
+.axon-modal__scroll--full {
+  padding: 0;
+}
+
+.axon-modal {
+  /* Auto margins center the dialog, and let it start at the top once it is taller than the screen. */
+  width: 100%;
+  max-height: 100%;
+  margin: auto;
+  border: 1px solid var(--axon-color-border);
+  border-radius: var(--axon-radius-lg);
+  box-shadow: var(--axon-shadow-xl);
+  animation: axon-modal-enter var(--axon-duration-normal) var(--axon-ease-out);
+}
+
+.axon-modal--sm {
+  max-width: 24rem;
+}
+
+.axon-modal--md {
+  max-width: 32rem;
+}
+
+.axon-modal--lg {
+  max-width: 48rem;
+}
+
+.axon-modal--xl {
+  max-width: 64rem;
+}
+
+.axon-modal--full {
+  height: 100%;
+  max-width: none;
+  border: 0;
+  border-radius: 0;
+}
+
+.axon-modal__scroll--outside .axon-modal {
+  max-height: none;
+}
+
+.axon-modal__scroll--outside .axon-overlay__body {
+  overflow-y: visible;
+}
+
+@keyframes axon-modal-enter {
+  from {
+    opacity: 0;
+    transform: translateY(var(--axon-space-2)) scale(0.98);
+  }
+}

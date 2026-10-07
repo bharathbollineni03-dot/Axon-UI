@@ -1,0 +1,106 @@
+/* The scrolling area only positions the drawer against the edge it slides from. */
+.axon-drawer__scroll--left {
+  justify-content: flex-start;
+}
+
+.axon-drawer__scroll--right {
+  justify-content: flex-end;
+}
+
+.axon-drawer__scroll--top,
+.axon-drawer__scroll--bottom {
+  flex-direction: column;
+}
+
+.axon-drawer__scroll--top {
+  justify-content: flex-start;
+}
+
+.axon-drawer__scroll--bottom {
+  justify-content: flex-end;
+}
+
+.axon-drawer {
+  --axon-drawer-size: 28rem;
+
+  box-shadow: var(--axon-shadow-xl);
+  animation: var(--axon-drawer-animation) var(--axon-duration-normal) var(--axon-ease-out);
+}
+
+.axon-drawer--sm {
+  --axon-drawer-size: 20rem;
+}
+
+.axon-drawer--lg {
+  --axon-drawer-size: 40rem;
+}
+
+.axon-drawer--full {
+  --axon-drawer-size: 100%;
+}
+
+/* Side drawers fill the height and cap their width at the screen's. */
+.axon-drawer--left,
+.axon-drawer--right {
+  flex-shrink: 0;
+  width: var(--axon-drawer-size);
+  max-width: 100%;
+  height: 100%;
+}
+
+.axon-drawer--left {
+  --axon-drawer-animation: axon-drawer-from-left;
+
+  border-inline-end: 1px solid var(--axon-color-border);
+}
+
+.axon-drawer--right {
+  --axon-drawer-animation: axon-drawer-from-right;
+
+  border-inline-start: 1px solid var(--axon-color-border);
+}
+
+/* Top and bottom drawers fill the width and cap their height at the screen's. */
+.axon-drawer--top,
+.axon-drawer--bottom {
+  flex-shrink: 0;
+  width: 100%;
+  height: var(--axon-drawer-size);
+  max-height: 100%;
+}
+
+.axon-drawer--top {
+  --axon-drawer-animation: axon-drawer-from-top;
+
+  border-bottom: 1px solid var(--axon-color-border);
+}
+
+.axon-drawer--bottom {
+  --axon-drawer-animation: axon-drawer-from-bottom;
+
+  border-top: 1px solid var(--axon-color-border);
+}
+
+@keyframes axon-drawer-from-left {
+  from {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes axon-drawer-from-right {
+  from {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes axon-drawer-from-top {
+  from {
+    transform: translateY(-100%);
+  }
+}
+
+@keyframes axon-drawer-from-bottom {
+  from {
+    transform: translateY(100%);
+  }
+}

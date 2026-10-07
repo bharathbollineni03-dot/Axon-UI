@@ -1,0 +1,13 @@
+.axon-avatar-group {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Overlap each avatar onto the previous one, with a ring in the surface color to separate them. */
+.axon-avatar-group > .axon-avatar {
+  box-shadow: 0 0 0 2px var(--axon-color-surface);
+}
+
+.axon-avatar-group > .axon-avatar + .axon-avatar {
+  margin-inline-start: calc(var(--axon-avatar-size) * -0.3);
+}

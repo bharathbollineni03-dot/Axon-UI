@@ -1,0 +1,61 @@
+.axon-app-bar {
+  --axon-app-bar-height: 3.5rem;
+
+  display: flex;
+  align-items: center;
+  gap: var(--axon-space-3);
+  box-sizing: border-box;
+  width: 100%;
+  min-height: var(--axon-app-bar-height);
+  padding: var(--axon-space-2) var(--axon-space-4);
+  background: var(--axon-color-surface);
+  color: var(--axon-color-text-primary);
+  font-family: var(--axon-font-sans);
+}
+
+.axon-app-bar--colored {
+  background: var(--axon-accent-solid);
+  color: var(--axon-accent-on-solid);
+}
+
+.axon-app-bar--sticky {
+  position: sticky;
+  top: 0;
+  z-index: var(--axon-z-sticky);
+}
+
+.axon-app-bar--fixed {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: var(--axon-z-sticky);
+}
+
+.axon-app-bar--bordered {
+  border-bottom: 1px solid var(--axon-color-border);
+}
+
+.axon-app-bar--colored.axon-app-bar--bordered {
+  border-bottom-color: var(--axon-accent-border);
+}
+
+.axon-app-bar--elevated {
+  box-shadow: var(--axon-shadow-md);
+}
+
+.axon-app-bar__leading,
+.axon-app-bar__trailing {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: var(--axon-space-2);
+}
+
+.axon-app-bar__content {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: var(--axon-space-3);
+  min-width: 0;
+  font-size: var(--axon-font-size-lg);
+  font-weight: var(--axon-font-weight-medium);
+}

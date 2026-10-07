@@ -1,0 +1,59 @@
+.axon-spinner {
+  --axon-spinner-size: 1.5rem;
+
+  display: inline-flex;
+  flex-shrink: 0;
+  width: var(--axon-spinner-size);
+  height: var(--axon-spinner-size);
+  color: var(--axon-accent-solid);
+  line-height: 1;
+  vertical-align: middle;
+}
+
+.axon-spinner--inherit {
+  color: inherit;
+}
+
+.axon-spinner--sm {
+  --axon-spinner-size: 1rem;
+}
+
+.axon-spinner--lg {
+  --axon-spinner-size: 2.5rem;
+}
+
+.axon-spinner__svg {
+  width: 100%;
+  height: 100%;
+  animation: axon-spinner-rotate 0.75s linear infinite;
+}
+
+.axon-spinner__track,
+.axon-spinner__arc {
+  fill: none;
+  stroke: currentcolor;
+  stroke-width: 3;
+}
+
+.axon-spinner__track {
+  opacity: 0.2;
+}
+
+/* A quarter of the ring, with round ends. `pathLength` is 100, so the dashes are percentages. */
+.axon-spinner__arc {
+  stroke-dasharray: 25 75;
+  stroke-linecap: round;
+}
+
+@keyframes axon-spinner-rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* A slower spin still signals progress without strong motion. */
+@media (prefers-reduced-motion: reduce) {
+  .axon-spinner__svg {
+    animation-duration: 2.5s;
+  }
+}
