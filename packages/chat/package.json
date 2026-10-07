@@ -42,7 +42,12 @@
   },
   "dependencies": {
     "@axon/core": "workspace:*",
-    "@axon/theme": "workspace:*"
+    "@axon/forms": "workspace:*",
+    "@axon/theme": "workspace:*",
+    "@tanstack/react-virtual": "catalog:",
+    "highlight.js": "catalog:",
+    "react-markdown": "catalog:",
+    "remark-gfm": "catalog:"
   },
   "devDependencies": {
     "@types/react": "catalog:",

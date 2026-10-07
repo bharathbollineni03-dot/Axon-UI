@@ -1,1 +1,14 @@
 /* @axon/chat styles: component stylesheets are @imported here. */
+@import './components/CodeBlock/CodeBlock.css';
+@import './components/Markdown/Markdown.css';
+@import './components/StreamingText/StreamingText.css';
+@import './components/ToolCallCard/ToolCallCard.css';
+@import './components/SourceList/SourceList.css';
+@import './components/MessageBubble/MessageBubble.css';
+@import './components/MessageList/MessageList.css';
+@import './components/ChatHeader/ChatHeader.css';
+@import './components/Attachments/Attachments.css';
+@import './components/PromptInput/PromptInput.css';
+@import './components/SuggestedPrompts/SuggestedPrompts.css';
+@import './components/ChatEmptyState/ChatEmptyState.css';
+@import './components/ChatWindow/ChatWindow.css';

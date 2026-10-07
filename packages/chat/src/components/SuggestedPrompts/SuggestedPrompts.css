@@ -1,0 +1,100 @@
+.axon-suggested {
+  font-family: var(--axon-font-sans);
+}
+
+.axon-suggested__title {
+  margin: 0 0 var(--axon-space-3);
+  color: var(--axon-color-text-secondary);
+  font-size: var(--axon-font-size-sm);
+  font-weight: var(--axon-font-weight-medium);
+  text-align: center;
+}
+
+.axon-suggested__list {
+  display: grid;
+  gap: var(--axon-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 40rem) {
+  .axon-suggested--cards.axon-suggested--cols-2 .axon-suggested__list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .axon-suggested--cards.axon-suggested--cols-3 .axon-suggested__list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.axon-suggested--chips .axon-suggested__list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.axon-suggested__button {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--axon-space-3);
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  padding: var(--axon-space-3) var(--axon-space-4);
+  border: 1px solid var(--axon-color-border);
+  border-radius: var(--axon-radius-lg);
+  background: var(--axon-color-surface);
+  color: var(--axon-color-text-primary);
+  font: inherit;
+  font-size: var(--axon-font-size-sm);
+  text-align: start;
+  cursor: pointer;
+  transition:
+    background-color var(--axon-duration-fast) var(--axon-ease-standard),
+    border-color var(--axon-duration-fast) var(--axon-ease-standard);
+}
+
+.axon-suggested--chips .axon-suggested__button {
+  width: auto;
+  padding: var(--axon-space-1-5) var(--axon-space-4);
+  border-radius: var(--axon-radius-full);
+}
+
+.axon-suggested__button:hover:not(:disabled) {
+  border-color: var(--axon-color-primary-border);
+  background: var(--axon-color-primary-subtle);
+}
+
+.axon-suggested__button:focus-visible {
+  outline: 2px solid var(--axon-color-focus-ring);
+  outline-offset: 2px;
+}
+
+.axon-suggested__button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.axon-suggested__icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  color: var(--axon-color-primary-text);
+  font-size: 1.25rem;
+}
+
+.axon-suggested__text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--axon-space-0-5);
+  min-width: 0;
+}
+
+.axon-suggested__name {
+  font-weight: var(--axon-font-weight-medium);
+}
+
+.axon-suggested__description {
+  color: var(--axon-color-text-secondary);
+  font-size: var(--axon-font-size-xs);
+}

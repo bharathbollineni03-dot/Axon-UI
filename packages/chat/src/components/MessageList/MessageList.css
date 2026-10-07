@@ -1,0 +1,102 @@
+.axon-message-list-wrap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.axon-message-list {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scroll-behavior: auto;
+}
+
+.axon-message-list:focus-visible {
+  outline: 2px solid var(--axon-color-focus-ring);
+  outline-offset: -2px;
+}
+
+.axon-message-list__inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--axon-space-4);
+  box-sizing: border-box;
+  padding: var(--axon-space-4);
+}
+
+/* Virtualized rows are positioned by the virtualizer, so the gap becomes padding. */
+.axon-message-list__inner--virtual {
+  position: relative;
+  display: block;
+  padding: 0;
+}
+
+.axon-message-list__row--virtual {
+  position: absolute;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+  width: 100%;
+  padding: var(--axon-space-2) var(--axon-space-4);
+}
+
+.axon-message-list__date {
+  display: flex;
+  align-items: center;
+  gap: var(--axon-space-3);
+  color: var(--axon-color-text-secondary);
+  font-family: var(--axon-font-sans);
+  font-size: var(--axon-font-size-xs);
+  font-weight: var(--axon-font-weight-medium);
+  text-align: center;
+}
+
+.axon-message-list__date::before,
+.axon-message-list__date::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--axon-color-border);
+}
+
+.axon-message-list__jump {
+  position: absolute;
+  inset-block-end: var(--axon-space-3);
+  inset-inline-start: 50%;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--axon-space-2);
+  padding: var(--axon-space-1-5) var(--axon-space-3);
+  border: 1px solid var(--axon-color-border);
+  border-radius: var(--axon-radius-full);
+  background: var(--axon-color-surface-raised);
+  box-shadow: var(--axon-shadow-md);
+  color: var(--axon-color-text-primary);
+  font-family: var(--axon-font-sans);
+  font-size: var(--axon-font-size-sm);
+  cursor: pointer;
+  transform: translateX(-50%);
+  animation: axon-jump-in var(--axon-duration-normal) var(--axon-ease-out);
+}
+
+[dir='rtl'] .axon-message-list__jump {
+  transform: translateX(50%);
+}
+
+.axon-message-list__jump:hover {
+  background: var(--axon-color-surface-muted);
+}
+
+.axon-message-list__jump:focus-visible {
+  outline: 2px solid var(--axon-color-focus-ring);
+  outline-offset: 2px;
+}
+
+@keyframes axon-jump-in {
+  from {
+    opacity: 0;
+  }
+}

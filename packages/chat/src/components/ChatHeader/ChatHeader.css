@@ -1,0 +1,51 @@
+.axon-chat-header {
+  display: flex;
+  align-items: center;
+  gap: var(--axon-space-3);
+  box-sizing: border-box;
+  min-height: 3.5rem;
+  padding: var(--axon-space-2) var(--axon-space-4);
+  border-bottom: 1px solid var(--axon-color-border);
+  background: var(--axon-color-surface);
+  color: var(--axon-color-text-primary);
+  font-family: var(--axon-font-sans);
+}
+
+.axon-chat-header__avatar {
+  flex-shrink: 0;
+}
+
+.axon-chat-header__titles {
+  flex: 1;
+  min-width: 0;
+}
+
+.axon-chat-header__title {
+  margin: 0;
+  overflow: hidden;
+  font-size: var(--axon-font-size-md);
+  font-weight: var(--axon-font-weight-semibold);
+  line-height: var(--axon-line-height-tight);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.axon-chat-header__subtitle {
+  margin: 0;
+  overflow: hidden;
+  color: var(--axon-color-text-secondary);
+  font-size: var(--axon-font-size-sm);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.axon-chat-header__model {
+  flex-shrink: 0;
+}
+
+.axon-chat-header__actions {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: var(--axon-space-1);
+}

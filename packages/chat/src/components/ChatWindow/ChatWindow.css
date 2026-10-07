@@ -1,0 +1,78 @@
+.axon-chat-window {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  min-height: 0;
+  overflow: hidden;
+  background: var(--axon-color-background);
+  color: var(--axon-color-text-primary);
+  font-family: var(--axon-font-sans);
+}
+
+/* Full page: the whole viewport. */
+.axon-chat-window--page {
+  height: 100vh;
+  height: 100dvh;
+}
+
+/* Embedded: as tall as the box it sits in. */
+.axon-chat-window--embedded {
+  height: 100%;
+  border: 1px solid var(--axon-color-border);
+  border-radius: var(--axon-radius-xl);
+}
+
+/* Floating: a panel in the corner, above the launcher. */
+.axon-chat-window--floating {
+  position: fixed;
+  inset-block-end: 5rem;
+  inset-inline-end: var(--axon-space-4);
+  z-index: var(--axon-z-popover);
+  width: min(26rem, calc(100vw - 2rem));
+  height: min(40rem, calc(100vh - 7rem));
+  height: min(40rem, calc(100dvh - 7rem));
+  border: 1px solid var(--axon-color-border);
+  border-radius: var(--axon-radius-xl);
+  box-shadow: var(--axon-shadow-xl);
+  animation: axon-chat-window-in var(--axon-duration-normal) var(--axon-ease-out);
+}
+
+@keyframes axon-chat-window-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.5rem);
+  }
+}
+
+.axon-chat-launcher {
+  position: fixed;
+  inset-block-end: var(--axon-space-4);
+  inset-inline-end: var(--axon-space-4);
+  z-index: var(--axon-z-popover);
+  width: 3.5rem;
+  height: 3.5rem;
+  box-shadow: var(--axon-shadow-lg);
+  font-size: 1.5rem;
+}
+
+.axon-chat-window__composer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--axon-space-2);
+  box-sizing: border-box;
+  padding: var(--axon-space-2) var(--axon-space-4) var(--axon-space-4);
+}
+
+/* The composer keeps its width and the conversation centers in a comfortable column on a page. */
+.axon-chat-window--page .axon-chat-window__composer,
+.axon-chat-window--page .axon-message-list__inner {
+  width: 100%;
+  max-width: 48rem;
+  margin-inline: auto;
+}
+
+.axon-chat-window__footer {
+  color: var(--axon-color-text-secondary);
+  font-size: var(--axon-font-size-xs);
+  text-align: center;
+}
