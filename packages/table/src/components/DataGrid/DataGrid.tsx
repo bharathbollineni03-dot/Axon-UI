@@ -12,7 +12,7 @@ import {
   type ReactNode,
   type Ref,
 } from 'react';
-import { Alert, Button, Skeleton, Spinner } from '@axon/core';
+import { Alert, Button, Skeleton, Spinner } from '@axonui/core';
 import type { RowData } from '@tanstack/react-table';
 import { UTILITY_COLUMN_IDS } from '../../internal/buildColumns';
 import { cx } from '../../internal/cx';

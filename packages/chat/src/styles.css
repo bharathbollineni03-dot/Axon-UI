@@ -1,4 +1,4 @@
-/* @axon/chat styles: component stylesheets are @imported here. */
+/* @axonui/chat styles: component stylesheets are @imported here. */
 @import './components/CodeBlock/CodeBlock.css';
 @import './components/Markdown/Markdown.css';
 @import './components/StreamingText/StreamingText.css';

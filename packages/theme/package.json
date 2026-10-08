@@ -1,5 +1,5 @@
 {
-  "name": "@axon/theme",
+  "name": "@axonui/theme",
   "version": "0.0.0",
   "description": "Axon UI design tokens, ThemeProvider and light/dark mode.",
   "keywords": [

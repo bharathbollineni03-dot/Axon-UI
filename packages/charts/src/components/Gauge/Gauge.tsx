@@ -1,5 +1,5 @@
 import { useId, useMemo, type CSSProperties, type ReactNode } from 'react';
-import { Skeleton, useMediaQuery } from '@axon/core';
+import { Skeleton, useMediaQuery } from '@axonui/core';
 import { createNumberFormatter, isFiniteNumber, type ValueFormat } from '../../internal/format';
 import { chartColor } from '../../internal/palette';
 import { arcPath, polarToCartesian, toRadians } from '../../internal/polar';

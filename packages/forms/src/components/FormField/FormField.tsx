@@ -37,14 +37,14 @@ export interface FormFieldProps extends FormControlProps {
   /** Shows the required marker. Whether the field is actually required is up to your schema. */
   required?: boolean;
   disabled?: boolean;
-  /** Renders the input. Spread `props` onto an `@axon/core` input, or map it by hand. */
+  /** Renders the input. Spread `props` onto an `@axonui/core` input, or map it by hand. */
   render: (props: FormFieldInputProps, state: FormFieldState) => ReactNode;
 }
 
 /**
  * Wires any input to the form: its value, change and blur handling, label, helper text, error
  * message, required marker and `aria-invalid`. Use the prebuilt bindings (`FormTextField` and the
- * rest) for the `@axon/core` inputs, and `FormField` for anything else.
+ * rest) for the `@axonui/core` inputs, and `FormField` for anything else.
  *
  * ```tsx
  * <FormField name="email" label="Email" required render={(props) => (

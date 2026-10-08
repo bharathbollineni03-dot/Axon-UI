@@ -2,7 +2,7 @@ import { createRef } from 'react';
 import { render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { axe } from 'jest-axe';
-import { FormSubmitError } from '@axon/forms';
+import { FormSubmitError } from '@axonui/forms';
 import { describe, expect, it, vi } from 'vitest';
 import { PromptTemplateForm, type PromptTemplateFormProps } from './PromptTemplateForm';
 

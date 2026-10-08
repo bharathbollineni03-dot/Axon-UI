@@ -1,16 +1,16 @@
-# @axon/core
+# @axonui/core
 
 Base components for Axon UI: buttons and inputs, choice controls, pickers, layout, navigation, overlays and feedback.
 
 ```bash
-pnpm add @axon/core @axon/theme
+pnpm add @axonui/core @axonui/theme
 ```
 
 ```tsx
-import { ThemeProvider } from '@axon/theme';
-import { Button, TextField } from '@axon/core';
-import '@axon/theme/styles.css';
-import '@axon/core/styles.css';
+import { ThemeProvider } from '@axonui/theme';
+import { Button, TextField } from '@axonui/core';
+import '@axonui/theme/styles.css';
+import '@axonui/core/styles.css';
 
 export function App() {
   return (
@@ -167,7 +167,7 @@ Popups use `@floating-ui/react` (flip, shift, size) and render into the nearest 
 - Every component forwards its `ref` and merges `className`/`style`. For form controls (`TextField`, `TextArea`, `NumberInput`) `className` and `style` apply to the outer wrapper, `ref` and all other props go to the native control.
 - `size` is `"sm" | "md" | "lg"` and `color` is `"primary" | "secondary" | "success" | "warning" | "danger" | "neutral"`.
 - Controlled (`value` + `onChange`) and uncontrolled (`defaultValue`) usage are both supported.
-- Colors come from the mode-aware accent tokens in `@axon/theme` (`--axon-color-<color>-solid`, `-text`, `-subtle`, ...), which meet WCAG AA contrast in light and dark mode.
+- Colors come from the mode-aware accent tokens in `@axonui/theme` (`--axon-color-<color>-solid`, `-text`, `-subtle`, ...), which meet WCAG AA contrast in light and dark mode.
 
 ## Hooks
 

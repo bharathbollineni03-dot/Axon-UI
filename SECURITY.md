@@ -2,7 +2,7 @@
 
 ## Supported versions
 
-Security fixes are made to the latest minor release of each `@axon/*` package.
+Security fixes are made to the latest minor release of each `@axonui/*` package.
 
 ## Reporting a vulnerability
 

@@ -18,7 +18,7 @@ import {
   type UseFormReturn,
 } from 'react-hook-form';
 import type { z } from 'zod';
-import { Alert } from '@axon/core';
+import { Alert } from '@axonui/core';
 import { createResolver, type FormValidator } from '../../internal/resolver';
 import {
   applyFieldErrors,

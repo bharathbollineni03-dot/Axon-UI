@@ -1,5 +1,5 @@
 {
-  "name": "@axon/docs",
+  "name": "@axonui/docs",
   "version": "0.0.0",
   "private": true,
   "description": "Axon UI documentation (Storybook).",
@@ -10,12 +10,12 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@axon/charts": "workspace:*",
-    "@axon/chat": "workspace:*",
-    "@axon/core": "workspace:*",
-    "@axon/forms": "workspace:*",
-    "@axon/table": "workspace:*",
-    "@axon/theme": "workspace:*",
+    "@axonui/charts": "workspace:*",
+    "@axonui/chat": "workspace:*",
+    "@axonui/core": "workspace:*",
+    "@axonui/forms": "workspace:*",
+    "@axonui/table": "workspace:*",
+    "@axonui/theme": "workspace:*",
     "react": "catalog:",
     "react-dom": "catalog:"
   },

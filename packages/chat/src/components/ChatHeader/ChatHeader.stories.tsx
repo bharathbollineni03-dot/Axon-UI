@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Avatar } from '@axon/core';
+import { Avatar } from '@axonui/core';
 import { SparklesIcon } from '../../internal/icons';
 import { ChatHeader } from './ChatHeader';
 

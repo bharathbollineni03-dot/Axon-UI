@@ -1,6 +1,6 @@
 import { forwardRef, type HTMLAttributes, type ReactNode } from 'react';
 import { useFormState } from 'react-hook-form';
-import { Button, type AxonColor, type AxonSize } from '@axon/core';
+import { Button, type AxonColor, type AxonSize } from '@axonui/core';
 import { useFormStatus } from '../Form/FormStatus';
 
 export interface FormActionsProps extends HTMLAttributes<HTMLDivElement> {

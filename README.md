@@ -4,12 +4,12 @@ An open-source React component library with prebuilt forms, AI chat interfaces, 
 
 | Package                              | Purpose                                              |
 | ------------------------------------ | ---------------------------------------------------- |
-| [`@axon/theme`](packages/theme)      | Design tokens, `ThemeProvider`, light/dark mode      |
-| [`@axon/core`](packages/core)        | Base controls (Button, TextField, Checkbox, ...)     |
-| [`@axon/forms`](packages/forms)      | Form engine and prebuilt forms                       |
-| [`@axon/chat`](packages/chat)        | AI chat window and related components                |
-| [`@axon/charts`](packages/charts)    | SVG charts                                           |
-| [`@axon/table`](packages/table)      | Data grid                                            |
+| [`@axonui/theme`](packages/theme)      | Design tokens, `ThemeProvider`, light/dark mode      |
+| [`@axonui/core`](packages/core)        | Base controls (Button, TextField, Checkbox, ...)     |
+| [`@axonui/forms`](packages/forms)      | Form engine and prebuilt forms                       |
+| [`@axonui/chat`](packages/chat)        | AI chat window and related components                |
+| [`@axonui/charts`](packages/charts)    | SVG charts                                           |
+| [`@axonui/table`](packages/table)      | Data grid                                            |
 | [`apps/docs`](apps/docs)             | Storybook: guides, examples and every component |
 | [`examples/next-app`](examples/next-app) | A Next.js app router project that uses every package |
 
@@ -46,8 +46,8 @@ pnpm storybook   # http://localhost:6006
 
 ## Conventions
 
-- Plain CSS per component, using `--axon-*` custom properties from `@axon/theme`; class names are `axon-` prefixed and BEM-like.
-- Each package ships `dist/styles.css`; import it alongside the JS: `import '@axon/core/styles.css'`.
+- Plain CSS per component, using `--axon-*` custom properties from `@axonui/theme`; class names are `axon-` prefixed and BEM-like.
+- Each package ships `dist/styles.css`; import it alongside the JS: `import '@axonui/core/styles.css'`.
 - Each component folder holds `Component.tsx`, `Component.css`, `Component.test.tsx`, `Component.stories.tsx`, `index.ts`.
 - Shared tooling (Vitest, tsup, path aliases) lives in [`tooling/`](tooling).
 

@@ -1,5 +1,5 @@
 import { forwardRef, useId, useMemo, type ReactNode, type Ref } from 'react';
-import { Chip, IconButton, Progress, type FileUploadProps } from '@axon/core';
+import { Chip, IconButton, Progress, type FileUploadProps } from '@axonui/core';
 import {
   Form,
   FormActions,
@@ -8,7 +8,7 @@ import {
   type FieldValues,
   type FormHelpers,
   type FormSubmitResult,
-} from '@axon/forms';
+} from '@axonui/forms';
 import { CloseIcon, FileIcon, RefreshIcon } from '../../internal/icons';
 import { formatFileSize } from '../Attachments/files';
 

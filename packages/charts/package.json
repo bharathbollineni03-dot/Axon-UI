@@ -1,5 +1,5 @@
 {
-  "name": "@axon/charts",
+  "name": "@axonui/charts",
   "version": "0.0.0",
   "description": "Axon UI SVG charts: line, area, bar, combo, pie, donut, scatter, radar, gauge, sparkline, heatmap and KPI cards.",
   "keywords": [
@@ -62,8 +62,8 @@
     "react-dom": ">=18"
   },
   "dependencies": {
-    "@axon/core": "workspace:*",
-    "@axon/theme": "workspace:*"
+    "@axonui/core": "workspace:*",
+    "@axonui/theme": "workspace:*"
   },
   "devDependencies": {
     "@types/d3-array": "catalog:",

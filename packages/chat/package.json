@@ -1,5 +1,5 @@
 {
-  "name": "@axon/chat",
+  "name": "@axonui/chat",
   "version": "0.0.0",
   "description": "Axon UI AI chat window and related components.",
   "keywords": [
@@ -63,9 +63,9 @@
     "react-dom": ">=18"
   },
   "dependencies": {
-    "@axon/core": "workspace:*",
-    "@axon/forms": "workspace:*",
-    "@axon/theme": "workspace:*",
+    "@axonui/core": "workspace:*",
+    "@axonui/forms": "workspace:*",
+    "@axonui/theme": "workspace:*",
     "@tanstack/react-virtual": "catalog:",
     "highlight.js": "catalog:",
     "react-markdown": "catalog:",

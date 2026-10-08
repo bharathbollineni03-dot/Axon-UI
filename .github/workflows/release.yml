@@ -43,7 +43,7 @@ jobs:
           title: 'chore: version packages'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # An npm automation token for an account that can publish to the @axon scope.
+          # An npm automation token for an account that can publish to the @axonui scope.
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           NPM_CONFIG_PROVENANCE: 'true'
 

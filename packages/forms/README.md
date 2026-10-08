@@ -1,19 +1,19 @@
-# @axon/forms
+# @axonui/forms
 
-A form engine and prebuilt forms for Axon UI. The engine is [react-hook-form](https://react-hook-form.com) with [zod](https://zod.dev) validation, wired to the `@axon/core` inputs. The prebuilt forms (login, registration, password reset, OTP, profile, contact, newsletter) are built on it, so every one of them can be customised, translated and extended.
+A form engine and prebuilt forms for Axon UI. The engine is [react-hook-form](https://react-hook-form.com) with [zod](https://zod.dev) validation, wired to the `@axonui/core` inputs. The prebuilt forms (login, registration, password reset, OTP, profile, contact, newsletter) are built on it, so every one of them can be customised, translated and extended.
 
 No form makes a network call. Each hands validated values to your `onSubmit` and shows the errors you return from it.
 
 ```bash
-pnpm add @axon/forms @axon/core @axon/theme
+pnpm add @axonui/forms @axonui/core @axonui/theme
 ```
 
 ```tsx
-import { ThemeProvider } from '@axon/theme';
-import { LoginForm } from '@axon/forms';
-import '@axon/theme/styles.css';
-import '@axon/core/styles.css';
-import '@axon/forms/styles.css';
+import { ThemeProvider } from '@axonui/theme';
+import { LoginForm } from '@axonui/forms';
+import '@axonui/theme/styles.css';
+import '@axonui/core/styles.css';
+import '@axonui/forms/styles.css';
 
 export function SignIn() {
   return (
@@ -32,12 +32,12 @@ export function SignIn() {
 }
 ```
 
-`@axon/forms/styles.css` needs `@axon/core/styles.css` too, which it builds on.
+`@axonui/forms/styles.css` needs `@axonui/core/styles.css` too, which it builds on.
 
 ## The form engine
 
 ```tsx
-import { Form, FormTextField, FormSelect, FormActions, z } from '@axon/forms';
+import { Form, FormTextField, FormSelect, FormActions, z } from '@axonui/forms';
 
 const schema = z.object({
   email: z.string().min(1, 'Enter your email.').pipe(z.email('Enter a valid email.')),
@@ -68,7 +68,7 @@ const schema = z.object({
 | `SchemaForm`                  | Renders a form from a JSON config and generates the validation schema from it                                                                                                          |
 | `useFormStatus`, `useAxonForm`| Read the submitting state from anywhere inside a form; create the form yourself when something outside the `<form>` needs it                                                           |
 
-Each binding takes the matching `@axon/core` input's props, plus `name`. The field is seeded with the value the input shows (`''`, `null`, `[]` or `false`), so your schema never sees `undefined` for an untouched field.
+Each binding takes the matching `@axonui/core` input's props, plus `name`. The field is seeded with the value the input shows (`''`, `null`, `[]` or `false`), so your schema never sees `undefined` for an untouched field.
 
 ### Server errors
 
@@ -151,7 +151,7 @@ Every prebuilt form accepts:
 Each form exports its schema, a `createXSchema(options)` factory for other rules or translated messages, and the values type.
 
 ```tsx
-import { RegistrationForm, registrationSchema, FormTextField, z } from '@axon/forms';
+import { RegistrationForm, registrationSchema, FormTextField, z } from '@axonui/forms';
 
 const schema = registrationSchema.safeExtend({ company: z.string().min(1, 'Enter your company.') });
 

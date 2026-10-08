@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Button } from '@axon/core';
+import { Button } from '@axonui/core';
 import { longThread, sampleMessages } from '../../stories/mockBackend';
 import type { Message } from '../../types';
 import { MessageList, type MessageListProps } from './MessageList';

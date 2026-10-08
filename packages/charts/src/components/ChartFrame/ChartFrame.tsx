@@ -1,5 +1,5 @@
 import { useId, type CSSProperties, type ReactNode } from 'react';
-import { Skeleton } from '@axon/core';
+import { Skeleton } from '@axonui/core';
 import { defaultChartLabels, type ChartLabels } from '../../types';
 import { ResponsiveContainer, type ChartSize } from '../ResponsiveContainer/ResponsiveContainer';
 

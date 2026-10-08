@@ -7,7 +7,7 @@ import {
   type KeyboardEvent,
   type ReactNode,
 } from 'react';
-import { IconButton, useControllableState, useId } from '@axon/core';
+import { IconButton, useControllableState, useId } from '@axonui/core';
 import type { UseChatReturn } from '../../hooks/useChat';
 import { MessageIcon } from '../../internal/icons';
 import { useMergedRef } from '../../internal/mergeRefs';

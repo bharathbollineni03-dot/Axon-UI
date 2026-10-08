@@ -15,18 +15,10 @@ Nothing is published by merging an ordinary pull request, and nothing is publish
 
 ### 1. The npm scope
 
-The packages are published under the `@axon` scope.
+The packages are published under the `@axonui` scope (`@axonui/theme`, `@axonui/core`, `@axonui/forms`, `@axonui/chat`, `@axonui/charts`, `@axonui/table`). The plain `@axon` scope belongs to someone else on npm.
 
-- Create the organisation at [npmjs.com/org/create](https://www.npmjs.com/org/create) (the free plan is enough for public packages), or use a user scope you own.
-- If `@axon` is taken, choose another scope and rename the packages with the helper script, then review the diff:
-
-  ```bash
-  node tooling/rename-scope.mjs @your-scope          # preview
-  node tooling/rename-scope.mjs @your-scope --write
-  pnpm install && pnpm build && pnpm test
-  ```
-
-  It rewrites `@axon/` in package names, dependencies, imports, workflows and docs (not the `axon-` class names or `--axon-*` variables).
+- The `axonui` organisation is created at [npmjs.com/org/create](https://www.npmjs.com/org/create) (the free plan is enough for public packages). The account that owns the token below must be a member with publish rights.
+- Class names (`axon-button`) and CSS variables (`--axon-*`) keep the short `axon` prefix: they are the library's vocabulary, not its npm name.
 
 ### 2. Publishing credentials
 
@@ -49,7 +41,7 @@ pnpm install --frozen-lockfile
 pnpm lint && pnpm typecheck && pnpm test
 pnpm build
 pnpm size && pnpm verify:treeshake && pnpm verify:package
-pnpm --filter @axon/example-next verify
+pnpm --filter @axonui/example-next verify
 ```
 
 `.changeset/first-release.md` makes every package 0.1.0. To look at what would be published without publishing, run `pnpm changeset version` on a scratch branch and `pnpm -r pack --dry-run`, or `npm pack --dry-run` inside a package: only `dist/`, the README and the licence should be in the tarball.
@@ -66,4 +58,4 @@ pnpm changeset pre exit
 
 - A failed publish can be re-run: `changeset publish` skips versions that are already on npm.
 - Never reuse a version number. A broken release is fixed with a patch release; `npm deprecate` marks the bad version.
-- To undo a publish within 72 hours: `npm unpublish @axon/<name>@<version>`, then release a fix. After that window, deprecate instead.
+- To undo a publish within 72 hours: `npm unpublish @axonui/<name>@<version>`, then release a fix. After that window, deprecate instead.

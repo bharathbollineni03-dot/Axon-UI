@@ -5,7 +5,7 @@ import {
   MenuItem,
   MenuSeparator,
   type IconButtonProps,
-} from '@axon/core';
+} from '@axonui/core';
 import type { RowData } from '@tanstack/react-table';
 import { MoreIcon } from '../../internal/icons';
 import type { GridColumn } from './cellStyle';

@@ -6,7 +6,7 @@ const meta = {
   component: Code,
   parameters: { layout: 'padded' },
   argTypes: { block: { control: 'boolean' }, language: { control: 'text' } },
-  args: { children: 'pnpm add @axon/core' },
+  args: { children: 'pnpm add @axonui/core' },
 } satisfies Meta<typeof Code>;
 
 export default meta;
@@ -24,8 +24,8 @@ export const Block: Story = {
   args: {
     block: true,
     language: 'tsx',
-    children: `import { Button } from '@axon/core';
-import '@axon/core/styles.css';
+    children: `import { Button } from '@axonui/core';
+import '@axonui/core/styles.css';
 
 export function App() {
   return <Button>Hello Axon</Button>;

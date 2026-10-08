@@ -13,7 +13,7 @@ import {
   type SyntheticEvent,
   type TextareaHTMLAttributes,
 } from 'react';
-import { IconButton, useControllableState, useId } from '@axon/core';
+import { IconButton, useControllableState, useId } from '@axonui/core';
 import { PaperclipIcon, SendIcon, StopIcon } from '../../internal/icons';
 import { useMergedRef } from '../../internal/mergeRefs';
 import { AttachmentList, type AttachmentListLabels } from '../Attachments/AttachmentList';

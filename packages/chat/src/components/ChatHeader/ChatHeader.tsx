@@ -1,5 +1,5 @@
 import { forwardRef, type ElementType, type HTMLAttributes, type ReactNode } from 'react';
-import { IconButton } from '@axon/core';
+import { IconButton } from '@axonui/core';
 import { CloseIcon, PlusIcon, SettingsIcon } from '../../internal/icons';
 
 export interface ChatHeaderLabels {

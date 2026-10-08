@@ -117,7 +117,7 @@ describe('buildThemeCss', () => {
 });
 
 describe('tokens.generated.css', () => {
-  it('is in sync with the tokens (run `pnpm --filter @axon/theme gen:css`)', () => {
+  it('is in sync with the tokens (run `pnpm --filter @axonui/theme gen:css`)', () => {
     const file = readFileSync(path.resolve(__dirname, 'tokens.generated.css'), 'utf8');
     expect(file.replace(/\r\n/g, '\n')).toBe(generateTokensCss());
   });

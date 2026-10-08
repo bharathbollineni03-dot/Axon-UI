@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
-import { TextField } from '@axon/core';
+import { TextField } from '@axonui/core';
 import { PasswordStrengthMeter } from './PasswordStrength';
 
 const meta = {

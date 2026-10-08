@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Alert, Button, Modal, TextField } from '@axon/core';
+import { Alert, Button, Modal, TextField } from '@axonui/core';
 import { useCopyToClipboard } from '../../hooks/useCopyToClipboard';
 import { CheckIcon, CopyIcon } from '../../internal/icons';
 

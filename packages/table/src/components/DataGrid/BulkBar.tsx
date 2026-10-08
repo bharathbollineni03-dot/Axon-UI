@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { Button } from '@axon/core';
+import { Button } from '@axonui/core';
 import type { DataGridLabels } from '../../labels';
 
 export interface BulkBarProps {

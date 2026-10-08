@@ -8,7 +8,7 @@ import {
   type KeyboardEvent,
   type ReactNode,
 } from 'react';
-import { defaultTheme, type PaletteName } from '@axon/theme';
+import { defaultTheme, type PaletteName } from '@axonui/theme';
 import type { AxonColor, AxonSize } from '../../types';
 import { cx } from '../../utils/cx';
 import { joinIds } from '../../utils/dom';

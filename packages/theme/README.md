@@ -1,14 +1,14 @@
-# @axon/theme
+# @axonui/theme
 
 Design tokens, `ThemeProvider` and light/dark mode for Axon UI.
 
 ```bash
-pnpm add @axon/theme
+pnpm add @axonui/theme
 ```
 
 ```tsx
-import { ThemeProvider } from '@axon/theme';
-import '@axon/theme/styles.css';
+import { ThemeProvider } from '@axonui/theme';
+import '@axonui/theme/styles.css';
 
 export function App() {
   return (
@@ -46,7 +46,7 @@ The CSS also works without React: set `data-axon-theme` on any element.
 ## Custom themes
 
 ```tsx
-import { createTheme, ThemeProvider } from '@axon/theme';
+import { createTheme, ThemeProvider } from '@axonui/theme';
 
 const theme = createTheme({
   palette: { primary: { 500: '#0d9488' } },
@@ -61,4 +61,4 @@ const theme = createTheme({
 
 ## Development
 
-`src/tokens.generated.css` is generated from the tokens (`pnpm --filter @axon/theme gen:css`, run automatically by `build`); a test fails if it is out of date.
+`src/tokens.generated.css` is generated from the tokens (`pnpm --filter @axonui/theme gen:css`, run automatically by `build`); a test fails if it is out of date.

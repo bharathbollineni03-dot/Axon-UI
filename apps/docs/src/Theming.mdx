@@ -4,7 +4,7 @@ import { Meta } from '@storybook/blocks';
 
 # Theming
 
-Axon UI is themed with CSS custom properties, all prefixed `--axon-`. There is no runtime styling library: `@axon/theme/styles.css` defines the variables, every component's stylesheet reads them, and changing a variable changes every component that uses it.
+Axon UI is themed with CSS custom properties, all prefixed `--axon-`. There is no runtime styling library: `@axonui/theme/styles.css` defines the variables, every component's stylesheet reads them, and changing a variable changes every component that uses it.
 
 ## The tokens
 
@@ -54,7 +54,7 @@ The CSS does not need React. Put `data-axon-theme="dark"` on any element, such a
 `createTheme` deep-merges overrides onto the default theme without changing it. A brand colour is a whole palette scale, because accents pick several shades (`primary-600` for the fill, `700` and `800` for hover, `700` for text):
 
 ```tsx
-import { createTheme, ThemeProvider } from '@axon/theme';
+import { createTheme, ThemeProvider } from '@axonui/theme';
 
 const teal = {
   50: '#f0fdfa',
@@ -117,4 +117,4 @@ Class names are `axon-` prefixed and BEM-like (`axon-button--solid`, `axon-datag
 
 ## Portals follow the theme
 
-Menus, dialogs, tooltips and date pickers render into the nearest `.axon-root` rather than into `document.body`, so they are inside the element carrying your mode and your overrides. If you render your own portal, use `Portal` from `@axon/core` for the same behaviour.
+Menus, dialogs, tooltips and date pickers render into the nearest `.axon-root` rather than into `document.body`, so they are inside the element carrying your mode and your overrides. If you render your own portal, use `Portal` from `@axonui/core` for the same behaviour.

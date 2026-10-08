@@ -1,4 +1,4 @@
-/* @axon/forms styles: component stylesheets are @imported here. */
+/* @axonui/forms styles: component stylesheets are @imported here. */
 @import './components/Form/Form.css';
 @import './components/FormBindings/FormBindings.css';
 @import './components/FormActions/FormActions.css';

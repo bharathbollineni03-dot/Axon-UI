@@ -1,7 +1,7 @@
 import { forwardRef, useMemo, useRef, useState, type ReactElement, type Ref } from 'react';
 import type { FieldValues } from 'react-hook-form';
 import { z } from 'zod';
-import { Button } from '@axon/core';
+import { Button } from '@axonui/core';
 import { useCountdown } from '../../internal/useCountdown';
 import { useMergedRef } from '../../internal/mergeRefs';
 import { PrebuiltFormShell, type PrebuiltFormProps } from '../AuthCard/PrebuiltFormShell';

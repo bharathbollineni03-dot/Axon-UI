@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { Pagination, Select } from '@axon/core';
+import { Pagination, Select } from '@axonui/core';
 import type { DataGridLabels } from '../../labels';
 import type { DataGridPaginationState } from '../../types';
 

@@ -1,7 +1,7 @@
 import { forwardRef, useMemo, type ReactElement, type ReactNode, type Ref } from 'react';
 import type { FieldValues } from 'react-hook-form';
 import { z } from 'zod';
-import { Alert, Button } from '@axon/core';
+import { Alert, Button } from '@axonui/core';
 import { emailField, requiredText } from '../../internal/validators';
 import { useSubmitOutcome } from '../../internal/useSubmitOutcome';
 import { AuthCard } from '../AuthCard/AuthCard';

@@ -12,7 +12,7 @@ import {
   type FieldValues,
   type FormHelpers,
   type FormSubmitResult,
-} from '@axon/forms';
+} from '@axonui/forms';
 
 // ---------------------------------------------------------------------------------------------
 // Schema

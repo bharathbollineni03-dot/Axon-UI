@@ -1,17 +1,17 @@
-# @axon/charts
+# @axonui/charts
 
 Charts for React, drawn as plain SVG. The math (scales, shapes, number formats) comes from small [d3](https://d3js.org) modules; everything on the page is React, so charts theme with the same CSS variables as the rest of Axon UI, work with dark mode, render on the server and stay light.
 
 ```bash
-pnpm add @axon/charts @axon/core @axon/theme
+pnpm add @axonui/charts @axonui/core @axonui/theme
 ```
 
 ```tsx
-import { ThemeProvider } from '@axon/theme';
-import { LineChart } from '@axon/charts';
-import '@axon/theme/styles.css';
-import '@axon/core/styles.css';
-import '@axon/charts/styles.css';
+import { ThemeProvider } from '@axonui/theme';
+import { LineChart } from '@axonui/charts';
+import '@axonui/theme/styles.css';
+import '@axonui/core/styles.css';
+import '@axonui/charts/styles.css';
 
 const data = [
   { month: 'Jan', revenue: 120, costs: 88 },
@@ -37,7 +37,7 @@ export function Revenue() {
 }
 ```
 
-`@axon/charts/styles.css` builds on `@axon/core/styles.css` and the theme tokens, so load those too. The d3 modules are bundled into this package, so there is nothing else to install.
+`@axonui/charts/styles.css` builds on `@axonui/core/styles.css` and the theme tokens, so load those too. The d3 modules are bundled into this package, so there is nothing else to install.
 
 ## The charts
 

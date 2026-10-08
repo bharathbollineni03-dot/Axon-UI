@@ -1,5 +1,5 @@
 {
-  "name": "@axon/forms",
+  "name": "@axonui/forms",
   "version": "0.0.0",
   "description": "Axon UI form engine and prebuilt forms.",
   "keywords": [
@@ -63,8 +63,8 @@
     "react-dom": ">=18"
   },
   "dependencies": {
-    "@axon/core": "workspace:*",
-    "@axon/theme": "workspace:*",
+    "@axonui/core": "workspace:*",
+    "@axonui/theme": "workspace:*",
     "@hookform/resolvers": "catalog:",
     "react-hook-form": "catalog:",
     "zod": "catalog:"

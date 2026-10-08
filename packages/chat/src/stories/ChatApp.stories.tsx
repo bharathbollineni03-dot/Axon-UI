@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { IconButton } from '@axon/core';
+import { IconButton } from '@axonui/core';
 import { ChatWindow } from '../components/ChatWindow/ChatWindow';
 import { ConversationSidebar } from '../components/ConversationSidebar/ConversationSidebar';
 import type { ConversationSummary } from '../components/ConversationSidebar/groupConversations';

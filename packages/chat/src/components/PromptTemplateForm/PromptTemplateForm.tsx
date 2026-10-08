@@ -12,7 +12,7 @@ import {
   type FormHelpers,
   type FormSubmitErrors,
   type FormSubmitResult,
-} from '@axon/forms';
+} from '@axonui/forms';
 import { extractTemplateVariables, humanizeVariableName, renderPromptTemplate } from './templates';
 
 export interface TemplateVariableConfig {

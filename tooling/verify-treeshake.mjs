@@ -18,7 +18,10 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const packages = ['theme', 'core', 'forms', 'chat', 'charts', 'table'];
 
 const alias = Object.fromEntries(
-  packages.map((name) => [`@axon/${name}`, path.join(root, 'packages', name, 'dist', 'index.mjs')]),
+  packages.map((name) => [
+    `@axonui/${name}`,
+    path.join(root, 'packages', name, 'dist', 'index.mjs'),
+  ]),
 );
 for (const file of Object.values(alias)) {
   if (!existsSync(file)) {
@@ -31,7 +34,7 @@ for (const file of Object.values(alias)) {
 const cases = [
   {
     name: 'core: import { Button }',
-    code: "import { Button } from '@axon/core'; console.log(Button);",
+    code: "import { Button } from '@axonui/core'; console.log(Button);",
     maxKb: 12,
     absent: [
       'axon-modal',
@@ -44,49 +47,49 @@ const cases = [
   },
   {
     name: 'core: import { Modal }',
-    code: "import { Modal } from '@axon/core'; console.log(Modal);",
+    code: "import { Modal } from '@axonui/core'; console.log(Modal);",
     maxKb: 40,
     absent: ['axon-tabs', 'axon-date-picker', 'axon-drawer__', 'axon-accordion', 'axon-slider'],
   },
   {
     name: 'core: import { Checkbox }',
-    code: "import { Checkbox } from '@axon/core'; console.log(Checkbox);",
+    code: "import { Checkbox } from '@axonui/core'; console.log(Checkbox);",
     maxKb: 14,
     absent: ['axon-modal', 'axon-select', 'axon-menu', 'axon-date-picker'],
   },
   {
     name: 'theme: import { ThemeProvider }',
-    code: "import { ThemeProvider } from '@axon/theme'; console.log(ThemeProvider);",
+    code: "import { ThemeProvider } from '@axonui/theme'; console.log(ThemeProvider);",
     maxKb: 30,
     absent: ['axon-button', 'axon-modal'],
   },
   {
     name: 'charts: import { Sparkline }',
-    code: "import { Sparkline } from '@axon/charts'; console.log(Sparkline);",
+    code: "import { Sparkline } from '@axonui/charts'; console.log(Sparkline);",
     maxKb: 60,
     absent: ['axon-gauge', 'axon-heatmap', 'axon-radar', 'axon-pie', 'axon-scatter'],
   },
   {
     name: 'charts: import { Gauge }',
-    code: "import { Gauge } from '@axon/charts'; console.log(Gauge);",
+    code: "import { Gauge } from '@axonui/charts'; console.log(Gauge);",
     maxKb: 65,
     absent: ['axon-heatmap', 'axon-radar', 'axon-pie', 'axon-scatter', 'axon-stat-card'],
   },
   {
     name: 'table: import { Table }',
-    code: "import { Table } from '@axon/table'; console.log(Table);",
+    code: "import { Table } from '@axonui/table'; console.log(Table);",
     maxKb: 8,
     absent: ['axon-datagrid', '@tanstack', 'useVirtualizer'],
   },
   {
     name: 'forms: import { FormSlider }',
-    code: "import { FormSlider } from '@axon/forms'; console.log(FormSlider);",
+    code: "import { FormSlider } from '@axonui/forms'; console.log(FormSlider);",
     maxKb: 520,
     absent: ['axon-wizard', 'axon-auth-card', 'axon-password-strength'],
   },
   {
     name: 'chat: import { StreamingText }',
-    code: "import { StreamingText } from '@axon/chat'; console.log(StreamingText);",
+    code: "import { StreamingText } from '@axonui/chat'; console.log(StreamingText);",
     // Markdown rendering and syntax highlighting (react-markdown, remark-gfm and 23 highlight.js
     // languages) are what a streamed reply is made of; the chat components themselves are not here.
     maxKb: 800,

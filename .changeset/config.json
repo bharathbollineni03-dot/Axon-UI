@@ -7,5 +7,5 @@
   "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
-  "ignore": ["@axon/docs", "@axon/example-next"]
+  "ignore": ["@axonui/docs", "@axonui/example-next"]
 }

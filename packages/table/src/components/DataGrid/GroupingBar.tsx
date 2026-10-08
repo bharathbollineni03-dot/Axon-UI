@@ -1,4 +1,4 @@
-import { Chip } from '@axon/core';
+import { Chip } from '@axonui/core';
 import type { DataGridLabels } from '../../labels';
 import type { DataGridColumn } from '../../types';
 

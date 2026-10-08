@@ -275,22 +275,22 @@ importers:
 
   apps/docs:
     dependencies:
-      '@axon/charts':
+      '@axonui/charts':
         specifier: workspace:*
         version: link:../../packages/charts
-      '@axon/chat':
+      '@axonui/chat':
         specifier: workspace:*
         version: link:../../packages/chat
-      '@axon/core':
+      '@axonui/core':
         specifier: workspace:*
         version: link:../../packages/core
-      '@axon/forms':
+      '@axonui/forms':
         specifier: workspace:*
         version: link:../../packages/forms
-      '@axon/table':
+      '@axonui/table':
         specifier: workspace:*
         version: link:../../packages/table
-      '@axon/theme':
+      '@axonui/theme':
         specifier: workspace:*
         version: link:../../packages/theme
       react:
@@ -339,22 +339,22 @@ importers:
 
   examples/next-app:
     dependencies:
-      '@axon/charts':
+      '@axonui/charts':
         specifier: workspace:*
         version: link:../../packages/charts
-      '@axon/chat':
+      '@axonui/chat':
         specifier: workspace:*
         version: link:../../packages/chat
-      '@axon/core':
+      '@axonui/core':
         specifier: workspace:*
         version: link:../../packages/core
-      '@axon/forms':
+      '@axonui/forms':
         specifier: workspace:*
         version: link:../../packages/forms
-      '@axon/table':
+      '@axonui/table':
         specifier: workspace:*
         version: link:../../packages/table
-      '@axon/theme':
+      '@axonui/theme':
         specifier: workspace:*
         version: link:../../packages/theme
       next:
@@ -382,10 +382,10 @@ importers:
 
   packages/charts:
     dependencies:
-      '@axon/core':
+      '@axonui/core':
         specifier: workspace:*
         version: link:../core
-      '@axon/theme':
+      '@axonui/theme':
         specifier: workspace:*
         version: link:../theme
     devDependencies:
@@ -437,13 +437,13 @@ importers:
 
   packages/chat:
     dependencies:
-      '@axon/core':
+      '@axonui/core':
         specifier: workspace:*
         version: link:../core
-      '@axon/forms':
+      '@axonui/forms':
         specifier: workspace:*
         version: link:../forms
-      '@axon/theme':
+      '@axonui/theme':
         specifier: workspace:*
         version: link:../theme
       '@tanstack/react-virtual':
@@ -483,7 +483,7 @@ importers:
 
   packages/core:
     dependencies:
-      '@axon/theme':
+      '@axonui/theme':
         specifier: workspace:*
         version: link:../theme
       '@floating-ui/react':
@@ -514,10 +514,10 @@ importers:
 
   packages/forms:
     dependencies:
-      '@axon/core':
+      '@axonui/core':
         specifier: workspace:*
         version: link:../core
-      '@axon/theme':
+      '@axonui/theme':
         specifier: workspace:*
         version: link:../theme
       '@hookform/resolvers':
@@ -554,10 +554,10 @@ importers:
 
   packages/table:
     dependencies:
-      '@axon/core':
+      '@axonui/core':
         specifier: workspace:*
         version: link:../core
-      '@axon/theme':
+      '@axonui/theme':
         specifier: workspace:*
         version: link:../theme
       '@tanstack/react-table':

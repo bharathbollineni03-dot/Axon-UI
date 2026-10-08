@@ -28,12 +28,12 @@ import {
   type TextAreaProps,
   type TextFieldProps,
   type TimePickerProps,
-} from '@axon/core';
+} from '@axonui/core';
 import { useMergedRef } from '../../internal/mergeRefs';
 import { useFormField, type FormControlProps } from '../FormField/useFormField';
 
 /**
- * The bindings connect one `@axon/core` input to the surrounding form. They take the input's own
+ * The bindings connect one `@axonui/core` input to the surrounding form. They take the input's own
  * props (label, helperText, size, options, ...), plus `name`. The form supplies the value, the
  * change and blur handling and the error state. `onChange` and `onBlur` still work: they run
  * after the form has handled the event.
