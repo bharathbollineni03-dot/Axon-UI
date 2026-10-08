@@ -1,0 +1,28 @@
+name: Update visual baselines
+
+# Screenshot baselines are rendered on Linux, so they are made here and not on a developer's machine.
+# Run this from the Actions tab after an intended visual change, download the "visual-baselines"
+# artifact, and commit its files to tests/visual/__screenshots__/.
+
+on:
+  workflow_dispatch:
+
+jobs:
+  baselines:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm --filter @axon/docs build
+      - run: pnpm exec playwright install --with-deps chromium
+      - run: pnpm test:visual --update-snapshots
+      - uses: actions/upload-artifact@v4
+        with:
+          name: visual-baselines
+          path: tests/visual/__screenshots__
+          retention-days: 14

@@ -21,10 +21,15 @@
     "version-packages": "changeset version",
     "release": "pnpm build && changeset publish",
     "size": "turbo run size",
-    "verify:treeshake": "node tooling/verify-treeshake.mjs"
+    "verify:treeshake": "node tooling/verify-treeshake.mjs",
+    "test:a11y": "playwright test tests/a11y",
+    "test:visual": "playwright test tests/visual",
+    "verify:package": "node tooling/verify-dist.mjs && pnpm -r --filter \"./packages/*\" exec publint --strict"
   },
   "devDependencies": {
+    "@axe-core/playwright": "catalog:",
     "@changesets/cli": "catalog:",
+    "@playwright/test": "catalog:",
     "@size-limit/preset-small-lib": "catalog:",
     "@storybook/react": "catalog:",
     "@testing-library/jest-dom": "catalog:",
@@ -45,6 +50,7 @@
     "jest-axe": "catalog:",
     "jsdom": "catalog:",
     "prettier": "catalog:",
+    "publint": "catalog:",
     "react": "catalog:",
     "react-dom": "catalog:",
     "size-limit": "catalog:",

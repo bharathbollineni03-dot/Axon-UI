@@ -1,0 +1,5 @@
+{
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": { "types": ["node"], "module": "commonjs", "moduleResolution": "node" },
+  "include": ["**/*.ts", "../playwright.config.ts"]
+}

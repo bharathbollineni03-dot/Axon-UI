@@ -10,6 +10,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  # Format, lint, types, unit tests and build, on both Node versions the packages support.
   verify:
     runs-on: ubuntu-latest
     strategy:
@@ -23,7 +24,112 @@ jobs:
           node-version: ${{ matrix.node }}
           cache: pnpm
       - run: pnpm install --frozen-lockfile
+      - run: pnpm format:check
       - run: pnpm lint
       - run: pnpm typecheck
       - run: pnpm test
       - run: pnpm build
+
+  # Bundle budgets and proof that importing one component does not pull in the rest.
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm size
+      - run: pnpm verify:treeshake
+      - run: pnpm verify:package
+
+  # The whole suite against React 18 and React 19.
+  react:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        react: [18, 19]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - name: Use React ${{ matrix.react }}
+        run: |
+          node tooling/use-react-version.mjs ${{ matrix.react }}
+          pnpm install --no-frozen-lockfile
+      - run: pnpm typecheck --force
+      - run: pnpm test --force
+
+  # A Next.js app router project built from the packages' output: server components import the
+  # packages, and the server-rendered HTML is checked.
+  next:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build
+      - run: pnpm --filter @axon/example-next verify
+
+  # axe-core on every story in light and dark mode, in a real browser.
+  a11y:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm --filter @axon/docs build
+      - run: pnpm exec playwright install --with-deps chromium
+      - run: pnpm test:a11y
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: a11y-report
+          path: playwright-report
+          retention-days: 7
+
+  # Screenshots of representative stories against the committed baselines. The baselines are made
+  # on Linux by the "Update visual baselines" workflow; until some are committed this job is skipped.
+  visual:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Look for baselines
+        id: baselines
+        run: |
+          if ls tests/visual/__screenshots__/*-linux.png >/dev/null 2>&1; then echo "found=true" >> "$GITHUB_OUTPUT"; fi
+      - uses: pnpm/action-setup@v4
+        if: steps.baselines.outputs.found == 'true'
+      - uses: actions/setup-node@v4
+        if: steps.baselines.outputs.found == 'true'
+        with:
+          node-version: 22
+          cache: pnpm
+      - if: steps.baselines.outputs.found == 'true'
+        run: pnpm install --frozen-lockfile
+      - if: steps.baselines.outputs.found == 'true'
+        run: pnpm --filter @axon/docs build
+      - if: steps.baselines.outputs.found == 'true'
+        run: pnpm exec playwright install --with-deps chromium
+      - if: steps.baselines.outputs.found == 'true'
+        run: pnpm test:visual
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: visual-diffs
+          path: test-results
+          retention-days: 7

@@ -2,6 +2,26 @@
   "name": "@axon/chat",
   "version": "0.0.0",
   "description": "Axon UI AI chat window and related components.",
+  "keywords": [
+    "react",
+    "react-component",
+    "axon-ui",
+    "accessibility",
+    "chat",
+    "ai",
+    "llm",
+    "streaming",
+    "markdown"
+  ],
+  "homepage": "https://github.com/bharathbollineni03-dot/Axon-UI/tree/main/packages/chat#readme",
+  "bugs": {
+    "url": "https://github.com/bharathbollineni03-dot/Axon-UI/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bharathbollineni03-dot/Axon-UI.git",
+    "directory": "packages/chat"
+  },
   "license": "MIT",
   "sideEffects": [
     "**/*.css"
@@ -27,7 +47,8 @@
     "dist"
   ],
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "provenance": true
   },
   "scripts": {
     "build": "tsup",

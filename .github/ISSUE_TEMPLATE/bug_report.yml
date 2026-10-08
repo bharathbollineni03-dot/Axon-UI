@@ -1,0 +1,56 @@
+name: Bug report
+description: Something doesn't work the way it should
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time. A minimal reproduction is worth more than a long description: edit one of the stories in Storybook, or use a CodeSandbox.
+  - type: dropdown
+    id: package
+    attributes:
+      label: Package
+      options:
+        [
+          '@axon/theme',
+          '@axon/core',
+          '@axon/forms',
+          '@axon/chat',
+          '@axon/charts',
+          '@axon/table',
+          'Documentation or examples',
+          'Not sure',
+        ]
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      placeholder: '0.1.0'
+    validations:
+      required: true
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened, and what did you expect?
+      description: Include the steps to reproduce it.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction
+      description: A link, or the smallest code that shows it.
+      render: tsx
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: React version, framework (Next.js, Vite), browser and operating system, and any assistive technology involved.
+  - type: checkboxes
+    id: a11y
+    attributes:
+      label: Accessibility
+      options:
+        - label: This is an accessibility problem (keyboard, screen reader, contrast, motion).
