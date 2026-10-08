@@ -1,1 +1,4 @@
 /* @axon/table styles: component stylesheets are @imported here. */
+@import './icons.css';
+@import './components/Table/Table.css';
+@import './components/DataGrid/DataGrid.css';

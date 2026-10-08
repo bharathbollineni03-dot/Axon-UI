@@ -1,0 +1,197 @@
+.axon-message {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--axon-space-3);
+  box-sizing: border-box;
+  max-width: 100%;
+  font-family: var(--axon-font-sans);
+  font-size: var(--axon-font-size-md);
+  line-height: var(--axon-line-height-normal);
+  color: var(--axon-color-text-primary);
+}
+
+/* The user's messages sit on the right, with the avatar after the text. */
+.axon-message--user {
+  flex-direction: row-reverse;
+}
+
+.axon-message__avatar {
+  flex-shrink: 0;
+}
+
+.axon-message__main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--axon-space-1);
+  min-width: 0;
+  max-width: min(100%, 44rem);
+}
+
+.axon-message--user .axon-message__main {
+  align-items: flex-end;
+}
+
+.axon-message__bubble {
+  display: flex;
+  flex-direction: column;
+  gap: var(--axon-space-3);
+  min-width: 0;
+  max-width: 100%;
+}
+
+/* The user's text is in a filled bubble; the assistant's reads as plain text on the page. */
+.axon-message--user .axon-message__bubble {
+  padding: var(--axon-space-2) var(--axon-space-4);
+  border-radius: var(--axon-radius-xl);
+  border-end-end-radius: var(--axon-radius-sm);
+  background: var(--axon-color-primary-solid);
+  color: var(--axon-color-primary-on-solid);
+}
+
+.axon-message--editing .axon-message__bubble {
+  width: min(100%, 36rem);
+  padding: var(--axon-space-3);
+  border: 1px solid var(--axon-color-border-strong);
+  background: var(--axon-color-surface);
+  color: var(--axon-color-text-primary);
+}
+
+.axon-message--assistant .axon-message__bubble {
+  padding-block: var(--axon-space-1);
+}
+
+.axon-message__text {
+  margin: 0;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.axon-message__image {
+  max-width: 100%;
+  max-height: 24rem;
+  border-radius: var(--axon-radius-lg);
+}
+
+.axon-message__files {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--axon-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.axon-message__file {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--axon-space-2);
+  padding: var(--axon-space-1) var(--axon-space-3);
+  border: 1px solid var(--axon-color-border);
+  border-radius: var(--axon-radius-full);
+  background: var(--axon-color-surface);
+  color: var(--axon-color-text-primary);
+  font-size: var(--axon-font-size-sm);
+}
+
+.axon-message__file a {
+  color: var(--axon-color-primary-text);
+}
+
+.axon-message__file-size {
+  color: var(--axon-color-text-secondary);
+  font-size: var(--axon-font-size-xs);
+}
+
+.axon-message__edit {
+  display: flex;
+  flex-direction: column;
+  gap: var(--axon-space-2);
+}
+
+.axon-message__edit-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--axon-space-2);
+}
+
+.axon-message__error {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--axon-space-3);
+  padding: var(--axon-space-2) var(--axon-space-3);
+  border: 1px solid var(--axon-color-danger-border);
+  border-radius: var(--axon-radius-lg);
+  background: var(--axon-color-danger-subtle);
+  color: var(--axon-color-text-primary);
+  font-size: var(--axon-font-size-sm);
+}
+
+/* Time and actions share a row under the bubble, and show on hover or focus. */
+.axon-message__meta {
+  display: flex;
+  align-items: center;
+  gap: var(--axon-space-2);
+  min-height: 1.75rem;
+}
+
+.axon-message--user .axon-message__meta {
+  flex-direction: row-reverse;
+}
+
+.axon-message__time {
+  color: var(--axon-color-text-secondary);
+  font-size: var(--axon-font-size-xs);
+  opacity: 0;
+  transition: opacity var(--axon-duration-fast) var(--axon-ease-standard);
+}
+
+.axon-message__time--always,
+.axon-message:hover .axon-message__time,
+.axon-message:focus-within .axon-message__time {
+  opacity: 1;
+}
+
+.axon-message__actions {
+  display: inline-flex;
+  gap: var(--axon-space-1);
+  opacity: 0;
+  transition: opacity var(--axon-duration-fast) var(--axon-ease-standard);
+}
+
+.axon-message:hover .axon-message__actions,
+.axon-message:focus-within .axon-message__actions {
+  opacity: 1;
+}
+
+/* On a screen with no hover, the time and the actions would never appear. */
+@media (hover: none) {
+  .axon-message__time,
+  .axon-message__actions {
+    opacity: 1;
+  }
+}
+
+.axon-message__action--on {
+  color: var(--axon-color-primary-text);
+}
+
+.axon-message--pending .axon-message__bubble,
+.axon-message--streaming .axon-message__bubble {
+  min-height: 1.5rem;
+}
+
+/* System messages are small, centered notes. */
+.axon-message--system {
+  justify-content: center;
+}
+
+.axon-message__system-text {
+  margin: 0;
+  padding: var(--axon-space-1) var(--axon-space-3);
+  border-radius: var(--axon-radius-full);
+  background: var(--axon-color-surface-muted);
+  color: var(--axon-color-text-secondary);
+  font-size: var(--axon-font-size-sm);
+  text-align: center;
+}

@@ -1,0 +1,159 @@
+.axon-table-container {
+  position: relative;
+  box-sizing: border-box;
+  max-width: 100%;
+  overflow: auto;
+  border: 1px solid var(--axon-color-border);
+  border-radius: var(--axon-radius-lg);
+  background: var(--axon-color-surface);
+}
+
+.axon-table-container:focus-visible {
+  outline: 2px solid var(--axon-color-focus-ring);
+  outline-offset: 2px;
+}
+
+.axon-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  color: var(--axon-color-text-primary);
+  font-family: var(--axon-font-sans);
+  font-size: var(--axon-font-size-sm);
+  line-height: var(--axon-line-height-normal);
+}
+
+.axon-table__caption {
+  padding: var(--axon-space-3) var(--axon-space-4);
+  color: var(--axon-color-text-secondary);
+  font-size: var(--axon-font-size-sm);
+  text-align: start;
+}
+
+.axon-table__caption--top {
+  caption-side: top;
+  border-bottom: 1px solid var(--axon-color-border);
+}
+
+.axon-table__caption--bottom {
+  caption-side: bottom;
+  border-top: 1px solid var(--axon-color-border);
+}
+
+.axon-table__cell {
+  box-sizing: border-box;
+  padding: var(--axon-space-3) var(--axon-space-4);
+  border-bottom: 1px solid var(--axon-color-border);
+  vertical-align: middle;
+}
+
+.axon-table__cell--start {
+  text-align: start;
+}
+
+.axon-table__cell--center {
+  text-align: center;
+}
+
+.axon-table__cell--end {
+  text-align: end;
+}
+
+.axon-table__cell--numeric {
+  font-variant-numeric: tabular-nums;
+}
+
+.axon-table__header-cell {
+  background: var(--axon-color-surface-muted);
+  color: var(--axon-color-text-secondary);
+  font-size: var(--axon-font-size-xs);
+  font-weight: var(--axon-font-weight-semibold);
+  letter-spacing: var(--axon-letter-spacing-wide);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.axon-table__foot .axon-table__cell {
+  border-top: 1px solid var(--axon-color-border-strong);
+  border-bottom: 0;
+  background: var(--axon-color-surface-muted);
+  font-weight: var(--axon-font-weight-semibold);
+}
+
+.axon-table__body .axon-table__row:last-child > .axon-table__cell {
+  border-bottom: 0;
+}
+
+/* Variants */
+
+.axon-table--dense .axon-table__cell {
+  padding: var(--axon-space-1-5) var(--axon-space-3);
+}
+
+.axon-table--striped .axon-table__body .axon-table__row:nth-child(even) {
+  background: var(--axon-color-surface-muted);
+}
+
+.axon-table--hoverable .axon-table__body .axon-table__row:hover {
+  background: var(--axon-color-primary-subtle);
+}
+
+.axon-table__row--selected,
+.axon-table--striped .axon-table__body .axon-table__row--selected {
+  background: var(--axon-color-primary-subtle);
+}
+
+.axon-table--bordered .axon-table__cell {
+  border-inline-end: 1px solid var(--axon-color-border);
+}
+
+.axon-table--bordered .axon-table__cell:last-child {
+  border-inline-end: 0;
+}
+
+/* The header stays put when the container scrolls. */
+.axon-table--sticky .axon-table__head .axon-table__cell {
+  position: sticky;
+  top: 0;
+  z-index: var(--axon-z-sticky);
+  box-shadow: 0 1px 0 var(--axon-color-border);
+}
+
+/* A sortable header */
+
+.axon-table__sort {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--axon-space-1);
+  margin: calc(var(--axon-space-1) * -1) calc(var(--axon-space-2) * -1);
+  padding: var(--axon-space-1) var(--axon-space-2);
+  border: 0;
+  border-radius: var(--axon-radius-sm);
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  cursor: pointer;
+}
+
+.axon-table__sort:hover {
+  background: var(--axon-color-neutral-subtle-hover);
+  color: var(--axon-color-text-primary);
+}
+
+.axon-table__sort:focus-visible {
+  outline: 2px solid var(--axon-color-focus-ring);
+  outline-offset: 0;
+}
+
+.axon-table__sort--active {
+  color: var(--axon-color-text-primary);
+}
+
+@media (forced-colors: active) {
+  .axon-table__row--selected {
+    outline: 2px solid Highlight;
+    outline-offset: -2px;
+  }
+}

@@ -14,6 +14,10 @@ export function createVitestConfig(overrides: UserConfig = {}) {
         setupFiles: [path.resolve(__dirname, 'vitest.setup.ts')],
         css: false,
         restoreMocks: true,
+        // Form tests type realistic input with user-event, and turbo runs every package's suite at
+        // once, so a test that takes a second alone can pass five on a busy or two-core CI runner.
+        testTimeout: 20_000,
+        hookTimeout: 20_000,
         include: ['src/**/*.test.{ts,tsx}'],
       },
     }),

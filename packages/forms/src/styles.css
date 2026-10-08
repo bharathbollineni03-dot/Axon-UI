@@ -1,1 +1,14 @@
 /* @axon/forms styles: component stylesheets are @imported here. */
+@import './components/Form/Form.css';
+@import './components/FormBindings/FormBindings.css';
+@import './components/FormActions/FormActions.css';
+@import './components/FormSection/FormSection.css';
+@import './components/FormWizard/FormWizard.css';
+@import './components/PasswordStrength/PasswordStrength.css';
+@import './components/AvatarUpload/AvatarUpload.css';
+@import './components/AuthCard/AuthCard.css';
+@import './components/LoginForm/LoginForm.css';
+@import './components/RegistrationForm/RegistrationForm.css';
+@import './components/ForgotPasswordForm/ForgotPasswordForm.css';
+@import './components/OTPVerificationForm/OTPVerificationForm.css';
+@import './components/NewsletterForm/NewsletterForm.css';

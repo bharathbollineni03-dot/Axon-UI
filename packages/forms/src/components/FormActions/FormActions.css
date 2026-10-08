@@ -1,0 +1,24 @@
+.axon-form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--axon-space-2);
+}
+
+.axon-form-actions--start {
+  justify-content: flex-start;
+}
+
+.axon-form-actions--end {
+  justify-content: flex-end;
+}
+
+/* Cancel on the left, submit on the right: the first button is pushed away from the last. */
+.axon-form-actions--between {
+  justify-content: space-between;
+}
+
+.axon-form-actions--stretch {
+  flex-direction: column-reverse;
+  align-items: stretch;
+}

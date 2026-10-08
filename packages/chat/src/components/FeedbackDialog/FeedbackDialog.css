@@ -1,0 +1,34 @@
+.axon-feedback {
+  display: grid;
+  gap: var(--axon-space-4);
+  font-family: var(--axon-font-sans);
+}
+
+.axon-feedback__choice {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--axon-space-2);
+}
+
+.axon-feedback__reasons {
+  display: grid;
+  gap: var(--axon-space-2);
+}
+
+.axon-feedback__reasons-label {
+  color: var(--axon-color-text-secondary);
+  font-size: var(--axon-font-size-sm);
+  font-weight: var(--axon-font-weight-medium);
+}
+
+.axon-feedback__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--axon-space-2);
+}
+
+.axon-feedback__footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--axon-space-2);
+}

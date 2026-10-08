@@ -1,0 +1,22 @@
+[
+  {
+    "name": "@axon/forms (everything)",
+    "path": "dist/index.mjs",
+    "ignore": [
+      "react",
+      "react-dom",
+      "@axon/core",
+      "@axon/theme",
+      "react-hook-form",
+      "zod",
+      "@hookform/resolvers",
+      "@floating-ui/react"
+    ],
+    "limit": "15 KB"
+  },
+  {
+    "name": "@axon/forms styles.css",
+    "path": "dist/styles.css",
+    "limit": "2 KB"
+  }
+]

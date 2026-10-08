@@ -1,0 +1,87 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Getting started" />
+
+# Getting started
+
+## 1. Install
+
+Axon UI needs React 18 or 19. Install the packages you use; each pulls in the ones it builds on.
+
+```bash
+pnpm add @axon/theme @axon/core          # the base
+pnpm add @axon/forms                      # forms (adds react-hook-form and zod)
+pnpm add @axon/chat                       # AI chat components
+pnpm add @axon/charts                     # charts
+pnpm add @axon/table                      # Table and DataGrid
+```
+
+`npm install` and `yarn add` work the same way. `@axon/theme` and `@axon/core` are needed by every other package, so install them wherever you use any component.
+
+## 2. Import the styles
+
+Every package has one stylesheet. Import the theme's first, then the others you use, once, near the root of your app:
+
+```tsx
+import '@axon/theme/styles.css';
+import '@axon/core/styles.css';
+import '@axon/forms/styles.css'; // only if you use @axon/forms
+import '@axon/chat/styles.css'; // only if you use @axon/chat
+import '@axon/charts/styles.css'; // only if you use @axon/charts
+import '@axon/table/styles.css'; // only if you use @axon/table
+```
+
+The stylesheets are plain CSS using `--axon-*` custom properties, so they work with any bundler, and they are the only things marked as having side effects.
+
+## 3. Wrap your app in `ThemeProvider`
+
+```tsx
+import { ThemeProvider } from '@axon/theme';
+import { Button, TextField } from '@axon/core';
+
+export function App() {
+  return (
+    <ThemeProvider defaultMode="system" storageKey="axon-mode">
+      <TextField label="Email" type="email" required />
+      <Button>Continue</Button>
+    </ThemeProvider>
+  );
+}
+```
+
+`ThemeProvider` renders the `.axon-root` element that carries the colour mode, so components inside it are themed. Portaled UI (menus, dialogs, tooltips) renders back into the nearest `.axon-root`, so it follows the theme too. `defaultMode` is `'light'`, `'dark'` or `'system'`; `storageKey` remembers the user's choice.
+
+## 4. Use a component
+
+```tsx
+import { useState } from 'react';
+import { DataGrid, type DataGridColumn } from '@axon/table';
+
+type Person = { id: number; name: string; team: string };
+
+const columns: DataGridColumn<Person>[] = [
+  { accessor: 'name', header: 'Name' },
+  { accessor: 'team', header: 'Team', filterable: true, filter: 'select' },
+];
+
+export function People({ people }: { people: Person[] }) {
+  return <DataGrid data={people} columns={columns} aria-label="People" toolbar paginated />;
+}
+```
+
+## Frameworks
+
+**Next.js (app router).** Axon's packages are marked `"use client"`, so you can import them from server components and render them without writing the directive yourself. Import the stylesheets in your root `layout.tsx`, and put `ThemeProvider` in a client component that wraps `children`. To avoid a flash of the wrong colour mode, set `data-axon-theme="system"` on `<html>` or use `defaultMode="system"`: the `system` mode follows `prefers-color-scheme` in CSS alone.
+
+**Vite, Remix, Astro (React islands) and the rest.** Nothing special: import the styles, wrap with `ThemeProvider`.
+
+**React versions.** The packages declare `react` and `react-dom` `>=18` as peer dependencies and are tested against React 18 and 19.
+
+## Good to know
+
+- **Dates** are local calendar dates, and the pickers default to the `en-US` locale so the server and the browser render the same text. Pass `locale={navigator.language}` once mounted to follow the user.
+- **Popups** (menus, selects, date pickers) use `@floating-ui/react` and stay inside the dialog they were opened from.
+- **Controlled and uncontrolled.** Components take `value` and `onChange`, or `defaultValue` and manage themselves.
+- **Every component forwards its `ref`** and merges `className` and `style`.
+
+Next: [Theming](?path=/docs/theming--docs) to make it yours, and [Accessibility](?path=/docs/accessibility--docs) for what each component promises.

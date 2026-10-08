@@ -1,0 +1,101 @@
+.axon-tool-call {
+  overflow: hidden;
+  border: 1px solid var(--axon-color-border);
+  border-radius: var(--axon-radius-lg);
+  background: var(--axon-color-surface);
+  color: var(--axon-color-text-primary);
+  font-family: var(--axon-font-sans);
+  font-size: var(--axon-font-size-sm);
+}
+
+.axon-tool-call__header {
+  display: flex;
+  align-items: center;
+  gap: var(--axon-space-2);
+  width: 100%;
+  padding: var(--axon-space-2) var(--axon-space-3);
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: start;
+  cursor: pointer;
+}
+
+.axon-tool-call__header:disabled {
+  cursor: default;
+}
+
+.axon-tool-call__header:hover:not(:disabled) {
+  background: var(--axon-color-surface-muted);
+}
+
+.axon-tool-call__header:focus-visible {
+  outline: 2px solid var(--axon-color-focus-ring);
+  outline-offset: -2px;
+}
+
+.axon-tool-call__icon {
+  flex-shrink: 0;
+  color: var(--axon-color-text-secondary);
+}
+
+.axon-tool-call__name {
+  min-width: 0;
+  overflow: hidden;
+  font-family: var(--axon-font-mono);
+  font-weight: var(--axon-font-weight-medium);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.axon-tool-call__status {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--axon-space-1);
+  margin-inline-start: auto;
+  color: var(--axon-color-text-secondary);
+  font-size: var(--axon-font-size-xs);
+}
+
+.axon-tool-call--running .axon-tool-call__status {
+  color: var(--axon-color-primary-text);
+}
+
+.axon-tool-call--success .axon-tool-call__status {
+  color: var(--axon-color-success-text);
+}
+
+.axon-tool-call--error {
+  border-color: var(--axon-color-danger-border);
+}
+
+.axon-tool-call--error .axon-tool-call__status {
+  color: var(--axon-color-danger-text);
+}
+
+.axon-tool-call__chevron {
+  flex-shrink: 0;
+  color: var(--axon-color-text-secondary);
+  transition: transform var(--axon-duration-fast) var(--axon-ease-standard);
+}
+
+.axon-tool-call__header[aria-expanded='true'] .axon-tool-call__chevron {
+  transform: rotate(90deg);
+}
+
+.axon-tool-call__details {
+  display: grid;
+  gap: var(--axon-space-3);
+  padding: var(--axon-space-3);
+  border-top: 1px solid var(--axon-color-border);
+}
+
+.axon-tool-call__heading {
+  margin: 0 0 var(--axon-space-1);
+  color: var(--axon-color-text-secondary);
+  font-size: var(--axon-font-size-xs);
+  font-weight: var(--axon-font-weight-semibold);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}

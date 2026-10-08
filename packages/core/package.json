@@ -2,6 +2,25 @@
   "name": "@axon/core",
   "version": "0.0.0",
   "description": "Axon UI base components: buttons, inputs, layout, overlays and feedback.",
+  "keywords": [
+    "react",
+    "react-component",
+    "axon-ui",
+    "accessibility",
+    "components",
+    "ui",
+    "accessible",
+    "design system"
+  ],
+  "homepage": "https://github.com/bharathbollineni03-dot/Axon-UI/tree/main/packages/core#readme",
+  "bugs": {
+    "url": "https://github.com/bharathbollineni03-dot/Axon-UI/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bharathbollineni03-dot/Axon-UI.git",
+    "directory": "packages/core"
+  },
   "license": "MIT",
   "sideEffects": [
     "**/*.css"
@@ -27,14 +46,16 @@
     "dist"
   ],
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "provenance": true
   },
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
     "test": "vitest run --passWithNoTests",
     "test:watch": "vitest",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "size": "size-limit"
   },
   "peerDependencies": {
     "react": ">=18",

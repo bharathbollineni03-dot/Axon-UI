@@ -1,0 +1,120 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Theming" />
+
+# Theming
+
+Axon UI is themed with CSS custom properties, all prefixed `--axon-`. There is no runtime styling library: `@axon/theme/styles.css` defines the variables, every component's stylesheet reads them, and changing a variable changes every component that uses it.
+
+## The tokens
+
+| Group                | Variables                                                                                                                            |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| Palettes (50 to 950) | `--axon-color-{primary,secondary,success,warning,danger,info,neutral}-{shade}`                                                       |
+| Accents (mode-aware) | `--axon-color-<name>-{solid,solid-hover,solid-active,on-solid,text,text-hover,subtle,border}`                                        |
+| Surfaces and text    | `--axon-color-{background,surface,surface-muted,surface-raised,border,border-strong,text-primary,text-secondary,focus-ring,overlay}` |
+| Typography           | `--axon-font-{sans,mono}`, `--axon-font-size-*`, `--axon-font-weight-*`, `--axon-line-height-*`                                      |
+| Spacing and radius   | `--axon-space-*`, `--axon-radius-*`, `--axon-shadow-*`                                                                               |
+| Layers and motion    | `--axon-z-*`, `--axon-duration-*`, `--axon-ease-*`                                                                                   |
+| Charts               | `--axon-chart-1` to `--axon-chart-8` (series colours)                                                                                |
+
+**Components use the accent and surface tokens, not palette shades.** `color="danger"` on a Button reads `--axon-color-danger-solid`, which is a shade chosen so that white text on it meets 4.5:1 contrast in light mode and a different shade in dark mode. That is why a palette change flows through everywhere and stays readable.
+
+Browse the values in the **Foundations** stories: Colors, Typography, Spacing, Radius and shadows.
+
+## Colour mode
+
+`ThemeProvider` renders an element with `data-axon-theme="light" | "dark" | "system"`:
+
+```tsx
+<ThemeProvider defaultMode="system" storageKey="axon-mode">
+  <App />
+</ThemeProvider>
+```
+
+- `system` follows `prefers-color-scheme` in CSS, so there is no flash before the page hydrates.
+- `mode` with `onModeChange` controls it yourself; `defaultMode` leaves it to the provider; `storageKey` remembers the choice in `localStorage` and is safe on the server.
+- `useTheme()` returns `{ tokens, mode, resolvedMode, setMode }`, which is what a theme switcher needs.
+
+```tsx
+function ThemeToggle() {
+  const { resolvedMode, setMode } = useTheme();
+  return (
+    <Button variant="ghost" onClick={() => setMode(resolvedMode === 'dark' ? 'light' : 'dark')}>
+      {resolvedMode === 'dark' ? 'Light mode' : 'Dark mode'}
+    </Button>
+  );
+}
+```
+
+The CSS does not need React. Put `data-axon-theme="dark"` on any element, such as `<html>`, and everything inside follows. Use the toolbar's **Theme** menu above to flip this documentation between modes.
+
+## Your brand
+
+`createTheme` deep-merges overrides onto the default theme without changing it. A brand colour is a whole palette scale, because accents pick several shades (`primary-600` for the fill, `700` and `800` for hover, `700` for text):
+
+```tsx
+import { createTheme, ThemeProvider } from '@axon/theme';
+
+const teal = {
+  50: '#f0fdfa',
+  100: '#ccfbf1',
+  200: '#99f6e4',
+  300: '#5eead4',
+  400: '#2dd4bf',
+  500: '#14b8a6',
+  600: '#0d9488',
+  700: '#0f766e',
+  800: '#115e59',
+  900: '#134e4a',
+  950: '#042f2e',
+};
+
+const theme = createTheme({
+  palette: { primary: teal },
+  radius: { md: '0.75rem' },
+  typography: { fontFamily: { sans: '"Inter", system-ui, sans-serif' } },
+  semantic: { dark: { background: '#0b1020' } },
+});
+
+<ThemeProvider theme={theme}>
+  <App />
+</ThemeProvider>;
+```
+
+`ThemeProvider` emits only what changed, as CSS scoped to its element, so overrides apply per mode (including `system`). Check the contrast of a new palette: the accent shades were chosen for the default colours.
+
+## Overriding with plain CSS
+
+Because the tokens are variables, any CSS can change them for a part of the page:
+
+```css
+/* A denser, squarer admin area */
+.admin {
+  --axon-radius-md: 0.25rem;
+  --axon-space-3: 0.5rem;
+}
+
+/* Chart series for one dashboard */
+.sales-dashboard {
+  --axon-chart-1: #0f766e;
+  --axon-chart-2: #b45309;
+}
+
+/* One panel in a different accent */
+.warning-panel {
+  --axon-color-primary-600: var(--axon-color-warning-600);
+}
+```
+
+Class names are `axon-` prefixed and BEM-like (`axon-button--solid`, `axon-datagrid__row`), so you can also target a component's parts. Prefer a token when one exists: a class name is less stable than a variable.
+
+## Motion, density and direction
+
+- **Reduced motion.** Under `prefers-reduced-motion: reduce` the theme sets the motion durations to zero, so transitions stop everywhere, and the components that animate on their own (spinners, skeletons, progress, streaming text, charts, the grid's loading bar) hold still or simplify.
+- **Density.** The DataGrid has `compact`, `standard` and `comfortable` row heights (also in its toolbar). Form controls take `size="sm" | "md" | "lg"`.
+- **Right-to-left.** Component layouts use logical properties (`margin-inline-start`, `inset-inline-end`), so they mirror under `dir="rtl"`. The DataGrid's pinned columns follow the text direction; its arrow-key movement is not mirrored yet.
+
+## Portals follow the theme
+
+Menus, dialogs, tooltips and date pickers render into the nearest `.axon-root` rather than into `document.body`, so they are inside the element carrying your mode and your overrides. If you render your own portal, use `Portal` from `@axon/core` for the same behaviour.

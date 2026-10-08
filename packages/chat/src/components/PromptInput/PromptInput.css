@@ -1,0 +1,174 @@
+.axon-prompt-input {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--axon-space-2);
+  box-sizing: border-box;
+  width: 100%;
+  font-family: var(--axon-font-sans);
+}
+
+.axon-prompt-input__attachments {
+  padding-inline: var(--axon-space-1);
+}
+
+.axon-prompt-input__rejections {
+  margin: 0;
+  padding: var(--axon-space-2) var(--axon-space-3);
+  border: 1px solid var(--axon-color-danger-border);
+  border-radius: var(--axon-radius-lg);
+  background: var(--axon-color-danger-subtle);
+  color: var(--axon-color-text-primary);
+  font-size: var(--axon-font-size-sm);
+}
+
+.axon-prompt-input__rejections p {
+  margin: 0;
+}
+
+.axon-prompt-input__box {
+  display: flex;
+  flex-direction: column;
+  gap: var(--axon-space-1);
+  padding: var(--axon-space-2) var(--axon-space-2) var(--axon-space-2) var(--axon-space-4);
+  border: 1px solid var(--axon-color-border-strong);
+  border-radius: var(--axon-radius-xl);
+  background: var(--axon-color-surface);
+  transition: border-color var(--axon-duration-fast) var(--axon-ease-standard);
+}
+
+.axon-prompt-input__box:focus-within {
+  border-color: var(--axon-color-focus-ring);
+  outline: 1px solid var(--axon-color-focus-ring);
+}
+
+.axon-prompt-input--dragging .axon-prompt-input__box {
+  border-color: var(--axon-color-primary-solid);
+  border-style: dashed;
+}
+
+.axon-prompt-input--disabled .axon-prompt-input__box {
+  background: var(--axon-color-surface-muted);
+  cursor: not-allowed;
+}
+
+.axon-prompt-input__textarea {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0;
+  padding: var(--axon-space-1) 0;
+  border: 0;
+  background: transparent;
+  color: var(--axon-color-text-primary);
+  font: inherit;
+  font-size: var(--axon-font-size-md);
+  line-height: var(--axon-line-height-normal);
+  outline: none;
+  resize: none;
+}
+
+.axon-prompt-input__textarea::placeholder {
+  color: var(--axon-color-text-placeholder);
+}
+
+.axon-prompt-input__textarea:disabled {
+  cursor: not-allowed;
+}
+
+.axon-prompt-input__toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--axon-space-2);
+}
+
+.axon-prompt-input__start,
+.axon-prompt-input__end {
+  display: flex;
+  align-items: center;
+  gap: var(--axon-space-1);
+}
+
+.axon-prompt-input__count {
+  margin-inline-end: var(--axon-space-1);
+  color: var(--axon-color-text-secondary);
+  font-size: var(--axon-font-size-xs);
+  font-variant-numeric: tabular-nums;
+}
+
+.axon-prompt-input__count--over {
+  color: var(--axon-color-danger-text);
+  font-weight: var(--axon-font-weight-semibold);
+}
+
+/* Shown over the box while files are dragged onto it. It never takes the pointer. */
+.axon-prompt-input__drop {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--axon-radius-xl);
+  background: color-mix(in srgb, var(--axon-color-primary-subtle) 92%, transparent);
+  color: var(--axon-color-primary-text);
+  font-weight: var(--axon-font-weight-medium);
+  pointer-events: none;
+}
+
+/* Suggestions open above the box, as a floating list. */
+.axon-suggestions {
+  position: absolute;
+  inset-block-end: calc(100% + var(--axon-space-1));
+  inset-inline: 0;
+  z-index: var(--axon-z-popover);
+  max-height: 16rem;
+  margin: 0;
+  padding: var(--axon-space-1);
+  overflow-y: auto;
+  border: 1px solid var(--axon-color-border);
+  border-radius: var(--axon-radius-lg);
+  background: var(--axon-color-surface-raised);
+  box-shadow: var(--axon-shadow-lg);
+  list-style: none;
+}
+
+.axon-suggestions__option {
+  display: flex;
+  align-items: center;
+  gap: var(--axon-space-3);
+  padding: var(--axon-space-2) var(--axon-space-3);
+  border-radius: var(--axon-radius-md);
+  color: var(--axon-color-text-primary);
+  font-size: var(--axon-font-size-sm);
+  cursor: pointer;
+}
+
+.axon-suggestions__option--active {
+  background: var(--axon-color-primary-subtle);
+}
+
+.axon-suggestions__icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  color: var(--axon-color-text-secondary);
+}
+
+.axon-suggestions__text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.axon-suggestions__label {
+  font-weight: var(--axon-font-weight-medium);
+}
+
+.axon-suggestions__description {
+  overflow: hidden;
+  color: var(--axon-color-text-secondary);
+  font-size: var(--axon-font-size-xs);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

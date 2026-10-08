@@ -63,7 +63,7 @@ export function filterItems(
   return result;
 }
 
-const COMBINING_MARKS = new RegExp('[\u0300-\u036f]', 'g');
+const COMBINING_MARKS = /* @__PURE__ */ new RegExp('[\u0300-\u036f]', 'g');
 const normalize = (text: string) =>
   text.normalize('NFD').replace(COMBINING_MARKS, '').toLowerCase();
 

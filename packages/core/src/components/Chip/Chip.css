@@ -103,9 +103,10 @@ button.axon-chip__main {
   flex-shrink: 0;
   align-items: center;
   justify-content: center;
-  width: 1.25rem;
-  height: 1.25rem;
-  margin-inline: calc(var(--axon-space-1) * -1) var(--axon-space-1-5);
+  /* 24 by 24 px: the smallest target WCAG 2.2 allows without spacing around it. */
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-inline: calc(var(--axon-space-1-5) * -1) var(--axon-space-1);
   padding: 0;
   border: 0;
   border-radius: var(--axon-radius-full);

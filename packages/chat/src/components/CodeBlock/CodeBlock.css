@@ -1,0 +1,152 @@
+.axon-code-block {
+  overflow: hidden;
+  border: 1px solid var(--axon-color-border);
+  border-radius: var(--axon-radius-lg);
+  background: var(--axon-color-surface-muted);
+  color: var(--axon-color-text-primary);
+  font-family: var(--axon-font-sans);
+}
+
+.axon-code-block__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--axon-space-2);
+  padding: var(--axon-space-1) var(--axon-space-2) var(--axon-space-1) var(--axon-space-3);
+  border-bottom: 1px solid var(--axon-color-border);
+  color: var(--axon-color-text-secondary);
+  font-size: var(--axon-font-size-xs);
+}
+
+.axon-code-block__title {
+  min-width: 0;
+  overflow: hidden;
+  font-family: var(--axon-font-mono);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.axon-code-block__copy {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: var(--axon-space-1);
+  padding: var(--axon-space-1) var(--axon-space-2);
+  border: 0;
+  border-radius: var(--axon-radius-md);
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.axon-code-block__copy:hover {
+  background: var(--axon-color-border);
+  color: var(--axon-color-text-primary);
+}
+
+.axon-code-block__copy:focus-visible,
+.axon-code-block__pre:focus-visible {
+  outline: 2px solid var(--axon-color-focus-ring);
+  outline-offset: -2px;
+}
+
+.axon-code-block__pre {
+  display: flex;
+  margin: 0;
+  padding: var(--axon-space-3);
+  overflow: auto;
+  font-family: var(--axon-font-mono);
+  font-size: var(--axon-font-size-sm);
+  line-height: var(--axon-line-height-normal);
+  tab-size: 2;
+}
+
+.axon-code-block__code {
+  display: block;
+  flex: 1;
+  min-width: max-content;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  white-space: pre;
+}
+
+.axon-code-block--wrap .axon-code-block__code {
+  min-width: 0;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.axon-code-block__lines {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  padding-inline-end: var(--axon-space-3);
+  color: var(--axon-color-text-secondary);
+  text-align: end;
+  user-select: none;
+}
+
+/*
+ * Token colors come from the accent tokens, so they follow light and dark mode. highlight.js
+ * names the classes; nothing here is a hard-coded color.
+ */
+.axon-code-block .hljs-comment,
+.axon-code-block .hljs-quote,
+.axon-code-block .hljs-meta {
+  color: var(--axon-color-text-secondary);
+  font-style: italic;
+}
+
+.axon-code-block .hljs-keyword,
+.axon-code-block .hljs-selector-tag,
+.axon-code-block .hljs-literal,
+.axon-code-block .hljs-type,
+.axon-code-block .hljs-doctag {
+  color: var(--axon-color-primary-text);
+}
+
+.axon-code-block .hljs-string,
+.axon-code-block .hljs-regexp,
+.axon-code-block .hljs-addition {
+  color: var(--axon-color-success-text);
+}
+
+.axon-code-block .hljs-number,
+.axon-code-block .hljs-symbol,
+.axon-code-block .hljs-bullet {
+  color: var(--axon-color-warning-text);
+}
+
+.axon-code-block .hljs-title,
+.axon-code-block .hljs-section,
+.axon-code-block .hljs-function,
+.axon-code-block .hljs-built_in,
+.axon-code-block .hljs-name {
+  color: var(--axon-color-secondary-text);
+}
+
+.axon-code-block .hljs-attr,
+.axon-code-block .hljs-attribute,
+.axon-code-block .hljs-variable,
+.axon-code-block .hljs-template-variable,
+.axon-code-block .hljs-property {
+  color: var(--axon-color-primary-text-hover);
+}
+
+.axon-code-block .hljs-deletion {
+  color: var(--axon-color-danger-text);
+}
+
+.axon-code-block .hljs-emphasis {
+  font-style: italic;
+}
+
+.axon-code-block .hljs-strong {
+  font-weight: var(--axon-font-weight-bold);
+}
+
+.axon-code-block .hljs-link {
+  text-decoration: underline;
+}

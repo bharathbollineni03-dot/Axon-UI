@@ -19,6 +19,8 @@ module.exports = {
     'node_modules',
     'dist',
     'storybook-static',
+    '.next',
+    'next-env.d.ts',
     '.turbo',
     'coverage',
     'pnpm-lock.yaml',

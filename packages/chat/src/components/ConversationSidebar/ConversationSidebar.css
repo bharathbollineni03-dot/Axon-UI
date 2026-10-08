@@ -1,0 +1,155 @@
+.axon-conversation-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--axon-space-3);
+  box-sizing: border-box;
+  height: 100%;
+  min-height: 0;
+  padding: var(--axon-space-3);
+  background: var(--axon-color-surface);
+  color: var(--axon-color-text-primary);
+  font-family: var(--axon-font-sans);
+}
+
+.axon-conversation-sidebar__top {
+  display: grid;
+  flex-shrink: 0;
+  gap: var(--axon-space-2);
+}
+
+.axon-conversation-sidebar__list {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--axon-space-3);
+  min-height: 0;
+  margin: 0 calc(-1 * var(--axon-space-1));
+  padding: 0 var(--axon-space-1);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.axon-conversation-sidebar__group {
+  display: grid;
+  gap: var(--axon-space-1);
+}
+
+.axon-conversation-sidebar__group-title {
+  margin: 0;
+  padding: 0 var(--axon-space-2);
+  color: var(--axon-color-text-secondary);
+  font-size: var(--axon-font-size-xs);
+  font-weight: var(--axon-font-weight-semibold);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.axon-conversation-sidebar__items {
+  display: grid;
+  gap: var(--axon-space-0-5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.axon-conversation-sidebar__item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--axon-space-1);
+  min-width: 0;
+  border-radius: var(--axon-radius-md);
+  transition: background-color var(--axon-duration-fast) var(--axon-ease-standard);
+}
+
+.axon-conversation-sidebar__item:hover,
+.axon-conversation-sidebar__item:focus-within {
+  background: var(--axon-color-surface-muted);
+}
+
+.axon-conversation-sidebar__item[data-active='true'] {
+  background: var(--axon-color-primary-subtle);
+  color: var(--axon-color-primary-text);
+}
+
+.axon-conversation-sidebar__select {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: var(--axon-space-2);
+  min-width: 0;
+  padding: var(--axon-space-2);
+  border: 0;
+  border-radius: var(--axon-radius-md);
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: var(--axon-font-size-sm);
+  text-align: start;
+  cursor: pointer;
+}
+
+.axon-conversation-sidebar__item[data-active='true'] .axon-conversation-sidebar__select {
+  font-weight: var(--axon-font-weight-medium);
+}
+
+.axon-conversation-sidebar__select:focus-visible,
+.axon-conversation-sidebar__rename:focus-visible {
+  outline: 2px solid var(--axon-color-focus-ring);
+  outline-offset: -2px;
+}
+
+.axon-conversation-sidebar__pin {
+  flex-shrink: 0;
+  color: var(--axon-color-text-secondary);
+  font-size: var(--axon-font-size-sm);
+}
+
+.axon-conversation-sidebar__title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.axon-conversation-sidebar__rename {
+  flex: 1;
+  min-width: 0;
+  box-sizing: border-box;
+  padding: var(--axon-space-2);
+  border: 1px solid var(--axon-color-border-strong);
+  border-radius: var(--axon-radius-md);
+  background: var(--axon-color-surface);
+  color: var(--axon-color-text-primary);
+  font: inherit;
+  font-size: var(--axon-font-size-sm);
+}
+
+/* The actions button stays out of the way until the row is pointed at or focused. */
+.axon-conversation-sidebar__more {
+  flex-shrink: 0;
+}
+
+@media (hover: hover) {
+  .axon-conversation-sidebar__more:not([aria-expanded='true']) {
+    opacity: 0;
+  }
+
+  .axon-conversation-sidebar__item:hover .axon-conversation-sidebar__more,
+  .axon-conversation-sidebar__item:focus-within .axon-conversation-sidebar__more {
+    opacity: 1;
+  }
+}
+
+.axon-conversation-sidebar__loading {
+  display: grid;
+  gap: var(--axon-space-3);
+  padding: var(--axon-space-2);
+}
+
+.axon-conversation-sidebar__empty {
+  margin: 0;
+  padding: var(--axon-space-4) var(--axon-space-2);
+  color: var(--axon-color-text-secondary);
+  font-size: var(--axon-font-size-sm);
+  text-align: center;
+}

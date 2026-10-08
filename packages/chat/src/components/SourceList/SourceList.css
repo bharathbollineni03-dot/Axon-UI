@@ -1,0 +1,110 @@
+.axon-sources {
+  font-family: var(--axon-font-sans);
+  font-size: var(--axon-font-size-sm);
+}
+
+.axon-sources__title {
+  margin: 0 0 var(--axon-space-2);
+  color: var(--axon-color-text-secondary);
+  font-size: var(--axon-font-size-xs);
+  font-weight: var(--axon-font-weight-semibold);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.axon-sources__list {
+  display: grid;
+  gap: var(--axon-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.axon-sources__item {
+  display: flex;
+  gap: var(--axon-space-3);
+  padding: var(--axon-space-2) var(--axon-space-3);
+  border: 1px solid var(--axon-color-border);
+  border-radius: var(--axon-radius-lg);
+  background: var(--axon-color-surface);
+}
+
+/* The item that a citation just jumped to. */
+.axon-sources__item:target {
+  border-color: var(--axon-color-primary-border);
+  background: var(--axon-color-primary-subtle);
+}
+
+.axon-sources__number {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: var(--axon-radius-full);
+  background: var(--axon-color-surface-muted);
+  color: var(--axon-color-text-secondary);
+  font-size: var(--axon-font-size-xs);
+  font-weight: var(--axon-font-weight-semibold);
+}
+
+.axon-sources__body {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.axon-sources__link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--axon-space-1);
+  color: var(--axon-color-primary-text);
+  font-weight: var(--axon-font-weight-medium);
+  text-decoration: none;
+}
+
+.axon-sources__link:hover .axon-sources__name {
+  text-decoration: underline;
+}
+
+.axon-sources__link:focus-visible {
+  outline: 2px solid var(--axon-color-focus-ring);
+  outline-offset: 2px;
+  border-radius: var(--axon-radius-sm);
+}
+
+.axon-sources__name {
+  overflow-wrap: anywhere;
+}
+
+.axon-sources__external {
+  flex-shrink: 0;
+  font-size: 0.85em;
+}
+
+.axon-sources__site {
+  color: var(--axon-color-text-secondary);
+  font-size: var(--axon-font-size-xs);
+}
+
+.axon-sources__snippet {
+  margin: var(--axon-space-1) 0 0;
+  color: var(--axon-color-text-secondary);
+}
+
+.axon-citation a {
+  color: var(--axon-color-primary-text);
+  font-size: 0.75em;
+  text-decoration: none;
+}
+
+.axon-citation a:hover {
+  text-decoration: underline;
+}
+
+.axon-citation a:focus-visible {
+  outline: 2px solid var(--axon-color-focus-ring);
+  outline-offset: 1px;
+  border-radius: var(--axon-radius-sm);
+}

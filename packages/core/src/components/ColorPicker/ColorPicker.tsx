@@ -36,11 +36,12 @@ const PALETTE_LABELS: Record<PaletteName, string> = {
 };
 
 /** The default swatches: the theme palettes at shades 500 and 700. */
-export const defaultSwatches: ColorSwatch[] = ([500, 700] as const).flatMap((shade) =>
-  (Object.keys(PALETTE_LABELS) as PaletteName[]).map((name) => ({
-    value: defaultTheme.palette[name][shade],
-    label: `${PALETTE_LABELS[name]} ${shade}`,
-  })),
+export const defaultSwatches: ColorSwatch[] = /* @__PURE__ */ ([500, 700] as const).flatMap(
+  (shade) =>
+    (Object.keys(PALETTE_LABELS) as PaletteName[]).map((name) => ({
+      value: defaultTheme.palette[name][shade],
+      label: `${PALETTE_LABELS[name]} ${shade}`,
+    })),
 );
 
 /**

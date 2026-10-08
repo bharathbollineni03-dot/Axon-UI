@@ -2,6 +2,25 @@
   "name": "@axon/theme",
   "version": "0.0.0",
   "description": "Axon UI design tokens, ThemeProvider and light/dark mode.",
+  "keywords": [
+    "react",
+    "react-component",
+    "axon-ui",
+    "accessibility",
+    "design tokens",
+    "theme",
+    "dark mode",
+    "css variables"
+  ],
+  "homepage": "https://github.com/bharathbollineni03-dot/Axon-UI/tree/main/packages/theme#readme",
+  "bugs": {
+    "url": "https://github.com/bharathbollineni03-dot/Axon-UI/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bharathbollineni03-dot/Axon-UI.git",
+    "directory": "packages/theme"
+  },
   "license": "MIT",
   "sideEffects": [
     "**/*.css"
@@ -27,7 +46,8 @@
     "dist"
   ],
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "provenance": true
   },
   "scripts": {
     "build": "tsx scripts/generate-css.ts && tsup",
@@ -35,7 +55,8 @@
     "test": "vitest run --passWithNoTests",
     "test:watch": "vitest",
     "typecheck": "tsc --noEmit",
-    "gen:css": "tsx scripts/generate-css.ts"
+    "gen:css": "tsx scripts/generate-css.ts",
+    "size": "size-limit"
   },
   "peerDependencies": {
     "react": ">=18",

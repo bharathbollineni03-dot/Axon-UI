@@ -1,0 +1,44 @@
+/*
+ * The chart palette: eight colors for series, taken from the theme's color scales. Colors next to
+ * each other differ in hue so neighbouring series are easy to tell apart; the later ones are for
+ * charts with many series, which are worth rethinking. In dark mode every color is a lighter step so
+ * it keeps its contrast against the dark surface.
+ *
+ * Override any of them on an ancestor of a chart, for example `.my-dashboard { --axon-chart-1: teal; }`,
+ * or give a series its own `color`.
+ */
+:root,
+[data-axon-theme] {
+  --axon-chart-1: var(--axon-color-primary-600);
+  --axon-chart-2: var(--axon-color-warning-600);
+  --axon-chart-3: var(--axon-color-success-600);
+  --axon-chart-4: var(--axon-color-secondary-600);
+  --axon-chart-5: var(--axon-color-danger-600);
+  --axon-chart-6: var(--axon-color-info-600);
+  --axon-chart-7: var(--axon-color-neutral-500);
+  --axon-chart-8: var(--axon-color-secondary-300);
+}
+
+[data-axon-theme='dark'] {
+  --axon-chart-1: var(--axon-color-primary-400);
+  --axon-chart-2: var(--axon-color-warning-400);
+  --axon-chart-3: var(--axon-color-success-400);
+  --axon-chart-4: var(--axon-color-secondary-400);
+  --axon-chart-5: var(--axon-color-danger-400);
+  --axon-chart-6: var(--axon-color-info-400);
+  --axon-chart-7: var(--axon-color-neutral-400);
+  --axon-chart-8: var(--axon-color-secondary-300);
+}
+
+@media (prefers-color-scheme: dark) {
+  [data-axon-theme='system'] {
+    --axon-chart-1: var(--axon-color-primary-400);
+    --axon-chart-2: var(--axon-color-warning-400);
+    --axon-chart-3: var(--axon-color-success-400);
+    --axon-chart-4: var(--axon-color-secondary-400);
+    --axon-chart-5: var(--axon-color-danger-400);
+    --axon-chart-6: var(--axon-color-info-400);
+    --axon-chart-7: var(--axon-color-neutral-400);
+    --axon-chart-8: var(--axon-color-secondary-300);
+  }
+}

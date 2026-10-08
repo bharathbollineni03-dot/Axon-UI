@@ -1,7 +1,26 @@
 {
   "name": "@axon/charts",
   "version": "0.0.0",
-  "description": "Axon UI SVG charts.",
+  "description": "Axon UI SVG charts: line, area, bar, combo, pie, donut, scatter, radar, gauge, sparkline, heatmap and KPI cards.",
+  "keywords": [
+    "react",
+    "react-component",
+    "axon-ui",
+    "accessibility",
+    "charts",
+    "svg",
+    "data visualization",
+    "d3"
+  ],
+  "homepage": "https://github.com/bharathbollineni03-dot/Axon-UI/tree/main/packages/charts#readme",
+  "bugs": {
+    "url": "https://github.com/bharathbollineni03-dot/Axon-UI/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bharathbollineni03-dot/Axon-UI.git",
+    "directory": "packages/charts"
+  },
   "license": "MIT",
   "sideEffects": [
     "**/*.css"
@@ -27,14 +46,16 @@
     "dist"
   ],
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "provenance": true
   },
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
     "test": "vitest run --passWithNoTests",
     "test:watch": "vitest",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "size": "size-limit"
   },
   "peerDependencies": {
     "react": ">=18",
@@ -45,8 +66,16 @@
     "@axon/theme": "workspace:*"
   },
   "devDependencies": {
+    "@types/d3-array": "catalog:",
+    "@types/d3-format": "catalog:",
+    "@types/d3-scale": "catalog:",
+    "@types/d3-shape": "catalog:",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
+    "d3-array": "catalog:",
+    "d3-format": "catalog:",
+    "d3-scale": "catalog:",
+    "d3-shape": "catalog:",
     "react": "catalog:",
     "react-dom": "catalog:",
     "tsup": "catalog:",

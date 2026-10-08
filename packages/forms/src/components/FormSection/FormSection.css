@@ -1,0 +1,39 @@
+.axon-form-section {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-family: var(--axon-font-sans);
+}
+
+/*
+ * A legend sits in the fieldset's border by default. Floating it to full width puts it in the
+ * normal flow, so the heading and the fields below it stack as usual.
+ */
+.axon-form-section__title {
+  float: left;
+  width: 100%;
+  margin: 0 0 var(--axon-space-1);
+  padding: 0;
+  color: var(--axon-color-text-primary);
+  font-size: var(--axon-font-size-lg);
+  font-weight: var(--axon-font-weight-semibold);
+  line-height: var(--axon-line-height-tight);
+}
+
+.axon-form-section__title + * {
+  clear: both;
+}
+
+.axon-form-section__description {
+  margin: 0 0 var(--axon-space-3);
+  color: var(--axon-color-text-secondary);
+  font-size: var(--axon-font-size-sm);
+}
+
+.axon-form-section__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--axon-space-4);
+  clear: both;
+}

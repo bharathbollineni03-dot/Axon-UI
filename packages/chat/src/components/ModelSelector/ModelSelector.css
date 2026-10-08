@@ -1,0 +1,41 @@
+.axon-model-selector__name {
+  overflow: hidden;
+  max-width: 14rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.axon-model-selector__badge {
+  display: inline-block;
+  margin-inline-start: var(--axon-space-2);
+  padding: 0 var(--axon-space-1-5);
+  border-radius: var(--axon-radius-full);
+  background: var(--axon-color-primary-subtle);
+  color: var(--axon-color-primary-text);
+  font-size: var(--axon-font-size-xs);
+  font-weight: var(--axon-font-weight-medium);
+  line-height: 1.5;
+  vertical-align: middle;
+}
+
+.axon-model-selector__menu {
+  min-width: 16rem;
+  max-width: min(22rem, calc(100vw - 2rem));
+}
+
+.axon-model-option {
+  display: grid;
+  gap: var(--axon-space-0-5);
+  min-width: 0;
+}
+
+.axon-model-option__name {
+  font-weight: var(--axon-font-weight-medium);
+}
+
+.axon-model-option__description {
+  color: var(--axon-color-text-secondary);
+  font-size: var(--axon-font-size-xs);
+  line-height: var(--axon-line-height-normal);
+  white-space: normal;
+}

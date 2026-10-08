@@ -1,0 +1,104 @@
+.axon-knowledge {
+  display: grid;
+  gap: var(--axon-space-6);
+  font-family: var(--axon-font-sans);
+}
+
+.axon-knowledge__list {
+  display: grid;
+  gap: var(--axon-space-3);
+}
+
+.axon-knowledge__list-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--axon-space-2);
+}
+
+.axon-knowledge__list-title {
+  margin: 0;
+  font-size: var(--axon-font-size-md);
+  font-weight: var(--axon-font-weight-semibold);
+}
+
+.axon-knowledge__summary {
+  color: var(--axon-color-text-secondary);
+  font-size: var(--axon-font-size-sm);
+}
+
+.axon-knowledge__items {
+  display: grid;
+  gap: var(--axon-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.axon-knowledge__item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--axon-space-3);
+  padding: var(--axon-space-3);
+  border: 1px solid var(--axon-color-border);
+  border-radius: var(--axon-radius-md);
+  background: var(--axon-color-surface);
+}
+
+.axon-knowledge__item[data-status='error'] {
+  border-color: var(--axon-color-danger-border);
+}
+
+.axon-knowledge__icon {
+  flex-shrink: 0;
+  margin-top: var(--axon-space-0-5);
+  color: var(--axon-color-text-secondary);
+  font-size: var(--axon-font-size-lg);
+}
+
+.axon-knowledge__details {
+  display: grid;
+  flex: 1;
+  gap: var(--axon-space-2);
+  min-width: 0;
+}
+
+.axon-knowledge__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--axon-space-2);
+}
+
+.axon-knowledge__name {
+  min-width: 0;
+  overflow: hidden;
+  font-size: var(--axon-font-size-sm);
+  font-weight: var(--axon-font-weight-medium);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.axon-knowledge__size {
+  color: var(--axon-color-text-secondary);
+  font-size: var(--axon-font-size-xs);
+}
+
+.axon-knowledge__error {
+  margin: 0;
+  color: var(--axon-color-danger-text);
+  font-size: var(--axon-font-size-sm);
+}
+
+.axon-knowledge__actions {
+  display: flex;
+  flex-shrink: 0;
+  gap: var(--axon-space-1);
+}
+
+.axon-knowledge__empty {
+  margin: 0;
+  color: var(--axon-color-text-secondary);
+  font-size: var(--axon-font-size-sm);
+}

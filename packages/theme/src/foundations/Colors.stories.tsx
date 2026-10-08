@@ -11,7 +11,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-/** Picks white or near-black text, whichever contrasts more with the swatch. */
+/** Picks white or black text, whichever contrasts more with the swatch (one of them always passes 4.5:1). */
 function textClassFor(hex: string) {
   const luminance = (color: string) => {
     const [r, g, b] = [1, 3, 5].map((i) => {
@@ -22,7 +22,7 @@ function textClassFor(hex: string) {
   };
   const l = luminance(hex);
   const withWhite = 1.05 / (l + 0.05);
-  const withDark = (l + 0.05) / (luminance(defaultTheme.palette.neutral[900]) + 0.05);
+  const withDark = (l + 0.05) / 0.05;
   return withWhite >= withDark ? 'dark' : 'light';
 }
 

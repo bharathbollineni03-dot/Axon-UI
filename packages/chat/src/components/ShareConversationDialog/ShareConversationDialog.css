@@ -1,0 +1,36 @@
+.axon-share {
+  display: grid;
+  gap: var(--axon-space-4);
+  font-family: var(--axon-font-sans);
+}
+
+.axon-share__description,
+.axon-share__hint {
+  margin: 0;
+  color: var(--axon-color-text-secondary);
+  font-size: var(--axon-font-size-sm);
+  line-height: var(--axon-line-height-normal);
+}
+
+.axon-share__create {
+  justify-self: start;
+}
+
+.axon-share__link {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: var(--axon-space-2);
+}
+
+.axon-share__link > :first-child {
+  flex: 1 1 14rem;
+  min-width: 0;
+}
+
+.axon-share__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--axon-space-2);
+}

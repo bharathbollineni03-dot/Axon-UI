@@ -1,0 +1,12 @@
+.axon-otp-form__resend {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--axon-space-1);
+  font-size: var(--axon-font-size-sm);
+}
+
+.axon-otp-form__resent {
+  color: var(--axon-color-success-text);
+  min-height: 1.25rem;
+}

@@ -23,7 +23,7 @@ function Trap({ children, ...options }: UseFocusTrapOptions & { children?: React
 
 function Toggle({ initialFocusId }: { initialFocusId?: boolean }) {
   const [open, setOpen] = useState(false);
-  const target = useRef<HTMLButtonElement>(null);
+  const target = useRef<HTMLButtonElement | null>(null);
   return (
     <>
       <button onClick={() => setOpen(true)}>open</button>
@@ -43,7 +43,7 @@ function TrapWithInitial({
   useInitial,
   onClose,
 }: {
-  target: React.RefObject<HTMLButtonElement>;
+  target: { current: HTMLButtonElement | null };
   useInitial?: boolean;
   onClose: () => void;
 }) {

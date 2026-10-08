@@ -2,6 +2,26 @@
   "name": "@axon/chat",
   "version": "0.0.0",
   "description": "Axon UI AI chat window and related components.",
+  "keywords": [
+    "react",
+    "react-component",
+    "axon-ui",
+    "accessibility",
+    "chat",
+    "ai",
+    "llm",
+    "streaming",
+    "markdown"
+  ],
+  "homepage": "https://github.com/bharathbollineni03-dot/Axon-UI/tree/main/packages/chat#readme",
+  "bugs": {
+    "url": "https://github.com/bharathbollineni03-dot/Axon-UI/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bharathbollineni03-dot/Axon-UI.git",
+    "directory": "packages/chat"
+  },
   "license": "MIT",
   "sideEffects": [
     "**/*.css"
@@ -27,14 +47,16 @@
     "dist"
   ],
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "provenance": true
   },
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
     "test": "vitest run --passWithNoTests",
     "test:watch": "vitest",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "size": "size-limit"
   },
   "peerDependencies": {
     "react": ">=18",
@@ -42,7 +64,12 @@
   },
   "dependencies": {
     "@axon/core": "workspace:*",
-    "@axon/theme": "workspace:*"
+    "@axon/forms": "workspace:*",
+    "@axon/theme": "workspace:*",
+    "@tanstack/react-virtual": "catalog:",
+    "highlight.js": "catalog:",
+    "react-markdown": "catalog:",
+    "remark-gfm": "catalog:"
   },
   "devDependencies": {
     "@types/react": "catalog:",

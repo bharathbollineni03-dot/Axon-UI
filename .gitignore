@@ -12,3 +12,10 @@ Thumbs.db
 npm-debug.log*
 pnpm-debug.log*
 .claude/
+.next/
+tests/a11y-results.json
+tests/a11y-failed.json
+playwright-report/
+test-results/
+tests/visual/__screenshots__/*-win32.png
+tests/visual/__screenshots__/*-darwin.png

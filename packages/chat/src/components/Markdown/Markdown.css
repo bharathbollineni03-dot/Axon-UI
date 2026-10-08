@@ -1,0 +1,133 @@
+.axon-markdown {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  font-family: var(--axon-font-sans);
+  line-height: var(--axon-line-height-relaxed);
+}
+
+/* Messages are short: trim the outer margins so a bubble hugs its text. */
+.axon-markdown > :first-child {
+  margin-top: 0;
+}
+
+.axon-markdown > :last-child {
+  margin-bottom: 0;
+}
+
+.axon-markdown p,
+.axon-markdown ul,
+.axon-markdown ol,
+.axon-markdown blockquote,
+.axon-markdown pre,
+.axon-markdown .axon-code-block,
+.axon-markdown .axon-markdown__table {
+  margin: 0 0 var(--axon-space-3);
+}
+
+.axon-markdown ul,
+.axon-markdown ol {
+  padding-inline-start: var(--axon-space-6);
+}
+
+.axon-markdown li + li {
+  margin-top: var(--axon-space-1);
+}
+
+.axon-markdown li > ul,
+.axon-markdown li > ol {
+  margin: var(--axon-space-1) 0 0;
+}
+
+.axon-markdown__heading {
+  margin: var(--axon-space-4) 0 var(--axon-space-2);
+  font-weight: var(--axon-font-weight-semibold);
+  line-height: var(--axon-line-height-tight);
+}
+
+h3.axon-markdown__heading {
+  font-size: var(--axon-font-size-xl);
+}
+
+h4.axon-markdown__heading {
+  font-size: var(--axon-font-size-lg);
+}
+
+h5.axon-markdown__heading,
+h6.axon-markdown__heading {
+  font-size: var(--axon-font-size-md);
+}
+
+.axon-markdown blockquote {
+  padding-inline-start: var(--axon-space-3);
+  border-inline-start: 3px solid var(--axon-color-border-strong);
+  color: var(--axon-color-text-secondary);
+}
+
+.axon-markdown hr {
+  margin: var(--axon-space-4) 0;
+  border: 0;
+  border-top: 1px solid var(--axon-color-border);
+}
+
+.axon-markdown__code {
+  padding: 0.1em 0.35em;
+  border-radius: var(--axon-radius-sm);
+  background: var(--axon-color-surface-muted);
+  font-family: var(--axon-font-mono);
+  font-size: 0.9em;
+}
+
+.axon-markdown__link {
+  color: var(--axon-color-primary-text);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.axon-markdown__link:hover {
+  color: var(--axon-color-primary-text-hover);
+}
+
+.axon-markdown__link:focus-visible,
+.axon-markdown__table:focus-visible {
+  outline: 2px solid var(--axon-color-focus-ring);
+  outline-offset: 2px;
+  border-radius: var(--axon-radius-sm);
+}
+
+.axon-markdown__image {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--axon-radius-md);
+}
+
+.axon-markdown__table {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.axon-markdown table {
+  border-collapse: collapse;
+  font-size: var(--axon-font-size-sm);
+}
+
+.axon-markdown th,
+.axon-markdown td {
+  padding: var(--axon-space-1-5) var(--axon-space-3);
+  border: 1px solid var(--axon-color-border);
+  text-align: start;
+}
+
+.axon-markdown th {
+  background: var(--axon-color-surface-muted);
+  font-weight: var(--axon-font-weight-semibold);
+}
+
+/* A GFM task list: no bullets, the checkbox is the marker. */
+.axon-markdown ul:has(> li > input[type='checkbox']) {
+  padding-inline-start: var(--axon-space-1);
+  list-style: none;
+}
+
+.axon-markdown input[type='checkbox'] {
+  margin-inline-end: var(--axon-space-2);
+}

@@ -1,0 +1,18 @@
+/* The error message shown under a form checkbox or switch, in place of its description. */
+.axon-form-field-error {
+  color: var(--axon-color-danger-text);
+}
+
+.axon-form-slider {
+  display: grid;
+  gap: var(--axon-space-1);
+}
+
+.axon-form-slider__message {
+  color: var(--axon-color-text-secondary);
+  font-size: var(--axon-font-size-sm);
+}
+
+.axon-form-slider__message:empty {
+  display: none;
+}

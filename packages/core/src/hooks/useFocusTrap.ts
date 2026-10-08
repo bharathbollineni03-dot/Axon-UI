@@ -1,6 +1,6 @@
 import { useEffect, useRef, type RefObject } from 'react';
 
-const FOCUSABLE = [
+const FOCUSABLE = /* @__PURE__ */ [
   'a[href]',
   'area[href]',
   'button:not([disabled])',

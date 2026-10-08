@@ -1,0 +1,156 @@
+/* The blinking cursor: drawn after the last block, so it is not part of the text. */
+.axon-streaming-text--active .axon-markdown > :last-child::after {
+  content: '';
+  display: inline-block;
+  width: 0.5em;
+  height: 1.05em;
+  margin-inline-start: 0.15em;
+  border-radius: 1px;
+  background: currentcolor;
+  vertical-align: text-bottom;
+  animation: axon-cursor-blink 1s steps(1) infinite;
+}
+
+/* A fenced code block ends in a box of its own, so the cursor sits below it instead. */
+.axon-streaming-text--active .axon-markdown > .axon-code-block:last-child::after {
+  display: block;
+  margin-block-start: var(--axon-space-2);
+  margin-inline-start: 0;
+}
+
+@keyframes axon-cursor-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .axon-streaming-text--active .axon-markdown > :last-child::after {
+    animation: none;
+  }
+}
+
+/* Typing indicator */
+.axon-typing {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  height: 1.5rem;
+}
+
+.axon-typing__dot {
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 50%;
+  background: var(--axon-color-text-secondary);
+  animation: axon-typing-bounce 1.2s ease-in-out infinite;
+}
+
+.axon-typing__dot:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.axon-typing__dot:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+@keyframes axon-typing-bounce {
+  0%,
+  60%,
+  100% {
+    opacity: 0.35;
+    transform: translateY(0);
+  }
+
+  30% {
+    opacity: 1;
+    transform: translateY(-0.25rem);
+  }
+}
+
+/* Dots that only fade stay readable without movement. */
+@media (prefers-reduced-motion: reduce) {
+  .axon-typing__dot {
+    animation-name: axon-typing-fade;
+  }
+
+  @keyframes axon-typing-fade {
+    0%,
+    100% {
+      opacity: 0.35;
+    }
+
+    50% {
+      opacity: 1;
+    }
+  }
+}
+
+/* Thinking indicator */
+.axon-thinking {
+  font-family: var(--axon-font-sans);
+  font-size: var(--axon-font-size-sm);
+  color: var(--axon-color-text-secondary);
+}
+
+.axon-thinking__toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--axon-space-2);
+  padding: var(--axon-space-1) var(--axon-space-2);
+  border: 0;
+  border-radius: var(--axon-radius-md);
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.axon-thinking__toggle--static {
+  cursor: default;
+}
+
+.axon-thinking__toggle:hover:not(.axon-thinking__toggle--static) {
+  background: var(--axon-color-surface-muted);
+  color: var(--axon-color-text-primary);
+}
+
+.axon-thinking__toggle:focus-visible {
+  outline: 2px solid var(--axon-color-focus-ring);
+  outline-offset: 1px;
+}
+
+.axon-thinking__icon {
+  flex-shrink: 0;
+  color: var(--axon-color-secondary-text);
+}
+
+.axon-thinking--active .axon-thinking__label {
+  animation: axon-thinking-pulse 1.8s ease-in-out infinite;
+}
+
+@keyframes axon-thinking-pulse {
+  50% {
+    opacity: 0.55;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .axon-thinking--active .axon-thinking__label {
+    animation: none;
+  }
+}
+
+.axon-thinking__chevron {
+  transition: transform var(--axon-duration-fast) var(--axon-ease-standard);
+}
+
+.axon-thinking--open .axon-thinking__chevron {
+  transform: rotate(90deg);
+}
+
+.axon-thinking__content {
+  margin: var(--axon-space-1) 0 0 var(--axon-space-3);
+  padding-inline-start: var(--axon-space-3);
+  border-inline-start: 2px solid var(--axon-color-border);
+}
