@@ -48,6 +48,12 @@ const preview: Preview = {
   parameters: {
     controls: { matchers: { color: /(background|color)$/i, date: /Date$/i } },
     layout: 'centered',
+    a11y: {
+      // The addon runs axe after every story. `pnpm test:a11y` drives the same page with its own
+      // axe run, and two runs at once fail with "Axe is already running", so the addon steps aside
+      // for automated browsers (people using Storybook still get the panel's results).
+      manual: typeof navigator !== 'undefined' && navigator.webdriver === true,
+    },
   },
 };
 
