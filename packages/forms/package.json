@@ -1,6 +1,6 @@
 {
   "name": "@axonui/forms",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Axon UI form engine and prebuilt forms.",
   "keywords": [
     "react",

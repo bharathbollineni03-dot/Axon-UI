@@ -1,6 +1,6 @@
 {
   "name": "@axonui/core",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Axon UI base components: buttons, inputs, layout, overlays and feedback.",
   "keywords": [
     "react",

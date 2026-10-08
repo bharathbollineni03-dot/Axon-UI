@@ -1,6 +1,6 @@
 {
   "name": "@axonui/table",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Axon UI data table and data grid: sorting, filtering, pagination, selection, editing, virtualization.",
   "keywords": [
     "react",
