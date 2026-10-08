@@ -1,5 +1,5 @@
 {
-  "name": "@axon/example-next",
+  "name": "@axonui/example-next",
   "version": "0.0.0",
   "private": true,
   "description": "A Next.js app router project that uses every Axon package, built in CI to prove the packages work with server components.",
@@ -11,12 +11,12 @@
     "verify": "node scripts/verify.mjs"
   },
   "dependencies": {
-    "@axon/charts": "workspace:*",
-    "@axon/chat": "workspace:*",
-    "@axon/core": "workspace:*",
-    "@axon/forms": "workspace:*",
-    "@axon/table": "workspace:*",
-    "@axon/theme": "workspace:*",
+    "@axonui/charts": "workspace:*",
+    "@axonui/chat": "workspace:*",
+    "@axonui/core": "workspace:*",
+    "@axonui/forms": "workspace:*",
+    "@axonui/table": "workspace:*",
+    "@axonui/theme": "workspace:*",
     "next": "^15.5.0",
     "react": "catalog:",
     "react-dom": "catalog:"

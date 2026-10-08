@@ -12,12 +12,12 @@ body:
       label: Package
       options:
         [
-          '@axon/theme',
-          '@axon/core',
-          '@axon/forms',
-          '@axon/chat',
-          '@axon/charts',
-          '@axon/table',
+          '@axonui/theme',
+          '@axonui/core',
+          '@axonui/forms',
+          '@axonui/chat',
+          '@axonui/charts',
+          '@axonui/table',
           'Documentation or examples',
           'Not sure',
         ]

@@ -1,5 +1,5 @@
 import { forwardRef, type ElementType, type HTMLAttributes, type ReactNode } from 'react';
-import { useId } from '@axon/core';
+import { useId } from '@axonui/core';
 
 export interface AuthCardProps extends Omit<HTMLAttributes<HTMLElement>, 'title'> {
   /** Your logo, above the title. An `img`, an SVG, or anything else. */

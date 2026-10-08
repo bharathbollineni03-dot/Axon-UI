@@ -1,12 +1,12 @@
 [
   {
-    "name": "@axon/theme",
+    "name": "@axonui/theme",
     "path": "dist/index.mjs",
     "ignore": ["react", "react-dom"],
     "limit": "4.5 KB"
   },
   {
-    "name": "@axon/theme styles.css",
+    "name": "@axonui/theme styles.css",
     "path": "dist/styles.css",
     "limit": "3 KB"
   }

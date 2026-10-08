@@ -10,14 +10,14 @@ It is plain React and plain CSS. There is no styling runtime, so components rend
 
 ## The packages
 
-| Package        | What is in it                                                                                                                    |
-| -------------- | -------------------------------------------------------------------------------------------------------------------------------- |
-| `@axon/theme`  | Design tokens as CSS variables, `ThemeProvider`, light / dark / system mode, `createTheme` for your own brand                    |
-| `@axon/core`   | Buttons and inputs, choice controls, pickers, layout, navigation, overlays, feedback: about 70 components                        |
-| `@axon/forms`  | A form engine on react-hook-form and zod: field bindings, wizards, schema-driven forms, and nine prebuilt auth and account forms |
-| `@axon/chat`   | Everything for an AI chat UI: streaming messages, markdown and code, composer, history sidebar, settings forms. No provider SDKs |
-| `@axon/charts` | Line, area, bar, combo, pie, donut, scatter, radar, gauge, sparkline, heatmap and KPI cards, drawn as accessible SVG             |
-| `@axon/table`  | A static `Table`, and a `DataGrid` with sorting, filtering, paging, selection, editing, grouping and virtualization              |
+| Package          | What is in it                                                                                                                    |
+| ---------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| `@axonui/theme`  | Design tokens as CSS variables, `ThemeProvider`, light / dark / system mode, `createTheme` for your own brand                    |
+| `@axonui/core`   | Buttons and inputs, choice controls, pickers, layout, navigation, overlays, feedback: about 70 components                        |
+| `@axonui/forms`  | A form engine on react-hook-form and zod: field bindings, wizards, schema-driven forms, and nine prebuilt auth and account forms |
+| `@axonui/chat`   | Everything for an AI chat UI: streaming messages, markdown and code, composer, history sidebar, settings forms. No provider SDKs |
+| `@axonui/charts` | Line, area, bar, combo, pie, donut, scatter, radar, gauge, sparkline, heatmap and KPI cards, drawn as accessible SVG             |
+| `@axonui/table`  | A static `Table`, and a `DataGrid` with sorting, filtering, paging, selection, editing, grouping and virtualization              |
 
 Each package ships ESM, CommonJS, type declarations and one `styles.css`. Packages depend on each other only upward (`forms` on `core`, `chat` on `forms`), so you install what you use.
 

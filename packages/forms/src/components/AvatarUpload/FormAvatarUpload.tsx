@@ -1,5 +1,5 @@
 import { forwardRef, useEffect, useRef, useState, type ReactNode } from 'react';
-import { Avatar, Button, useId, type AvatarSize } from '@axon/core';
+import { Avatar, Button, useId, type AvatarSize } from '@axonui/core';
 import { useMergedRef } from '../../internal/mergeRefs';
 import { useFormField, type FormControlProps } from '../FormField/useFormField';
 

@@ -1,5 +1,5 @@
 import { forwardRef, type HTMLAttributes } from 'react';
-import { useId } from '@axon/core';
+import { useId } from '@axonui/core';
 import { ExternalLinkIcon } from '../../internal/icons';
 
 export interface Source {

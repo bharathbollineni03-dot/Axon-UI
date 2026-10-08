@@ -1,7 +1,7 @@
 import { forwardRef, type ReactElement, type ReactNode, type Ref } from 'react';
 import type { FieldValues } from 'react-hook-form';
 import { z } from 'zod';
-import { Alert, Button, Link } from '@axon/core';
+import { Alert, Button, Link } from '@axonui/core';
 import { emailField, type EmailMessages } from '../../internal/validators';
 import { useSubmitOutcome } from '../../internal/useSubmitOutcome';
 import { AuthCard } from '../AuthCard/AuthCard';

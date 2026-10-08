@@ -1,12 +1,12 @@
 [
   {
-    "name": "@axon/table (everything)",
+    "name": "@axonui/table (everything)",
     "path": "dist/index.mjs",
     "ignore": [
       "react",
       "react-dom",
-      "@axon/core",
-      "@axon/theme",
+      "@axonui/core",
+      "@axonui/theme",
       "@tanstack/react-table",
       "@tanstack/react-virtual",
       "@floating-ui/react"
@@ -14,21 +14,21 @@
     "limit": "22 KB"
   },
   {
-    "name": "@axon/table: Table only",
+    "name": "@axonui/table: Table only",
     "path": "dist/index.mjs",
     "import": "{ Table }",
     "ignore": [
       "react",
       "react-dom",
-      "@axon/core",
-      "@axon/theme",
+      "@axonui/core",
+      "@axonui/theme",
       "@tanstack/react-table",
       "@tanstack/react-virtual"
     ],
     "limit": "1.2 KB"
   },
   {
-    "name": "@axon/table styles.css",
+    "name": "@axonui/table styles.css",
     "path": "dist/styles.css",
     "limit": "3 KB"
   }

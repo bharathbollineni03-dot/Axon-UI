@@ -1,17 +1,17 @@
-# @axon/table
+# @axonui/table
 
 Tables for React: a plain, semantic `Table` for static data, and a `DataGrid` for everything else: sorting, filtering, search, pagination (in the browser or on a server), selection, resizable and movable columns, grouping with aggregates, detail panels, inline editing, CSV export, and tens of thousands of rows without slowing down. The grid's logic comes from [TanStack Table](https://tanstack.com/table) and [TanStack Virtual](https://tanstack.com/virtual); everything on the page is Axon UI, so it themes like the rest of the library, works in dark mode and follows the WAI-ARIA grid pattern.
 
 ```bash
-pnpm add @axon/table @axon/core @axon/theme
+pnpm add @axonui/table @axonui/core @axonui/theme
 ```
 
 ```tsx
-import { ThemeProvider } from '@axon/theme';
-import { DataGrid, type DataGridColumn } from '@axon/table';
-import '@axon/theme/styles.css';
-import '@axon/core/styles.css';
-import '@axon/table/styles.css';
+import { ThemeProvider } from '@axonui/theme';
+import { DataGrid, type DataGridColumn } from '@axonui/table';
+import '@axonui/theme/styles.css';
+import '@axonui/core/styles.css';
+import '@axonui/table/styles.css';
 
 type Person = { id: number; name: string; team: string; salary: number; joined: Date };
 
@@ -43,7 +43,7 @@ export function People({ people }: { people: Person[] }) {
 }
 ```
 
-`@axon/table/styles.css` builds on `@axon/core/styles.css` and the theme tokens, so load those too. TanStack Table and Virtual are installed with the package.
+`@axonui/table/styles.css` builds on `@axonui/core/styles.css` and the theme tokens, so load those too. TanStack Table and Virtual are installed with the package.
 
 Two rules keep the grid fast: pass **`data`** with a stable identity (state, `useMemo`, a query result), because a new array every render makes the grid sort and filter it again each time; and give it a **`height`** (or `maxHeight`) when it may hold many rows, so that it scrolls inside itself. `columns` may be written inline; the grid notices when they really change.
 

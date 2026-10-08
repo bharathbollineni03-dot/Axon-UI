@@ -10,7 +10,7 @@ import {
   type Ref,
 } from 'react';
 import type { FieldErrors, FieldValues } from 'react-hook-form';
-import { Button, Step, Stepper, useControllableState, type StepperLabels } from '@axon/core';
+import { Button, Step, Stepper, useControllableState, type StepperLabels } from '@axonui/core';
 import { Form, useAxonForm, type FormProps } from '../Form/Form';
 import { useFormStatus } from '../Form/FormStatus';
 

@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Button, Chip } from '@axon/core';
+import { Button, Chip } from '@axonui/core';
 import {
   departments,
   makeEmployees,

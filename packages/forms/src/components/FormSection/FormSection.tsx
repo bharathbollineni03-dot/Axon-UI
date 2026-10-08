@@ -1,5 +1,5 @@
 import { forwardRef, type FieldsetHTMLAttributes, type ReactNode } from 'react';
-import { useId } from '@axon/core';
+import { useId } from '@axonui/core';
 
 export interface FormSectionProps extends Omit<
   FieldsetHTMLAttributes<HTMLFieldSetElement>,

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Button, TextField } from '@axon/core';
+import { Button, TextField } from '@axonui/core';
 import { AuthCard } from './AuthCard';
 
 const meta = {

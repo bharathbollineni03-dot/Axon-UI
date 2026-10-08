@@ -1,13 +1,13 @@
 [
   {
-    "name": "@axon/chat (everything)",
+    "name": "@axonui/chat (everything)",
     "path": "dist/index.mjs",
     "ignore": [
       "react",
       "react-dom",
-      "@axon/core",
-      "@axon/forms",
-      "@axon/theme",
+      "@axonui/core",
+      "@axonui/forms",
+      "@axonui/theme",
       "react-markdown",
       "remark-gfm",
       "highlight.js",
@@ -20,7 +20,7 @@
     "limit": "33 KB"
   },
   {
-    "name": "@axon/chat styles.css",
+    "name": "@axonui/chat styles.css",
     "path": "dist/styles.css",
     "limit": "6 KB"
   }

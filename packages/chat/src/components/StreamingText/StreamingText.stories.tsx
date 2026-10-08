@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Button } from '@axon/core';
+import { Button } from '@axonui/core';
 import { replies } from '../../stories/mockBackend';
 import { StreamingText } from './StreamingText';
 import { ThinkingIndicator } from './ThinkingIndicator';

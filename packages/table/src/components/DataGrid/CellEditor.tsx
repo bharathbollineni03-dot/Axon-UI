@@ -1,5 +1,5 @@
 import { useEffect, useId, useRef, useState, type KeyboardEvent } from 'react';
-import { Checkbox, DatePicker, NumberInput, TextField } from '@axon/core';
+import { Checkbox, DatePicker, NumberInput, TextField } from '@axonui/core';
 import { formatCellValue, toDate, toDateInputValue } from '../../internal/format';
 import type { DataGridLabels } from '../../labels';
 import type { DataGridColumn, DataGridEditorConfig } from '../../types';

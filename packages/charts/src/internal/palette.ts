@@ -5,7 +5,7 @@ export const PALETTE_SIZE = 8;
 
 /**
  * The color of the n-th series (0-based): one of `--axon-chart-1` to `--axon-chart-8`, defined in
- * `@axon/charts/styles.css` from the theme's color scales and switched for dark mode. Series
+ * `@axonui/charts/styles.css` from the theme's color scales and switched for dark mode. Series
  * past the eighth reuse the palette.
  */
 export function chartColor(index: number): string {

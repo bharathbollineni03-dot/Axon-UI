@@ -200,7 +200,7 @@ export {
   type ExportedFile,
 } from './components/ExportConversation/serializeConversation';
 
-// Settings forms (built on @axon/forms)
+// Settings forms (built on @axonui/forms)
 export {
   ChatSettingsForm,
   chatSettingsSchema,

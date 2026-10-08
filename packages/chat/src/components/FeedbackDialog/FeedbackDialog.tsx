@@ -1,5 +1,5 @@
 import { useState, type FormEvent, type ReactNode } from 'react';
-import { Alert, Button, Chip, Modal, RadioGroup, TextArea } from '@axon/core';
+import { Alert, Button, Chip, Modal, RadioGroup, TextArea } from '@axonui/core';
 import { ThumbsDownIcon, ThumbsUpIcon } from '../../internal/icons';
 
 export type FeedbackRating = 'up' | 'down';

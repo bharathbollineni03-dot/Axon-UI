@@ -1,5 +1,5 @@
 import { forwardRef, type HTMLAttributes, type ReactNode } from 'react';
-import { useControllableState, useId } from '@axon/core';
+import { useControllableState, useId } from '@axonui/core';
 import { ChevronRightIcon, SparklesIcon } from '../../internal/icons';
 
 export interface ThinkingIndicatorLabels {

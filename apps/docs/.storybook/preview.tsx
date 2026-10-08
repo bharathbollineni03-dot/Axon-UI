@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
 import type { Decorator, Preview } from '@storybook/react';
-import { ThemeProvider, THEME_ATTRIBUTE, type ThemeMode } from '@axon/theme';
-import '@axon/theme/styles.css';
-import '@axon/core/styles.css';
-import '@axon/forms/styles.css';
-import '@axon/chat/styles.css';
-import '@axon/charts/styles.css';
-import '@axon/table/styles.css';
+import { ThemeProvider, THEME_ATTRIBUTE, type ThemeMode } from '@axonui/theme';
+import '@axonui/theme/styles.css';
+import '@axonui/core/styles.css';
+import '@axonui/forms/styles.css';
+import '@axonui/chat/styles.css';
+import '@axonui/charts/styles.css';
+import '@axonui/table/styles.css';
 
 /** Wraps every story in ThemeProvider and mirrors the mode onto <html> so the canvas follows it. */
 const withTheme: Decorator = (Story, context) => {

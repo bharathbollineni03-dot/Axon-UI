@@ -6,7 +6,7 @@ import {
   MenuRadioGroup,
   MenuRadioItem,
   TextField,
-} from '@axon/core';
+} from '@axonui/core';
 import type { DataGridLabels } from '../../labels';
 import { DensityIcon, FilterIcon, SearchIcon } from '../../internal/icons';
 import { DENSITIES } from '../../internal/layout';

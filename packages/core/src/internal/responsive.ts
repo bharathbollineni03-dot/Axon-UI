@@ -6,7 +6,7 @@ export type BreakpointName = (typeof breakpointNames)[number];
 /**
  * A value that can change with the viewport width, mobile first: `base` applies everywhere and
  * each breakpoint key applies from that width up (`md: 3` means "3 from 768px upward").
- * Breakpoint widths match the `@axon/theme` defaults (640, 768, 1024, 1280, 1536 px).
+ * Breakpoint widths match the `@axonui/theme` defaults (640, 768, 1024, 1280, 1536 px).
  */
 export type Responsive<T> = T | Partial<Record<'base' | BreakpointName, T>>;
 
@@ -47,7 +47,7 @@ export function responsiveVars<T>(
   return vars;
 }
 
-/** A value from the `@axon/theme` spacing scale (multiples of 0.25rem; `4` is `1rem`). */
+/** A value from the `@axonui/theme` spacing scale (multiples of 0.25rem; `4` is `1rem`). */
 export type Space = 0 | 0.5 | 1 | 1.5 | 2 | 3 | 4 | 6 | 8 | 12 | 16;
 
 /** The CSS for a spacing step, e.g. `4` -> `var(--axon-space-4)`. */

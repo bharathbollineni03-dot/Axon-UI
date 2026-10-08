@@ -1,20 +1,20 @@
-# @axon/chat
+# @axonui/chat
 
 Components and hooks for an AI chat interface: a chat window with streaming replies, Markdown and highlighted code, tool calls and sources, a composer with attachments, slash commands and @mentions, a conversation sidebar, and the settings forms around it (model, system prompt, prompt templates, API keys, assistant persona, knowledge upload).
 
 It is **provider-agnostic**. The package never makes a network call, holds an API key or imports a provider SDK. You give `useChat` one function that turns the conversation into a reply, and everything else is UI.
 
 ```bash
-pnpm add @axon/chat @axon/core @axon/forms @axon/theme
+pnpm add @axonui/chat @axonui/core @axonui/forms @axonui/theme
 ```
 
 ```tsx
-import { ThemeProvider } from '@axon/theme';
-import { ChatWindow, useChat } from '@axon/chat';
-import '@axon/theme/styles.css';
-import '@axon/core/styles.css';
-import '@axon/forms/styles.css'; // only if you use the settings forms
-import '@axon/chat/styles.css';
+import { ThemeProvider } from '@axonui/theme';
+import { ChatWindow, useChat } from '@axonui/chat';
+import '@axonui/theme/styles.css';
+import '@axonui/core/styles.css';
+import '@axonui/forms/styles.css'; // only if you use the settings forms
+import '@axonui/chat/styles.css';
 
 export function Assistant() {
   const chat = useChat({
@@ -40,7 +40,7 @@ export function Assistant() {
 }
 ```
 
-`@axon/chat/styles.css` builds on `@axon/core/styles.css` and the theme tokens, so load those too.
+`@axonui/chat/styles.css` builds on `@axonui/core/styles.css` and the theme tokens, so load those too.
 
 ## `useChat`
 
@@ -133,7 +133,7 @@ const onSend = createOpenAICompatibleSender({
 
 ## Settings forms
 
-Built on [`@axon/forms`](../forms/README.md), so they validate with zod, show server errors on the field they name, and can be translated and extended in the same way. None of them saves anything: each hands values to your `onSubmit`.
+Built on [`@axonui/forms`](../forms/README.md), so they validate with zod, show server errors on the field they name, and can be translated and extended in the same way. None of them saves anything: each hands values to your `onSubmit`.
 
 ```tsx
 <ChatSettingsForm
@@ -158,7 +158,7 @@ Each form exports its schema factory (`createChatSettingsSchema()` and so on) fo
 
 ## Theming
 
-Everything uses the `--axon-*` tokens from `@axon/theme`; there is nothing chat-specific to configure. Override a token on any ancestor to restyle a part of the app. Class names are stable and BEM-style (`axon-message-bubble`, `axon-prompt-input__textarea`) if you need a hook.
+Everything uses the `--axon-*` tokens from `@axonui/theme`; there is nothing chat-specific to configure. Override a token on any ancestor to restyle a part of the app. Class names are stable and BEM-style (`axon-message-bubble`, `axon-prompt-input__textarea`) if you need a hook.
 
 ## Using it with a framework
 

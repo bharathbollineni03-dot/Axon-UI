@@ -21,7 +21,7 @@ import {
   Skeleton,
   TextField,
   useControllableState,
-} from '@axon/core';
+} from '@axonui/core';
 import { EditIcon, MoreIcon, PinIcon, PlusIcon, SearchIcon, TrashIcon } from '../../internal/icons';
 import {
   groupConversations,

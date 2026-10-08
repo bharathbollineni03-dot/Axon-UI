@@ -1,5 +1,5 @@
 {
-  "name": "@axon/core",
+  "name": "@axonui/core",
   "version": "0.0.0",
   "description": "Axon UI base components: buttons, inputs, layout, overlays and feedback.",
   "keywords": [
@@ -62,7 +62,7 @@
     "react-dom": ">=18"
   },
   "dependencies": {
-    "@axon/theme": "workspace:*",
+    "@axonui/theme": "workspace:*",
     "@floating-ui/react": "catalog:"
   },
   "devDependencies": {

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Button } from '@axon/core';
+import { Button } from '@axonui/core';
 import { z } from 'zod';
 import { Form } from '../Form/Form';
 import { FormTextField } from '../FormBindings/FormBindings';

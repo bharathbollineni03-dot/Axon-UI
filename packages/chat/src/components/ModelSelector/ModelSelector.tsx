@@ -5,7 +5,7 @@ import {
   MenuRadioGroup,
   MenuRadioItem,
   useControllableState,
-} from '@axon/core';
+} from '@axonui/core';
 import { groupModels } from '../../internal/groupModels';
 import { ChevronDownIcon } from '../../internal/icons';
 

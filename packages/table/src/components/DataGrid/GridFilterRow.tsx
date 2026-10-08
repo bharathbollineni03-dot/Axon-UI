@@ -1,5 +1,5 @@
 import { useMemo, useRef } from 'react';
-import { DatePicker, NumberInput, Select, TextField } from '@axon/core';
+import { DatePicker, NumberInput, Select, TextField } from '@axonui/core';
 import type { RowData } from '@tanstack/react-table';
 import { readAccessor } from '../../internal/buildColumns';
 import { cx } from '../../internal/cx';

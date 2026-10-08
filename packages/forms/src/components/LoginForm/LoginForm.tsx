@@ -1,7 +1,7 @@
 import { forwardRef, useMemo, type ReactElement, type ReactNode, type Ref } from 'react';
 import type { FieldValues } from 'react-hook-form';
 import { z } from 'zod';
-import { Divider, Link } from '@axon/core';
+import { Divider, Link } from '@axonui/core';
 import { emailField, requiredText, type EmailMessages } from '../../internal/validators';
 import { PrebuiltFormShell, type PrebuiltFormProps } from '../AuthCard/PrebuiltFormShell';
 import { FormActions } from '../FormActions/FormActions';

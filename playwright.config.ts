@@ -3,7 +3,7 @@ import { defineConfig, devices } from '@playwright/test';
 const PORT = 6007;
 
 /**
- * End-to-end checks that run against the built Storybook (`pnpm --filter @axon/docs build`):
+ * End-to-end checks that run against the built Storybook (`pnpm --filter @axonui/docs build`):
  *  - tests/a11y: axe-core on every story, in light and dark mode (`pnpm test:a11y`)
  *  - tests/visual: screenshots of representative stories, light and dark (`pnpm test:visual`)
  */

@@ -1,5 +1,5 @@
 import { useId, useMemo, useRef, useState, type KeyboardEvent, type PointerEvent } from 'react';
-import { useMediaQuery } from '@axon/core';
+import { useMediaQuery } from '@axonui/core';
 import { scaleSqrt } from 'd3-scale';
 import { DataTable, wantsDataTable } from '../../internal/DataTable';
 import { createNumberFormatter, formatValue, toNumber } from '../../internal/format';

@@ -1,5 +1,5 @@
 import { forwardRef, type HTMLAttributes, type ReactNode } from 'react';
-import { useId } from '@axon/core';
+import { useId } from '@axonui/core';
 
 export interface SuggestedPrompt {
   /** What the card says, e.g. "Summarize this article". */

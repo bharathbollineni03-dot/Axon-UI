@@ -1,4 +1,4 @@
-/* @axon/charts styles: component stylesheets are @imported here. */
+/* @axonui/charts styles: component stylesheets are @imported here. */
 @import './palette.css';
 @import './chart.css';
 @import './components/Legend/Legend.css';

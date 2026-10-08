@@ -9,26 +9,26 @@ import { Meta } from '@storybook/blocks';
 Axon UI needs React 18 or 19. Install the packages you use; each pulls in the ones it builds on.
 
 ```bash
-pnpm add @axon/theme @axon/core          # the base
-pnpm add @axon/forms                      # forms (adds react-hook-form and zod)
-pnpm add @axon/chat                       # AI chat components
-pnpm add @axon/charts                     # charts
-pnpm add @axon/table                      # Table and DataGrid
+pnpm add @axonui/theme @axonui/core          # the base
+pnpm add @axonui/forms                      # forms (adds react-hook-form and zod)
+pnpm add @axonui/chat                       # AI chat components
+pnpm add @axonui/charts                     # charts
+pnpm add @axonui/table                      # Table and DataGrid
 ```
 
-`npm install` and `yarn add` work the same way. `@axon/theme` and `@axon/core` are needed by every other package, so install them wherever you use any component.
+`npm install` and `yarn add` work the same way. `@axonui/theme` and `@axonui/core` are needed by every other package, so install them wherever you use any component.
 
 ## 2. Import the styles
 
 Every package has one stylesheet. Import the theme's first, then the others you use, once, near the root of your app:
 
 ```tsx
-import '@axon/theme/styles.css';
-import '@axon/core/styles.css';
-import '@axon/forms/styles.css'; // only if you use @axon/forms
-import '@axon/chat/styles.css'; // only if you use @axon/chat
-import '@axon/charts/styles.css'; // only if you use @axon/charts
-import '@axon/table/styles.css'; // only if you use @axon/table
+import '@axonui/theme/styles.css';
+import '@axonui/core/styles.css';
+import '@axonui/forms/styles.css'; // only if you use @axonui/forms
+import '@axonui/chat/styles.css'; // only if you use @axonui/chat
+import '@axonui/charts/styles.css'; // only if you use @axonui/charts
+import '@axonui/table/styles.css'; // only if you use @axonui/table
 ```
 
 The stylesheets are plain CSS using `--axon-*` custom properties, so they work with any bundler, and they are the only things marked as having side effects.
@@ -36,8 +36,8 @@ The stylesheets are plain CSS using `--axon-*` custom properties, so they work w
 ## 3. Wrap your app in `ThemeProvider`
 
 ```tsx
-import { ThemeProvider } from '@axon/theme';
-import { Button, TextField } from '@axon/core';
+import { ThemeProvider } from '@axonui/theme';
+import { Button, TextField } from '@axonui/core';
 
 export function App() {
   return (
@@ -55,7 +55,7 @@ export function App() {
 
 ```tsx
 import { useState } from 'react';
-import { DataGrid, type DataGridColumn } from '@axon/table';
+import { DataGrid, type DataGridColumn } from '@axonui/table';
 
 type Person = { id: number; name: string; team: string };
 

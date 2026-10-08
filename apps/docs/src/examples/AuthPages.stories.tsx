@@ -1,6 +1,6 @@
 import { useState, type ReactNode } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Button, Divider, Heading, Stack, Tab, TabList, TabPanel, Tabs, Text } from '@axon/core';
+import { Button, Divider, Heading, Stack, Tab, TabList, TabPanel, Tabs, Text } from '@axonui/core';
 import {
   ChangePasswordForm,
   ContactForm,
@@ -11,7 +11,7 @@ import {
   ProfileForm,
   RegistrationForm,
   ResetPasswordForm,
-} from '@axon/forms';
+} from '@axonui/forms';
 
 const meta: Meta = {
   title: 'Examples/Auth pages',
@@ -20,7 +20,7 @@ const meta: Meta = {
     docs: {
       description: {
         component:
-          'Every prebuilt form from `@axon/forms`, wired into a small sign-in flow and an account page. Each form validates on the client, shows server errors from `onSubmit` on the right field, and never takes focus unless asked.',
+          'Every prebuilt form from `@axonui/forms`, wired into a small sign-in flow and an account page. Each form validates on the client, shows server errors from `onSubmit` on the right field, and never takes focus unless asked.',
       },
     },
   },

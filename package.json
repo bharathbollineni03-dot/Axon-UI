@@ -16,7 +16,7 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "typecheck": "turbo run typecheck",
-    "storybook": "pnpm --filter @axon/docs storybook",
+    "storybook": "pnpm --filter @axonui/docs storybook",
     "changeset": "changeset",
     "version-packages": "changeset version",
     "release": "pnpm build && changeset publish",

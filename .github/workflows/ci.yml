@@ -79,7 +79,7 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm build
-      - run: pnpm --filter @axon/example-next verify
+      - run: pnpm --filter @axonui/example-next verify
 
   # axe-core on every story in light and dark mode, in a real browser.
   a11y:
@@ -92,7 +92,7 @@ jobs:
           node-version: 22
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      - run: pnpm --filter @axon/docs build
+      - run: pnpm --filter @axonui/docs build
       - run: pnpm exec playwright install --with-deps chromium
       - run: pnpm test:a11y
       - uses: actions/upload-artifact@v4
@@ -122,7 +122,7 @@ jobs:
       - if: steps.baselines.outputs.found == 'true'
         run: pnpm install --frozen-lockfile
       - if: steps.baselines.outputs.found == 'true'
-        run: pnpm --filter @axon/docs build
+        run: pnpm --filter @axonui/docs build
       - if: steps.baselines.outputs.found == 'true'
         run: pnpm exec playwright install --with-deps chromium
       - if: steps.baselines.outputs.found == 'true'

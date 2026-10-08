@@ -1,19 +1,19 @@
 [
   {
-    "name": "@axon/charts (everything)",
+    "name": "@axonui/charts (everything)",
     "path": "dist/index.mjs",
-    "ignore": ["react", "react-dom", "@axon/core", "@axon/theme", "@floating-ui/react"],
+    "ignore": ["react", "react-dom", "@axonui/core", "@axonui/theme", "@floating-ui/react"],
     "limit": "47 KB"
   },
   {
-    "name": "@axon/charts: Sparkline only",
+    "name": "@axonui/charts: Sparkline only",
     "path": "dist/index.mjs",
     "import": "{ Sparkline }",
-    "ignore": ["react", "react-dom", "@axon/core", "@axon/theme", "@floating-ui/react"],
+    "ignore": ["react", "react-dom", "@axonui/core", "@axonui/theme", "@floating-ui/react"],
     "limit": "17 KB"
   },
   {
-    "name": "@axon/charts styles.css",
+    "name": "@axonui/charts styles.css",
     "path": "dist/styles.css",
     "limit": "2.5 KB"
   }

@@ -1,5 +1,5 @@
 import { forwardRef, useMemo, useState, type ReactNode, type Ref } from 'react';
-import { Alert, Button } from '@axon/core';
+import { Alert, Button } from '@axonui/core';
 import {
   Form,
   FormActions,
@@ -11,7 +11,7 @@ import {
   type FieldValues,
   type FormHelpers,
   type FormSubmitResult,
-} from '@axon/forms';
+} from '@axonui/forms';
 
 // ---------------------------------------------------------------------------------------------
 // Types

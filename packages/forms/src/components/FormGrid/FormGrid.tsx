@@ -1,5 +1,5 @@
 import { forwardRef, type HTMLAttributes, type ReactNode } from 'react';
-import { Grid, GridItem, type Responsive, type Space } from '@axon/core';
+import { Grid, GridItem, type Responsive, type Space } from '@axonui/core';
 
 export interface FormGridProps extends HTMLAttributes<HTMLDivElement> {
   /**

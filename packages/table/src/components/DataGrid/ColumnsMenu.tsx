@@ -5,7 +5,7 @@ import {
   MenuGroup,
   MenuItem,
   MenuSeparator,
-} from '@axon/core';
+} from '@axonui/core';
 import type { RowData } from '@tanstack/react-table';
 import { ColumnsIcon } from '../../internal/icons';
 import type { DataGridLabels } from '../../labels';

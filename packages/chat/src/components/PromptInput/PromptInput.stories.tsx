@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { IconButton } from '@axon/core';
+import { IconButton } from '@axonui/core';
 import { MicIcon } from '../../internal/icons';
 import type { Attachment } from '../Attachments/files';
 import { PromptInput, type PromptInputProps } from './PromptInput';

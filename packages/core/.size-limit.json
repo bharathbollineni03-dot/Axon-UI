@@ -1,19 +1,19 @@
 [
   {
-    "name": "@axon/core (everything)",
+    "name": "@axonui/core (everything)",
     "path": "dist/index.mjs",
-    "ignore": ["react", "react-dom", "@axon/theme", "@floating-ui/react"],
+    "ignore": ["react", "react-dom", "@axonui/theme", "@floating-ui/react"],
     "limit": "45 KB"
   },
   {
-    "name": "@axon/core: Button only",
+    "name": "@axonui/core: Button only",
     "path": "dist/index.mjs",
     "import": "{ Button }",
-    "ignore": ["react", "react-dom", "@axon/theme"],
+    "ignore": ["react", "react-dom", "@axonui/theme"],
     "limit": "1.5 KB"
   },
   {
-    "name": "@axon/core styles.css",
+    "name": "@axonui/core styles.css",
     "path": "dist/styles.css",
     "limit": "15 KB"
   }

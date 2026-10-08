@@ -97,10 +97,11 @@ describe('ShareConversationDialog', () => {
       renderDialog({ url: URL_ONE });
       await user.click(screen.getByRole('button', { name: 'Copy link' }));
       expect(await navigator.clipboard.readText()).toBe(URL_ONE);
-      expect(await screen.findByRole('button', { name: 'Link copied' })).toBeInTheDocument();
-      expect(screen.getAllByRole('status').some((el) => el.textContent === 'Link copied')).toBe(
-        true,
-      );
+      // "Copied" lasts two seconds, and role queries can take that long on a busy machine, so look
+      // for both the button label and the live region with one cheap text query.
+      const shown = await screen.findAllByText('Link copied');
+      expect(shown.some((el) => el.closest('button'))).toBe(true);
+      expect(shown.some((el) => el.getAttribute('role') === 'status')).toBe(true);
     });
 
     it('tells people when copying did not work', async () => {

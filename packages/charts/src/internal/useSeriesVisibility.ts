@@ -1,5 +1,5 @@
 import { useCallback, useMemo } from 'react';
-import { useControllableState } from '@axon/core';
+import { useControllableState } from '@axonui/core';
 import { resolveSeries, type ResolvedSeries, type SeriesInput } from './palette';
 
 export interface SeriesVisibilityOptions {

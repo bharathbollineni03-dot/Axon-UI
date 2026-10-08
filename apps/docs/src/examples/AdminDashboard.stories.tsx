@@ -17,10 +17,10 @@ import {
   SidebarToggle,
   Stack,
   Text,
-} from '@axon/core';
-import { useTheme } from '@axon/theme';
-import { BarChart, DonutChart, LineChart, StatCard } from '@axon/charts';
-import { DataGrid, type DataGridColumn } from '@axon/table';
+} from '@axonui/core';
+import { useTheme } from '@axonui/theme';
+import { BarChart, DonutChart, LineChart, StatCard } from '@axonui/charts';
+import { DataGrid, type DataGridColumn } from '@axonui/table';
 
 const meta: Meta = {
   title: 'Examples/Admin dashboard',
@@ -29,7 +29,7 @@ const meta: Meta = {
     docs: {
       description: {
         component:
-          'A complete admin page built only from Axon components: an app bar and a collapsible sidebar from `@axon/core`, KPI cards and charts from `@axon/charts`, and a `DataGrid` of orders from `@axon/table`.',
+          'A complete admin page built only from Axon components: an app bar and a collapsible sidebar from `@axonui/core`, KPI cards and charts from `@axonui/charts`, and a `DataGrid` of orders from `@axonui/table`.',
       },
     },
   },

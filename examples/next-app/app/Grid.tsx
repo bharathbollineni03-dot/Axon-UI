@@ -1,6 +1,6 @@
 'use client';
 
-import { DataGrid, type DataGridColumn } from '@axon/table';
+import { DataGrid, type DataGridColumn } from '@axonui/table';
 
 interface Person {
   id: number;

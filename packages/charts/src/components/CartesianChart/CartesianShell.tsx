@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { useMediaQuery } from '@axon/core';
+import { useMediaQuery } from '@axonui/core';
 import { DataTable, wantsDataTable } from '../../internal/DataTable';
 import {
   createNumberFormatter,

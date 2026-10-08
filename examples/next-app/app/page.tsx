@@ -1,6 +1,6 @@
-import { Button, Card, CardContent, CardHeader, Heading, Stack, TextField } from '@axon/core';
-import { LineChart, StatCard } from '@axon/charts';
-import { Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow } from '@axon/table';
+import { Button, Card, CardContent, CardHeader, Heading, Stack, TextField } from '@axonui/core';
+import { LineChart, StatCard } from '@axonui/charts';
+import { Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow } from '@axonui/table';
 import { Login } from './Login';
 import { People } from './Grid';
 

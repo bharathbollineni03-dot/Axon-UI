@@ -1,5 +1,5 @@
 import { forwardRef, useMemo, type ReactNode, type Ref } from 'react';
-import { Button, type SelectProps } from '@axon/core';
+import { Button, type SelectProps } from '@axonui/core';
 import {
   Form,
   FormActions,
@@ -10,7 +10,7 @@ import {
   z,
   type FieldValues,
   type FormProps,
-} from '@axon/forms';
+} from '@axonui/forms';
 import { groupModels } from '../../internal/groupModels';
 import type { ChatModel } from '../ModelSelector/ModelSelector';
 

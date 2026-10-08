@@ -22,10 +22,10 @@ pnpm storybook      # the documentation and the place to try components, http://
 | `pnpm format`          | Prettier                                                                             |
 | `pnpm size`            | size-limit budgets for every package                                                 |
 | `pnpm verify:treeshake`| Proves that importing one component does not pull in the library                     |
-| `pnpm test:a11y`       | axe-core on every story in light and dark mode (needs `pnpm --filter @axon/docs build`) |
+| `pnpm test:a11y`       | axe-core on every story in light and dark mode (needs `pnpm --filter @axonui/docs build`) |
 | `pnpm test:visual`     | Screenshot comparison of representative stories (same build needed)                  |
 
-Turborepo caches every task, so a second run is quick. The packages' own scripts (`pnpm --filter @axon/table test`) work too, and `pnpm --filter @axon/core exec vitest` runs one test file in watch mode.
+Turborepo caches every task, so a second run is quick. The packages' own scripts (`pnpm --filter @axonui/table test`) work too, and `pnpm --filter @axonui/core exec vitest` runs one test file in watch mode.
 
 ## How the repository is laid out
 

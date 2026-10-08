@@ -5,7 +5,7 @@ import {
   type KeyboardEvent,
   type ReactNode,
 } from 'react';
-import { Avatar, Button, IconButton, TextArea } from '@axon/core';
+import { Avatar, Button, IconButton, TextArea } from '@axonui/core';
 import { useCopyToClipboard } from '../../hooks/useCopyToClipboard';
 import {
   CheckIcon,

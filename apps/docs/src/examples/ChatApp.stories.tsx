@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Drawer, IconButton } from '@axon/core';
+import { Drawer, IconButton } from '@axonui/core';
 import {
   ChatSettingsForm,
   ChatWindow,
@@ -12,7 +12,7 @@ import {
   type ChatSender,
   type ConversationSummary,
   type Message,
-} from '@axon/chat';
+} from '@axonui/chat';
 
 const meta: Meta = {
   title: 'Examples/AI chat app',
@@ -21,7 +21,7 @@ const meta: Meta = {
     docs: {
       description: {
         component:
-          'A chat app assembled from `@axon/chat`: a conversation sidebar, a chat window with streaming replies, a model picker, and a settings drawer built from the settings forms. The library calls no AI provider: `useChat` takes an `onSend` function, and this one is a stand-in that streams canned text. Swap in a call to your own back end.',
+          'A chat app assembled from `@axonui/chat`: a conversation sidebar, a chat window with streaming replies, a model picker, and a settings drawer built from the settings forms. The library calls no AI provider: `useChat` takes an `onSend` function, and this one is a stand-in that streams canned text. Swap in a call to your own back end.',
       },
     },
   },

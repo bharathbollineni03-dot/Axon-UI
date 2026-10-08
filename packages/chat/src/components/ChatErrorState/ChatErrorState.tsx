@@ -1,5 +1,5 @@
 import { forwardRef, type HTMLAttributes, type ReactNode } from 'react';
-import { Alert, Button } from '@axon/core';
+import { Alert, Button } from '@axonui/core';
 
 export interface ChatErrorStateLabels {
   title: string;

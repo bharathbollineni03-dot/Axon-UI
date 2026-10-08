@@ -1,5 +1,5 @@
 import { forwardRef, type HTMLAttributes } from 'react';
-import { Spinner, useControllableState, useId } from '@axon/core';
+import { Spinner, useControllableState, useId } from '@axonui/core';
 import type { ToolCallStatus } from '../../types';
 import { AlertIcon, CheckIcon, ChevronRightIcon, ToolIcon } from '../../internal/icons';
 import { CodeBlock } from '../CodeBlock/CodeBlock';

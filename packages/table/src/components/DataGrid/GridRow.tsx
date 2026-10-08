@@ -1,5 +1,5 @@
 import type { KeyboardEvent, MouseEvent, ReactNode } from 'react';
-import { Checkbox } from '@axon/core';
+import { Checkbox } from '@axonui/core';
 import type { Cell, RowData } from '@tanstack/react-table';
 import { EXPAND_COLUMN_ID, SELECT_COLUMN_ID } from '../../internal/buildColumns';
 import { cx } from '../../internal/cx';

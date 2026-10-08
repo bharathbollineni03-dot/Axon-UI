@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { z } from 'zod';
-import { Alert } from '@axon/core';
+import { Alert } from '@axonui/core';
 import { SubmittedValues, useMockSubmit } from '../../stories/mock';
 import {
   FormCheckbox,

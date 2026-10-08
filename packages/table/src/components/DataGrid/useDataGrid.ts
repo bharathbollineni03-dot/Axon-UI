@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { useControllableState } from '@axon/core';
+import { useControllableState } from '@axonui/core';
 import {
   useTable,
   type ColumnFiltersState,

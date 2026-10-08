@@ -52,7 +52,7 @@ export const Languages: Story = {
         language="json"
         code={'{\n  "name": "axon",\n  "private": false,\n  "keywords": ["ui", "react"]\n}'}
       />
-      <CodeBlock language="bash" code={'pnpm add @axon/chat\npnpm dev --filter docs'} />
+      <CodeBlock language="bash" code={'pnpm add @axonui/chat\npnpm dev --filter docs'} />
       <CodeBlock
         language="css"
         code={'.axon-button {\n  color: var(--axon-color-primary-text);\n}'}

@@ -1,5 +1,5 @@
 import { useId, useMemo, type ReactNode } from 'react';
-import { Card, CardContent, Skeleton, type CardOwnProps } from '@axon/core';
+import { Card, CardContent, Skeleton, type CardOwnProps } from '@axonui/core';
 import { createNumberFormatter, isFiniteNumber, type ValueFormat } from '../../internal/format';
 import type { CurveType } from '../../internal/curves';
 import { Sparkline } from '../Sparkline/Sparkline';

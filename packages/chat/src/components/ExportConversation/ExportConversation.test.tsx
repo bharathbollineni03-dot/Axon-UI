@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 import { axe } from 'jest-axe';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { axeWithPortal } from '../../testing/axePortal';
-import { Button } from '@axon/core';
+import { Button } from '@axonui/core';
 import type { Message } from '../../types';
 import { ExportConversation } from './ExportConversation';
 

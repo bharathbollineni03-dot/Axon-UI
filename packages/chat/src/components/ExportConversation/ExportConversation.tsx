@@ -1,5 +1,5 @@
 import { cloneElement, type ReactElement } from 'react';
-import { Button, DropdownMenu, MenuItem } from '@axon/core';
+import { Button, DropdownMenu, MenuItem } from '@axonui/core';
 import { DownloadIcon } from '../../internal/icons';
 import {
   downloadFile,

@@ -8,7 +8,7 @@ import {
   type ReactNode,
   type Ref,
 } from 'react';
-import { Button, ConfirmDialog, Select, TextField } from '@axon/core';
+import { Button, ConfirmDialog, Select, TextField } from '@axonui/core';
 import {
   Form,
   FormActions,
@@ -19,7 +19,7 @@ import {
   type FieldValues,
   type FormHelpers,
   type FormSubmitResult,
-} from '@axon/forms';
+} from '@axonui/forms';
 
 // ---------------------------------------------------------------------------------------------
 // Schema
