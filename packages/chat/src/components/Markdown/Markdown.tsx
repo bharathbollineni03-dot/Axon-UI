@@ -28,10 +28,14 @@ export interface MarkdownProps {
   codeBlockLabels?: Partial<CodeBlockLabels>;
   /** Accessible name of a scrollable table. Defaults to "Table". */
   tableLabel?: string;
+  /** The names of a task list's checkboxes. Default "Done" and "Not done". */
+  taskLabels?: { done: string; todo: string };
   /** Replace how any element renders. See react-markdown's `components`. */
   components?: Components;
   className?: string;
 }
+
+const DEFAULT_TASK_LABELS = { done: 'Done', todo: 'Not done' };
 
 const isExternal = (href: string | undefined) => Boolean(href && /^(https?:)?\/\//i.test(href));
 
@@ -54,6 +58,7 @@ export const Markdown = memo(function Markdown({
   allowImages = true,
   codeBlockLabels,
   tableLabel = 'Table',
+  taskLabels = DEFAULT_TASK_LABELS,
   components,
   className,
 }: MarkdownProps) {
@@ -125,6 +130,25 @@ export const Markdown = memo(function Markdown({
           />
         );
       },
+      // A task list item's checkbox is a read-only picture of its state, and says so.
+      input({
+        node: _node,
+        type,
+        checked,
+        ...props
+      }: ComponentPropsWithoutRef<'input'> & { node?: unknown }) {
+        if (type !== 'checkbox') return <input {...props} type={type} checked={checked} />;
+        return (
+          <input
+            type="checkbox"
+            className="axon-markdown__task"
+            checked={!!checked}
+            readOnly
+            disabled
+            aria-label={checked ? taskLabels.done : taskLabels.todo}
+          />
+        );
+      },
       // A wide table scrolls inside its own box, which therefore has to be focusable.
       table({ node: _node, children: tableChildren }) {
         return (
@@ -136,7 +160,15 @@ export const Markdown = memo(function Markdown({
       },
       ...components,
     };
-  }, [headingOffset, openLinksInNewTab, allowImages, codeBlockLabels, tableLabel, components]);
+  }, [
+    headingOffset,
+    openLinksInNewTab,
+    allowImages,
+    codeBlockLabels,
+    tableLabel,
+    taskLabels,
+    components,
+  ]);
 
   return (
     <div className={['axon-markdown', className].filter(Boolean).join(' ')}>

@@ -27,6 +27,23 @@ describe('Markdown', () => {
     expect(boxes[1]).not.toBeChecked();
   });
 
+  it('gives task list checkboxes a name, which can be changed', async () => {
+    const source = '- [x] ship it\n- [ ] test it';
+    const { container, unmount } = render(<Markdown>{source}</Markdown>);
+    expect(screen.getByRole('checkbox', { name: 'Done' })).toBeChecked();
+    expect(screen.getByRole('checkbox', { name: 'Not done' })).not.toBeChecked();
+    // They show a state; they are not controls.
+    expect(screen.getAllByRole('checkbox').every((box) => (box as HTMLInputElement).disabled)).toBe(
+      true,
+    );
+    expect(await axe(container)).toHaveNoViolations();
+    unmount();
+
+    render(<Markdown taskLabels={{ done: 'Fait', todo: 'À faire' }}>{source}</Markdown>);
+    expect(screen.getByRole('checkbox', { name: 'Fait' })).toBeInTheDocument();
+    expect(screen.getByRole('checkbox', { name: 'À faire' })).toBeInTheDocument();
+  });
+
   describe('tables', () => {
     const table = '| Name | Qty |\n| --- | --- |\n| Apples | 3 |\n| Pears | 5 |';
 

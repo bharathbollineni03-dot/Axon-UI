@@ -1,4 +1,4 @@
-import { act, screen, waitFor, within } from '@testing-library/react';
+import { act, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { axe } from 'jest-axe';
 import { afterEach, describe, expect, it, vi } from 'vitest';
@@ -378,7 +378,7 @@ describe('DataGrid filtering and search', () => {
         toolbar: true,
         defaultShowFilters: true,
       });
-      await waitFor(async () => expect(await axe(container)).toHaveNoViolations());
+      expect(await axe(container)).toHaveNoViolations();
     });
   });
 

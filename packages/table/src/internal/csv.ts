@@ -77,5 +77,7 @@ export function downloadCsv(fileName: string, csv: string): void {
   link.click();
   link.remove();
   // The click starts the download asynchronously in some browsers; let it begin before releasing.
-  setTimeout(() => URL.revokeObjectURL(url), 1000);
+  setTimeout(() => {
+    if (typeof URL.revokeObjectURL === 'function') URL.revokeObjectURL(url);
+  }, 1000);
 }
